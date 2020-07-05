@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
   def ingredient
   end
 
-  def process
+  def step
   end
 
   def create
