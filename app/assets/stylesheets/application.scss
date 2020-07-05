@@ -15,3 +15,64 @@
  */
 
 @import "bootstrap";
+// 共通のレイアウト
+*{
+  margin:0;
+  padding: 0;
+}
+html,　body {
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 70px;
+  padding-top: 20px
+}
+// ヘッダー・フッター
+header{
+ 	background-color: #FCE77D;
+ 	margin-bottom: 30px;
+}
+
+footer{
+	background-color: #FCE77D;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	margin-top: 30px;
+}
+
+.footer-logo{
+	float: right;
+    background-image: url(logo.jpg);
+    background-size: cover;
+    height: 50px;
+    width: 130px;
+}
+
+.navbar-brand{
+	background-image: url(logo.jpg);
+    background-size: cover;
+    width: 220px;
+    height: 80px;
+}
+
+a{
+	color: black;
+}
+
+a:hover {
+	color: #F96167;
+	text-decoration: underline;
+}
+
+// ログイン新規登録のタイトル
+.form-title{
+	border-bottom: 2px solid #F96167;
+	font-family: impact;
+}
+
+
+

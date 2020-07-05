@@ -1,29 +1,84 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <h2 style="padding-bottom: 20px"><span class="form-title">Sign up</span></h2>
+        <%= form_for(resource, as: resource_name,
+            url: registration_path(resource_name)) do |f| %>
+        <%= render "customers/shared/error_messages", resource: resource %>
+          <div class="row">
+            <div class="col-lg-4">
+              <p>名前</p>
+            </div>
+            <div class="col-lg-4">
+               <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+            </div>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "customers/shared/error_messages", resource: resource %>
+          <div class="row">
+            <div class="col-lg-4">
+              <p>ニックネーム<span style="font-size: 10px">(レシピの投稿で使用します)</span></p>
+            </div>
+            <div class="col-lg-4">
+               <%= f.text_field :account_name, autocomplete: "off" %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="row">
+            <div class="col-lg-4">
+              <p>メールアドレス</p>
+            </div>
+            <div class="col-lg-4">
+               <%= f.email_field :email, autocomplete: "off" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4">
+              <p>郵便番号(ハイフンなし)</p>
+            </div>
+            <div class="col-lg-4">
+               <%= f.text_field :postcode, autocomplete: "off"%>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4">
+              <p>住所</p>
+            </div>
+            <div class="col-lg-8">
+               <%= f.text_field :address, autocomplete: "off" ,style:"width:100%" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4">
+              <p>電話番号(ハイフンなし)</p>
+            </div>
+            <div class="col-lg-4">
+               <%= f.text_field :tel, autocomplete: "off"%>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4">
+              <p>パスワード(6文字以上)</p>
+            </div>
+            <div class="col-lg-3">
+              <%= f.password_field :password, autocomplete: "new-password" %>
+            </div>
+          </div>
+
+        　 <div class="row">
+            <div class="col-lg-12", style="text-align:center;">
+              <%= f.hidden_field :is_avtive, value: "有効" %>
+              <%= f.submit "新規登録" ,class:"btn btn-warning btn-lg",
+                style:"padding:5px 30px;margin-bottom:30px;" %>
+            </div>
+          </div>
+        <% end %>
+        <span>登録済の方は、
+          <%= link_to "こちら", new_customer_session_path, style:"color:blue;" %>よりログインを行ってください
+      </span>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "customers/shared/links" %>
+</div>

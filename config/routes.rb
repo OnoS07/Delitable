@@ -51,12 +51,13 @@ Rails.application.routes.draw do
 # SNSルーティング
   resources :recipes do
     resources :ingredient, only:[:edit, :update]
-    resources :process, only:[:edit, :update]
+    resources :step, only:[:edit, :update]
+    get "ingredient" => "recipes#ingredient", as: "new_ingredient"
+    get "step" => "steps#process", as: "new_step"
     resource :post_comments, only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
   end
 
-  get "recipes/ingredient" => "recipes#ingredient", as: "new_recipe_ingredient"
-  get "recipes/process" => "recipes#process", as: "new_recipe_process"
+
 
 end
