@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/5a4c917e19.js" crossorigin="anonymous"></script>
   </head>
 
   <body style="padding-top:6rem;">
@@ -26,7 +27,8 @@
                 <%= link_to "商品", products_path, class:"nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "カート", cart_item_confirm_path, class:"nav-link" %>
+                <%= link_to "カート", customer_cart_items_path(current_customer), 
+                  class:"nav-link" %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_customer_session_path,

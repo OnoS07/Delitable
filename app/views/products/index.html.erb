@@ -1,2 +1,32 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<%= render "products/genre_sidebar", genres: @genres %>
+		<div class="col-lg-10">
+			<span class="form-title" style="font-size: 30px;">
+				<%= @index_title %>一覧
+				<span style="font-size: 15px; font-family: none;">
+					<% @sum = 0 %>
+					<% @products.each do |product| %>
+						<% if product.is_active == "販売中" %><% @sum += 1 %><% end %>
+					<% end %>
+					(全<%= @sum.to_i %>件)
+				</span>
+			</span>
+			<div class="product-contents"  style="padding-top: 20px">
+				<% @products.each do |product| %>
+					<div class="product-content">
+						<%= link_to product_path(product) do %>
+							<%= attachment_image_tag product, :product_image, format:"jpg",
+								fallback:"top_vegetable.jpg", class:"product-image" %>
+						<% end %>
+						<p>
+							<i class="fas fa-carrot">
+								<%= product.name %>：￥<%= product.price %>円
+						   </i>
+						 </p>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

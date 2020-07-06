@@ -27,12 +27,12 @@ Rails.application.routes.draw do
     resources :shippings, only:[:index, :edit, :update, :create, :destroy]
     resources :orders, only:[:index, :show, :new ,:create]
     resources :cart_items, only:[:update, :create, :destroy]
+    get 'orders/confirm' => "orders#confirm", as:"order_confirm"
+    get 'orders/complete' => "orders#complete", as:"order_complete"
+    get 'cart_items/confirm' => "cart_items#confirm", as:"cart_item_confirm"
   end
 
-  get 'orders/confirm' => "orders#confirm", as:"order_confirm"
-  get 'orders/complete' => "orders#complete", as:"order_complete"
 
-  get 'cart_items/confirm' => "cart_items#confirm", as:"cart_item_confirm"
 
   get 'customers/delete' => "customers#delete", as:"customer_delete"
 

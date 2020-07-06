@@ -1,2 +1,36 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<%= render "products/genre_sidebar", genres: @genres %>
+		<div class="col-lg-5">
+			<%= attachment_image_tag @product, :product_image, format:"jpg",
+				fallback:"top_vegetable.jpg", class:"product-show" %>
+		</div>
+		<div class="col-lg-5">
+			<p style="font-size: 30px"><%= @product.name %></p>
+			<p style="font-size: 20px"><%= @product.introduction %></p>
+			<p style="font-size: 25px"><%= (@product.price * 1.1).to_i %>円(税込)</p>
+		</div>
+	</div>
+	<div class="form-row align-items-center", style="float: right">
+		<div class="col-auto">
+			<% if customer_signed_in? %>
+				<%= form_with model: @cart_item,
+					url: customer_cart_items_path(current_customer) do |f| %>
+					<div class="field">
+							<%= f.select :count, [["1","1"],["2","2"],["3","3"]],
+									include_blank: "個数選択" %>
+							<%= f.hidden_field :product_id, :value => @product.id %>
+							<%= f.submit "カートに入れる", class:"btn btn-warning" %>
+					</div>
+				<% end %>
+			<% else %>
+				<p>
+					購入には
+					<%= link_to "新規登録", new_customer_registration_path %>、または
+					<%= link_to "ログイン", new_customer_session_path %>
+					が必要です
+				</p>
+			<% end %>
+		</div>
+	</div>
+</div>
