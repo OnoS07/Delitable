@@ -1,2 +1,56 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="top-images">
+				<div class="top1">
+					<div class="top-image-text">Welcome to Delitable</div>
+				</div>
+				<div class="top2">
+					<div class="top-image-text">Welcome to Delitable</div>
+				</div>
+				<div class="top3">
+					<div class="top-image-text">Welcome to Delitable</div>
+				</div>
+				<div class="top4">
+					<div class="top-image-text">Welcome to Delitable</div>
+				</div>
+				<div class="top5">
+					<div class="top-image-text">Welcome to Delitable</div>
+				</div>
+
+			</div>
+			<span class="top-introduction" style="margin: 0 10%;">
+				<p>Delitableへようこそ！<br>
+				   当サイトは食材の宅配サービスや、レシピの投稿・閲覧をお楽しみいただけます。<br>
+					初めての方はまずは下記『About』にて詳しい説明をご確認ください
+				</p>
+			</span>
+			<div class="top-contents">
+				<%= link_to products_path do %>
+					<div class="top-content top-vegetable">
+						<div class="top-content-text">
+								<span>[Delivary]<br>
+								~野菜の配送サービス~</span>
+						</div>
+					</div>
+				<% end %>
+				<%= link_to about_path do %>
+					<div class="top-content top-about">
+						<div class="top-content-text">
+								<span>[About]<br>
+								~Delitableの紹介~</span>
+						</div>
+					</div>
+				<% end %>
+				<%= link_to recipes_path do %>
+					<div class="top-content top-recipe">
+						<div class="top-content-text">
+								<span>[Recipe]<br>
+								~レシピの共有~</span>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

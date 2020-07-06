@@ -26,14 +26,14 @@ html,　body {
 
 .wrapper {
   width: 100%;
-  min-height: 100%;
-  padding-bottom: 70px;
-  padding-top: 20px
+  min-height: 100vh;
+  padding-top: 20px;
+  position: relative
 }
 // ヘッダー・フッター
 header{
  	background-color: #FCE77D;
- 	margin-bottom: 30px;
+ 	margin-top: auto;
 }
 
 footer{
