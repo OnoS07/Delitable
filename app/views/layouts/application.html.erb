@@ -27,8 +27,7 @@
                 <%= link_to "商品", products_path, class:"nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "カート", customer_cart_items_path(current_customer), 
-                  class:"nav-link" %>
+                <%= link_to "カート", cart_item_confirm_path, class:"nav-link" %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_customer_session_path,
