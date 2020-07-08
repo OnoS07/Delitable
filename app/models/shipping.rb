@@ -1,6 +1,6 @@
 class Shipping < ApplicationRecord
-	belongs_to :customer
+  belongs_to :customer
   def finally_address
-    "〒#{self.postcode} #{self.address} #{self.name}"
+    "〒#{postcode} #{address} #{name}"
   end
 end

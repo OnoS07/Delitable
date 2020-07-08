@@ -1,14 +1,11 @@
 class Admins::OrdersController < ApplicationController
   def top
-  	@orders = Order.all
+    @orders = Order.all
   end
 
-  def index
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
-  def update
-  end
+  def update; end
 end

@@ -9,27 +9,25 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.payment_method = params[:payment_method]
 
-    if params[:order_address] == "1"
-       # 自分の住所選択
+    if params[:order_address] == '1' # 自分の住所選択
       @order.postcode = current_customer.postcode
       @order.address = current_customer.address
       @order.name = current_customer.name
-    elsif params[:order_address] == "2"
-       # 配送先から選択
+    elsif params[:order_address] == '2' # 配送先から選択
       @shipping = Shipping.find(params[:select_address])
       @order.postcode = @shipping.postcode
       @order.address = @shipping.address
       @order.name = @shipping.name
-    else params[:order_address] == "3"
-       # 新しい配送先
+    else
+      # params[:order_address] = '3' # 新しい配送先
       @order.postcode = params[:postcode]
       @order.address = params[:address]
       @order.name = params[:name]
       @shipping = Shipping.new
-        @shipping.customer_id = current_customer.id
-        @shipping.postcode = @order.postcode
-        @shipping.address = @order.address
-        @shipping.name = @order.name
+      @shipping.customer_id = current_customer.id
+      @shipping.postcode = @order.postcode
+      @shipping.address = @order.address
+      @shipping.name = @order.name
       @shipping.save
     end
   end
@@ -45,7 +43,7 @@ class OrdersController < ApplicationController
         order_detail.product_id = cart_item.product_id
         order_detail.count = cart_item.count
         order_detail.price = cart_item.product.price
-        order_detail.work_status = "着手不可"
+        order_detail.work_status = '着手不可'
         order_detail.save
         cart_item.destroy
       end
@@ -55,11 +53,10 @@ class OrdersController < ApplicationController
     end
   end
 
-  def complete
-  end
+  def complete; end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id).order(id:"DESC")
+    @orders = Order.where(customer_id: current_customer.id).order(id: 'DESC')
   end
 
   def show
@@ -68,8 +65,9 @@ class OrdersController < ApplicationController
   end
 
   private
-    def order_params
-     params.permit(:customer_id, :name, :postcode, :address, :postage,
-        :total_products_cost, :payment_method, :order_status)
-    end
+
+  def order_params
+    params.permit(:customer_id, :name, :postcode, :address, :postage,
+                  :total_products_cost, :payment_method, :order_status)
+  end
 end

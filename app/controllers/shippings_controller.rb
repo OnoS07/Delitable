@@ -29,6 +29,7 @@ class ShippingsController < ApplicationController
   end
 
   private
+
   def shipping_params_update
     params.require(:shipping).permit(:customer_id, :name, :postcode, :address)
   end

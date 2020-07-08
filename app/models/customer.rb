@@ -15,5 +15,4 @@ class Customer < ApplicationRecord
 
   enum is_active: { 退会済: false, 有効: true }
   acts_as_paranoid
-
 end
