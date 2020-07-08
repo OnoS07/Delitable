@@ -1,2 +1,80 @@
-<h1>Orders#confirm</h1>
-<p>Find me in app/views/orders/confirm.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<span class="form-title" style="font-size: 30px">Order</span>
+			<!-- cart_item表示 -->
+			<div style="margin-top: 20px;">
+				<div class="row">
+					<div class="col-lg-8">
+						<table class="table table-bordered">
+							<thead class="thead-light">
+								<tr>
+									<th>商品名</th>
+									<th>単価(税込)</th>
+									<th>数量</th>
+									<th>小計</th>
+								</tr>
+							</thead>
+							<% @sum = 0 %>
+							<% @cart_items.each do |cart_item| %>
+							<tr>
+								<td>
+									<%= attachment_image_tag cart_item.product, :product_image,format: "jpg", size:"80x50", fallback:"top_vegetable.jpg" %>
+									<%= cart_item.product.name %>
+								</td>
+								<td class="align-middle">
+									<%= (cart_item.product.price * 1.1).to_i %>円
+								</td>
+								<td class="align-middle">
+									<%= cart_item.count %>
+								</td>
+								<td class="align-middle">
+									<%= (cart_item.product.price * cart_item.count * 1.1).to_i %>円
+									<% @sum+=(cart_item.product.price * cart_item.count * 1.1).to_i %>
+								</td>
+							</tr>
+							<% end %>
+						</table>
+					</div>
+					<div class="col-lg-4">
+					<table class="table table-bordered">
+					<tr>
+						<td class="table-active">送料</td>
+						<td>800円</td>
+					</tr>
+					<tr style="height: 75px;">
+						<td class="table-active align-middle">商品合計</td>
+						<td class="align-middle"><%= @sum.to_i %>円</td>
+					</tr>
+					<tr style="height: 75px;">
+						<td class="table-active align-middle">請求金額</td>
+						<td class="align-middle"><%= @sum.to_i + 800 %>円</td>
+					</tr>
+					</table>
+					</div>
+				</div>
+			</div>
+			<!-- order表示 -->
+			<div style="margin: 20px 0">
+				<span style="font-size: 20px;">●支払い方法：</span>
+				<span><%= @order.payment_method %></span>
+			</div>
+			<div>
+				<span style="font-size: 20px;">●お届け先：</span>
+				<span><%= @order.postcode%> <%= @order.address %> <%= @order.name %>様</span>
+			</div>
+
+			<div style="text-align: center; margin-left: 80px;">
+				<%= form_with(url: customers_orders_path, local: true) do |f| %>
+				 	<%= f.hidden_field :name, value: @order.name %>
+					<%= f.hidden_field :address, value: @order.address %>
+					<%= f.hidden_field :postcode, value: @order.postcode %>
+					<%= f.hidden_field :postage, value: 800 %>
+					<%= f.hidden_field :total_products_cost, value: @sum %>
+					<%= f.hidden_field :order_status, value: "入金待ち" %>
+				<%= f.submit "上記内容で注文する", class:"btn btn-warning btn-center" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,2 +1,37 @@
-<h1>Orders#complete</h1>
-<p>Find me in app/views/orders/complete.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<p class="form-title" style="text-align: center;font-size: 30px" >
+				Thank you for your purchase!
+			</p>
+			<p style="text-align: center;margin-bottom: 50px">
+				~購入を承りました。引き続きDelitableをお楽しみください~
+			</p>
+			<div class="top-contents">
+				<%= link_to products_path do %>
+					<div class="top-content top-vegetable">
+						<div class="top-content-text">
+								<span>[Delivary]<br>
+								~野菜の配送サービス~</span>
+						</div>
+					</div>
+				<% end %>
+				<%= link_to customer_path(current_customer) do %>
+					<div class="top-content top-about">
+						<div class="top-content-text">
+								<span>[My_page]</span>
+						</div>
+					</div>
+				<% end %>
+				<%= link_to recipes_path do %>
+					<div class="top-content top-recipe">
+						<div class="top-content-text">
+								<span>[Recipe]<br>
+								~レシピの共有~</span>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

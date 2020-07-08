@@ -30,7 +30,10 @@
 							<%= (cart_item.product.price * 1.1).to_i %>円
 						</td>
 						<td class="align-middle">
-							<%= cart_item.count %>
+							<%= form_with model:cart_item, url:customers_cart_item_path(cart_item),method: :patch, local: true do |f| %>
+							<%= f.text_field :count, :size=>"3" %>
+							<%= f.submit "更新", class:"btn btn-warning btn-sm" %>
+							<% end %>
 						</td>
 						<td class="align-middle">
 							<%= (cart_item.product.price * cart_item.count * 1.1).to_i %>円

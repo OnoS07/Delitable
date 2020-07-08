@@ -11,6 +11,9 @@ class CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to cart_item_confirm_path
   end
 
   def destroy_all
@@ -25,6 +28,7 @@ class CartItemsController < ApplicationController
     redirect_to cart_item_confirm_path
   end
 
+  private
   def cart_item_params
     params.require(:cart_item).permit(:customer_id, :product_id, :count)
   end

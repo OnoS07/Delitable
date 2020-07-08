@@ -11,6 +11,8 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :cart_items, dependent: :destroy
 
+  attachment :profile_image
+
   enum is_active: { 退会済: false, 有効: true }
   acts_as_paranoid
 
