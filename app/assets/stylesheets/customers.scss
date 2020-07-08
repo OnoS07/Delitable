@@ -1,3 +1,12 @@
 // Place all the styles related to the customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.customer-image{
+	border-radius: 50%;
+	height: 200px;
+	width: 200px;
+	object-fit: contain;
+	border: 0.5px solid #F96167;
+	background-color: #F5F5F5
+}

@@ -23,14 +23,16 @@ Rails.application.routes.draw do
   get "/" => "homes#top", as: "top"
   get "home/about" => "homes#about", as:"about"
 
-  resources :customers, only:[:show, :edit, :update ,:destroy] do
+  resource :customers, only:[:hoge] do
     resources :shippings, only:[:index, :edit, :update, :create, :destroy]
     resources :orders, only:[:index, :show, :new ,:create]
     resources :cart_items, only:[:update, :create, :destroy]
+  end
+  resources :customers, only:[:show, :edit, :update ,:destroy]
     get 'orders/confirm' => "orders#confirm", as:"order_confirm"
     get 'orders/complete' => "orders#complete", as:"order_complete"
     get 'cart_items/confirm' => "cart_items#confirm", as:"cart_item_confirm"
-  end
+    delete "cart_items/destroy_all" => "cart_items#destroy_all", as:"cart_items_destroy_all"
 
 
 
@@ -43,9 +45,9 @@ Rails.application.routes.draw do
     resources :products, only:[:index, :show, :new, :create, :edit, :update]
     resources :customers, only:[:index, :show, :edit, :update]
     resources :orders, only:[:index, :show, :update]
-      get "/" => "orders#top", as: "admin_top"
+      get "/" => "orders#top", as: "top"
     resources :order_details,only:[:update]
-    resources :genres, only:[:index, :edot, :create, :update]
+    resources :genres, only:[:index, :edit, :create, :update, :destroy]
   end
 
 # SNSルーティング

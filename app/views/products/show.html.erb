@@ -15,7 +15,7 @@
 		<div class="col-auto">
 			<% if customer_signed_in? %>
 				<%= form_with model: @cart_item,
-					url: customer_cart_items_path(current_customer) do |f| %>
+					url: customers_cart_items_path do |f| %>
 					<div class="field">
 							<%= f.select :count, [["1","1"],["2","2"],["3","3"]],
 									include_blank: "個数選択" %>
