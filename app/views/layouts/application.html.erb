@@ -37,7 +37,22 @@
 
           <% elsif admin_signed_in? %>
             <ul class="nav">
-              
+              <li class="nav-item">
+                <%= link_to "商品一覧", admins_products_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ジャンル一覧", admins_genres_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "顧客一覧", admins_customers_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "注文一覧", admins_orders_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path,
+                  method: :delete, class:"nav-link" %>
+              </li>
             </ul>
 
           <% else %>

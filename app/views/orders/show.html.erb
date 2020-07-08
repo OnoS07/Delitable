@@ -1,2 +1,77 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="container">
+  <span class="form-title" style="font-size: 30px">My Order</span>
+  <div class="row" style="margin-top: 30px; margin-bottom: 50px;">
+    <div class="col-lg-8">
+    	<span>注文情報</span>
+        <table class="table table-bordered">
+            <tr>
+              <th class="table-active">注文日</th>
+              <td><%= @order.created_at.strftime('%Y/%m/%d')%>
+              </td>
+            </tr>
+
+            <tr>
+              <th class="table-active">配送先</th>
+              <td><%= @order.postcode %><br>
+                  <%= @order.address %><br>
+                  <%= @order.name %>
+              </td>
+            </tr>
+
+            <tr>
+              <th class="table-active">支払方法</th>
+              <td>
+                <%= @order.payment_method %>
+              </td>
+            </tr>
+
+            <tr>
+              <th class="table-active">ステータス</th>
+              <td><%= @order.order_status %></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-4">
+      <span>請求情報</span>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th class="table-active">商品合計</th>
+              <td><%= @order.total_products_cost %></td>
+            </tr>
+
+            <tr>
+              <th class="table-active">配送料</th>
+              <td><%= @order.postage %></td>
+            </tr>
+
+            <tr>
+              <th class="table-active">ご請求額</th>
+              <td><%= @order.total_products_cost.to_i + @order.postage.to_i %></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+    <span>注文内容</span>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+		    <tr>
+			   <th>商品</th>
+			   <th>単価（税込）</th>
+			   <th>個数</th>
+			   <th>小計</th>
+		    </tr>
+	    </thead>
+	    <tbody>
+        <% @order_details.each do |order_detail| %>
+		    <tr>
+			   <td><%= order_detail.product.name %> </td>
+			   <td><%= (order_detail.product.price * 1.1).to_i %></td>
+			   <td><%= order_detail.count %></td>
+			   <td><%= (order_detail.product.price * order_detail.count * 1.1).to_i %></td>
+		    </tr>
+        <% end %>
+	     </tbody>
+    </table>
+</div>

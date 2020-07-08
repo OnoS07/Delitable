@@ -45,9 +45,9 @@ Rails.application.routes.draw do
     resources :products, only:[:index, :show, :new, :create, :edit, :update]
     resources :customers, only:[:index, :show, :edit, :update]
     resources :orders, only:[:index, :show, :update]
-      get "/" => "orders#top", as: "admin_top"
+      get "/" => "orders#top", as: "top"
     resources :order_details,only:[:update]
-    resources :genres, only:[:index, :edot, :create, :update]
+    resources :genres, only:[:index, :edit, :create, :update, :destroy]
   end
 
 # SNSルーティング
