@@ -14,40 +14,40 @@
     <div class="wrapper">
     <header class="navbar navbar-expand-lg navbar-white fixed-top">
         <div class="container">
-          <%= link_to root_path, class:"navbar-brand" do %><% end %>
+          <%= link_to root_path, class:"navbar-brand", data: {"turbolinks" => false} do %><% end %>
           <% if customer_signed_in? %>
             <ul class="nav">
               <li class="nav-item">
-                <%= link_to "マイページ", customer_path(current_customer), class:"nav-link" %>
+                <%= link_to "マイページ", customer_path(current_customer), class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
-                <%= link_to "レシピ", recipes_path, class:"nav-link" %>
+                <%= link_to "レシピ", recipes_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
-                <%= link_to "商品", products_path, class:"nav-link" %>
+                <%= link_to "商品", products_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
-                <%= link_to "カート", cart_item_confirm_path, class:"nav-link" %>
+                <%= link_to "カート", cart_item_confirm_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_customer_session_path,
-                  method: :delete, class:"nav-link" %>
+                  method: :delete, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
             </ul>
 
           <% elsif admin_signed_in? %>
             <ul class="nav">
               <li class="nav-item">
-                <%= link_to "商品一覧", admins_products_path, class:"nav-link" %>
+                <%= link_to "商品一覧", admins_products_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
-                <%= link_to "ジャンル一覧", admins_genres_path, class:"nav-link" %>
+                <%= link_to "ジャンル一覧", admins_genres_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
-                <%= link_to "顧客一覧", admins_customers_path, class:"nav-link" %>
+                <%= link_to "顧客一覧", admins_customers_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
-                <%= link_to "注文一覧", admins_orders_path, class:"nav-link" %>
+                <%= link_to "注文一覧", admins_orders_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_admin_session_path,
@@ -58,16 +58,16 @@
           <% else %>
             <ul class="nav">
               <li class="nav-item">
-                <%= link_to "レシピ", recipes_path, class:"nav-link" %>
+                <%= link_to "レシピ", recipes_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
-                <%= link_to "商品", products_path, class:"nav-link" %>
+                <%= link_to "商品", products_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
-                <%= link_to "新規登録", new_customer_registration_path, class:"nav-link" %>
+                <%= link_to "新規登録", new_customer_registration_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログイン", new_customer_session_path, class:"nav-link" %>
+                <%= link_to "ログイン", new_customer_session_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
             </ul>
           <% end %>

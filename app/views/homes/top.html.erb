@@ -17,16 +17,23 @@
 				<div class="top5">
 					<div class="top-image-text">Welcome to Delitable</div>
 				</div>
-
 			</div>
-			<span class="top-introduction" style="margin: 0 10%;">
-				<p>Delitableへようこそ！<br>
-				   当サイトは食材の宅配サービスや、レシピの投稿・閲覧をお楽しみいただけます。<br>
-					初めての方はまずは下記『About』にて詳しい説明をご確認ください
-				</p>
-			</span>
+			<div style="margin:30px auto ">
+				<span class="form-title">
+					<% if customer_signed_in? %>
+						Enjoy Delitable!
+					<% else %>
+						Welcome to Delitable!
+					<% end %>
+				</span>
+			</div>
+			<p>
+			   当サイトは食材の宅配サービスや、レシピの投稿・閲覧をお楽しみいただけます。<br>
+				初めての方はまずは下記『About』にて詳しい説明をご確認ください
+			</p>
+
 			<div class="top-contents">
-				<%= link_to products_path do %>
+				<%= link_to products_path, data: {"turbolinks" => false} do %>
 					<div class="top-content top-vegetable">
 						<div class="top-content-text">
 								<span>[Delivary]<br>
@@ -34,7 +41,7 @@
 						</div>
 					</div>
 				<% end %>
-				<%= link_to about_path do %>
+				<%= link_to about_path, data: {"turbolinks" => false} do %>
 					<div class="top-content top-about">
 						<div class="top-content-text">
 								<span>[About]<br>
@@ -42,7 +49,7 @@
 						</div>
 					</div>
 				<% end %>
-				<%= link_to recipes_path do %>
+				<%= link_to recipes_path, data: {"turbolinks" => false} do %>
 					<div class="top-content top-recipe">
 						<div class="top-content-text">
 								<span>[Recipe]<br>
