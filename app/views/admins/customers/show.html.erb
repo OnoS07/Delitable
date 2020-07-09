@@ -37,7 +37,7 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<%= link_to "プロフィール編集", edit_admins_customer_path(@customer),
-						class:"btn btn-primary" %>
+						data: {"turbolinks" => false}, class:"btn btn-primary" %>
 				</div>
 				<div class="col-lg-6">
 					<%= form_with url: admins_orders_path, method: :get, local: true do |f| %>
