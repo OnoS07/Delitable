@@ -1,0 +1,51 @@
+<div class="container">
+	<span class="form-title" style="font-size: 30px;">
+		顧客詳細
+	</span>
+	<div class="row" style="margin-top: 30px;">
+		<div class="col-lg-4" style="text-align: center;">
+			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
+				fallback:"logo.jpg", class:"customer-image" %>
+		</div>
+		<div class="col-lg-8">
+			<table class="table table-bordered">
+				<tr>
+					<td class="align-middle" style="width: 200px;">ユーザー名</td>
+					<td class="align-middle"><%= @customer.account_name %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">名前</td>
+					<td class="align-middle"><%= @customer.name %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">郵便番号</td>
+					<td class="align-middle"><%= @customer.postcode %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">住所</td>
+					<td class="align-middle"><%= @customer.address %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">電話番号</td>
+					<td class="align-middle"><%= @customer.tel %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">メールアドレス</td>
+					<td class="align-middle"><%= @customer.email %></td>
+				</tr>
+			</table>
+			<div class="row">
+				<div class="col-lg-6">
+					<%= link_to "プロフィール編集", edit_admins_customer_path(@customer),
+						class:"btn btn-primary" %>
+				</div>
+				<div class="col-lg-6">
+					<%= form_with url: admins_orders_path, method: :get, local: true do |f| %>
+						<%= f.hidden_field :customer_id, :value => @customer.id %>
+						<%= f.submit "注文履歴一覧" ,class:"btn btn-primary" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
