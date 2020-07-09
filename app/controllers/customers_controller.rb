@@ -13,9 +13,15 @@ class CustomersController < ApplicationController
     redirect_to customer_path(current_customer)
   end
 
-  def delete; end
+  def delete
+  end
 
-  def destroy; end
+  def destroy
+    @customer = current_customer
+    @customer.update(is_active: "退会済")
+    @customer.destroy
+    redirect_to root_path
+  end
 
   def customer_params
     params.require(:customer).permit(:name, :account_name, :profile_image_id, :tel, :postcode,

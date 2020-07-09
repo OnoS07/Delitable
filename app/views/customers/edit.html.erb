@@ -44,4 +44,9 @@
 		<%= f.submit "変更する", class:"btn btn-warning btn-center" %>
 	</div>
 	<% end %>
+	<span style="float:right">
+		<%= link_to customers_delete_path do %>
+			<span class="btn btn-danger">退会する</span>
+		<% end %>
+	</span>
 </div>

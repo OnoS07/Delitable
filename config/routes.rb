@@ -27,13 +27,14 @@ Rails.application.routes.draw do
     resources :orders, only: %i[index show new create]
     resources :cart_items, only: %i[update create destroy]
   end
+  get 'customers/delete' => 'customers#delete', as: 'customers_delete'
+
   resources :customers, only: %i[show edit update destroy]
   get 'orders/confirm' => 'orders#confirm', as: 'order_confirm'
   get 'orders/complete' => 'orders#complete', as: 'order_complete'
   get 'cart_items/confirm' => 'cart_items#confirm', as: 'cart_item_confirm'
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
 
-  get 'customers/delete' => 'customers#delete', as: 'customer_delete'
 
   resources :products, only: %i[index show]
 
