@@ -13,14 +13,12 @@ class CustomersController < ApplicationController
     redirect_to customer_path(current_customer)
   end
 
-  def delete
-  end
+  def delete; end
 
-  def destroy
-  end
+  def destroy; end
 
   def customer_params
-    params.require(:customer).permit(:name, :account_name, :profile_image_id,  :tel ,:postcode,
-      :address, :email)
+    params.require(:customer).permit(:name, :account_name, :profile_image_id, :tel, :postcode,
+                                     :address, :email)
   end
 end

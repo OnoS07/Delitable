@@ -1,2 +1,35 @@
-<h1>Admins::Orders#index</h1>
-<p>Find me in app/views/admins/orders/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 offset-lg-2">
+			<span class="form-title" style="font-family: none"><%= @order_title %></span>
+			<table class="table table-bordered" style="margin-top: 30px;">
+				<tr class="table-active">
+					<th>購入日時</th>
+					<th>購入者</th>
+					<th>注文個数</th>
+					<th>合計金額</th>
+					<th>ステータス</th>
+				</tr>
+				<% @orders.each do |order| %>
+				<tr>
+					<td>
+						<%= link_to admins_order_path(order) do %>
+							<%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+						<% end %>
+					</td>
+					<td><%= order.name %></td>
+					<td>
+						<% @sum = 0 %>
+						<% order.order_details.each do |order_detail| %>
+							<% @sum += order_detail.count.to_i %>
+						<% end %>
+						<%= @sum %>
+					</td>
+					<td><%= order.total_products_cost.to_i + order.postage.to_i %></td>
+					<td><%= order.order_status %></td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>
