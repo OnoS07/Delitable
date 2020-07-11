@@ -1,4 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only:[:show]
+  def ensure_correct_customer
+    @order = Order.find(params[:id])
+    if current_customer.id != @order.customer_id
+      redirect_to root_path
+    end
+  end
+
   def new
     @order = Order.new
     @shipping = Shipping.where(customer_id: current_customer.id)

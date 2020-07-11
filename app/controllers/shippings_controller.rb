@@ -1,4 +1,13 @@
 class ShippingsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only:[:edit, :destroy]
+  def ensure_correct_customer
+    @shipping = Shipping.find(params[:id])
+    if current_customer.id != @shipping.customer_id
+      redirect_to root_path
+    end
+  end
+
   def index
     @customer = current_customer
     @shippings = Shipping.where(customer_id: @customer.id)

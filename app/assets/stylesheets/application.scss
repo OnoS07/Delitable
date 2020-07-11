@@ -46,14 +46,14 @@ footer{
 
 .footer-logo{
 	float: right;
-    background-image: url(logo.jpg);
+    background-image: image-url(logo.jpg);
     background-size: cover;
     height: 50px;
     width: 130px;
 }
 
 .navbar-brand{
-	background-image: url(logo.jpg);
+	background-image: image-url(logo.jpg);
     background-size: cover;
     width: 220px;
     height: 80px;
