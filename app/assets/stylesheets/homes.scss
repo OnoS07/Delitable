@@ -9,7 +9,7 @@
 }
 
 .top1{
-	background-image: url(top_page1.jpg);
+	background-image: image-url(top_page1.jpg);
 	background-position: 0 -50px;
 	display: flex;
     justify-content: center;
@@ -17,28 +17,28 @@
 }
 
 .top2{
-	background-image: url(top_page2.jpg);
+	background-image: image-url(top_page2.jpg);
 	background-position: 0;
 	display: flex;
     justify-content: center;
     align-items: flex-end;
 }
 .top3{
-	background-image: url(top_page3.jpg);
+	background-image: image-url(top_page3.jpg);
 	background-position: 0px -100px;
 	display: flex;
     justify-content: center;
     align-items: flex-end;
 }
 .top4{
-	background-image: url(top_page4.jpg);
+	background-image: image-url(top_page4.jpg);
 	background-position: center;
 	display: flex;
     justify-content: center;
     align-items: flex-end;
 }
 .top5{
-	background-image: url(top_page5.jpg);
+	background-image: image-url(top_page5.jpg);
 	background-position: center;
 	display: flex;
     justify-content: center;
@@ -79,17 +79,17 @@
 }
 
 .top-about{
-	background-image: url(logo.jpg);
+	background-image: image-url(logo.jpg);
 	background-size: cover;
 }
 
 .top-recipe{
-	background-image: url(top_recipe.jpg);
+	background-image: image-url(top_recipe.jpg);
 	background-size: cover;
 }
 
 .top-vegetable{
-	background-image: url(top_vegetable.jpg);
+	background-image: image-url(top_vegetable.jpg);
 	background-size: cover;
 }
 
