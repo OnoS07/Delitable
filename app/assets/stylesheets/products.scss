@@ -1,0 +1,26 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.product-contents{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.product-content{
+	width: 21%;
+	margin: 0 2%;
+	display: flex;
+	flex-direction: column;
+}
+
+.product-image{
+	height: 150px;
+	width: 100%;
+	margin: 0 0;
+}
+
+.product-show{
+	width: 100%;
+}

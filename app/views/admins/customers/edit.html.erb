@@ -1,0 +1,51 @@
+<div class="container">
+	<span class="form-title" style="font-size: 30px;">
+		顧客編集
+	</span>
+	<div class="row" style="margin-top: 30px;">
+		<div class="col-lg-4" style="text-align: center;">
+			<%= form_for(@customer, url: admins_customer_path, method: :patch) do |f| %>
+			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
+				fallback:"logo.jpg", class:"customer-image" %>
+			<%= f.attachment_field :profile_image %>
+		</div>
+		<div class="col-lg-8">
+			<table class="table table-borderless">
+				<tr>
+					<td class="align-middle" style="width: 200px;">ユーザー名</td>
+					<td class="align-middle"><%= f.text_field :account_name %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">名前</td>
+					<td class="align-middle"><%= f.text_field :name %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">郵便番号</td>
+					<td class="align-middle"><%= f.text_field :postcode %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">住所</td>
+					<td class="align-middle"><%= f.text_field :address,style:"width:80%" %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">電話番号</td>
+					<td class="align-middle"><%= f.text_field :tel %></td>
+				</tr>
+				<tr>
+					<td class="align-middle">メールアドレス</td>
+					<td class="align-middle"><%= f.text_field :email %></td>
+				</tr>
+				<tr>会員ステータス
+					<td>
+							<%= f.radio_button :is_active, "有効" %>
+							<%= f.label :is_active,"有効", style: "dispaly: inline-block;" %>
+						<%= f.radio_button :is_active, "退会済" %>
+						<%= f.label :is_active, "退会済み", style: "display: inline-block;" %>
+					</td>
+				</tr>
+			</table>
+			<%= f.submit "変更を保存する", class:"btn btn-primary" %>
+		</div>
+		<% end %>
+	</div>
+</div>

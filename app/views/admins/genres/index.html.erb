@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <span class="form-title">ジャンル一覧</span>
+      <div style="margin-top: 20px;">
+        <table class="table">
+	        <thead class="thead-light">
+	          <tr>
+	            <th>ジャンル名</th>
+	            <th></th>
+	          </tr>
+	        </thead>
+	          <% @genres.each do |genre| %>
+	          <tr>
+	            <td class="align-middle"><%= genre.name %></td>
+	            <td class="align-middle", style="text-align: center">
+	              <%= link_to "編集する", edit_admins_genre_path(genre), class:"btn btn-warning"%>
+	              <%= link_to "削除する", admins_genre_path(genre),method: :delete, class:"btn btn-danger", style:"margin-left: 10px" %>
+	            </td>
+	          </tr>
+	          <% end %>
+      	</table>
+      </div>
+    </div>
+
+    <div class="col-lg-4 offset-lg-1">
+      <span class="form-title">ジャンル追加</span>
+      <div style="margin-top: 20px;">
+        <%= form_with(model: @genre, url: admins_genres_path,
+            method: :post, local: true) do |f| %>
+        <%= f.label :ジャンル名 %>
+        <%= f.text_field :name %><br>
+        <%= f.submit '追加' ,class:"btn btn-warning", style:"padding: 5px 30px;float:right" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

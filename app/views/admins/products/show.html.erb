@@ -1,0 +1,60 @@
+<div class="container">
+	<span class="form-title">商品詳細</span>
+    <div class="row" style="margin-top: 30px;">
+      <div class="col-lg-4" style="text-align: center">
+          <%= attachment_image_tag @product, :product_image, fallback: "top_vegetable.jpg",
+            size:"300x200" %>
+      </div>
+      <div class="col-lg-6 offset-lg-1">
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-lg-3">
+              <span>商品名</span>
+            </div>
+            <div class="col-lg-9">
+              <%= @product.name %>
+            </div>
+          </div>
+
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-lg-3">
+              <p>商品説明　</p>
+            </div>
+           <div class="col-lg-9" >
+             <%= @product.introduction %>
+           </div>
+          </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="col-lg-3">
+                <p>ジャンル　</p>
+              </div>
+              <div class="col-lg-9">
+                  <%= @product.genre.name %>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="col-lg-4">
+                <p>税込価格(税抜価格)</p>
+              </div>
+              <div class="col-lg-8">
+                <%= (@product.price * 1.1).to_i %> (<%= @product.price %>)円
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="col-lg-4">
+                <p>販売ステータス</p>
+              </div>
+              <div class="col-lg-8">
+                  <%= @product.is_active %>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div>
+      <%= link_to edit_admins_product_path(params[:id]) do %>
+        <span class= "btn btn-warning", style="padding: 5px 30px;float: right">編集</span>
+      <% end %>
+    </div>
+</div>

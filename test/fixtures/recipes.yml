@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  name: MyString
+  introduction: MyText
+  recipe_image_id: MyString
+  amount: MyString
+
+two:
+  customer_id: 1
+  name: MyString
+  introduction: MyText
+  recipe_image_id: MyString
+  amount: MyString

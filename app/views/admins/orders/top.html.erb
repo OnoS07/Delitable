@@ -1,0 +1,12 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 offset-lg-2">
+			<span style="font-size: 30px">管理者トップページ</span>
+			<div>
+				<%= link_to admins_orders_path do %>
+					本日の注文件数：<%= @orders.count %>件
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

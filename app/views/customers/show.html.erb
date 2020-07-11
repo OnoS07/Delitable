@@ -1,0 +1,55 @@
+<div class="container">
+	<span class="form-title" style="font-size: 30px;">
+		<% if @customer == current_customer %>
+			My Page
+			<% else %>
+			User Page
+		<% end %>
+	</span>
+	<div class="row" style="margin-top: 30px;">
+		<div class="col-lg-4" style="text-align: center;">
+			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
+				fallback:"logo.jpg", class:"customer-image" %>
+		</div>
+		<div class="col-lg-8">
+			<table class="table table-bordered">
+				<tr>
+					<td class="align-middle" style="width: 200px;">ユーザー名</td>
+					<td class="align-middle"><%= @customer.account_name %></td>
+				</tr>
+				<% if @customer == current_customer %>
+				<tr>
+					<td class="table-active align-middle">名前</td>
+					<td class="align-middle"><%= @customer.name %></td>
+				</tr>
+				<tr>
+					<td class="table-active align-middle">郵便番号</td>
+					<td class="align-middle"><%= @customer.postcode %></td>
+				</tr>
+				<tr>
+					<td class="table-active align-middle">住所</td>
+					<td class="align-middle"><%= @customer.address %></td>
+				</tr>
+				<tr>
+					<td class="table-active align-middle">電話番号</td>
+					<td class="align-middle"><%= @customer.tel %></td>
+				</tr>
+				<tr>
+					<td class="table-active align-middle">メールアドレス</td>
+					<td class="align-middle"><%= @customer.email %></td>
+				</tr>
+				<% end %>
+			</table>
+			<% if @customer == current_customer %>
+			<div>
+				<%= link_to "プロフィール編集", edit_customer_path(current_customer),
+					class:"btn btn-primary" %>
+				<%= link_to "配送先一覧", customers_shippings_path,
+					class:"btn btn-primary", style:"margin:0 20px" %>
+				<%= link_to "注文一覧", customers_orders_path,
+					class:"btn btn-primary" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

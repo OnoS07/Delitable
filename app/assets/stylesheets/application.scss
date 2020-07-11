@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap";
+// 共通のレイアウト
+*{
+  margin:0;
+  padding: 0;
+}
+html,　body {
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 20px;
+  position: relative
+}
+// ヘッダー・フッター
+header{
+ 	background-color: #FCE77D;
+ 	margin-top: auto;
+}
+
+footer{
+	background-color: #FCE77D;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	margin-top: 30px;
+}
+
+.footer-logo{
+	float: right;
+    background-image: image-url("logo.jpg");
+    background-size: cover;
+    height: 50px;
+    width: 130px;
+}
+
+.navbar-brand{
+	background-image: image-url("logo.jpg");
+    background-size: cover;
+    width: 220px;
+    height: 80px;
+}
+
+a{
+	color: black;
+}
+
+a:hover {
+	color: #F96167;
+	text-decoration: underline;
+}
+
+// 見出し用
+.form-title{
+	border-bottom: 2px solid #F96167;
+	font-family: impact;
+  font-size: 30px;
+}
+
+// 真ん中にくる大きめのボタン用
+.btn-center{
+  margin-top: 30px;
+  padding: 10px 80px;
+}
+
+

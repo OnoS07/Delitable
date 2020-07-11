@@ -1,0 +1,17 @@
+<div class="col-lg-2">
+	<div style="border:1px solid black;text-align: center">
+		<p style="border-bottom:1px solid black;font-weight: bold">
+			ジャンル検索
+		</p>
+		<% @genres.each do |genre| %>
+			<div style="padding-bottom: 10px;">
+				<!-- クリックされたジャンルのgenre_idをparamsデータとして送信 -->
+				<%= form_with url: products_path, method: :get, local: true do |f| %>
+					<%= f.hidden_field :genre_id, :value => genre.id %>
+					<%= f.submit genre.name,style:"background-color: white;
+						border:0px solid black; cursor: pointer;" %>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>

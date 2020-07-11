@@ -1,0 +1,19 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<span class="form-title">ジャンル編集</span>
+		  <%= form_with(model: @genre, url: admins_genre_path, method: :patch,
+		  		local: true) do |f| %>
+		  <div style="margin: 20px 0">
+			  <span>ジャンル名</span><br>
+			  <%= f.text_field :name %>
+		  </div>
+
+		  <span style="padding-top: 20px;">紹介文</span><br>
+		  <%= f.text_area :introduction, rows:"5", style:"width:500px" %><br>
+		  <%= f.submit '変更を保存する', class:"btn btn-warning",
+		  	style:"padding: 5px 10px;margin-top:20px" %>
+		  <% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,90 @@
+<div class="container">
+  <span class="form-title" style="font-size: 30px">注文詳細</span>
+  <div class="row" style="margin-top: 30px; margin-bottom: 50px;">
+    <div class="col-lg-8">
+    	<span>注文情報</span>
+        <table class="table table-borderless">
+            <tr>
+              <th>注文日</th>
+              <td><%= @order.created_at.strftime('%Y/%m/%d')%>
+              </td>
+            </tr>
+
+            <tr>
+              <th>配送先</th>
+              <td><%= @order.postcode %><br>
+                  <%= @order.address %><br>
+                  <%= @order.name %>
+              </td>
+            </tr>
+
+            <tr>
+              <th>支払方法</th>
+              <td>
+                <%= @order.payment_method %>
+              </td>
+            </tr>
+
+            <tr>
+              <th>注文状況</th>
+              <td>
+              	<%= form_for(@order, url: admins_order_path(@order), method: :patch) do |f| %>
+              		<%= f.select :order_status, Order.order_statuses.keys %>
+              		<%= f.submit "更新", class:"btn btn-primary btn-sm" %>
+              	<% end %>
+              </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-4">
+      <span>請求情報</span>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th class="table-active">商品合計</th>
+              <td><%= @order.total_products_cost %></td>
+            </tr>
+
+            <tr>
+              <th class="table-active">配送料</th>
+              <td><%= @order.postage %></td>
+            </tr>
+
+            <tr>
+              <th class="table-active">ご請求額</th>
+              <td><%= @order.total_products_cost.to_i + @order.postage.to_i %></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+    <span>注文内容</span>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+		    <tr>
+			   <th>商品</th>
+			   <th>単価（税込）</th>
+			   <th>個数</th>
+			   <th>小計</th>
+			   <th>準備状況</th>
+		    </tr>
+	    </thead>
+	    <tbody>
+        <% @order_details.each do |order_detail| %>
+		    <tr>
+			   <td><%= order_detail.product.name %> </td>
+			   <td><%= (order_detail.product.price * 1.1).to_i %></td>
+			   <td><%= order_detail.count %></td>
+			   <td><%= (order_detail.product.price * order_detail.count * 1.1).to_i %></td>
+			   <td>
+				   <%= form_for(order_detail ,url: admins_order_detail_path(order_detail),
+							method: :patch) do |f| %>
+						<%= f.select :work_status, OrderDetail.work_statuses.keys %>
+				   		<%= f.submit "更新", class:"btn btn-primary btn-sm" %>
+				   <% end %>
+			   </td>
+		    </tr>
+        <% end %>
+	     </tbody>
+    </table>
+</div>
