@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
-  def new; end
+  def new
+  	@recipe = Recipe.new
+  end
 
   def ingredient; end
 
