@@ -1,7 +1,5 @@
 # Delitable
 
-## deploy test
-
 ## サイト概要
 * 日頃野菜を自分で買わない一人暮らしの若者から、家族が多く買い物が大変な主婦・主夫の方々へ  
 産地直送の美味しい野菜を届けるECサイトです。
@@ -39,7 +37,9 @@
 * 季節の野菜や食べたいものから注文をし、レシピを見ながら料理を作る。
 
 ## 設計書
-製作中
+* アプリケーション詳細設定：https://www.icloud.com/numbers/0MUDr2Jb7IqNjydIzylYOACsg
+* テーブル定義書：https://www.icloud.com/numbers/0nfYRItc2tWXCYZR2jlyc7jDw
+* ER図：https://drive.google.com/file/d/1B9XV4KX6Egq1fLwecv-cwHwKDT_zgf9y/view?usp=sharing
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1IJ4RoAs_-xBsC-Z0b_gmG4WTZG94Oju5-hKZHIRKyz4/edit#gid=0
