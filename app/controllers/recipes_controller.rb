@@ -7,20 +7,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.customer_id = current_customer.id
     @recipe.save
+    redirect_to new_recipe_ingredient_path(@recipe)
   end
-
-
-  def ingredient
-    @recipe = Recipe.new
-    @recipe.title = params[:title]
-    @recipe.introduction = params[:introduction]
-    @recipe.amount = params[:amount]
-    @recipe.recipe_image =params[:recipe_image]
-    @ingredient = Ingredient.new
-  end
-
-  def step; end
-
 
   def index; end
 
