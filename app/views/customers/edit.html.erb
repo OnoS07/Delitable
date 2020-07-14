@@ -4,7 +4,7 @@
 	</span>
 	<div class="row" style="margin-top: 30px;">
 		<div class="col-lg-4" style="text-align: center;">
-		<%= form_with(model: @customer, local:true) do |f| %>
+		<%= form_with(model: @customer, local:true, data: {"turbolinks" => false}) do |f| %>
 			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
 				fallback:"logo.jpg", class:"customer-image" %>
 			<%= f.attachment_field :profile_image %>

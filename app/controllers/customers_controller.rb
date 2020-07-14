@@ -26,7 +26,7 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:name, :account_name, :profile_image_id, :tel, :postcode,
+    params.require(:customer).permit(:name, :account_name, :profile_image, :tel, :postcode,
                                      :address, :email)
   end
 end

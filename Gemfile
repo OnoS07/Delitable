@@ -49,6 +49,10 @@ group :development do
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rbenv'
 end
 
 group :test do
@@ -71,3 +75,8 @@ gem 'refile-mini_magick'
 
 gem 'paranoia'
 gem 'pry-byebug'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
