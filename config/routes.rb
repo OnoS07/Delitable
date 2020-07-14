@@ -52,9 +52,9 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :ingredient, only: %i[edit update]
     resources :step, only: %i[edit update]
-    get 'ingredient' => 'recipes#ingredient', as: 'new_ingredient'
-    get 'step' => 'steps#process', as: 'new_step'
     resource :post_comments, only: %i[create destroy]
     resource :favorites, only: %i[create destroy]
   end
+    get 'ingredient' => 'recipes#ingredient', as: 'new_ingredient'
+    get 'step' => 'steps#process', as: 'new_step'
 end
