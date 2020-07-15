@@ -13,9 +13,16 @@ class CookingsController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:recipe_id])
+    @cooking = Cooking.new
+    @cookings = Cooking.where(recipe_id: @recipe.id)
   end
 
   def update
+    @cooking = Cooking.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @cooking.update(cooking_params)
+    redirect_to edit_recipe_cooking_path(@recipe)
   end
 
   def destroy

@@ -10,13 +10,25 @@ class RecipesController < ApplicationController
     redirect_to new_recipe_ingredient_path(@recipe)
   end
 
-  def index; end
+  def index
+    @recipes = Recipe.all
+  end
 
-  def show; end
+  def show
+    @recipe = Recipe.find(params[:id])
+    @ingredients = Ingredient.where(recipe_id: @recipe.id)
+    @cookings = Cooking.where(recipe_id: @recipe.id)
+  end
 
-  def edit; end
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
 
-  def update; end
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+    redirect_to recipe_path(@recipe)
+  end
 
   def destroy; end
 
