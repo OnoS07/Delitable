@@ -7,28 +7,28 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.customer_id = current_customer.id
     @recipe.save
+    redirect_to new_recipe_ingredient_path(@recipe)
   end
 
-
-  def ingredient
-    @recipe = Recipe.new
-    @recipe.title = params[:title]
-    @recipe.introduction = params[:introduction]
-    @recipe.amount = params[:amount]
-    @recipe.recipe_image =params[:recipe_image]
-    @ingredient = Ingredient.new
+  def index
+    @recipes = Recipe.all
   end
 
-  def step; end
+  def show
+    @recipe = Recipe.find(params[:id])
+    @ingredients = Ingredient.where(recipe_id: @recipe.id)
+    @cookings = Cooking.where(recipe_id: @recipe.id)
+  end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
 
-  def index; end
-
-  def show; end
-
-  def edit; end
-
-  def update; end
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+    redirect_to recipe_path(@recipe)
+  end
 
   def destroy; end
 

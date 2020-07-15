@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # 顧客側devise
   devise_for :admins, skip: :all
   devise_scope :admin do
@@ -50,11 +51,10 @@ Rails.application.routes.draw do
 
   # SNSルーティング
   resources :recipes do
-    resources :ingredient, only: %i[edit update]
-    resources :step, only: %i[edit update]
+    resources :ingredients, only: %i[edit update new create destroy]
+    resources :cookings, only: %i[edit update new create destroy]
     resource :post_comments, only: %i[create destroy]
     resource :favorites, only: %i[create destroy]
   end
-    get 'ingredient' => 'recipes#ingredient', as: 'new_ingredient'
-    get 'step' => 'steps#process', as: 'new_step'
+
 end
