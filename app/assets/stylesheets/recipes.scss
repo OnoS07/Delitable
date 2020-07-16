@@ -1,3 +1,26 @@
 // Place all the styles related to the recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.recipe-contents{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.recipe-content{
+	width: 28%;
+	margin: 0 2.5%;
+	display: flex;
+	flex-direction: column;
+}
+
+.recipe-image{
+	width: 100%;
+	margin: 0 0;
+}
+
+.recipe-show{
+  width: 90%;
+  margin: 0 5%;
+}
