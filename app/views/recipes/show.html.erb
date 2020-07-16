@@ -2,32 +2,30 @@
 	<span class="form-title">Recipe</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
+			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
+				fallback:"logo.jpg", class:"recipe-image" %>
+		</div>
+		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
 				<% if @recipe.customer_id == current_customer.id %>
 					<%= link_to "編集", edit_recipe_path(@recipe),
 						class:"btn btn-warning btn-sm" %>
+					<%= link_to "削除", recipe_path(@recipe),method: :delete, class:"btn btn-danger btn-sm" %>
 				<% end %>
 			</p>
-			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
-				fallback:"logo.jpg", class:"recipe-image" %>
-			<table class="table table-borderless table-sm">
-				<tr>
-					<th>レシピ名</th>
-					<td><%= @recipe.title %>
-					</td>
-				</tr>
-				<tr>
-					<th>紹介文</th>
-					<td><%= @recipe.introduction %></td>
-				</tr>
-				<tr>
-					<th>分量(何人分)</th>
-					<td><%= @recipe.amount %></td>
-				</tr>
-			</table>
-		</div>
-		<div class="col-lg-6">
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料
+			<div class="row">
+				<div class="col-lg-3"><p>レシピ名</p></div>
+				<div class="col-lg-9"><p><%= @recipe.title %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3"><p>紹介文</p></div>
+				<div class="col-lg-9"><p><%= @recipe.introduction %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3"><p>分量(何人前)</p></div>
+				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
+			</div>
+			<p style="border-bottom: 1px solid silver; font-size: 20px;margin-top:20px" >材料
 				<% if @recipe.customer_id == current_customer.id %>
 					<%= link_to "編集", edit_recipe_ingredient_path(@recipe),
 						class:"btn btn-warning btn-sm" %>
@@ -35,10 +33,10 @@
 			</p>
 			<% @ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-8">
+					<div class="col-lg-5">
 						<%= ingredient.content %>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-7">
 						<%= ingredient.amount %>
 					</div>
 				</div>

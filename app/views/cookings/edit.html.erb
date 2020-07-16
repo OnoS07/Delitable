@@ -2,80 +2,80 @@
 	<span class="form-title">Edit Cooking</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
-			<p style="border-bottom: 1px solid #F96167; font-size: 20px" >レシピ</p>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
-				fallback:"logo.jpg" ,class:"recipe-image" %>
-			<table class="table table-borderless table-sm">
-				<tr>
-					<th>レシピ名</th>
-					<td><%= @recipe.title %>
-					</td>
-				</tr>
-				<tr>
-					<th>紹介文</th>
-					<td><%= @recipe.introduction %></td>
-				</tr>
-				<tr>
-					<th>分量(何人分)</th>
-					<td><%= @recipe.amount %></td>
-				</tr>
-			</table>
+				fallback:"logo.jpg", class:"recipe-image" %>
 		</div>
 		<div class="col-lg-6">
-			<p style="border-bottom: 1px solid #F96167; font-size: 20px" >材料</p>
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
+				<%= link_to "編集", edit_recipe_path(@recipe),class:"btn btn-warning btn-sm" %>
+			</p>
+			<div class="row">
+				<div class="col-lg-3"><p>レシピ名</p></div>
+				<div class="col-lg-9"><p><%= @recipe.title %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3"><p>紹介文</p></div>
+				<div class="col-lg-9"><p><%= @recipe.introduction %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3"><p>分量(何人前)</p></div>
+				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
+			</div>
+			<p style="border-bottom: 1px solid silver; font-size: 20px;margin-top:20px" >材料
+				<%= link_to "編集", edit_recipe_ingredient_path(@recipe),class:"btn btn-warning btn-sm" %>
+			</p>
 			<% @recipe.ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-6">
+					<div class="col-lg-5">
 						<%= ingredient.content %>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-7">
 						<%= ingredient.amount %>
-					</div>
-					<div class="col-lg-3">
-						<%= link_to "削除", recipe_ingredient_path(@recipe, ingredient),method: :delete, class:"btn btn-danger btn-sm" %>
 					</div>
 				</div>
 			<% end %>
 		</div>
 	</div>
+
 	<div class="row" style="padding-top: 30px">
 		<div class="col-lg-12">
-			<p style="border-bottom: 1px solid #F96167; font-size: 20px" >作り方</p>
+			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >作り方</p>
 			<% @sum = 0 %>
 			<% @cookings.each do |cooking| %>
 				<div style="margin-bottom: 10px">
 					<%= form_for [@recipe, cooking] do |f| %>
 					<div class="row">
-						<div class="col-lg-8">
-							<%= f.text_area :content, rows:"2",style:"width:80%" %>
+						<div class="col-lg-7">
+							<%= f.text_area :content, rows:"2",style:"width:100%" %>
 						</div>
 						<div class="col-lg-3">
 							<span>写真(仮)</span>
 						</div>
-						<div class="col-lg-1">
+						<div class="col-lg-2">
 							<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
+							<%= link_to "削除", recipe_cooking_path(@recipe, cooking),
+								method: :delete, class:"btn btn-danger btn-sm" %>
 						</div>
 					</div>
 					<% end %>
 				</div>
 			<% end %>
-<!-- 			<%= form_for(@cooking, url:recipe_cookings_path) do |f| %>
+ 			<%= form_for(@cooking, url:recipe_cookings_path) do |f| %>
 				<div class="row" style="padding-top: 30px;border-top: 1px solid #F5F5F5">
-					<div class="col-lg-8">
-						<%= f.text_area :content, rows:"2",style:"width:80%",placeholder:"作り方..." %>
+					<div class="col-lg-7">
+						<%= f.text_area :content, rows:"2",style:"width:100%",placeholder:"作り方..." %>
 					</div>
 					<div class="col-lg-3">
 						<span>写真(仮)</span>
 					</div>
-					<div class="col-lg-1">
+					<div class="col-lg-2">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>
 						<%= f.submit "追加", class:"btn btn-warning btn-sm" %>
 					</div>
 				</div>
-			<% end %> -->
+			<% end %>
 			<div style="text-align: center; margin: 50px 0 100px 0">
-				<%= link_to "変更を保存する",recipe_path(@recipe),
-					class:"btn btn-warning", style:"padding: 5px 30px" %>
+				<%= link_to "変更を保存する",recipe_path(@recipe),class:"btn btn-warning", style:"padding: 5px 30px" %>
 			</div>
 		</div>
 	</div>
