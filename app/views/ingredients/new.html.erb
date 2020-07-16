@@ -7,11 +7,7 @@
 		</div>
 		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
-				<% if @recipe.customer_id == current_customer.id %>
-					<%= link_to "編集", edit_recipe_path(@recipe),
-						class:"btn btn-warning btn-sm" %>
-					<%= link_to "削除", recipe_path(@recipe),method: :delete, class:"btn btn-danger btn-sm" %>
-				<% end %>
+				<%= link_to "編集", edit_recipe_path(@recipe),class:"btn btn-warning btn-sm", data: {"turbolinks" => false} %>
 			</p>
 			<div class="row">
 				<div class="col-lg-3"><p>レシピ名</p></div>
@@ -62,6 +58,8 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-12">Step</div>
+		<div class="col-lg-12">
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >作り方</p>
+		</div>
 	</div>
 </div>

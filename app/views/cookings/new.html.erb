@@ -70,8 +70,11 @@
 				</div>
 			<% end %>
 			<div style="text-align: center; margin: 50px 0 100px 0">
-				<%= link_to "レシピを投稿する",recipe_path(@recipe),
-					class:"btn btn-warning", style:"padding: 5px 30px" %>
+				<%= form_with(url: recipe_path(@recipe), method: :patch) do |f| %>
+					<%= hidden_field :recipe_status, value:"完成" %>
+					<%= f.submit "レシピを投稿する",class:"btn btn-warning",
+						style:"padding: 5px 30px"  %>
+				<% end %>
 			</div>
 		</div>
 	</div>
