@@ -9,7 +9,7 @@ class CookingsController < ApplicationController
   def create
   	@cooking = Cooking.new(cooking_params)
   	@cooking.save
-  	redirect_to new_recipe_cooking_path
+    redirect_to new_recipe_cooking_path
   end
 
   def edit

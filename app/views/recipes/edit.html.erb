@@ -2,32 +2,29 @@
 	<span class="form-title">Edit Recipe</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ</p>
 			<%= form_for(@recipe) do |f| %>
-				<span>料理画像</span><br>
-				<%= f.attachment_field :recipe_image %>
-				<table class="table table-borderless">
-					<tr>
-						<th>レシピ名</th>
-						<td><%= f.text_field :title, autocomplete: "off",
-							style:"width:80%" %>
-						</td>
-					</tr>
-					<tr>
-						<th>紹介文</th>
-						<td><%= f.text_area :introduction, autocomplete: "off",rows:"7",style:"width:100%" %></td>
-					</tr>
-					<tr>
-						<th>分量(何人分)</th>
-						<td><%= f.text_field :amount, autocomplete: "off",style:"width:80%" %></td>
-					</tr>
-				</table>
+			<p>料理画像</p>
+			<%= f.attachment_field :recipe_image %>
+		</div>
+		<div class="col-lg-6">
+			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >レシピ</p>
+				<div class="row">
+					<div class="col-lg-3"><p>レシピ名</p></div>
+					<div class="col-lg-9"><%= f.text_field :title, autocomplete: "off",
+							style:"width:80%" %></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3"><p>紹介文</p></div>
+					<div class="col-lg-9"><p><%= f.text_area :introduction, autocomplete: "off",rows:"3",style:"width:100%" %></p></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3"><p>分量(何人前)</p></div>
+					<div class="col-lg-9"><%= f.text_field :amount, autocomplete: "off",style:"width:80%" %></div>
+				</div>
 				<div style="text-align: center;margin: 20px 0">
 					<%= f.submit "編集を保存する", class:"btn btn-warning" %>
 				</div>
 			<% end %>
-		</div>
-		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料</p>
 			<% @recipe.ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
