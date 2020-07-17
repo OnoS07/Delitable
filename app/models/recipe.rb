@@ -9,4 +9,8 @@ class Recipe < ApplicationRecord
   attachment :recipe_image
 
   enum recipe_status: { レシピ: 0, 材料: 1, 作り方: 2, 完成: 3 }
+
+  def favorited_by?(customer)
+    favorites.where(customer_id: customer.id).exists?
+  end
 end

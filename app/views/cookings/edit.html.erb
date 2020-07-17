@@ -45,10 +45,11 @@
 				<div style="margin-bottom: 10px">
 					<%= form_for [@recipe, cooking] do |f| %>
 					<div class="row">
-						<div class="col-lg-7">
-							<%= f.text_area :content, rows:"2",style:"width:100%" %>
+						<div class="col-lg-1">
+							<%= @sum += 1 %>.
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-9">
+							<%= f.text_area :content, rows:"2",style:"width:100%" %>
 						</div>
 						<div class="col-lg-2">
 							<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
@@ -61,10 +62,9 @@
 			<% end %>
  			<%= form_for(@cooking, url:recipe_cookings_path) do |f| %>
 				<div class="row" style="padding-top: 30px;border-top: 1px solid #F5F5F5">
-					<div class="col-lg-7">
-						<%= f.text_area :content, rows:"2",style:"width:100%",placeholder:"作り方..." %>
-					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-1"></div>
+					<div class="col-lg-9">
+						<%= f.text_area :content, rows:"2",style:"width:100%",placeholder:"作り方を入力する" %>
 					</div>
 					<div class="col-lg-2">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>

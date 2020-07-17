@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
-			<span class="form-title" style="font-size: 30px">配送先一覧</span>
+			<span class="form-title" style="font-size: 30px">My Shippings</span>
 			<table class="table table-bordered" style="margin-top: 30px;">
 				<thead class="thead-light">
 					<tr>
@@ -19,7 +19,7 @@
 						<td class="align-middle"><%= shipping.name %></td>
 						<td class="align-middle" style="text-align: center">
 							<%= link_to "編集する",edit_customers_shipping_path(shipping),
-									class: "btn btn-primary" %>
+									class: "btn btn-warning" %>
 							<%= link_to "削除する",customers_shipping_path(shipping), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"},
 									class: "btn btn-danger" %>
 						</td>
@@ -31,7 +31,7 @@
 	</div>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-12">
-			<span class="form-title" style="font-size: 20px">配送先登録</span>
+			<span class="form-title" style="font-size: 20px">New Shipping</span>
 			<%= form_with(url:customers_shippings_path, local: true) do |f| %>
 				<table class="table table-borderless">
 					<tr>

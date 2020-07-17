@@ -23,6 +23,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @ingredients = Ingredient.where(recipe_id: @recipe.id)
     @cookings = Cooking.where(recipe_id: @recipe.id)
+    @comments = Comment.where(recipe_id: @recipe.id)
+    @comment = Comment.new
   end
 
   def edit
@@ -32,7 +34,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     if params[:recipe_status]
-      @recipe.update(recipe_status: "公開")
+      @recipe.update(recipe_status: "完成")
       redirect_to recipe_path(@recipe)
     elsif @recipe.recipe_status == "レシピ"
       redirect_to new_recipe_ingredient_path(@recipe)

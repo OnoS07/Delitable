@@ -31,12 +31,10 @@
 				<%= form_for [@recipe, ingredient] do |f| %>
 					<div class="row" style="padding-top: 10px">
 						<div class="col-lg-6">
-							<span>具材</span>
-							<%= f.text_field :content %>
+							<%= f.text_field :content, placeholder:"具材" %>
 						</div>
 						<div class="col-lg-3">
-							<span>分量</span>
-							<%= f.text_field :amount, :size=>"8" %>
+							<%= f.text_field :amount, :size=>"8", placeholder:"分量" %>
 						</div>
 						<div class="col-lg-3">
 							<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
@@ -49,12 +47,10 @@
 			<%= form_for(@ingredient, url:recipe_ingredients_path) do |f| %>
 				<div class="row" style="padding-top: 30px;">
 					<div class="col-lg-6">
-						<span>具材</span>
-						<%= f.text_field :content %>
+						<%= f.text_field :content, placeholder:"追加する具材" %>
 					</div>
 					<div class="col-lg-3">
-						<span>分量</span>
-						<%= f.text_field :amount, :size=>"8" %>
+						<%= f.text_field :amount, :size=>"8", placeholder:"分量" %>
 					</div>
 					<div class="col-lg-3">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>

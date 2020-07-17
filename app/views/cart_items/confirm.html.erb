@@ -9,7 +9,7 @@
 			</span>
 			<div style="margin-top: 20px;">
 				<table class="table table-bordered">
-					<thead class="thead-light">
+					<thead style="background-color:#FCE77D">
 						<tr>
 							<th>商品名</th>
 							<th>単価(税込)</th>
@@ -41,7 +41,7 @@
 						</td>
 						<td class="align-middle", style="text-align: center">
 							<%= link_to "削除する", customers_cart_item_path(cart_item),
-								method: :delete, class:"btn btn-danger" %>
+								method: :delete, class:"btn btn-secondary" %>
 						</td>
 					</tr>
 					<% end %>

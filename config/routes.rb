@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'customers/delete' => 'customers#delete', as: 'customers_delete'
 
   resources :customers, only: %i[show edit update destroy]
+  get "customer/:id/favorite_index" => "customers#favorite_index", as:"favorites"
   get 'orders/confirm' => 'orders#confirm', as: 'order_confirm'
   get 'orders/complete' => 'orders#complete', as: 'order_complete'
   get 'cart_items/confirm' => 'cart_items#confirm', as: 'cart_item_confirm'
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :ingredients, only: %i[edit update new create destroy]
     resources :cookings, only: %i[edit update new create destroy]
-    resource :post_comments, only: %i[create destroy]
+    resources :comments, only: %i[create destroy]
     resource :favorites, only: %i[create destroy]
   end
 

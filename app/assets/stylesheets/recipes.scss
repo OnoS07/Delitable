@@ -18,9 +18,19 @@
 .recipe-image{
 	width: 100%;
 	margin: 0 0;
+	border-radius: 10px;
 }
 
 .recipe-show{
   width: 90%;
   margin: 0 5%;
+}
+
+.comment-image{
+	border-radius: 50%;
+	height: 80px;
+	width: 80px;
+	object-fit: contain;
+	border: 0.5px solid #F96167;
+	background-color: #F5F5F5
 }

@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="row">
+		<span class="form-title">Favorite Recipes</span>
+		<div class="col-lg-12">
+			<div class="recipe-contents" style="margin-top: 20px;">
+			<% @favorites.each do |favorite| %>
+				<div class="recipe-content">
+					<%= link_to recipe_path(favorite.recipe) do %>
+						<%= attachment_image_tag favorite.recipe, :recipe_image, format:"jpg",
+							fallback:"top_recipe.jpg", class:"recipe-image" %>
+						<span style="font-size: 20px;">
+							<i class="fas fa-utensils"> <%= favorite.recipe.title %></i>
+						</span>
+					<% end %>
+						<span>
+							<%= link_to customer_path(favorite.recipe.customer) do %>
+							<i class="far fa-user" style="color: #F96167">
+								<span style="color: black"><%= favorite.recipe.customer.name %></span>
+							</i>
+							<% end %>
+							<i class="far fa-comment" style="margin: 0 50px;color: #F96167">
+								<span style="color: black">
+									<%= favorite.recipe.comments.count %>件
+								</span>
+							</i>
+						</span>
+				</div>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!, only:[:delete, :update, :edit, :destroy, :delete]
 
   def show
     @customer = Customer.find(params[:id])
@@ -26,6 +26,10 @@ class CustomersController < ApplicationController
     @customer.update(is_active: "退会済")
     @customer.destroy
     redirect_to root_path
+  end
+
+  def favorite_index
+    @favorites = Favorite.where(customer_id: params[:id])
   end
 
   def customer_params

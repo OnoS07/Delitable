@@ -1,13 +1,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
-			<span class="form-title" style="font-size: 30px">Order</span>
-			<!-- cart_item表示 -->
+			<span class="form-title" style="font-size: 30px">
+				<i class="fas fa-shopping-cart"></i>Order
+			</span>
+
 			<div style="margin-top: 20px;">
 				<div class="row">
 					<div class="col-lg-8">
 						<table class="table table-bordered">
-							<thead class="thead-light">
+							<thead style="background-color:#FCE77D">
 								<tr>
 									<th>商品名</th>
 									<th>単価(税込)</th>
@@ -54,13 +56,17 @@
 					</div>
 				</div>
 			</div>
-			<!-- order表示 -->
+
 			<div style="margin: 20px 0">
-				<span style="font-size: 20px;">●支払い方法：</span>
+				<span style="font-size: 20px;">
+					<i class="fas fa-comment-dollar"></i> 支払い方法：
+				</span>
 				<span><%= @order.payment_method %></span>
 			</div>
 			<div>
-				<span style="font-size: 20px;">●お届け先：</span>
+				<span style="font-size: 20px;">
+					<i class="fas fa-shipping-fast"></i> お届け先：
+				</span>
 				<span><%= @order.postcode%> <%= @order.address %> <%= @order.name %>様</span>
 			</div>
 
