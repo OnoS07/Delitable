@@ -4,12 +4,17 @@
 		<div class="col-lg-6">
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
 				fallback:"logo.jpg", class:"recipe-image" %>
+			<div style="margin-top: 20px;">
+				<%= link_to customer_path(@recipe.customer) do %>
+					<i class="fas fa-user" style="font-size:20px"><%= @recipe.customer.name %></i>
+				<% end %>
+			</div>
 		</div>
 		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
 				<% if @recipe.customer_id == current_customer.id %>
 					<%= link_to "編集", edit_recipe_path(@recipe),
-						class:"btn btn-warning btn-sm" %>
+						class:"btn btn-warning btn-sm", data: {"turbolinks" => false} %>
 					<%= link_to "削除", recipe_path(@recipe),method: :delete, class:"btn btn-danger btn-sm" %>
 				<% end %>
 			</p>
@@ -59,7 +64,6 @@
 						<%= cooking.content %>
 					</div>
 					<div class="col-lg-4">
-						<span>写真(仮)</span>
 					</div>
 				</div>
 			<% end %>

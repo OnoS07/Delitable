@@ -7,11 +7,16 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.customer_id = current_customer.id
     @recipe.save
-    redirect_to new_recipe_ingredient_path(@recipe)
+    if @recipe.recipe_status == nil
+      @recipe.update(recipe_status: "レシピ")
+      redirect_to new_recipe_ingredient_path(@recipe)
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(recipe_status: "完成")
   end
 
   def show
@@ -26,8 +31,15 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    @recipe.update(recipe_params)
-    redirect_to recipe_path(@recipe)
+    if params[:recipe_status]
+      @recipe.update(recipe_status: "公開")
+      redirect_to recipe_path(@recipe)
+    elsif @recipe.recipe_status == "レシピ"
+      redirect_to new_recipe_ingredient_path(@recipe)
+    else
+      @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe)
+    end
   end
 
   def destroy
@@ -38,6 +50,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:title, :introduction, :amount, :recipe_image)
+    params.require(:recipe).permit(:title, :introduction, :amount, :recipe_image, :recipe_status)
   end
+
 end

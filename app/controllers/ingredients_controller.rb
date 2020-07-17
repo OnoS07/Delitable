@@ -6,14 +6,19 @@ class IngredientsController < ApplicationController
   end
 
   def create
+    @recipe = Recipe.find(params[:recipe_id])
   	@ingredient = Ingredient.new(ingredient_params)
   	@ingredient.save
-  	redirect_to new_recipe_ingredient_path
+    if @recipe.recipe_status == "レシピ"
+      @recipe.update(recipe_status: "材料")
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   def edit
     @recipe = Recipe.find(params[:recipe_id])
     @ingredients = Ingredient.where(recipe_id: @recipe.id)
+    @ingredient = Ingredient.new
   end
 
   def update
@@ -24,9 +29,10 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
+    @recipe = Recipe.find(params[:recipe_id])
   	@ingredient = Ingredient.find(params[:id])
   	@ingredient.destroy
-  	redirect_to new_recipe_ingredient_path
+  	redirect_back(fallback_location: root_path)
   end
 
   private

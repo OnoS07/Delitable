@@ -3,6 +3,9 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @recipes = Recipe.where(customer_id: @customer.id)
+    @open_recipes = @recipes.where(recipe_status: "完成")
+    @close_recipes = @recipes.where.not(recipe_status: "完成")
   end
 
   def edit
