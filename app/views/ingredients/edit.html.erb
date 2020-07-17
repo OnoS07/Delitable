@@ -9,7 +9,7 @@
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
 				<% if @recipe.customer_id == current_customer.id %>
 					<%= link_to "編集", edit_recipe_path(@recipe),
-						class:"btn btn-warning btn-sm" %>
+						class:"btn btn-warning btn-sm", data: {"turbolinks" => false} %>
 					<%= link_to "削除", recipe_path(@recipe),method: :delete, class:"btn btn-danger btn-sm" %>
 				<% end %>
 			</p>
@@ -64,10 +64,10 @@
 			<% end %>
 			<div style="text-align: center; margin-top: 30px;">
 				<% if @recipe.recipe_status == "材料" %>
-					<%= link_to "作り方の入力に戻る",new_recipe_cooking_path(@recipe),
+					<%= link_to "変更を保存する",new_recipe_cooking_path(@recipe),
 					class:"btn btn-warning" %>
 				<% else %>
-					<%= link_to "変更を保存", recipe_path(@recipe),class:"btn btn-warning" %>
+					<%= link_to "変更を保存する", recipe_path(@recipe),class:"btn btn-warning" %>
 				<% end %>
 			</div>
 
