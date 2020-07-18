@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # 顧客側devise
   devise_for :admins, skip: :all
   devise_scope :admin do
@@ -48,6 +47,11 @@ Rails.application.routes.draw do
     get '/' => 'orders#top', as: 'top'
     resources :order_details, only: [:update]
     resources :genres, only: %i[index edit create update destroy]
+  # SNS側根理者ルーティング
+    resources :recipes, only: [:index, :show, :edit, :update] do
+      resources :ingredients, only: %i[edit]
+      resources :cookings, only: %i[edit]
+    end
   end
 
   # SNSルーティング

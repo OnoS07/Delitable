@@ -41,6 +41,9 @@
           <% elsif admin_signed_in? %>
             <ul class="nav">
               <li class="nav-item">
+                <%= link_to "レシピ一覧", admins_recipes_path, class:"nav-link", data: {"turbolinks" => false} %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "商品一覧", admins_products_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">

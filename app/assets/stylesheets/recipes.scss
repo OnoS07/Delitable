@@ -9,10 +9,14 @@
 }
 
 .recipe-content{
-	width: 28%;
-	margin: 0 2.5%;
-	display: flex;
-	flex-direction: column;
+    width: 28%;
+    margin: 15px 2.5%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #F96167;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fffefc;
 }
 
 .recipe-image{

@@ -1,0 +1,81 @@
+<div class="container">
+	<span class="form-title">材料編集</span>
+	<div class="row" style="margin-top: 30px">
+		<div class="col-lg-6">
+			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
+				fallback:"logo.jpg", class:"recipe-image" %>
+		</div>
+		<div class="col-lg-6">
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
+				<%= link_to "編集", edit_admins_recipe_path(@recipe),
+					class:"btn btn-warning btn-sm", data: {"turbolinks" => false} %>
+			</p>
+			<div class="row">
+				<div class="col-lg-3"><p>レシピ名</p></div>
+				<div class="col-lg-9"><p><%= @recipe.title %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3"><p>紹介文</p></div>
+				<div class="col-lg-9"><p><%= @recipe.introduction %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3"><p>分量(何人前)</p></div>
+				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
+			</div>
+
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料</p>
+			<% @ingredients.each do |ingredient| %>
+				<%= form_for [@recipe, ingredient] do |f| %>
+					<div class="row" style="padding-top: 10px">
+						<div class="col-lg-6">
+							<%= f.text_field :content, placeholder:"具材" %>
+						</div>
+						<div class="col-lg-3">
+							<%= f.text_field :amount, :size=>"8", placeholder:"分量" %>
+						</div>
+						<div class="col-lg-3">
+							<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
+							<%= link_to "削除", recipe_ingredient_path(@recipe, ingredient),
+								method: :delete, class:"btn btn-danger btn-sm" %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+			<%= form_with(url:admins_recipe_ingredient_path) do |f| %>
+				<div class="row" style="padding-top: 30px;">
+					<div class="col-lg-6">
+						<%= f.text_field :content, placeholder:"追加する具材" %>
+					</div>
+					<div class="col-lg-3">
+						<%= f.text_field :amount, :size=>"8", placeholder:"分量" %>
+					</div>
+					<div class="col-lg-3">
+						<%= f.hidden_field :recipe_id, value:@recipe.id %>
+						<%= f.submit "追加", class:"btn btn-warning btn-sm" %>
+					</div>
+				</div>
+			<% end %>
+			<div style="text-align: center; margin-top: 30px;">
+				<%= link_to "変更を保存する", admins_recipe_path(@recipe),class:"btn btn-warning" %>
+			</div>
+
+		</div>
+	</div>
+	<div class="row" style="margin-top:30px; padding-bottom: 100px;">
+		<div class="col-lg-12">
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >作り方</p>
+			<% @sum = 0 %>
+			<% @recipe.cookings.each do |cooking| %>
+				<div class="row" style="margin-bottom: 10px">
+					<div class="col-lg-8">
+						<%= @sum += 1 %>.
+						<%= cooking.content %>
+					</div>
+					<div class="col-lg-4">
+						<span>写真(仮)</span>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

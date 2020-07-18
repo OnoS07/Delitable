@@ -1,0 +1,117 @@
+<div class="container">
+	<span class="form-title">レシピ</span>
+	<div class="row" style="margin-top: 30px">
+		<div class="col-lg-6">
+<!-- レシピ画像 -->
+			<%= link_to "レシピを削除する", admins_recipe_path(@recipe),method: :delete,
+				class:"btn btn-danger btn-sm" %>
+			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
+				fallback:"logo.jpg", class:"recipe-image", style:"margin:10px 0" %>
+<!-- レシピに紐づく部分 -->
+			<div style="margin-top: 20px;">
+				<span style="font-size: 18px">
+					<%= link_to admins_customer_path(@recipe.customer) do %>
+					<i class="fas fa-user" style="color: #F96167"></i>
+						<span style="color: black"><%= @recipe.customer.name %></span>
+					<% end %>
+					<span style="margin: 0 50px">
+					<%= link_to anchor: "comments" do %>
+						<i class="fas fa-comment" style="color: #F96167;"></i>
+							<span style="color: black"><%= @recipe.comments.count %>件</span>
+					<% end %>
+					</span>
+					<i class="fas fa-heart" style="color: #F96167"></i>
+					<span style="color:black"><%= @recipe.favorites.count %></span>
+				</span>
+			</div>
+		</div>
+<!-- レシピ部分 -->
+		<div class="col-lg-6">
+			<p style="border-bottom: 1px solid #F96167; font-size: 20px; font-weight: bold">
+				<%= @recipe.title %>
+				<%= link_to "編集", edit_admins_recipe_path(@recipe),
+					class:"btn btn-warning btn-sm", style:"margin-bottom:5px",
+						data: {"turbolinks" => false} %>
+			</p>
+			<div class="row">
+				<div class="col-lg-12"><p><%= @recipe.introduction %></p></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3"><p>分量(何人前)</p></div>
+				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
+			</div>
+<!-- 材料部分 -->
+			<p style="border-bottom: 1px solid #F96167; font-size: 20px;margin-top:20px" >材料
+				<%= link_to "編集", edit_admins_recipe_ingredient_path(@recipe),
+					class:"btn btn-warning btn-sm", style:"margin-bottom:5px" %>
+			</p>
+			<% @recipe.ingredients.each do |ingredient| %>
+				<div class="row" style="margin-bottom: 10px">
+					<div class="col-lg-5">
+						<%= ingredient.content %>
+					</div>
+					<div class="col-lg-7">
+						<%= ingredient.amount %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<!-- 作り方部分 -->
+	<div class="row" style="margin-top:30px;">
+		<div class="col-lg-12">
+			<p style="border-bottom: 1px solid #F96167; font-size: 20px" >作り方
+				<%= link_to "編集", edit_admins_recipe_cooking_path(@recipe),
+					style:"margin-bottom:5px", class:"btn btn-warning btn-sm" %>
+			</p>
+			<% @sum = 0 %>
+			<% @recipe.cookings.each do |cooking| %>
+				<div class="row" style="margin-bottom: 10px">
+					<div class="col-lg-1" style="text-align: right"  >
+						<%= @sum += 1 %>.
+					</div>
+					<div class="col-lg-11">
+						<%= cooking.content %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<!-- コメント部分 -->
+	<div style="margin-top:30px; padding-bottom: 100px;", id="comments">
+		<% if @recipe.recipe_status == "完成"  %>
+			<span class="form-title" >Comments</span>
+			<% @recipe.comments.each do |comment| %>
+				<div style="margin: 10px 0">
+					<div class="row">
+						<div class="col-lg-4" style="text-align: center">
+							<%= link_to customer_path(comment.customer) do %>
+								<%= attachment_image_tag comment.customer, :profile_image, format:"jpg",
+									fallback:"logo.jpg", class:"comment-image" %>
+							<% end %>
+						</div>
+						<div class="col-lg-8" style="margin: auto 0;">
+							<%= comment.content %>
+						</div>
+					</div>
+					<div class="row" style="border-bottom: 1px silver solid; margin: 0 10px">
+						<div class="col-lg-12">
+							<span style="float: right">
+								<%= link_to admins_customer_path(comment.customer) do %>
+									<i class="far fa-user" style="color: #F96167"></i>
+										<%= comment.customer.name %>
+								<% end %>
+								<span style="margin:0 10px" >
+									<%= comment.created_at.strftime('%Y/%m/%d')%>
+								</span>
+									<%= link_to recipe_comment_path(@recipe, comment),method: :delete, remote: true do %>
+										<i class="fas fa-trash"></i>削除
+									<% end %>
+							</span>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

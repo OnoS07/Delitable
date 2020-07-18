@@ -25,7 +25,7 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
     @ingredient.update(ingredient_params)
-    redirect_to edit_recipe_ingredient_path(@recipe)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
