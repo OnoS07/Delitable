@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!, only:[:new, :create, :edit, :update, :destroy]
   before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
   def ensure_correct_customer
     @recipe = Recipe.find(params[:id])

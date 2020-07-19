@@ -1,11 +1,11 @@
 <div class="container">
 	<div class="row">
 		<%= render "products/genre_sidebar", genres: @genres %>
-		<div class="col-lg-5">
+		<div class="col-lg-5", style="padding-top: 20px">
 			<%= attachment_image_tag @product, :product_image, format:"jpg",
 				fallback:"top_vegetable.jpg", class:"product-show" %>
 		</div>
-		<div class="col-lg-5">
+		<div class="col-lg-5", style="padding-top: 20px">
 			<p style="font-size: 30px"><%= @product.name %></p>
 			<p style="font-size: 20px"><%= @product.introduction %></p>
 			<p style="font-size: 25px"><%= (@product.price * 1.1).to_i %>円(税込)</p>
