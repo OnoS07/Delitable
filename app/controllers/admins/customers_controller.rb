@@ -1,4 +1,5 @@
 class Admins::CustomersController < ApplicationController
+  before_action :authenticate_admin!
   def index
   	@customers = Customer.with_deleted.all
   end

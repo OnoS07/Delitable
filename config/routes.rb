@@ -49,8 +49,9 @@ Rails.application.routes.draw do
     resources :genres, only: %i[index edit create update destroy]
   # SNS側根理者ルーティング
     resources :recipes, only: [:index, :show, :edit, :update] do
-      resources :ingredients, only: %i[edit]
-      resources :cookings, only: %i[edit]
+      resources :ingredients, only: [:edit, :update, :destroy]
+      resources :cookings, only: [:edit, :update, :destroy]
+      resources :comments, only: [:destroy]
     end
   end
 

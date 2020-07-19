@@ -1,4 +1,5 @@
 class Admins::OrdersController < ApplicationController
+  before_action :authenticate_admin!
   def top
   	@orders = Order.all
   end
@@ -6,10 +7,10 @@ class Admins::OrdersController < ApplicationController
   def index
   	if params[:customer_id]
 		@customer = Customer.find(params[:customer_id])
-		@orders = Order.where(customer_id: @customer.id)
-		@order_title = "注文一覧/" + @customer.name
+		@orders = Order.where(customer_id: @customer.id).order(id:"DESC")
+		@order_title = "注文一覧/" + @customer.name + " 様"
   	else
-  		@orders = Order.all
+  		@orders = Order.all.order(id:"DESC")
   		@order_title = "注文一覧"
   	end
   end

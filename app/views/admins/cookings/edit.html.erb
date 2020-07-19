@@ -1,5 +1,5 @@
 <div class="container">
-	<span class="form-title">Edit Cooking</span>
+	<span class="form-title">作り方編集</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
@@ -41,9 +41,10 @@
 		<div class="col-lg-12">
 			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >作り方</p>
 			<% @sum = 0 %>
-			<% @cookings.each do |cooking| %>
+			<% @recipe.cookings.each do |cooking| %>
 				<div style="margin-bottom: 10px">
-					<%= form_for [@recipe, cooking] do |f| %>
+				<%= form_with(model:cooking, url:admins_recipe_cooking_path(@recipe, cooking),
+					method: :patch) do |f| %>
 					<div class="row">
 						<div class="col-lg-1">
 							<%= @sum += 1 %>.
@@ -53,36 +54,16 @@
 						</div>
 						<div class="col-lg-2">
 							<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
-							<%= link_to "削除", recipe_cooking_path(@recipe, cooking),
+							<%= link_to "削除", admins_recipe_cooking_path(@recipe, cooking),
 								method: :delete, class:"btn btn-danger btn-sm" %>
 						</div>
 					</div>
 					<% end %>
 				</div>
 			<% end %>
- 			<%= form_for(@cooking, url:recipe_cookings_path) do |f| %>
-				<div class="row" style="padding-top: 30px;border-top: 1px solid #F5F5F5">
-					<div class="col-lg-1"></div>
-					<div class="col-lg-9">
-						<%= f.text_area :content, rows:"2",style:"width:100%",placeholder:"作り方を入力する" %>
-					</div>
-					<div class="col-lg-2">
-						<%= f.hidden_field :recipe_id, value:@recipe.id %>
-						<%= f.submit "追加", class:"btn btn-warning btn-sm" %>
-					</div>
-				</div>
-			<% end %>
 			<div style="text-align: center; margin: 50px 0 100px 0">
-				<% if @recipe.recipe_status == "作り方" %>
-					<%= form_with(url: recipe_path(@recipe), method: :patch) do |f| %>
-						<%= hidden_field :recipe_status, value:"完成" %>
-						<%= f.submit "レシピを投稿する",class:"btn btn-warning",
-							style:"padding: 5px 30px"  %>
-					<% end %>
-				<% else %>
-					<%= link_to "変更を保存する",admins_recipe_path(@recipe),class:"btn btn-warning",
+					<%= link_to "戻る",admins_recipe_path(@recipe),class:"btn btn-warning",
 						style:"padding: 5px 30px" %>
-				<% end %>
 			</div>
 		</div>
 	</div>

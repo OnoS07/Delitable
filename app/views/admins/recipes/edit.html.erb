@@ -26,7 +26,10 @@
 					<%= f.submit "編集を保存する", class:"btn btn-warning" %>
 				</div>
 			<% end %>
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料</p>
+			<p style="border-bottom: 1px solid silver; font-size: 20px;margin-top:20px" >材料
+				<%= link_to "編集", edit_admins_recipe_ingredient_path(@recipe),
+					class:"btn btn-warning btn-sm", style:"margin-bottom:5px" %>
+			</p>
 			<% @recipe.ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
 					<div class="col-lg-8">
@@ -41,7 +44,10 @@
 	</div>
 	<div class="row" style="margin-top:30px; padding-bottom: 100px;">
 		<div class="col-lg-12">
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >作り方</p>
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >作り方
+				<%= link_to "編集", edit_admins_recipe_cooking_path(@recipe),
+					style:"margin-bottom:5px", class:"btn btn-warning btn-sm" %>
+			</p>
 			<% @sum = 0 %>
 			<% @recipe.cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">

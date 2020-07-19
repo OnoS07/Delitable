@@ -1,4 +1,12 @@
 class IngredientsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
+  def ensure_correct_customer
+    @recipe = Recipe.find(params[:recipe_id])
+    if current_customer.id != @recipe.customer_id
+      redirect_to root_path
+    end
+  end
   def new
   	@recipe = Recipe.find(params[:recipe_id])
   	@ingredient = Ingredient.new
