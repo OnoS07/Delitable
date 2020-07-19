@@ -90,9 +90,9 @@
 						<%= link_to recipe_path(recipe) do %>
 							<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 								fallback:"top_recipe.jpg", class:"recipe-image" %>
-							<p style="font-size: 20px">
+							<span style="font-size: 20px">
 								<i class="fas fa-utensils"> <%= recipe.title %></i>
-							</p>
+							</span>
 						<% end %>
 					</div>
 				<% end %>

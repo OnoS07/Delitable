@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(recipe_status: "完成")
   end
 
   def show
