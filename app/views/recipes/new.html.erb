@@ -2,34 +2,37 @@
 	<span class="form-title">New Recipe</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ</p>
 			<%= form_for(@recipe) do |f| %>
-				<table class="table table-borderless">
-					<tr>
-						<th>レシピ名</th>
-						<td><%= f.text_field :title, autocomplete: "off",
-							style:"width:80%" %>
-						</td>
-					</tr>
-					<tr>
-						<th>紹介文</th>
-						<td><%= f.text_area :introduction, autocomplete: "off",rows:"7",style:"width:100%" %></td>
-					</tr>
-					<tr>
-						<th>分量(何人分)</th>
-						<td><%= f.text_field :amount, autocomplete: "off",style:"width:80%" %></td>
-					</tr>
-					<tr><th>料理画像</th></tr>
-				</table>
-				<%= f.attachment_field :recipe_image %><br>
+			<p>料理画像</p>
+			<%= f.attachment_field :recipe_image %>
+		</div>
+		<div class="col-lg-6">
+			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >レシピ</p>
+				<div class="row">
+					<div class="col-lg-3"></div>
+					<div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off",
+							style:"width:80%",placeholder:"レシピ名" %></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3"></div>
+					<div class="col-lg-9"><p><%= f.text_area :introduction, autocomplete: "off",rows:"3",style:"width:100%",placeholder:"紹介文" %></p></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3"></div>
+					<div class="col-lg-9"><p><%= f.text_field :amount, autocomplete: "off",style:"width:80%",placeholder:"分量(何人前)" %></p>
+					</div>
+				</div>
 				<div style="text-align: center;margin: 20px 0">
-					<%= f.submit "材料を追加する", class:"btn btn-warning" %>
+					<%= f.submit "保存して材料を追加する", class:"btn btn-warning" %>
 				</div>
 			<% end %>
+			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >材料</p>
 		</div>
-		<div class="col-lg-6">Ingredient</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-12">Step</div>
+		<div class="col-lg-12">
+			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >作り方</p>
+		</div>
 	</div>
 </div>

@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-lg-8 offset-lg-2">
+		<div class="col-lg-10 offset-lg-1">
 			<span class="form-title">顧客一覧</span>
 			<table class="table table-bordered" style="margin-top: 30px;">
 				<tr class="table-active">
@@ -8,6 +8,7 @@
 					<th>名前</th>
 					<th>アカウント名</th>
 					<th>メールアドレス</th>
+					<th>購入回数</th>
 					<th>ステータス</th>
 				</tr>
 				<% @customers.each do |customer| %>
@@ -20,6 +21,11 @@
 					</td>
 					<td><%= customer.account_name %></td>
 					<td><%= customer.email %></td>
+					<td>
+						<%= link_to admins_orders_path(:customer_id => customer.id) do %>
+							<%= customer.orders.count %>回
+						<% end %>
+					</td>
 					<td><%= customer.is_active %></td>
 				</tr>
 				<% end %>

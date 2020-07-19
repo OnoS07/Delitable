@@ -7,7 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://kit.fontawesome.com/5a4c917e19.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
   </head>
 
   <body style="padding-top:6rem;">
@@ -24,6 +24,9 @@
                 <%= link_to "レシピ", recipes_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
+                <%= link_to "レシピ投稿", new_recipe_path, class:"nav-link", data: {"turbolinks" => false} %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "商品", products_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">
@@ -37,6 +40,9 @@
 
           <% elsif admin_signed_in? %>
             <ul class="nav">
+              <li class="nav-item">
+                <%= link_to "レシピ一覧", admins_recipes_path, class:"nav-link", data: {"turbolinks" => false} %>
+              </li>
               <li class="nav-item">
                 <%= link_to "商品一覧", admins_products_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
@@ -79,7 +85,7 @@
 
       <footer>
         <div class="container">
-          <div class="footer-logo"></div>
+            <%= link_to "", new_admin_session_path ,class:"footer-logo" %>
         </div>
       </footer>
     </div>

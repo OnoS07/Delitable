@@ -17,11 +17,12 @@
 				<%= form_with model: @cart_item,
 					url: customers_cart_items_path do |f| %>
 					<div class="field">
-							<%= f.select :count, [["1","1"],["2","2"],["3","3"]],
+							<%= f.select :count, [["1","1"],["2","2"],["3","3"],["4","4"],["5","5"], ["6","6"],["7","7"],["8","8"],["9","9"],["10","10"]],
 									include_blank: "個数選択" %>
 							<%= f.hidden_field :product_id, :value => @product.id %>
 							<%= f.submit "カートに入れる", class:"btn btn-warning" %>
 					</div>
+					<span style="font-size: 10px;float: right">(1度に10個までご購入いただけます)</span>
 				<% end %>
 			<% else %>
 				<p>

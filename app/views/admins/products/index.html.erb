@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-lg-8 offset-lg-2">
+		<div class="col-lg-10 offset-lg-1">
 			<span class="form-title">商品一覧</span>
 			<span style="float: right">
 				<%= link_to "新規作成", new_admins_product_path,
@@ -22,7 +22,7 @@
 							<%= product.name %>
 						<% end %>
 					</td>
-					<td><%= product.price %></td>
+					<td><%= product.price %>円</td>
 					<td><%= product.genre.name %></td>
 					<td><%= product.is_active %></td>
 				</tr>

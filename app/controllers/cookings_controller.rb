@@ -1,4 +1,12 @@
 class CookingsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
+  def ensure_correct_customer
+    @recipe = Recipe.find(params[:recipe_id])
+    if current_customer.id != @recipe.customer_id
+      redirect_to root_path
+    end
+  end
   def new
   	@recipe = Recipe.find(params[:recipe_id])
   	@ingredients = Ingredient.where(recipe_id: @recipe.id)
@@ -7,9 +15,13 @@ class CookingsController < ApplicationController
   end
 
   def create
+    @recipe = Recipe.find(params[:recipe_id])
   	@cooking = Cooking.new(cooking_params)
   	@cooking.save
-  	redirect_to new_recipe_cooking_path
+    if @recipe.recipe_status == "材料"
+      @recipe.update(recipe_status: "作り方")
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   def edit
@@ -28,7 +40,7 @@ class CookingsController < ApplicationController
   def destroy
   	@cooking = Cooking.find(params[:id])
   	@cooking.destroy
-  	redirect_to new_recipe_cooking_path
+  	redirect_back(fallback_location: root_path)
   end
 
   private

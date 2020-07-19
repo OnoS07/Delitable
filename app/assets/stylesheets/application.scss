@@ -30,6 +30,7 @@ html,　body {
   padding-top: 20px;
   position: relative
 }
+
 // ヘッダー・フッター
 header{
  	background-color: #FCE77D;
@@ -77,8 +78,11 @@ a:hover {
 
 // 真ん中にくる大きめのボタン用
 .btn-center{
-  margin-top: 30px;
-  padding: 10px 80px;
+  margin-top: 20px;
+  padding: 10px 60px;
 }
 
-
+// text_areaの入力部分に余白
+textarea {
+    padding: 3px;
+}

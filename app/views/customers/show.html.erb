@@ -1,5 +1,6 @@
 <div class="container">
 	<span class="form-title" style="font-size: 30px;">
+		<i class="fas fa-user"></i>
 		<% if @customer == current_customer %>
 			My Page
 			<% else %>
@@ -42,14 +43,60 @@
 			</table>
 			<% if @customer == current_customer %>
 			<div>
+				<%= link_to "いいねレシピ", favorites_path(@customer),
+					class:"btn btn-warning"%>
 				<%= link_to "プロフィール編集", edit_customer_path(current_customer),
-					class:"btn btn-primary" %>
+					class:"btn btn-warning", style:"margin:0 20px"  %>
 				<%= link_to "配送先一覧", customers_shippings_path,
-					class:"btn btn-primary", style:"margin:0 20px" %>
+					class:"btn btn-warning" %>
 				<%= link_to "注文一覧", customers_orders_path,
-					class:"btn btn-primary" %>
+					class:"btn btn-warning", style:"margin:0 20px" %>
 			</div>
 			<% end %>
+		</div>
+	</div>
+
+	<div class="row" style="margin-top: 30px">
+		<div class="col-lg-12" style="margin-bottom: 100px;">
+			<span class="form-title" style="font-size: 20px;">
+				<i class="fas fa-utensils"></i>
+				<% if @customer == current_customer %>
+					My Recipes
+					<% else %>
+					User Recipes
+				<% end %>
+			</span>
+			<% if @customer == current_customer %>
+			<p>●作成中</p>
+				<div class="recipe-contents"  style="padding: 20px 0;border-bottom: 1px silver solid">
+					<% @close_recipes.each do |recipe| %>
+						<div class="recipe-content">
+							<%= link_to recipe_path(recipe) do %>
+								<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
+									fallback:"top_recipe.jpg", class:"recipe-image" %>
+								<span style="font-size: 20px">
+									<i class="fas fa-utensils"> <%= recipe.title %> </i>
+								</span>
+								<span>作成段階:<%= recipe.recipe_status %></span>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+			<% if @customer == current_customer %><p>●公開中</p><% end %>
+			<div class="recipe-contents"  style="padding-top: 20px">
+				<% @open_recipes.each do |recipe| %>
+					<div class="recipe-content">
+						<%= link_to recipe_path(recipe) do %>
+							<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
+								fallback:"top_recipe.jpg", class:"recipe-image" %>
+							<p style="font-size: 20px">
+								<i class="fas fa-utensils"> <%= recipe.title %></i>
+							</p>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

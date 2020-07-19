@@ -1,8 +1,11 @@
 class CustomersController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!, only:[:delete, :update, :edit, :destroy, :delete]
 
   def show
     @customer = Customer.find(params[:id])
+    @recipes = Recipe.where(customer_id: @customer.id)
+    @open_recipes = @recipes.where(recipe_status: "完成")
+    @close_recipes = @recipes.where.not(recipe_status: "完成")
   end
 
   def edit
@@ -23,6 +26,10 @@ class CustomersController < ApplicationController
     @customer.update(is_active: "退会済")
     @customer.destroy
     redirect_to root_path
+  end
+
+  def favorite_index
+    @favorites = Favorite.where(customer_id: params[:id])
   end
 
   def customer_params
