@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+  acts_as_taggable
+
   belongs_to :customer
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy

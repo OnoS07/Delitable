@@ -4,7 +4,10 @@
 		<div class="col-lg-6">
 			<%= form_for(@recipe) do |f| %>
 			<p>料理画像</p>
-			<%= f.attachment_field :recipe_image %>
+			<%= f.attachment_field :recipe_image %><br>
+			<%= f.label :tag_list, 'タグ(間にはカンマ , をつけて下さい)', style:"margin-top:20px" %>
+			<%= f.text_field :tag_list, value: @recipe.tag_list.join(','), class:"form-control",
+				placeholder: "豚肉,玉ねぎ,パスタ、、、" %>
 		</div>
 		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >レシピ</p>

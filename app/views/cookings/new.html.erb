@@ -43,12 +43,11 @@
 			<% @sum = 0 %>
 			<% @cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-8">
+					<div class="col-lg-1">
 						<%= @sum += 1 %>.
-						<%= cooking.content %>
 					</div>
-					<div class="col-lg-3">
-						<span>写真(仮)</span>
+					<div class="col-lg-10">
+						<%= cooking.content %>
 					</div>
 					<div class="col-lg-1">
 						<%= link_to "削除", recipe_cooking_path(@recipe, cooking),method: :delete, class:"btn btn-danger btn-sm" %>
@@ -57,12 +56,11 @@
 			<% end %>
 			<%= form_for(@cooking, url:recipe_cookings_path) do |f| %>
 				<div class="row" style="padding-top: 30px;">
-					<div class="col-lg-8">
+					<div class="col-lg-1"></div>
+					<div class="col-lg-10">
 						<%= f.text_area :content, rows:"2",style:"width:80%",placeholder:"作り方を入力する" %>
 					</div>
-					<div class="col-lg-2">
-					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-1">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>
 						<%= f.submit "追加", class:"btn btn-warning btn-sm" %>
 					</div>
@@ -70,7 +68,7 @@
 			<% end %>
 			<div style="text-align: center; margin: 50px 0 100px 0">
 				<%= form_with(url: recipe_path(@recipe), method: :patch) do |f| %>
-					<%= hidden_field :recipe_status, value:"完成" %>
+					<%= f.hidden_field :recipe_status, value:"完成" %>
 					<%= f.submit "レシピを投稿する",class:"btn btn-warning",
 						style:"padding: 5px 30px"  %>
 				<% end %>

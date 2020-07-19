@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :authenticate_customer!, only:[:new, :create, :edit, :update, :destroy]
   before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
+
   def ensure_correct_customer
     @recipe = Recipe.find(params[:id])
     if current_customer.id != @recipe.customer_id
@@ -24,7 +25,13 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.all
+    if params[:tag_name]
+      all_recipe = Recipe.where(recipe_status: "完成")
+      @recipes = all_recipe.tagged_with("#{params[:tag_name]}")
+      @recipe_title = params[:tag_name]
+    else
+      @recipes = Recipe.where(recipe_status: "完成")
+    end
   end
 
   def show
@@ -45,6 +52,7 @@ class RecipesController < ApplicationController
       @recipe.update(recipe_status: "完成")
       redirect_to recipe_path(@recipe)
     elsif @recipe.recipe_status == "レシピ"
+      @recipe.update(recipe_params)
       redirect_to new_recipe_ingredient_path(@recipe)
     else
       @recipe.update(recipe_params)
@@ -60,7 +68,6 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:title, :introduction, :amount, :recipe_image, :recipe_status)
+    params.require(:recipe).permit(:title, :introduction, :amount, :recipe_image, :recipe_status, :tag_list)
   end
-
 end

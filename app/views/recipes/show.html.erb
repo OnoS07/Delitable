@@ -11,6 +11,13 @@
 			<% end %>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
 				fallback:"logo.jpg", class:"recipe-image", style:"margin:10px 0" %>
+			<% @recipe.tag_list.each do |tag| %>
+			 	<span class="recipe-tag">
+			 		<%= link_to recipes_path(tag_name: tag) do %>
+			 			<%= tag %>
+			 		<% end %>
+			 	</span>
+			<% end %>
 <!-- レシピに紐づく部分 -->
 			<div style="margin-top: 20px;">
 				<span style="font-size: 18px">
