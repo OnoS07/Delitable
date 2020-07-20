@@ -3,14 +3,22 @@
 		<%= render "products/genre_sidebar", genres: @genres %>
 		<div class="col-lg-10">
 			<span class="form-title" style="font-size: 30px;">
-				<%= @index_title %>一覧
-				<span style="font-size: 15px; font-family: none;">
-					<% @sum = 0 %>
-					<% @products.each do |product| %>
-						<% if product.is_active == "販売中" %><% @sum += 1 %><% end %>
-					<% end %>
-					(全<%= @sum.to_i %>件)
+				<%= @index_title %>
+				<% if params[:q] %>
+					<span style="font-size: 15px;font-family: none;">検索: [<%= @search.name_cont %>]
+					</span>
+				<% end %>
+			</span>
+			<% if params[:q] or params[:genre_id] %>
+				<span style="margin-left: 10px;font-size: 15px;">
+					<%= link_to ">back", products_path %>
 				</span>
+			<% end %>
+			<span style="float: right">
+				<%= search_form_for @search, url: products_path do |f| %>
+					<%= f.search_field :name_cont, class:"fa", placeholder: "\uf002 キーワード" %>
+					<%= f.submit "検索" %>
+				<% end %>
 			</span>
 			<div class="product-contents"  style="padding-top: 20px">
 				<% @products.each do |product| %>

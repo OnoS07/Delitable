@@ -25,10 +25,13 @@ class RecipesController < ApplicationController
   end
 
   def index
+    @search = Recipe.ransack(params[:q])
     if params[:tag_name]
       all_recipe = Recipe.where(recipe_status: "完成")
       @recipes = all_recipe.tagged_with("#{params[:tag_name]}")
       @recipe_title = params[:tag_name]
+    elsif params[:q]
+      @recipes = @search.result.where(recipe_status: "完成")
     else
       @recipes = Recipe.where(recipe_status: "完成")
     end

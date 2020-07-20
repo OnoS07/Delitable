@@ -3,7 +3,21 @@
 		<div class="col-lg-12">
 			<span class="form-title">Recipes
 				<% if params[:tag_name] %>
-					<span style="font-size: 20px;">: [<%= @recipe_title %>]</span>
+					<span style="font-size: 15px;font-weight: bold"> タグ: [<%= @recipe_title %>]</span>
+				<% elsif params[:q] %>
+					<span style="font-size: 15px;font-weight: bold"> 検索: [<%= @search.title_cont %>]
+					</span>
+				<% end %>
+			</span>
+			<% if params[:q] or params[:tag_name] %>
+				<span style="margin-left: 10px;font-size: 15px;">
+					<%= link_to ">back", recipes_path %>
+				</span>
+			<% end %>
+			<span style="float: right">
+				<%= search_form_for @search, url: recipes_path do |f| %>
+					<%= f.search_field :title_cont, class:"fa", placeholder: "\uf002 キーワード" %>
+					<%= f.submit "検索" %>
 				<% end %>
 			</span>
 			<div class="recipe-contents"  style="padding-top: 20px">

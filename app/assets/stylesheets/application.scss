@@ -94,3 +94,10 @@ textarea {
   margin: 10px;
   padding: 5px;
 }
+
+// 検索ボックス
+[type="search"] {
+    outline-offset: -2px;
+    -webkit-appearance: auto;
+    padding: 4px;
+  }
