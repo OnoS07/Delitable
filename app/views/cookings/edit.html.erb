@@ -6,9 +6,7 @@
 				fallback:"logo.jpg", class:"recipe-image" %>
 		</div>
 		<div class="col-lg-6">
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
-				<%= link_to "編集", edit_recipe_path(@recipe),class:"btn btn-warning btn-sm", data: {"turbolinks" => false} %>
-			</p>
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ</p>
 			<div class="row">
 				<div class="col-lg-3"><p>レシピ名</p></div>
 				<div class="col-lg-9"><p><%= @recipe.title %></p></div>
@@ -21,9 +19,7 @@
 				<div class="col-lg-3"><p>分量(何人前)</p></div>
 				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
 			</div>
-			<p style="border-bottom: 1px solid silver; font-size: 20px;margin-top:20px" >材料
-				<%= link_to "編集", edit_recipe_ingredient_path(@recipe),class:"btn btn-warning btn-sm" %>
-			</p>
+			<p style="border-bottom: 1px solid silver; font-size: 20px;margin-top:20px" >材料</p>
 			<% @recipe.ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
 					<div class="col-lg-5">

@@ -2,8 +2,8 @@
 	<div class="row">
 		<%= render "products/genre_sidebar", genres: @genres %>
 		<div class="col-lg-10">
-			<span class="form-title" style="font-size: 30px;">
-				<%= @index_title %>
+			<span class="form-title">
+				<i class="fas fa-seedling"></i> <%= @index_title %>
 				<% if params[:q] %>
 					<span style="font-size: 15px;font-family: none;">検索: [<%= @search.name_cont %>]
 					</span>
@@ -26,11 +26,10 @@
 						<%= link_to product_path(product) do %>
 							<%= attachment_image_tag product, :product_image, format:"jpg",
 								fallback:"top_vegetable.jpg", class:"product-image" %>
-						<% end %>
 						<p>
-							<i class="fas fa-carrot"></i>
-								<%= product.name %>：¥<%= product.price %>円
+							<i class="fas fa-seedling"></i><%= product.name %>：¥<%= product.price %>円
 						</p>
+						<% end %>
 					</div>
 				<% end %>
 			</div>

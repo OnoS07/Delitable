@@ -23,6 +23,6 @@ class Admins::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name, :account_name, :profile_image_id, :tel, :postcode,
-                                     :address, :email, :is_active)
+                                     :address, :email, :is_active, :introduction)
   end
 end

@@ -1,7 +1,7 @@
 <div class="container" style="padding-bottom: 100px;">
 	<div class="row">
 		<div class="col-lg-12">
-			<span class="form-title">Recipes
+			<span class="form-title"><i class="fas fa-utensils"></i> Recipes
 				<% if params[:tag_name] %>
 					<span style="font-size: 15px;font-weight: bold"> タグ: [<%= @recipe_title %>]</span>
 				<% elsif params[:q] %>
@@ -32,15 +32,13 @@
 						<% end %>
 							<span>
 								<%= link_to customer_path(recipe.customer) do %>
-								<i class="fas fa-user" style="color: #F96167">
+								<i class="fas fa-user" style="color: #F96167"></i>
 									<span style="color: black"><%= recipe.customer.name %></span>
-								</i>
 								<% end %>
-								<i class="fas fa-comment" style="margin: 0 50px;color: #F96167">
-									<span style="color: black">
-										<%= recipe.comments.count %>件
-									</span>
-								</i>
+								<span style="margin: 0 50px;">
+								<i class="fas fa-comment" style="color: #F96167"></i>
+									<span style="color: black"><%= recipe.comments.count %>件</span>
+								</span>
 								<% if customer_signed_in? %>
 									<% if recipe.favorited_by?(current_customer) %>
 										<%= link_to recipe_favorites_path(recipe),

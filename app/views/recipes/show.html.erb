@@ -1,5 +1,5 @@
 <div class="container">
-	<span class="form-title">Recipe</span>
+	<span class="form-title"><i class="fas fa-utensils"></i> Recipe</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 <!-- レシピ画像 -->
@@ -10,7 +10,7 @@
 				<% end %>
 			<% end %>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
-				fallback:"logo.jpg", class:"recipe-image", style:"margin:10px 0" %>
+				fallback:"top_recipe.jpg", class:"recipe-image", style:"margin:10px 0" %>
 			<% @recipe.tag_list.each do |tag| %>
 			 	<span class="recipe-tag">
 			 		<%= link_to recipes_path(tag_name: tag) do %>
@@ -43,9 +43,17 @@
 								<span style="color:black"><%= @recipe.favorites.count %></span>
 							<% end %>
 						<% end %>
+						<span style="margin: 0 50px"><i class="fas fa-calendar-alt"
+							style="color: #F96167"></i>
+							<%= @recipe.created_at.strftime('%Y/%m/%d')%>
+						</span>
 					<% else %>
 						<i class="fas fa-heart" style="color: #F96167"></i>
 						<span style="color:black"><%= @recipe.favorites.count %></span>
+						<span style="margin: 0 50px"><i class="fas fa-calendar-alt"
+							style="color: #F96167"></i>
+							<%= @recipe.created_at.strftime('%Y/%m/%d')%>
+						</span>
 						<p style="font-size: 15px; margin-top: 10px">
 							<%= link_to "新規登録", new_customer_registration_path %>、または
 							<%= link_to "ログイン", new_customer_session_path %>いただくと<br>
@@ -140,10 +148,11 @@
 				<div class="col-lg-12">
 					<span style="float: right">
 						<%= link_to customer_path(comment.customer) do %>
-							<i class="far fa-user" style="color: #F96167"></i>
+							<i class="fas fa-user" style="color: #F96167"></i>
 								<%= comment.customer.name %>
 						<% end %>
-						<span style="margin:0 10px" >
+						<span style="margin:0 10px"><i class="fas fa-calendar-alt"
+							style="color: #F96167"></i>
 							<%= comment.created_at.strftime('%Y/%m/%d')%>
 						</span>
 						<% if comment.customer == current_customer %>
