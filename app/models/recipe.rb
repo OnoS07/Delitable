@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
   acts_as_taggable
+  is_impressionable
 
   belongs_to :customer
   has_many :favorites, dependent: :destroy

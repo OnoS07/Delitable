@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :authenticate_customer!, only:[:new, :create, :edit, :update, :destroy]
   before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
+  impressionist :actions=> [:show], :unique => [:impressionable_id, :ip_address]
 
   def ensure_correct_customer
     @recipe = Recipe.find(params[:id])
@@ -32,6 +33,9 @@ class RecipesController < ApplicationController
       @recipe_title = params[:tag_name]
     elsif params[:q]
       @recipes = @search.result.where(recipe_status: "完成")
+    elsif params[:impression]
+      all_recipes = Recipe.where(recipe_status: "完成")
+      @recipes = all_recipes.order(impressions_count: 'DESC')
     else
       @recipes = Recipe.where(recipe_status: "完成")
     end
@@ -39,6 +43,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    impressionist(@recipe, nil, unique: [:ip_address])
     @ingredients = Ingredient.where(recipe_id: @recipe.id)
     @cookings = Cooking.where(recipe_id: @recipe.id)
     @comments = Comment.where(recipe_id: @recipe.id)

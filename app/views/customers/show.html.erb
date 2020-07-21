@@ -101,12 +101,12 @@
 						<span>
 							<i class="fas fa-comment" style="color: #F96167;"></i>
 								<span style="color: black"><%= recipe.comments.count %>件</span>
-							<span style="margin: 0 35px;">
-							<i class="fas fa-heart" style="color: #F96167"></i>
+							<i class="fas fa-heart" style="color: #F96167;margin-left: 20px;"></i>
 								<span style="color:black"><%= recipe.favorites.count %></span>
-							</span>
-							<span><i class="fas fa-calendar-alt"style="color: #F96167"></i>
-								<%= recipe.created_at.strftime('%Y/%m/%d')%>
+							<i class="fas fa-paw", style="color: #F96167; margin-left: 20px;"></i>
+								<%=  recipe.impressionist_count %>
+							<span><i class="fas fa-calendar-alt"style="color: #F96167;
+								margin-left: 20px;"></i><%= recipe.created_at.strftime('%Y/%m/%d')%>
 							</span>
 						</span>
 					</div>
