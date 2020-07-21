@@ -17,11 +17,11 @@ class CookingsController < ApplicationController
   def create
     @recipe = Recipe.find(params[:recipe_id])
   	@cooking = Cooking.new(cooking_params)
+    @cookings = @recipe.cookings.all
   	@cooking.save
     if @recipe.recipe_status == "材料"
       @recipe.update(recipe_status: "作り方")
     end
-    redirect_back(fallback_location: root_path)
   end
 
   def edit
@@ -32,15 +32,15 @@ class CookingsController < ApplicationController
 
   def update
     @cooking = Cooking.find(params[:id])
+    @cookings = @recipe.cookings.all
     @recipe = Recipe.find(params[:recipe_id])
     @cooking.update(cooking_params)
-    redirect_to edit_recipe_cooking_path(@recipe)
   end
 
   def destroy
   	@cooking = Cooking.find(params[:id])
   	@cooking.destroy
-  	redirect_back(fallback_location: root_path)
+    @cookings = @recipe.cookings.all
   end
 
   private

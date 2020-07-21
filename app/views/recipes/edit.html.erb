@@ -48,12 +48,11 @@
 			<% @sum = 0 %>
 			<% @recipe.cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-8">
+					<div class="col-lg-1" style="text-align: right" >
 						<%= @sum += 1 %>.
-						<%= cooking.content %>
 					</div>
-					<div class="col-lg-4">
-						<span>写真(仮)</span>
+					<div class="col-lg-11">
+						<%= cooking.content %>
 					</div>
 				</div>
 			<% end %>

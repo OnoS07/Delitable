@@ -19,10 +19,8 @@ class RecipesController < ApplicationController
     @recipe.save
     if @recipe.recipe_status == nil
       @recipe.update(recipe_status: "レシピ")
-      redirect_to new_recipe_ingredient_path(@recipe)
-    else
-      redirect_back(fallback_location: root_path)
     end
+    redirect_to edit_recipe_ingredients_path(@recipe)
   end
 
   def index
@@ -59,9 +57,6 @@ class RecipesController < ApplicationController
     if params[:recipe_status]
       @recipe.update(recipe_status: "完成")
       redirect_to recipe_path(@recipe)
-    elsif @recipe.recipe_status == "レシピ"
-      @recipe.update(recipe_params)
-      redirect_to new_recipe_ingredient_path(@recipe)
     else
       @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe)

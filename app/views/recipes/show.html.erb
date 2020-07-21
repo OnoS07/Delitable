@@ -82,7 +82,7 @@
 			<p style="border-bottom: 1px solid #F96167; font-size: 20px;margin-top:20px" >材料
 				<% if customer_signed_in? %>
 					<% if @recipe.customer_id == current_customer.id %>
-						<%= link_to "編集", edit_recipe_ingredient_path(@recipe),
+						<%= link_to "編集", edit_recipe_ingredients_path(@recipe),
 							class:"btn btn-warning btn-sm", style:"margin-bottom:5px" %>
 					<% end %>
 				<% end %>
@@ -105,7 +105,7 @@
 			<p style="border-bottom: 1px solid #F96167; font-size: 20px" >作り方
 				<% if customer_signed_in? %>
 					<% if @recipe.customer_id == current_customer.id %>
-						<%= link_to "編集", edit_recipe_cooking_path(@recipe),
+						<%= link_to "編集", edit_recipe_cookings_path(@recipe),
 							style:"margin-bottom:5px", class:"btn btn-warning btn-sm" %>
 					<% end %>
 				<% end %>

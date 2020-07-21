@@ -20,7 +20,7 @@ class IngredientsController < ApplicationController
     if @recipe.recipe_status == "レシピ"
       @recipe.update(recipe_status: "材料")
     end
-    redirect_back(fallback_location: root_path)
+    @ingredients = @recipe.ingredients.all
   end
 
   def edit
@@ -39,8 +39,8 @@ class IngredientsController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
   	@ingredient = Ingredient.find(params[:id])
+    @ingredients = @recipe.ingredients.all
   	@ingredient.destroy
-  	redirect_back(fallback_location: root_path)
   end
 
   private

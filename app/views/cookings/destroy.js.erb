@@ -1,0 +1,2 @@
+$(".input-form").val("");
+$(".newform_<%= @recipe.id %>").html("<%= j(render 'cookings/newform', {cookings: @cookings, recipe: @recipe} ) %>");
