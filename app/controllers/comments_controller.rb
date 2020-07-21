@@ -4,14 +4,16 @@ class CommentsController < ApplicationController
   	@comment = Comment.new(comment_params)
   	@comment.customer_id = current_customer.id
     @comment.recipe_id = params[:recipe_id]
+    @recipe = Recipe.find(params[:recipe_id])
+    @comments = @recipe.comments.all
   	@comment.save
-    redirect_back(fallback_location: root_path)
   end
 
   def destroy
   	@comment = Comment.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @comments = @recipe.comments.all
   	@comment.destroy
-  	redirect_back(fallback_location: root_path)
   end
 
   private
