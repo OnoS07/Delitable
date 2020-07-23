@@ -45,6 +45,7 @@ class RecipesController < ApplicationController
   end
 
   def index
+
     @search = Recipe.ransack(params[:q])
     if params[:tag_name]
       all_recipe = Recipe.where(recipe_status: "完成")
@@ -58,6 +59,7 @@ class RecipesController < ApplicationController
     else
       @recipes = Recipe.where(recipe_status: "完成")
     end
+
   end
 
   def show
@@ -113,7 +115,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_to recipes_path
+    redirect_back(fallback_location: root_path)
   end
 
   private
