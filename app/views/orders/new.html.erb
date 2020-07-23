@@ -45,6 +45,11 @@
 							<label>
 							<%= f.radio_button :order_address, "3" %>新しいお届け先
 							</label>
+							<% if flash[:notice] %>
+							 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+							 		<%= flash[:notice]%></i>
+							 	</div>
+							<% end %>
 								<div style="margin-left: 40px">
 									<div class="row">
 										<div class="col-lg-8">

@@ -3,8 +3,13 @@ class CartItemsController < ApplicationController
   def create
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
-    @cart_item.save
-    redirect_to cart_item_confirm_path
+    if @cart_item.save
+      redirect_to cart_item_confirm_path
+      flash[:notice] = "NEW ITEM !"
+    else
+      redirect_back(fallback_location: root_path)
+      flash[:notice] = "個数を選択して下さい"
+    end
   end
 
   def confirm
@@ -14,6 +19,7 @@ class CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
+    flash[:update] = "UPDATE !"
     redirect_to cart_item_confirm_path
   end
 

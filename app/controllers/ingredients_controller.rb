@@ -16,11 +16,17 @@ class IngredientsController < ApplicationController
   def create
     @recipe = Recipe.find(params[:recipe_id])
   	@ingredient = Ingredient.new(ingredient_params)
-  	@ingredient.save
-    if @recipe.recipe_status == "レシピ"
-      @recipe.update(recipe_status: "材料")
+    @ingredients = @recipe.ingredients.all
+  	if @ingredient.save
+      if @recipe.recipe_status == "レシピ"
+        @recipe.update(recipe_status: "材料")
+      elsif @recipe.recipe_status == "未入力あり" and @recipe.cookings.present?
+        @recipe.update(recipe_status: "完成")
+      end
+    else
+      redirect_to edit_recipe_ingredients_path(@recipe)
+      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
     end
-    redirect_back(fallback_location: root_path)
   end
 
   def edit
@@ -31,16 +37,27 @@ class IngredientsController < ApplicationController
 
   def update
     @ingredient = Ingredient.find(params[:id])
+    @ingredients = @recipe.ingredients
     @recipe = Recipe.find(params[:recipe_id])
-    @ingredient.update(ingredient_params)
-    redirect_back(fallback_location: root_path)
+    if @ingredient.update(ingredient_params)
+      flash.now[:update] = "UPDATE !"
+    else
+      flash.now[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+    end
   end
 
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
   	@ingredient = Ingredient.find(params[:id])
-  	@ingredient.destroy
-  	redirect_back(fallback_location: root_path)
+    @ingredients = @recipe.ingredients.all
+  	if @ingredient.destroy
+       if @recipe.ingredients.empty?
+        if @recipe.recipe_status == "完成" or "未入力あり"
+          @recipe.update(recipe_status: "未入力あり")
+          flash.now[:notice] = "材料が入力されていません。確認して下さい"
+        end
+       end
+    end
   end
 
   private

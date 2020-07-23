@@ -2,6 +2,9 @@
   <span class="form-title" style="font-size: 30px">
     <i class="fas fa-truck"></i> My Order
   </span>
+  <span style="margin-left: 10px;font-size: 15px;">
+    <%= link_to ">back", customers_orders_path(@order.customer_id) %>
+  </span>
   <div class="row" style="margin-top: 30px; margin-bottom: 50px;">
     <div class="col-lg-8">
     	<span class="form-title" style="font-size:15px">注文情報</span>

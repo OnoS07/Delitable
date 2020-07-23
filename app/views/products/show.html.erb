@@ -1,18 +1,26 @@
 <div class="container">
 	<div class="row">
-		<%= render "products/genre_sidebar", genres: @genres %>
-		<div class="col-lg-5", style="padding-top: 20px">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-5">
+			<span class="form-title"><i class="fas fa-seedling"></i> Vegetable</span>
 			<%= attachment_image_tag @product, :product_image, format:"jpg",
-				fallback:"top_vegetable.jpg", class:"product-show" %>
+				fallback:"top_vegetable.jpg", class:"product-show",style:"margin-top:20px" %>
 		</div>
-		<div class="col-lg-5", style="padding-top: 20px">
-			<p style="font-size: 30px"><%= @product.name %></p>
-			<p style="font-size: 20px"><%= @product.introduction %></p>
-			<p style="font-size: 25px"><%= (@product.price * 1.1).to_i %>円(税込)</p>
+		<div class="col-lg-5", style="padding-top: 80px">
+			<p style="font-size: 25px;"><i class="fas fa-seedling fa-lg"></i><%= @product.name %></p>
+			<p style="font-size: 18px;padding: 15px 0 30px 0"><%= @product.introduction %></p>
+			<span style="float: right">
+				<p style="font-size: 25px"><%= (@product.price * 1.1).to_i %>円(税込)</p>
+			</span>
 		</div>
+		<div class="col-lg-1"></div>
 	</div>
 	<div class="form-row align-items-center", style="float: right">
 		<div class="col-auto">
+			<% if flash[:notice] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle"> <%= flash[:notice]%></i>
+			 	</div>
+			<% end %>
 			<% if customer_signed_in? %>
 				<%= form_with model: @cart_item,
 					url: customers_cart_items_path do |f| %>

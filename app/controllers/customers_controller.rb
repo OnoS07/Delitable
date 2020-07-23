@@ -14,8 +14,13 @@ class CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    @customer.update(customer_params)
-    redirect_to customer_path(current_customer)
+    if @customer.update(customer_params)
+      redirect_to customer_path(current_customer)
+      flash[:update] = "PROFILE UPDATE ! "
+    else
+      redirect_to edit_customer_path(current_customer)
+      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+    end
   end
 
   def delete
@@ -34,6 +39,6 @@ class CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name, :account_name, :profile_image, :tel, :postcode,
-                                     :address, :email)
+                                     :address, :email, :is_active, :introduction)
   end
 end

@@ -87,3 +87,31 @@ a:hover {
 textarea {
     padding: 3px;
 }
+
+// タグ表示のボタン
+.recipe-tag{
+  background-color: #ffc107;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 5px;
+}
+
+// 検索ボックス
+[type="search"] {
+    outline-offset: -2px;
+    -webkit-appearance: auto;
+    padding: 4px;
+  }
+
+// フラッシュメッセージ
+.bad-flash{
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.good-flash{
+  color: green;
+  font-family: impact;
+  font-size: 20px;
+}

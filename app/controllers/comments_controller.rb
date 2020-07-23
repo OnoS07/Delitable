@@ -4,14 +4,21 @@ class CommentsController < ApplicationController
   	@comment = Comment.new(comment_params)
   	@comment.customer_id = current_customer.id
     @comment.recipe_id = params[:recipe_id]
-  	@comment.save
-    redirect_back(fallback_location: root_path)
+    @recipe = Recipe.find(params[:recipe_id])
+    @comments = @recipe.comments.all
+  	if @comment.save
+      flash.now[:comment] = "NEW COMMENT CREATE !"
+    else
+      redirect_to recipe_path(@recipe, anchor: 'comments')
+      flash[:not_comment] = "正しく入力ができていません。もう一度入力して下さい"
+    end
   end
 
   def destroy
   	@comment = Comment.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @comments = @recipe.comments.all
   	@comment.destroy
-  	redirect_back(fallback_location: root_path)
   end
 
   private

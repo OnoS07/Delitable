@@ -1,0 +1,43 @@
+<% @comments.each do |comment| %>
+<div style="margin: 10px 0">
+	<div class="row" style="padding-top: 10px;">
+		<div class="col-lg-4" style="text-align: center">
+			<%= link_to customer_path(comment.customer) do %>
+				<%= attachment_image_tag comment.customer, :profile_image, format:"jpg",
+					fallback:"logo.jpg", class:"comment-image" %>
+			<% end %>
+		</div>
+		<div class="col-lg-6" style="margin: auto 0;">
+			<%= comment.content %>
+		</div>
+		<div class="col-lg-2"></div>
+	</div>
+	<div class="row" style="border-bottom: 1px silver solid; margin: 0 10px">
+		<div class="col-lg-12">
+			<span style="float: right">
+				<%= link_to customer_path(comment.customer) do %>
+					<i class="fas fa-user" style="color: #F96167"></i><%= comment.customer.name %>
+				<% end %>
+				<span style="margin:0 10px"><i class="fas fa-calendar-alt", style="color: #F96167"></i>
+					<%= comment.created_at.strftime('%Y/%m/%d')%>
+				</span>
+				<% if comment.customer == current_customer %>
+					<%= link_to recipe_comment_path(@recipe, comment),method: :delete, remote: true do %>
+						<i class="fas fa-trash"></i>削除
+					<% end %>
+				<% end %>
+			</span>
+		</div>
+	</div>
+</div>
+<% end %>
+<% if flash[:not_comment] %>
+ 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+ 		<%= flash[:not_comment]%></i>
+ 	</div>
+<% end %>
+<% if flash[:comment] %>
+ 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+ 		<%= flash[:comment]%>
+ 	</div>
+<% end %>

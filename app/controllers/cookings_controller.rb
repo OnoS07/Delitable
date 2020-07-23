@@ -17,30 +17,56 @@ class CookingsController < ApplicationController
   def create
     @recipe = Recipe.find(params[:recipe_id])
   	@cooking = Cooking.new(cooking_params)
-  	@cooking.save
-    if @recipe.recipe_status == "材料"
-      @recipe.update(recipe_status: "作り方")
+    @cookings = @recipe.cookings.all
+  	if @cooking.save
+      if @recipe.recipe_status == "材料"
+        @recipe.update(recipe_status: "作り方")
+      elsif @recipe.recipe_status == "未入力あり" and @recipe.ingredients.present?
+        @recipe.update(recipe_status: "完成")
+      end
+    else
+      redirect_to edit_recipe_cookings_path(@recipe)
+      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
     end
-    redirect_back(fallback_location: root_path)
   end
 
   def edit
     @recipe = Recipe.find(params[:recipe_id])
     @cooking = Cooking.new
     @cookings = Cooking.where(recipe_id: @recipe.id)
+    if params[:flash]
+      if @recipe.ingredients.present?
+        flash[:create] = "NEW INGREDIENT CREATE !"
+      else
+        redirect_to edit_recipe_ingredients_path(@recipe)
+        flash[:notice] = "材料が未入力です。"
+      end
+    end
   end
 
   def update
     @cooking = Cooking.find(params[:id])
+    @cookings = @recipe.cookings.all
     @recipe = Recipe.find(params[:recipe_id])
-    @cooking.update(cooking_params)
-    redirect_to edit_recipe_cooking_path(@recipe)
+    if @cooking.update(cooking_params)
+      flash.now[:update] = "UPDATE !"
+    else
+      flash.now[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+    end
   end
 
   def destroy
+    @recipe = Recipe.find(params[:recipe_id])
   	@cooking = Cooking.find(params[:id])
-  	@cooking.destroy
-  	redirect_back(fallback_location: root_path)
+    @cookings = @recipe.cookings.all
+    if @cooking.destroy
+       if @recipe.cookings.empty?
+        if @recipe.recipe_status == "完成" or "未入力あり"
+          @recipe.update(recipe_status: "未入力あり")
+          flash.now[:notice] = "作り方が入力されていません。確認して下さい"
+        end
+       end
+    end
   end
 
   private

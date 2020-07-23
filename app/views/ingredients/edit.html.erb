@@ -1,18 +1,17 @@
 <div class="container">
-	<span class="form-title">Edit Ingredient</span>
+	<span class="form-title">Ingredient</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
-				fallback:"logo.jpg", class:"recipe-image" %>
+				fallback:"top_recipe.jpg", class:"recipe-image" %>
 		</div>
 		<div class="col-lg-6">
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
-				<% if @recipe.customer_id == current_customer.id %>
-					<%= link_to "編集", edit_recipe_path(@recipe),
-						class:"btn btn-warning btn-sm", data: {"turbolinks" => false} %>
-					<%= link_to "削除", recipe_path(@recipe),method: :delete, class:"btn btn-danger btn-sm" %>
-				<% end %>
-			</p>
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ</p>
+			<% if flash[:create] %>
+			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+			 		<%= flash[:create]%>
+			 	</div>
+			<% end %>
 			<div class="row">
 				<div class="col-lg-3"><p>レシピ名</p></div>
 				<div class="col-lg-9"><p><%= @recipe.title %></p></div>
@@ -27,30 +26,16 @@
 			</div>
 
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料</p>
-			<% @ingredients.each do |ingredient| %>
-				<%= form_for [@recipe, ingredient] do |f| %>
-					<div class="row" style="padding-top: 10px">
-						<div class="col-lg-6">
-							<%= f.text_field :content, placeholder:"具材" %>
-						</div>
-						<div class="col-lg-3">
-							<%= f.text_field :amount, :size=>"8", placeholder:"分量" %>
-						</div>
-						<div class="col-lg-3">
-							<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
-							<%= link_to "削除", recipe_ingredient_path(@recipe, ingredient),
-								method: :delete, class:"btn btn-danger btn-sm" %>
-						</div>
-					</div>
-				<% end %>
-			<% end %>
-			<%= form_for(@ingredient, url:recipe_ingredients_path) do |f| %>
+			<span class="newform_<%= @recipe.id %>">
+				<%= render "newform", {ingredients: @ingredients, recipe: @recipe} %>
+			</span>
+			<%= form_for(@ingredient, url:recipe_ingredients_path, remote: true) do |f| %>
 				<div class="row" style="padding-top: 30px;">
 					<div class="col-lg-6">
-						<%= f.text_field :content, placeholder:"追加する具材" %>
+						<%= f.text_field :content, placeholder:"追加する具材", class:"new_form" %>
 					</div>
 					<div class="col-lg-3">
-						<%= f.text_field :amount, :size=>"8", placeholder:"分量" %>
+						<%= f.text_field :amount, :size=>"8", placeholder:"分量", class:"new_form" %>
 					</div>
 					<div class="col-lg-3">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>
@@ -59,11 +44,11 @@
 				</div>
 			<% end %>
 			<div style="text-align: center; margin-top: 30px;">
-				<% if @recipe.recipe_status == "材料" %>
-					<%= link_to "変更を保存する",new_recipe_cooking_path(@recipe),
+				<% if @recipe.recipe_status == "レシピ" or @recipe.recipe_status == "材料"  %>
+					<%= link_to "保存する",edit_recipe_cookings_path(@recipe, flash: "create"),
 					class:"btn btn-warning" %>
 				<% else %>
-					<%= link_to "変更を保存する", recipe_path(@recipe),class:"btn btn-warning" %>
+					<%= link_to "保存する", recipe_path(@recipe),class:"btn btn-warning" %>
 				<% end %>
 			</div>
 
@@ -71,16 +56,14 @@
 	</div>
 	<div class="row" style="margin-top:30px; padding-bottom: 100px;">
 		<div class="col-lg-12">
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >作り方</p>
 			<% @sum = 0 %>
 			<% @recipe.cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-8">
+					<div class="col-lg-1" style="text-align: right"  >
 						<%= @sum += 1 %>.
-						<%= cooking.content %>
 					</div>
-					<div class="col-lg-4">
-						<span>写真(仮)</span>
+					<div class="col-lg-11">
+						<%= cooking.content %>
 					</div>
 				</div>
 			<% end %>

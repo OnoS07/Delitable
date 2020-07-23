@@ -1,7 +1,32 @@
 <div class="container" style="padding-bottom: 100px;">
 	<div class="row">
 		<div class="col-lg-12">
-			<span class="form-title">Recipes</span>
+			<span class="form-title" style="margin-right: 20px;"><i class="fas fa-utensils"></i> Recipes
+				<% if params[:tag_name] %>
+					<span style="font-size: 15px;font-weight: bold"> タグ: [<%= @recipe_title %>]</span>
+				<% elsif params[:q] %>
+					<span style="font-size: 15px;font-weight: bold"> 検索:
+					 [<%= @search.title_or_introduction_or_ingredients_content_cont %>]
+					</span>
+				<% elsif params[:impression] %>
+					<span style="font-size: 15px;font-weight: bold"> : [<%= params[:impression] %>]
+					</span>
+				<% end %>
+			</span>
+			<% if params[:q] or params[:tag_name] or params[:impression] %>
+				<span style="margin-left: 10px;font-size: 15px;">
+					<%= link_to ">back", recipes_path %>
+				</span>
+			<% else %>
+				<%= link_to ">人気レシピ", recipes_path(impression: "閲覧数順") %>
+			<% end %>
+			<span style="float: right">
+				<%= search_form_for @search, url: recipes_path do |f| %>
+					<%= f.search_field :title_or_introduction_or_ingredients_content_cont, class:"fa",
+						 placeholder: "\uf002 キーワード" %>
+					<%= f.submit "検索" %>
+				<% end %>
+			</span>
 			<div class="recipe-contents"  style="padding-top: 20px">
 				<% @recipes.each do |recipe| %>
 					<div class="recipe-content">
@@ -14,39 +39,25 @@
 						<% end %>
 							<span>
 								<%= link_to customer_path(recipe.customer) do %>
-								<i class="fas fa-user" style="color: #F96167">
-									<span style="color: black"><%= recipe.customer.name %></span>
-								</i>
+									<i class="fas fa-user" style="color: #F96167"></i>
+										<span style="color: black"><%= recipe.customer.name %></span>
 								<% end %>
-								<i class="fas fa-comment" style="margin: 0 50px;color: #F96167">
-									<span style="color: black">
-										<%= recipe.comments.count %>件
-									</span>
-								</i>
+								<span style="margin: 0 30px;">
+									<i class="fas fa-comment" style="color: #F96167"></i>
+										<span style="color: black"><%= recipe.comments.count %>件</span>
+								</span>
 								<% if customer_signed_in? %>
-									<% if recipe.favorited_by?(current_customer) %>
-										<%= link_to recipe_favorites_path(recipe),
-											method: :delete do %>
-											<i class="fas fa-heart" style="color: #F96167"></i>
-											<span style="color:black">
-												<%= recipe.favorites.count %>
-											</span>
-										<% end %>
-									<% else %>
-										<%= link_to recipe_favorites_path(recipe),
-											method: :post do %>
-											<i class="fas fa-heart"></i>
-											<span style="color:black">
-												<%= recipe.favorites.count %>
-											</span>
-										<% end %>
-									<% end %>
-								<% else %>
-									<i class="fas fa-heart" style="color: #F96167"></i>
-									<span style="color:black">
-										<%= recipe.favorites.count %>
+									<span class="favorite_<%= recipe.id %>" >
+										<%= render "favorite", recipe: recipe %>
 									</span>
+								<% else %>
+										<i class="fas fa-heart" style="color: #F96167"></i>
+										<span style="color:black">
+											<%= recipe.favorites.count %>
+										</span>
 								<% end %>
+								<i class="fas fa-paw", style="color: #F96167; margin-left:30px;"></i>
+								<%= recipe.impressionist_count %>
 							</span>
 							<span style="font-size:12px;margin-top: 5px">
 								<%= recipe.introduction %>

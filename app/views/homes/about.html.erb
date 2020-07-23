@@ -1,2 +1,120 @@
-<h1>Homes#about</h1>
-<p>Find me in app/views/homes/about.html.erb</p>
+<div class="container" style="padding-bottom: 100px">
+	<span class="form-title"><i class="fas fa-question-circle"></i> About</span>
+	<div class="row" style="margin-bottom: 100px">
+		<div class="col-lg-8 offset-lg-2">
+			<ul>
+				<li style="margin-top: 30px">
+					当サイト
+						<span style="font-size: 25px;">『Delitable』</span>は、<br>
+						<span style="font-size: 20px;">
+							<span style="margin-right: 25px; border-bottom: 1px solid #F96167">
+								[ Delivery ]
+							</span>
+							<span style="margin-right: 25px; border-bottom: 1px solid #F96167">
+								[ Delicious ]
+							</span>
+							<span style="margin-right: 25px; border-bottom: 1px solid #F96167">
+								[ Vegetable ]
+							</span>
+							<span style="margin-right: 25px; border-bottom: 1px solid #F96167">
+								[ Table ]
+							</span>
+						</span>の4つを合わせて<br>
+					<span style="font-size: 20px;">「美味しい野菜を食卓へ届ける」 </span>がテーマです。
+				</li>
+				<li style="margin-top: 30px">
+					主に野菜の宅配サービスと、ユーザーによるレシピの投稿、共有を活用いただけますのでわざわざ買い物に
+					行きながら献立を考えるのではなく、自宅のキッチンから<br>食べたいレシピとその食材を購入したり、逆に食べたい食材からレシピを探すことで<br>より色々な料理や野菜を楽しんでいただけます。
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 70px;border-bottom: 1px solid #F96167; padding-bottom: 10px;">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-6">
+			<span class="form-title" style="font-size: 20px">
+				<i class="fas fa-utensils"></i> Recipe
+			</span>
+			<ul style="margin-left: 20px">
+				<li>
+					ユーザー登録なしでも、他ユーザーのレシピやコメントをみたり、<br>
+					キーワード検索やレシピのタグ機能から自分の見たいレシピを<br>
+					探すことができます
+				</li>
+				<li style="margin: 10px 0">
+					登録をすると、自分の作ったレシピの共有や、<br>
+					他のレシピにコメントやいいねをすることもできます
+				</li>
+			</ul>
+		</div>
+		<div class="col-lg-4">
+			<%= link_to recipes_path do %>
+				<div class="top-recipe" style="width: 100%; height:250px;"></div>
+			<% end %>
+		</div>
+		<div class="col-lg-1"></div>
+	</div>
+
+	<div class="row" style="margin-top: 70px;border-bottom: 1px solid #F96167; padding-bottom: 10px;">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-4">
+			<%= link_to products_path do %>
+				<div class="top-vegetable" style="width: 100%; height:250px;"></div>
+			<% end %>
+		</div>
+		<div class="col-lg-6">
+			<span class="form-title" style="font-size: 20px">
+				<i class="fas fa-seedling"></i> Vegetable
+			</span>
+			<ul style="margin-left: 20px">
+				<li>
+					定番から季節の野菜まで、産地直送でお届けします。<br>
+					(ご利用にはお名前・住所などの情報の入力が必要となります)
+				</li>
+				<li style="margin: 10px 0">
+					ジャンルやキーワードでの検索もできますので、<br>
+					日頃スーパーでは買わない野菜も見つかるかもしれません
+				</li>
+				<li>
+					季節の野菜セットなどのお得な詰め合わせ品もございます
+				</li>
+			</ul>
+		</div>
+		<div class="col-lg-1"></div>
+	</div>
+
+	<div class="row" style="margin-top: 70px;border-bottom: 1px solid #F96167; padding-bottom: 10px;">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-6">
+			<span class="form-title" style="font-size: 20px">
+				<i class="fas fa-user"></i> My Page
+			</span>
+			<ul style="margin-left: 20px">
+				<li>
+					自分が投稿したレシピや下書き段階のレシピなどの確認ができます。<br>
+					また、いいねをしたレシピの一覧も確認できます。
+				</li>
+				<li style="margin: 10px 0">
+					好みのレシピを投稿するユーザーをフォローすることで、<br>
+					より簡単にその人のレシピがチェックできます。
+				</li>
+				<li>
+					注文履歴にて、自分がこれまでどんな食材をいつ注文してきたかを<br>
+					確認できます。
+				</li>
+			</ul>
+		</div>
+		<div class="col-lg-4">
+			<% if customer_signed_in? %>
+				<%= link_to customer_path(current_customer) do %>
+					<div class="top-about" style="width: 100%; height:250px;"></div>
+				<% end %>
+			<% else %>
+				<%= link_to new_customer_session_path do %>
+					<div class="top-about" style="width: 100%; height:250px;"></div>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="col-lg-1"></div>
+	</div>
+</div>

@@ -4,6 +4,11 @@
 			<span class="form-title" style="font-size: 30px">
 				<i class="fas fa-map-marked-alt"></i> Edit Shipping
 			</span>
+			<% if flash[:notice] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:notice]%></i>
+			 	</div>
+			<% end %>
 			<%= form_with model: @shipping,url: customers_shipping_path,local: true do |f| %>
 				<table class="table table-borderless" style="margin-top: 30px">
 					<tr>

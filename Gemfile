@@ -80,3 +80,7 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+gem 'acts-as-taggable-on', '~> 6.0'
+gem 'ransack'
+gem 'impressionist', '~>1.6.1'

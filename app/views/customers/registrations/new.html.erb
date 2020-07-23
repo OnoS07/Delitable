@@ -5,21 +5,32 @@
         <%= form_for(resource, as: resource_name,
             url: registration_path(resource_name)) do |f| %>
         <%= render "customers/shared/error_messages", resource: resource %>
+
+
           <div class="row">
             <div class="col-lg-4">
-              <p>名前</p>
+              <p>ニックネーム<span style="font-size: 10px"></span></p>
             </div>
             <div class="col-lg-4">
-               <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+               <%= f.text_field :account_name, autocomplete: "off" %>
             </div>
           </div>
 
           <div class="row">
             <div class="col-lg-4">
-              <p>ニックネーム<span style="font-size: 10px">(レシピの投稿で使用します)</span></p>
+              <p>自己紹介<span style="font-size: 10px"><br>(必須ではありません)</span></p>
             </div>
+            <div class="col-lg-8">
+               <%=f.text_area :introduction, rows:"2", style:"width:100%", autocomplete: "off"%>
+            </div>
+          </div>
+
+          <div class="row">
             <div class="col-lg-4">
-               <%= f.text_field :account_name, autocomplete: "off" %>
+              <p>プロフィール画像<span style="font-size: 10px"><br>(必須ではありません)</span></p>
+            </div>
+            <div class="col-lg-8">
+               <%= f.attachment_field :profile_image %>
             </div>
           </div>
 
@@ -34,33 +45,6 @@
 
           <div class="row">
             <div class="col-lg-4">
-              <p>郵便番号(ハイフンなし)</p>
-            </div>
-            <div class="col-lg-4">
-               <%= f.text_field :postcode, autocomplete: "off"%>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4">
-              <p>住所</p>
-            </div>
-            <div class="col-lg-8">
-               <%= f.text_field :address, autocomplete: "off" ,style:"width:100%" %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4">
-              <p>電話番号(ハイフンなし)</p>
-            </div>
-            <div class="col-lg-4">
-               <%= f.text_field :tel, autocomplete: "off"%>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4">
               <p>パスワード(6文字以上)</p>
             </div>
             <div class="col-lg-3">
@@ -68,6 +52,45 @@
             </div>
           </div>
 
+          <p style="font-size: 13px;padding-top: 20px" > ●以下は野菜の配送サービスご利用時に使用しますので、すぐに利用されない方は上記項目のみで
+            新規登録可能です。<br>
+            また、登録後にマイページより追記もできますのでご安心ください。
+          </p>
+          <div style="border:1px solid silver;padding: 10px">
+            <div class="row">
+              <div class="col-lg-4">
+                <p>名前</p>
+              </div>
+              <div class="col-lg-4">
+                 <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <p>郵便番号(ハイフンなし)</p>
+              </div>
+              <div class="col-lg-4">
+                 <%= f.text_field :postcode, autocomplete: "off"%>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4">
+                <p>住所</p>
+              </div>
+              <div class="col-lg-8">
+                 <%= f.text_field :address, autocomplete: "off" ,style:"width:100%" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <p>電話番号(ハイフンなし)</p>
+              </div>
+              <div class="col-lg-4">
+                 <%= f.text_field :tel, autocomplete: "off"%>
+              </div>
+            </div>
+          </div>
         　 <div class="row">
             <div class="col-lg-12", style="text-align:center;">
               <%= f.hidden_field :is_avtive, value: "有効" %>

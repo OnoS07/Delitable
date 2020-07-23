@@ -57,10 +57,12 @@ Rails.application.routes.draw do
 
   # SNSルーティング
   resources :recipes do
-    resources :ingredients, only: %i[edit update new create destroy]
-    resources :cookings, only: %i[edit update new create destroy]
+    resources :ingredients, only: %i[update new create destroy]
+    resources :cookings, only: %i[update new create destroy]
     resources :comments, only: %i[create destroy]
     resource :favorites, only: %i[create destroy]
+    resource :ingredients, only: %i[edit]
+    resource :cookings, only: %i[edit]
   end
 
 end

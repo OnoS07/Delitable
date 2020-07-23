@@ -13,10 +13,24 @@
 				fallback:"logo.jpg", class:"customer-image" %>
 		</div>
 		<div class="col-lg-8">
+			<% if flash[:update] %>
+			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+			 		<%= flash[:update]%>
+			 	</div>
+			<% end %>
+			<% if flash[:notice] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:notice]%></i>
+			 	</div>
+			<% end %>
 			<table class="table table-bordered">
 				<tr>
 					<td class="align-middle" style="width: 200px;">ユーザー名</td>
 					<td class="align-middle"><%= @customer.account_name %></td>
+				</tr>
+				<tr>
+					<td class="align-middle" style="width: 200px;">自己紹介</td>
+					<td class="align-middle"><%= @customer.introduction %></td>
 				</tr>
 				<% if @customer == current_customer %>
 				<tr>
@@ -46,7 +60,7 @@
 				<%= link_to "いいねレシピ", favorites_path(@customer),
 					class:"btn btn-warning"%>
 				<%= link_to "プロフィール編集", edit_customer_path(current_customer),
-					class:"btn btn-warning", style:"margin:0 20px"  %>
+					class:"btn btn-warning", style:"margin:0 20px", data: {"turbolinks" => false}  %>
 				<%= link_to "配送先一覧", customers_shippings_path,
 					class:"btn btn-warning" %>
 				<%= link_to "注文一覧", customers_orders_path,
@@ -94,6 +108,17 @@
 								<i class="fas fa-utensils"> <%= recipe.title %></i>
 							</span>
 						<% end %>
+						<span>
+							<i class="fas fa-comment" style="color: #F96167;"></i>
+								<span style="color: black"><%= recipe.comments.count %>件</span>
+							<i class="fas fa-heart" style="color: #F96167;margin-left: 20px;"></i>
+								<span style="color:black"><%= recipe.favorites.count %></span>
+							<i class="fas fa-paw", style="color: #F96167; margin-left: 20px;"></i>
+								<%=  recipe.impressionist_count %>
+							<span><i class="fas fa-calendar-alt"style="color: #F96167;
+								margin-left: 20px;"></i><%= recipe.created_at.strftime('%Y/%m/%d')%>
+							</span>
+						</span>
 					</div>
 				<% end %>
 			</div>

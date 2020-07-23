@@ -3,12 +3,17 @@
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
-				fallback:"logo.jpg", class:"recipe-image" %>
+				fallback:"top_recipe.jpg", class:"recipe-image" %>
 		</div>
 		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
 				<%= link_to "編集", edit_recipe_path(@recipe),class:"btn btn-warning btn-sm", data: {"turbolinks" => false} %>
 			</p>
+			<% if flash[:create] %>
+			 	<div class="good-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:create]%></i>
+			 	</div>
+			<% end %>
 			<div class="row">
 				<div class="col-lg-3"><p>レシピ名</p></div>
 				<div class="col-lg-9"><p><%= @recipe.title %></p></div>
@@ -22,28 +27,18 @@
 				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
 			</div>
 			<p style="border-bottom: 1px solid silver; font-size: 20px;margin-top:20px" >材料</p>
-			<% @ingredients.each do |ingredient| %>
-				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-6">
-						<%= ingredient.content %>
-					</div>
-					<div class="col-lg-3">
-						<%= ingredient.amount %>
-					</div>
-					<div class="col-lg-3">
-						<%= link_to "削除", recipe_ingredient_path(@recipe, ingredient),method: :delete, class:"btn btn-danger btn-sm" %>
-					</div>
-				</div>
-			<% end %>
-			<%= form_for(@ingredient, url:recipe_ingredients_path) do |f| %>
+			<span class="newform_<%= @recipe.id %>">
+				<%= render "newform", ingredients: @ingredients %>
+			</span>
+			<%= form_for(@ingredient, url:recipe_ingredients_path, remote: true) do |f| %>
 				<div class="row" style="padding-top: 30px;">
 					<div class="col-lg-6">
 						<span>具材</span>
-						<%= f.text_field :content %>
+						<%= f.text_field :content, class:"new_form" %>
 					</div>
 					<div class="col-lg-3">
 						<span>分量</span>
-						<%= f.text_field :amount, :size=>"5" %>
+						<%= f.text_field :amount, :size=>"5", class:"new_form" %>
 					</div>
 					<div class="col-lg-3">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>
