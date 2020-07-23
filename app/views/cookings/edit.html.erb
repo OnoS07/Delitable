@@ -20,6 +20,11 @@
 				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
 			</div>
 			<p style="border-bottom: 1px solid silver; font-size: 20px;margin-top:20px" >材料</p>
+			<% if flash[:create] %>
+			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+			 		<%= flash[:create]%>
+			 	</div>
+			<% end %>
 			<% @recipe.ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
 					<div class="col-lg-5">
@@ -52,7 +57,7 @@
 				</div>
 			<% end %>
 			<div style="text-align: center; margin: 50px 0 100px 0">
-				<% if @recipe.recipe_status == "作り方" %>
+				<% if @recipe.recipe_status != "完成" and "未入力あり" %>
 					<%= form_with(url: recipe_path(@recipe),remote: true,  method: :patch) do |f| %>
 						<%= hidden_field :recipe_status, value:"完成" %>
 						<%= f.submit "レシピを投稿する",class:"btn btn-warning",

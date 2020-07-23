@@ -61,6 +61,11 @@
 		</div>
 <!-- レシピ部分 -->
 		<div class="col-lg-6">
+			<% if flash[:create] %>
+			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+			 		<%= flash[:create]%>
+			 	</div>
+			<% end %>
 			<p style="border-bottom: 1px solid #F96167; font-size: 20px; font-weight: bold">
 				<%= @recipe.title %>
 				<% if customer_signed_in? %>
@@ -87,6 +92,11 @@
 					<% end %>
 				<% end %>
 			</p>
+			<% if flash[:ingredient] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:ingredient]%></i>
+			 	</div>
+			<% end %>
 			<% @ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
 					<div class="col-lg-5">
@@ -110,6 +120,11 @@
 					<% end %>
 				<% end %>
 			</p>
+			<% if flash[:cooking] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:cooking]%></i>
+			 	</div>
+			<% end %>
 			<% @sum = 0 %>
 			<% @cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">
@@ -126,23 +141,23 @@
 <!-- コメント部分 -->
 	<div style="margin-top:30px; padding-bottom: 100px;", id="comments">
 		<% if @recipe.recipe_status == "完成"  %>
-		<span class="form-title" >Comments</span>
-			<div class="comment_<%= @recipe.id %>">
-				<%= render "comment", comments: @comments %>
-			</div>
-		<% if customer_signed_in? %>
-			<div class="row" style="margin-top: 30px">
-				<div class="col-lg-12">
-					<span class="form-title" style="font-size: 20px">New Comment</span>
-					<%= form_with model:[@recipe, @comment] do |f| %>
-						<%= f.text_area :content, rows:"2", autocomplete: "off",
-							style:"width:80%;" %><br>
-						<%= f.hidden_field :recipe_id, value: @recipe.id %>
-						<%= f.submit "コメントする", class:"btn btn-warning" %>
-					<% end %>
+			<span class="form-title" >Comments</span>
+				<div class="comment_<%= @recipe.id %>">
+					<%= render "comment", comments: @comments %>
 				</div>
-			</div>
-		<% end %>
+			<% if customer_signed_in? %>
+				<div class="row" style="margin-top: 30px">
+					<div class="col-lg-12">
+						<span class="form-title" style="font-size: 20px">New Comment</span>
+						<%= form_with model:[@recipe, @comment] do |f| %>
+							<%= f.text_area :content, rows:"2", autocomplete: "off",
+								style:"width:80%;" %><br>
+							<%= f.hidden_field :recipe_id, value: @recipe.id %>
+							<%= f.submit "コメントする", class:"btn btn-warning" %>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>

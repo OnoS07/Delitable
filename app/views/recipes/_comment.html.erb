@@ -7,9 +7,10 @@
 					fallback:"logo.jpg", class:"comment-image" %>
 			<% end %>
 		</div>
-		<div class="col-lg-8" style="margin: auto 0;">
+		<div class="col-lg-6" style="margin: auto 0;">
 			<%= comment.content %>
 		</div>
+		<div class="col-lg-2"></div>
 	</div>
 	<div class="row" style="border-bottom: 1px silver solid; margin: 0 10px">
 		<div class="col-lg-12">
@@ -29,4 +30,14 @@
 		</div>
 	</div>
 </div>
+<% end %>
+<% if flash[:not_comment] %>
+ 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+ 		<%= flash[:not_comment]%></i>
+ 	</div>
+<% end %>
+<% if flash[:comment] %>
+ 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+ 		<%= flash[:comment]%>
+ 	</div>
 <% end %>

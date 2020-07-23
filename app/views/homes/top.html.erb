@@ -19,6 +19,11 @@
 				</div>
 			</div>
 			<div style="margin:30px auto ">
+				<% if flash[:notice] %>
+				 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+				 		<%= flash[:notice]%>
+				 	</div>
+				<% end %>
 				<span class="form-title">
 					<% if customer_signed_in? %>
 						Enjoy Delitable!

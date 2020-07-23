@@ -7,6 +7,12 @@
 				<%= link_to "カートを空にする" , cart_items_destroy_all_path,
 					method: :delete, class:"btn btn-danger" %>
 			</span>
+			<% if flash[:notice] %>
+				<div class="good-flash"><i class="fas fa-check-circle"></i> <%= flash[:notice]%></div>
+			<% end %>
+			<% if flash[:update] %>
+				<div class="good-flash"><i class="fas fa-check-circle"></i> <%= flash[:update]%></div>
+			<% end %>
 			<div style="margin-top: 20px;">
 				<table class="table table-bordered">
 					<thead style="background-color:#FCE77D">

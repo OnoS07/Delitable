@@ -7,6 +7,11 @@
 			<span style="margin-left: 10px;font-size: 15px;">
 				<%= link_to ">back", customer_path(current_customer) %>
 			</span>
+			<% if flash[:create] %>
+			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+			 		<%= flash[:create]%>
+			 	</div>
+			<% end %>
 			<table class="table table-bordered" style="margin-top: 30px;">
 				<thead style= "background-color: #FCE77D" >
 					<tr>
@@ -37,7 +42,12 @@
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-12">
 			<span class="form-title" style="font-size: 20px">New Shipping</span>
-			<%= form_with(url:customers_shippings_path, local: true) do |f| %>
+			<% if flash[:notice] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:notice]%></i>
+			 	</div>
+			<% end %>
+			<%= form_for(@shipping, url: customers_shippings_path) do |f| %>
 				<table class="table table-borderless">
 					<tr>
 						<td style="width:200px">郵便番号(ハイフンなし)</td>

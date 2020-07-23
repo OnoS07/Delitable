@@ -2,6 +2,9 @@
 	<span class="form-title" style="font-size: 30px;">
 		<i class="fas fa-user"></i> Edit Profile
 	</span>
+	<span style="margin-left: 10px;font-size: 15px; padding-top: 20px;">
+		<%= link_to ">back", customer_path(current_customer) %>
+	</span>
 	<div class="row" style="margin-top: 30px;">
 		<div class="col-lg-4" style="text-align: center;">
 		<%= form_with(model: @customer, local:true, data: {"turbolinks" => false}) do |f| %>
@@ -10,6 +13,11 @@
 			<%= f.attachment_field :profile_image %>
 		</div>
 		<div class="col-lg-8">
+			<% if flash[:notice] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:notice]%></i>
+			 	</div>
+			<% end %>
 			<table class="table table-borderless">
 				<tr>
 					<td class="align-middle" style="width: 200px;">ユーザー名</td>
@@ -17,7 +25,9 @@
 				</tr>
 				<tr>
 					<td class="align-middle" style="width: 200px;">自己紹介</td>
-					<td class="align-middle"><%=f.text_field :introduction %></td>
+					<td class="align-middle">
+						<%=f.text_area :introduction, rows:"2", style:"width:80%"%>
+					</td>
 				</tr>
 				<tr>
 					<td class="align-middle">名前</td>

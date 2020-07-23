@@ -16,10 +16,9 @@ class Customer < ApplicationRecord
   enum is_active: { 退会済: false, 有効: true }
   acts_as_paranoid
 
-  validates :name, presence:true ,length:{maximum: 10}
   validates :account_name, presence:true ,length:{maximum: 10}
-  validates :tel, presence:true ,format: { with: /\A\d{10,11}\z/ }
-  validates :postcode, presence: true, format: { with: /\A\d{7}\z/ }
-  validates :address, presence: true, uniqueness: true
+  # validates :tel, presence:true ,format: { with: /\A\d{10,11}\z/ }
+  # validates :postcode, presence: true, format: { with: /\A\d{7}\z/ }
+  # validates :address, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 end

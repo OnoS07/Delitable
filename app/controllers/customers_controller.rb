@@ -14,8 +14,13 @@ class CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    @customer.update(customer_params)
-    redirect_to customer_path(current_customer)
+    if @customer.update(customer_params)
+      redirect_to customer_path(current_customer)
+      flash[:update] = "PROFILE UPDATE ! "
+    else
+      redirect_to edit_customer_path(current_customer)
+      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+    end
   end
 
   def delete

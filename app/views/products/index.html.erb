@@ -5,7 +5,7 @@
 			<span class="form-title">
 				<i class="fas fa-seedling"></i> <%= @index_title %>
 				<% if params[:q] %>
-					<span style="font-size: 15px;font-family: none;">検索: [<%= @search.name_cont %>]
+					<span style="font-size: 15px;font-weight: bold;">検索: [<%= @search.name_or_introduction_cont %>]
 					</span>
 				<% end %>
 			</span>
@@ -16,7 +16,7 @@
 			<% end %>
 			<span style="float: right">
 				<%= search_form_for @search, url: products_path do |f| %>
-					<%= f.search_field :name_cont, class:"fa", placeholder: "\uf002 キーワード" %>
+					<%= f.search_field :name_or_introduction_cont, class:"fa", placeholder: "\uf002 キーワード" %>
 					<%= f.submit "検索" %>
 				<% end %>
 			</span>

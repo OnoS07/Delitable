@@ -1,5 +1,5 @@
 <div class="container">
-	<span class="form-title">Edit Ingredient</span>
+	<span class="form-title">Ingredient</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
@@ -7,6 +7,11 @@
 		</div>
 		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ</p>
+			<% if flash[:create] %>
+			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+			 		<%= flash[:create]%>
+			 	</div>
+			<% end %>
 			<div class="row">
 				<div class="col-lg-3"><p>レシピ名</p></div>
 				<div class="col-lg-9"><p><%= @recipe.title %></p></div>
@@ -39,8 +44,8 @@
 				</div>
 			<% end %>
 			<div style="text-align: center; margin-top: 30px;">
-				<% if @recipe.recipe_status == "材料" %>
-					<%= link_to "保存する",edit_recipe_cookings_path(@recipe),
+				<% if @recipe.recipe_status == "レシピ" or @recipe.recipe_status == "材料"  %>
+					<%= link_to "保存する",edit_recipe_cookings_path(@recipe, flash: "create"),
 					class:"btn btn-warning" %>
 				<% else %>
 					<%= link_to "保存する", recipe_path(@recipe),class:"btn btn-warning" %>

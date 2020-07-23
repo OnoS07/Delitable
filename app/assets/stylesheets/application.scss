@@ -101,3 +101,16 @@ textarea {
     -webkit-appearance: auto;
     padding: 4px;
   }
+
+// フラッシュメッセージ
+.bad-flash{
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.good-flash{
+  color: green;
+  font-family: impact;
+  font-size: 20px;
+}

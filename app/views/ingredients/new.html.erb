@@ -9,6 +9,11 @@
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
 				<%= link_to "編集", edit_recipe_path(@recipe),class:"btn btn-warning btn-sm", data: {"turbolinks" => false} %>
 			</p>
+			<% if flash[:create] %>
+			 	<div class="good-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:create]%></i>
+			 	</div>
+			<% end %>
 			<div class="row">
 				<div class="col-lg-3"><p>レシピ名</p></div>
 				<div class="col-lg-9"><p><%= @recipe.title %></p></div>

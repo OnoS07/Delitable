@@ -5,7 +5,8 @@
 				<% if params[:tag_name] %>
 					<span style="font-size: 15px;font-weight: bold"> タグ: [<%= @recipe_title %>]</span>
 				<% elsif params[:q] %>
-					<span style="font-size: 15px;font-weight: bold"> 検索: [<%= @search.title_cont %>]
+					<span style="font-size: 15px;font-weight: bold"> 検索:
+					 [<%= @search.title_or_introduction_or_ingredients_content_cont %>]
 					</span>
 				<% elsif params[:impression] %>
 					<span style="font-size: 15px;font-weight: bold"> : [<%= params[:impression] %>]
@@ -21,7 +22,8 @@
 			<% end %>
 			<span style="float: right">
 				<%= search_form_for @search, url: recipes_path do |f| %>
-					<%= f.search_field :title_cont, class:"fa", placeholder: "\uf002 キーワード" %>
+					<%= f.search_field :title_or_introduction_or_ingredients_content_cont, class:"fa",
+						 placeholder: "\uf002 キーワード" %>
 					<%= f.submit "検索" %>
 				<% end %>
 			</span>
@@ -45,14 +47,14 @@
 										<span style="color: black"><%= recipe.comments.count %>件</span>
 								</span>
 								<% if customer_signed_in? %>
-								<span class="favorite_<%= recipe.id %>" >
-									<%= render "favorite", recipe: recipe %>
-								</span>
-								<% else %>
-									<i class="fas fa-heart" style="color: #F96167"></i>
-									<span style="color:black">
-										<%= recipe.favorites.count %>
+									<span class="favorite_<%= recipe.id %>" >
+										<%= render "favorite", recipe: recipe %>
 									</span>
+								<% else %>
+										<i class="fas fa-heart" style="color: #F96167"></i>
+										<span style="color:black">
+											<%= recipe.favorites.count %>
+										</span>
 								<% end %>
 								<i class="fas fa-paw", style="color: #F96167; margin-left:30px;"></i>
 								<%= recipe.impressionist_count %>

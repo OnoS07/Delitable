@@ -1,3 +1,6 @@
+<% if flash[:update] %>
+ 	<div class="good-flash"><i class="fas fa-check-circle"></i><%= flash[:update]%></div>
+<% end %>
 <% ingredients.each do |ingredient| %>
 	<%= form_for [recipe, ingredient],remote: true do |f| %>
 		<div class="row" style="padding-top: 10px">
@@ -14,4 +17,7 @@
 			</div>
 		</div>
 	<% end %>
+<% end %>
+<% if flash[:notice] %>
+ 	<div class="bad-flash"><i class="fas fa-exclamation-circle"><%= flash[:notice]%></i></div>
 <% end %>
