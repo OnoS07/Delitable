@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<span class="form-title">Follow</span>
+			<% @customers.each do |customer| %>
+				<div class="row" style="margin-top: 20px;padding-bottom: 20px; border-bottom: 1px solid #F96167">
+					<div class="col-lg-2" style="text-align: center;">
+						<%= link_to customer_path(customer) do %>
+							<%= attachment_image_tag customer, :profile_image, format:"jpg",
+								fallback:"logo.jpg", class:"follow-image" %>
+						<% end %>
+					</div>
+					<div class="col-lg-7">
+						<table class="table table-bordered">
+							<tr>
+								<td class="align-middle" style="width: 200px;">ユーザー名</td>
+								<td class="align-middle">
+									<%= link_to customer_path(customer) do %>
+										<%= customer.account_name %>
+									<% end %>
+								</td>
+							</tr>
+							<tr>
+								<td class="align-middle" style="width: 200px;">自己紹介</td>
+								<td class="align-middle"><%= customer.introduction %></td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-lg-3" style="text-align: center;">
+						<div class="relationship_<%= customer.id %>">
+							<%= render "relationships/relationship", customer: customer %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

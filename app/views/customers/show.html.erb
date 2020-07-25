@@ -11,6 +11,16 @@
 		<div class="col-lg-4" style="text-align: center;">
 			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
 				fallback:"logo.jpg", class:"customer-image" %>
+			<div class="relationship_<%= @customer.id %>">
+				<%= render "relationships/relationship", customer: @customer %>
+			</div>
+			<% unless customer_signed_in? %>
+				<p style="font-size: 15px; margin-top: 10px">
+					フォローをするには<br>
+					<%= link_to "新規登録", new_customer_registration_path %>か
+					<%= link_to "ログイン", new_customer_session_path %>が必要です
+				</p>
+			<% end %>
 		</div>
 		<div class="col-lg-8">
 			<% if flash[:update] %>

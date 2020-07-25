@@ -7,10 +7,11 @@ class IngredientsController < ApplicationController
       redirect_to root_path
     end
   end
-  def new
-  	@recipe = Recipe.find(params[:recipe_id])
-  	@ingredient = Ingredient.new
-  	@ingredients = Ingredient.where(recipe_id: @recipe.id)
+
+  def edit
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredients = Ingredient.where(recipe_id: @recipe.id)
+    @ingredient = Ingredient.new
   end
 
   def create
@@ -29,12 +30,6 @@ class IngredientsController < ApplicationController
       redirect_to edit_recipe_ingredients_path(@recipe)
       flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
     end
-  end
-
-  def edit
-    @recipe = Recipe.find(params[:recipe_id])
-    @ingredients = Ingredient.where(recipe_id: @recipe.id)
-    @ingredient = Ingredient.new
   end
 
   def update

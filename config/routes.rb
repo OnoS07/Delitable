@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/' => 'homes#top', as: 'top'
   get 'home/about' => 'homes#about', as: 'about'
 
+  # @customer = current_customerのため、customer/:id が不要なネスト
   resource :customers, only: [:hoge] do
     resources :shippings, only: %i[index edit update create destroy]
     resources :orders, only: %i[index show new create]
@@ -30,7 +31,13 @@ Rails.application.routes.draw do
   end
   get 'customers/delete' => 'customers#delete', as: 'customers_delete'
 
-  resources :customers, only: %i[show edit update destroy]
+  # どのユーザーか(customer/:id)が必要なネスト
+  resources :customers, only: %i[show edit update destroy] do
+    resource :relationships, only: %i[create destroy]
+    get 'follows' => 'relationships#follows', as: 'follows'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
+
   get "customer/:id/favorite_index" => "customers#favorite_index", as:"favorites"
   get 'orders/confirm' => 'orders#confirm', as: 'order_confirm'
   get 'orders/complete' => 'orders#complete', as: 'order_complete'

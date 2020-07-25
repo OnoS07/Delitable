@@ -41,5 +41,9 @@ $(document).on("turbolinks:load", function(){
       // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
       hidePrevious : false
   });
+ //= footer Go Topボタン
+  $(".top-btn").click(function(){
+      $("html, body").animate({"scrollTop":0},300)
+  });
 
 })
