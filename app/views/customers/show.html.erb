@@ -55,18 +55,18 @@
 				</tr>
 				<% end %>
 			</table>
-			<% if @customer == current_customer %>
 			<div>
 				<%= link_to "いいねレシピ", favorites_path(@customer),
 					class:"btn btn-warning"%>
+			<% if @customer == current_customer %>
 				<%= link_to "プロフィール編集", edit_customer_path(current_customer),
 					class:"btn btn-warning", style:"margin:0 20px", data: {"turbolinks" => false}  %>
 				<%= link_to "配送先一覧", customers_shippings_path,
 					class:"btn btn-warning" %>
 				<%= link_to "注文一覧", customers_orders_path,
 					class:"btn btn-warning", style:"margin:0 20px" %>
-			</div>
 			<% end %>
+			</div>
 		</div>
 	</div>
 

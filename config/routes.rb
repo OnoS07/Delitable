@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get 'customers/sign_up' => 'customers/registrations#new', as: 'new_customer_registration'
     post 'customers' => 'customers/registrations#create', as: 'customer_registration'
   end
+  post '/homes/guest_sign_in', to: 'homes#new_guest'
 
   # EC顧客側ルーティング
   root 'homes#top'
@@ -57,8 +58,8 @@ Rails.application.routes.draw do
 
   # SNSルーティング
   resources :recipes do
-    resources :ingredients, only: %i[update new create destroy]
-    resources :cookings, only: %i[update new create destroy]
+    resources :ingredients, only: %i[update create destroy]
+    resources :cookings, only: %i[update create destroy]
     resources :comments, only: %i[create destroy]
     resource :favorites, only: %i[create destroy]
     resource :ingredients, only: %i[edit]

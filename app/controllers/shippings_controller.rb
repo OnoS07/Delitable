@@ -25,8 +25,9 @@ class ShippingsController < ApplicationController
       redirect_to customers_shippings_path
       flash[:create] = "NEW SHIPPING ! "
     else
-      redirect_to customers_shippings_path
-      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      @shippings = Shipping.where(customer_id: current_customer.id)
+      flash.now[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      render ("shippings/index")
     end
   end
 
@@ -35,10 +36,11 @@ class ShippingsController < ApplicationController
     @shipping.customer_id = current_customer.id
     if @shipping.update(shipping_params)
       redirect_to customers_shippings_path
-      flash[:create] = "SHIPPING UPDATE ! "
+      flash[:create] = "UPDATE ! "
     else
-      redirect_to edit_customers_shipping_path(@shipping)
-      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      @shipping = Shipping.find(params[:id])
+      flash.now[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      render ("shippings/edit")
     end
   end
 

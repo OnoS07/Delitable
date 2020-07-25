@@ -19,11 +19,19 @@
 							<%= customer.name %>
 						<% end %>
 					</td>
-					<td><%= customer.account_name %></td>
+					<td>
+						<%= link_to admins_customer_path(customer) do %>
+							<%= customer.account_name %>
+						<% end %>
+					</td>
 					<td><%= customer.email %></td>
 					<td>
-						<%= link_to admins_orders_path(:customer_id => customer.id) do %>
-							<%= customer.orders.count %>回
+						<% if customer.orders.count > 0 %>
+							<%= link_to admins_orders_path(:customer_id => customer.id) do %>
+								<%= customer.orders.count %>回
+							<% end %>
+						<% else %>
+							なし
 						<% end %>
 					</td>
 					<td><%= customer.is_active %></td>

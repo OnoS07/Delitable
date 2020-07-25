@@ -17,11 +17,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new
-    @order = Order.new
-    @shipping = Shipping.where(customer_id: current_customer.id)
-  end
-
   def confirm
     @cart_items = current_customer.cart_items.all
     @order = Order.new

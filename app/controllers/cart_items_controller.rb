@@ -5,7 +5,7 @@ class CartItemsController < ApplicationController
     @cart_item.customer_id = current_customer.id
     if @cart_item.save
       redirect_to cart_item_confirm_path
-      flash[:notice] = "NEW ITEM !"
+      flash[:create] = "NEW ITEM !"
     else
       redirect_back(fallback_location: root_path)
       flash[:notice] = "個数を選択して下さい"
@@ -18,9 +18,13 @@ class CartItemsController < ApplicationController
 
   def update
     @cart_item = CartItem.find(params[:id])
-    @cart_item.update(cart_item_params)
-    flash[:update] = "UPDATE !"
-    redirect_to cart_item_confirm_path
+    if @cart_item.update(cart_item_params)
+      flash[:update] = "UPDATE !"
+      redirect_to cart_item_confirm_path
+    else
+      flash[:notice] = "個数は半角数字で入力して下さい。1~10まで変更できます"
+      redirect_to cart_item_confirm_path
+    end
   end
 
   def destroy_all

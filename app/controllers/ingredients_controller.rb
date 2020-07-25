@@ -18,10 +18,12 @@ class IngredientsController < ApplicationController
   	@ingredient = Ingredient.new(ingredient_params)
     @ingredients = @recipe.ingredients.all
   	if @ingredient.save
+      # 1つ作成でステータス変更
       if @recipe.recipe_status == "レシピ"
         @recipe.update(recipe_status: "材料")
+        # 未入力箇所の入力ができれば、ステータスを準備中に変更
       elsif @recipe.recipe_status == "未入力あり" and @recipe.cookings.present?
-        @recipe.update(recipe_status: "完成")
+        @recipe.update(recipe_status: "準備中")
       end
     else
       redirect_to edit_recipe_ingredients_path(@recipe)
@@ -51,12 +53,11 @@ class IngredientsController < ApplicationController
   	@ingredient = Ingredient.find(params[:id])
     @ingredients = @recipe.ingredients.all
   	if @ingredient.destroy
-       if @recipe.ingredients.empty?
-        if @recipe.recipe_status == "完成" or "未入力あり"
-          @recipe.update(recipe_status: "未入力あり")
-          flash.now[:notice] = "材料が入力されていません。確認して下さい"
-        end
-       end
+      # レシピ完成後、材料が全て削除されたらステータスを未入力ありにして公開停止
+      if @recipe.ingredients.empty? and @recipe.recipe_status == "完成" or "準備中"
+        @recipe.update(recipe_status: "未入力あり")
+        flash.now[:notice] = "材料が入力されていません。確認して下さい"
+      end
     end
   end
 

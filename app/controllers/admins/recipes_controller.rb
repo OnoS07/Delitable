@@ -1,7 +1,7 @@
 class Admins::RecipesController < ApplicationController
   before_action :authenticate_admin!
   def index
-  	@recipes = Recipe.all
+  	@recipes = Recipe.all.order(id:"DESC")
   end
 
   def show

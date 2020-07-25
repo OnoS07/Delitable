@@ -5,8 +5,21 @@
 <!-- レシピ画像 -->
 			<% if customer_signed_in? %>
 				<% if @recipe.customer_id == current_customer.id %>
+					<% if @recipe.recipe_status == "準備中" %>
+						<%= form_for(@recipe) do |f| %>
+							<%= f.hidden_field :recipe_status, value: "完成" %>
+							<%= f.submit "公開する", class:"btn btn-warning" %>
+						<% end %>
+					<% elsif  @recipe.recipe_status == "完成" %>
+						<%= form_for(@recipe) do |f| %>
+							<%= f.hidden_field :recipe_status, value: "準備中" %>
+							<%= f.submit "非公開にする", class:"btn btn-warning" %>
+						<% end %>
+					<% end %>
+					<span style="float: right">
 					<%= link_to "レシピを削除する", recipe_path(@recipe),method: :delete,
-						class:"btn btn-danger btn-sm" %>
+						data: {confirm: "本当に削除してもよろしいですか？"},class:"btn btn-danger btn-sm" %>
+					</span>
 				<% end %>
 			<% end %>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
@@ -23,7 +36,7 @@
 				<span style="font-size: 18px">
 					<%= link_to customer_path(@recipe.customer) do %>
 					<i class="fas fa-user" style="color: #F96167"></i>
-						<span style="color: black"><%= @recipe.customer.name %></span>
+						<span style="color: black"><%= @recipe.customer.account_name %></span>
 					<% end %>
 					<span style="margin: 0 30px">
 					<%= link_to anchor: "comments" do %>

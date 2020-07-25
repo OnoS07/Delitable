@@ -7,22 +7,18 @@ class CookingsController < ApplicationController
       redirect_to root_path
     end
   end
-  def new
-  	@recipe = Recipe.find(params[:recipe_id])
-  	@ingredients = Ingredient.where(recipe_id: @recipe.id)
-  	@cooking = Cooking.new
-  	@cookings = Cooking.where(recipe_id: @recipe.id)
-  end
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
   	@cooking = Cooking.new(cooking_params)
     @cookings = @recipe.cookings.all
   	if @cooking.save
+      # 1つ作成でステータス変更
       if @recipe.recipe_status == "材料"
         @recipe.update(recipe_status: "作り方")
+      # 未入力箇所の入力ができれば、ステータスを準備中に変更
       elsif @recipe.recipe_status == "未入力あり" and @recipe.ingredients.present?
-        @recipe.update(recipe_status: "完成")
+        @recipe.update(recipe_status: "準備中")
       end
     else
       redirect_to edit_recipe_cookings_path(@recipe)
@@ -60,11 +56,10 @@ class CookingsController < ApplicationController
   	@cooking = Cooking.find(params[:id])
     @cookings = @recipe.cookings.all
     if @cooking.destroy
-       if @recipe.cookings.empty?
-        if @recipe.recipe_status == "完成" or "未入力あり"
-          @recipe.update(recipe_status: "未入力あり")
-          flash.now[:notice] = "作り方が入力されていません。確認して下さい"
-        end
+      # レシピ完成後、作り方が全て削除されたらステータスを未入力ありにして公開停止
+       if @recipe.cookings.empty? and @recipe.recipe_status == "完成" or "準備中"
+        @recipe.update(recipe_status: "未入力あり")
+        flash.now[:notice] = "作り方が入力されていません。確認して下さい"
        end
     end
   end

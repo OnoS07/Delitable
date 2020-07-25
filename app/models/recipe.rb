@@ -11,7 +11,7 @@ class Recipe < ApplicationRecord
 
   attachment :recipe_image
 
-  enum recipe_status: { レシピ: 0, 材料: 1, 作り方: 2, 完成: 3, 未入力あり: 4 }
+  enum recipe_status: { レシピ: 0, 材料: 1, 作り方: 2, 完成: 3, 未入力あり: 4, 準備中: 5}
 
   validates :title, presence:true ,length:{maximum: 20}
   validates :introduction, presence:true ,length:{maximum: 150}

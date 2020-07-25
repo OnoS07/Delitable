@@ -78,6 +78,9 @@
               <li class="nav-item">
                 <%= link_to "ログイン", new_customer_session_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
+              <li class="nav-item">
+                <%= link_to 'ゲストログイン', homes_guest_sign_in_path, method: :post, class:"nav-link" %>
+              </li>
             </ul>
           <% end %>
 

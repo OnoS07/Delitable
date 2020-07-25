@@ -17,9 +17,9 @@
 
             <tr>
               <th class="table-active">配送先</th>
-              <td><%= @order.postcode %><br>
-                  <%= @order.address %><br>
-                  <%= @order.name %>
+              <td>〒<%= @order.postcode %><br>
+                  住所：<%= @order.address %><br>
+                  宛名：<%= @order.name %>
               </td>
             </tr>
 
