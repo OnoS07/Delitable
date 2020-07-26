@@ -21,5 +21,9 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @cart_item = CartItem.new
     @review = Review.new
+
+    order_ids = current_customer.orders.pluck(:id)
+    @ordered = OrderDetail.where(order_id: order_ids).where(product_id: @product.id)
   end
+
 end

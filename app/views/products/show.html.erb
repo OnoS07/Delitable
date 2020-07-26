@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-lg-1"></div>
 		<div class="col-lg-5">
-			<span class="form-title"><i class="fas fa-seedling"></i> Vegetable</span>
+			<span class="form-title"><i class="fas fa-seedling"></i>Vegetable</span>
 			<%= attachment_image_tag @product, :product_image, format:"jpg",
 				fallback:"top_vegetable.jpg", class:"product-show",style:"margin-top:20px" %>
 		</div>
@@ -127,13 +127,13 @@
 			<% if customer_signed_in? %>
 			<span class="form-title" style="font-size: 20px">New Review</span>
 				<!-- レビューの複数回投稿を防止 -->
-				<% if @product.reviews.find_by(customer_id: current_customer.id) %>
+				<% if current_customer.reviewing?(@product) %>
 					<p style="margin-top: 10px">
 						レビューの投稿ありがとうございました。<br>
 						レビューは商品につき1人1回のみとなっています。
 					</p>
 				<!-- 購入したことがある人のみレビュー可能 -->
-				<% elsif current_customer.orders.order_details.find_by(product_id: @product.id) %>
+				<% elsif @orderd.present? %>
 					<p style="margin-top: 10px">
 						レビューは当商品を購入後に投稿いただけます。<br>
 						ぜひご購入し、感想をお寄せください。
