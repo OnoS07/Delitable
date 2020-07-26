@@ -9,6 +9,6 @@ class Order < ApplicationRecord
   validates :postcode, presence: true, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true
   validates :name, presence: true
-  validates :postage, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
-  validates :total_products_cost, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :postage, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :total_products_cost, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end

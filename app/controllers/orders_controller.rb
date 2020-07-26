@@ -1,19 +1,17 @@
 class OrdersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer, only:[:show]
-  before_action :confirm_customer_shipping, only:[:new]
+  before_action :ensure_correct_customer, only: [:show]
+  before_action :confirm_customer_shipping, only: [:new]
   def ensure_correct_customer
     @order = Order.find(params[:id])
-    if current_customer.id != @order.customer_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_customer.id != @order.customer_id
   end
 
   def confirm_customer_shipping
-    if current_customer.address.empty? or current_customer.postcode.empty? or
-       current_customer.name.empty? or current_customer.tel.empty?
+    if current_customer.address.empty? || current_customer.postcode.empty? ||
+       current_customer.name.empty? || current_customer.tel.empty?
       redirect_to customer_path(current_customer)
-      flash[:notice] = "注文には、名前・郵便番号・住所・電話番号の登録が必要です"
+      flash[:notice] = '注文には、名前・郵便番号・住所・電話番号の登録が必要です'
     end
   end
 
@@ -43,7 +41,7 @@ class OrdersController < ApplicationController
       @shipping.name = @order.name
       unless @shipping.save
         redirect_back(fallback_location: root_path)
-        flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+        flash[:notice] = '正しく入力ができていません。もう一度入力して下さい'
       end
     end
   end

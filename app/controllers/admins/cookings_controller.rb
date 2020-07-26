@@ -1,7 +1,7 @@
 class Admins::CookingsController < ApplicationController
   before_action :authenticate_admin!
   def edit
-  	@recipe = Recipe.find(params[:recipe_id])
+    @recipe = Recipe.find(params[:recipe_id])
   end
 
   def update
@@ -19,7 +19,8 @@ class Admins::CookingsController < ApplicationController
   end
 
   private
+
   def cooking_params
-  	params.require(:cooking).permit(:recipe_id, :cooking_image, :content)
+    params.require(:cooking).permit(:recipe_id, :cooking_image, :content)
   end
 end

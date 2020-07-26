@@ -1,11 +1,9 @@
 class IngredientsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
+  before_action :ensure_correct_customer, only: %i[edit update destroy]
   def ensure_correct_customer
     @recipe = Recipe.find(params[:recipe_id])
-    if current_customer.id != @recipe.customer_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_customer.id != @recipe.customer_id
   end
 
   def edit
@@ -16,19 +14,19 @@ class IngredientsController < ApplicationController
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-  	@ingredient = Ingredient.new(ingredient_params)
+    @ingredient = Ingredient.new(ingredient_params)
     @ingredients = @recipe.ingredients.all
-  	if @ingredient.save
+    if @ingredient.save
       # 1つ作成でステータス変更
-      if @recipe.recipe_status == "レシピ"
-        @recipe.update(recipe_status: "材料")
+      if @recipe.recipe_status == 'レシピ'
+        @recipe.update(recipe_status: '材料')
         # 未入力箇所の入力ができれば、ステータスを準備中に変更
-      elsif @recipe.recipe_status == "未入力あり" and @recipe.cookings.present?
-        @recipe.update(recipe_status: "準備中")
+      elsif (@recipe.recipe_status == '未入力あり') && @recipe.cookings.present?
+        @recipe.update(recipe_status: '準備中')
       end
     else
       redirect_to edit_recipe_ingredients_path(@recipe)
-      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      flash[:notice] = '正しく入力ができていません。もう一度入力して下さい'
     end
   end
 
@@ -37,27 +35,30 @@ class IngredientsController < ApplicationController
     @ingredients = @recipe.ingredients
     @recipe = Recipe.find(params[:recipe_id])
     if @ingredient.update(ingredient_params)
-      flash.now[:update] = "UPDATE !"
+      flash.now[:update] = 'UPDATE !'
     else
-      flash.now[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
     end
   end
 
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
-  	@ingredient = Ingredient.find(params[:id])
+    @ingredient = Ingredient.find(params[:id])
     @ingredients = @recipe.ingredients.all
-  	if @ingredient.destroy
-      # レシピ完成後、材料が全て削除されたらステータスを未入力ありにして公開停止
-      if @recipe.ingredients.empty? and @recipe.recipe_status == "完成" or "準備中"
-        @recipe.update(recipe_status: "未入力あり")
-        flash.now[:notice] = "材料が入力されていません。確認して下さい"
-      end
+    return if @ingredient.destroy
+
+    # レシピ完成後、材料が全て削除されたらステータスを未入力ありにして公開停止
+    return if @recipe.ingredients.empty?
+
+    if (@recipe.recipe_status == '完成') || (@recipe.recipe_status == '準備中')
+      @recipe.update(recipe_status: '未入力あり')
+      flash.now[:notice] = '材料が入力されていません。確認して下さい'
     end
   end
 
   private
+
   def ingredient_params
-  	params.require(:ingredient).permit(:recipe_id, :content, :amount)
+    params.require(:ingredient).permit(:recipe_id, :content, :amount)
   end
 end

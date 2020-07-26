@@ -46,13 +46,13 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano3-puma'
-  gem 'capistrano-rbenv'
 end
 
 group :test do
@@ -82,5 +82,5 @@ group :production do
 end
 
 gem 'acts-as-taggable-on', '~> 6.0'
-gem 'ransack'
 gem 'impressionist', '~>1.6.1'
+gem 'ransack'

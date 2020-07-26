@@ -38,12 +38,11 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
 
-  get "customer/:id/favorite_index" => "customers#favorite_index", as:"favorites"
+  get 'customer/:id/favorite_index' => 'customers#favorite_index', as: 'favorites'
   get 'orders/confirm' => 'orders#confirm', as: 'order_confirm'
   get 'orders/complete' => 'orders#complete', as: 'order_complete'
   get 'cart_items/confirm' => 'cart_items#confirm', as: 'cart_item_confirm'
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
-
 
   resources :products, only: %i[index show]
 
@@ -55,10 +54,10 @@ Rails.application.routes.draw do
     get '/' => 'orders#top', as: 'top'
     resources :order_details, only: [:update]
     resources :genres, only: %i[index edit create update destroy]
-  # SNS側根理者ルーティング
-    resources :recipes, only: [:index, :show, :edit, :update] do
-      resources :ingredients, only: [:edit, :update, :destroy]
-      resources :cookings, only: [:edit, :update, :destroy]
+    # SNS側根理者ルーティング
+    resources :recipes, only: %i[index show edit update] do
+      resources :ingredients, only: %i[edit update destroy]
+      resources :cookings, only: %i[edit update destroy]
       resources :comments, only: [:destroy]
     end
   end
@@ -72,5 +71,4 @@ Rails.application.routes.draw do
     resource :ingredients, only: %i[edit]
     resource :cookings, only: %i[edit]
   end
-
 end

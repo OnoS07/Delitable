@@ -19,7 +19,8 @@ class Admins::IngredientsController < ApplicationController
   end
 
   private
+
   def ingredient_params
-  	params.require(:ingredient).permit(:recipe_id, :content, :amount)
+    params.require(:ingredient).permit(:recipe_id, :content, :amount)
   end
 end

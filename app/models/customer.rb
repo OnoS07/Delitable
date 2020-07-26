@@ -19,14 +19,14 @@ class Customer < ApplicationRecord
   enum is_active: { 退会済: false, 有効: true }
   acts_as_paranoid
 
-  validates :account_name, presence:true ,length:{maximum: 10}
-  validates :tel ,format: { with: /\A\d{10,11}\z/ }
+  validates :account_name, presence: true, length: { maximum: 10 }
+  validates :tel, format: { with: /\A\d{10,11}\z/ }
   validates :postcode, format: { with: /\A\d{7}\z/ }
   validates :email, presence: true, uniqueness: true
 
   # フォロー機能
-  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
-  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
+  has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy # フォロー取得
+  has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy # フォロワー取得
   has_many :following_customer, through: :follower, source: :followed # 自分がフォローしている人
   has_many :follower_customer, through: :followed, source: :follower # 自分をフォローしている人
 
@@ -37,12 +37,11 @@ class Customer < ApplicationRecord
 
   # ユーザーのフォローを外す(destroyで使用)
   def unfollow(customer_id)
-     follower.find_by(followed_id: customer_id).destroy
+    follower.find_by(followed_id: customer_id).destroy
   end
 
   # フォローしていればtrueを返す(フォローする/外すのリンク)
   def following?(customer)
     following_customer.include?(customer)
   end
-
 end
