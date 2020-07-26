@@ -12,12 +12,12 @@ class RecipesController < ApplicationController
   def close_recipe_show
     # 完成以外のレシピ詳細を他のユーザーから見れないようにする
     @recipe = Recipe.find(params[:id])
-    return if @recipe.recipe_status != '完成'
-
-    if customer_signed_in?
-      redirect_to recipes_path if current_customer.id != @recipe.customer_id
-    else
-      redirect_to recipes_path
+    if @recipe.recipe_status != '完成'
+      if customer_signed_in?
+        redirect_to recipes_path if current_customer.id != @recipe.customer_id
+      else
+        redirect_to recipes_path
+      end
     end
   end
 

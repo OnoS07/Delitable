@@ -45,14 +45,14 @@ class IngredientsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @ingredient = Ingredient.find(params[:id])
     @ingredients = @recipe.ingredients.all
-    return if @ingredient.destroy
-
+    if @ingredient.destroy
     # レシピ完成後、材料が全て削除されたらステータスを未入力ありにして公開停止
-    return if @recipe.ingredients.empty?
-
-    if (@recipe.recipe_status == '完成') || (@recipe.recipe_status == '準備中')
-      @recipe.update(recipe_status: '未入力あり')
-      flash.now[:notice] = '材料が入力されていません。確認して下さい'
+      if @recipe.ingredients.empty?
+        if (@recipe.recipe_status == '完成') || (@recipe.recipe_status == '準備中')
+          @recipe.update(recipe_status: '未入力あり')
+          flash.now[:notice] = '材料が入力されていません。確認して下さい'
+        end
+      end
     end
   end
 

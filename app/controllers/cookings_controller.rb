@@ -28,13 +28,13 @@ class CookingsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @cooking = Cooking.new
     @cookings = Cooking.where(recipe_id: @recipe.id)
-    return if params[:flash]
-
-    if @recipe.ingredients.present?
-      flash[:create] = 'NEW INGREDIENT CREATE !'
-    else
-      redirect_to edit_recipe_ingredients_path(@recipe)
-      flash[:notice] = '材料が未入力です。'
+    if params[:flash]
+      if @recipe.ingredients.present?
+        flash[:create] = 'NEW INGREDIENT CREATE !'
+      else
+        redirect_to edit_recipe_ingredients_path(@recipe)
+        flash[:notice] = '材料が未入力です。'
+      end
     end
   end
 
@@ -53,14 +53,14 @@ class CookingsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @cooking = Cooking.find(params[:id])
     @cookings = @recipe.cookings.all
-    return if @cooking.destroy
-
+    if @cooking.destroy
     # レシピ完成後、作り方が全て削除されたらステータスを未入力ありにして公開停止
-    return if @recipe.cookings.empty?
-
-    if (@recipe.recipe_status == '完成') || (@recipe.recipe_status == '準備中')
-      @recipe.update(recipe_status: '未入力あり')
-      flash.now[:notice] = '作り方が入力されていません。確認して下さい'
+      if @recipe.cookings.empty?
+        if (@recipe.recipe_status == '完成') || (@recipe.recipe_status == '準備中')
+          @recipe.update(recipe_status: '未入力あり')
+          flash.now[:notice] = '作り方が入力されていません。確認して下さい'
+        end
+      end
     end
   end
 

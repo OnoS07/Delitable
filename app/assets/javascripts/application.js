@@ -46,4 +46,23 @@ $(document).on("turbolinks:load", function(){
       $("html, body").animate({"scrollTop":0},300)
   });
 
+// 評価作成
+  $('#star').raty({
+    half: true,
+    size: 36,
+    starOff: "/assets/star-off.png",
+    starOn: "/assets/star-on.png",
+    starHalf: "/assets/star-half.png",
+    scoreName: "review[rate]",
+  });
+// 評価表示(html側に移動)
+  // $("#star-rate-#{product.id}").raty({
+  //   half: true,
+  //   size: 36,
+  //   starOff: "/assets/star-off.png",
+  //   starOn: "/assets/star-on.png",
+  //   starHalf: "/assets/star-half.png",
+  //   score: "#{review.rate}"
+  // });
+
 })

@@ -11,7 +11,9 @@ class Customer < ApplicationRecord
   # ECサイト側ネスト
   has_many :shipping, dependent: :destroy
   has_many :orders
+  has_many :order_details, through: :orders
   has_many :cart_items, dependent: :destroy
+  has_many :reviews
 
   attachment :profile_image
 
@@ -44,4 +46,5 @@ class Customer < ApplicationRecord
   def following?(customer)
     following_customer.include?(customer)
   end
+
 end

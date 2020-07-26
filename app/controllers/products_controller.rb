@@ -20,5 +20,6 @@ class ProductsController < ApplicationController
     @genres = Genre.all
     @product = Product.find(params[:id])
     @cart_item = CartItem.new
+    @review = Review.new
   end
 end

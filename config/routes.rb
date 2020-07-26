@@ -44,7 +44,9 @@ Rails.application.routes.draw do
   get 'cart_items/confirm' => 'cart_items#confirm', as: 'cart_item_confirm'
   delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'cart_items_destroy_all'
 
-  resources :products, only: %i[index show]
+  resources :products, only: %i[index show] do
+    resources :reviews, only: %i[create destroy]
+  end
 
   # EC管理者側ルーティイング
   namespace :admins do

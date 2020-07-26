@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom: 100px;">
 	<div class="row">
 		<div class="col-lg-1"></div>
 		<div class="col-lg-5">
@@ -7,7 +7,28 @@
 				fallback:"top_vegetable.jpg", class:"product-show",style:"margin-top:20px" %>
 		</div>
 		<div class="col-lg-5", style="padding-top: 80px">
-			<p style="font-size: 25px;"><i class="fas fa-seedling fa-lg"></i><%= @product.name %></p>
+			<span style="font-size: 25px;">
+				<i class="fas fa-seedling fa-lg"></i><%= @product.name %>
+			</span>
+			<!-- 星を表示 -->
+			<% if @product.reviews.present? %>
+				<div id="rate-average-<%= @product.id %>"></div>
+				    <script>
+			          $('#rate-average-<%= @product.id %>').raty({
+			            size: 36,
+			            starOff:  '<%= asset_path('star-off.png') %>',
+			            starOn : '<%= asset_path('star-on.png') %>',
+			            starHalf: '<%= asset_path('star-half.png') %>',
+			            half: true,
+			            score: <%= @product.reviews.average(:rate) %>,
+			            readOnly: true,
+			        	});
+				    </script>
+				<span>
+					平均評価：<%= @product.reviews.average(:rate).round(1) %>点/
+					全<%= @product.reviews.count %>件のレビュー
+				</span>
+			<% end %>
 			<p style="font-size: 18px;padding: 15px 0 30px 0"><%= @product.introduction %></p>
 			<span style="float: right">
 				<p style="font-size: 25px"><%= (@product.price * 1.1).to_i %>円(税込)</p>
@@ -15,26 +36,123 @@
 		</div>
 		<div class="col-lg-1"></div>
 	</div>
-	<div class="form-row align-items-center", style="float: right">
-		<div class="col-auto">
+	<div class="form-row">
+		<div class="col-auto" style="margin: 0 0 0 auto;">
 			<% if flash[:notice] %>
-			 	<div class="bad-flash"><i class="fas fa-exclamation-circle"> <%= flash[:notice]%></i>
+			 	<div class="bad-flash">
+			 		<i class="fas fa-exclamation-circle"> <%= flash[:notice]%></i>
 			 	</div>
 			<% end %>
 			<% if customer_signed_in? %>
-				<%= form_with model: @cart_item,
-					url: customers_cart_items_path do |f| %>
+				<%= form_with model: @cart_item, url: customers_cart_items_path do |f| %>
 					<div class="field">
-							<%= f.select :count, [["1","1"],["2","2"],["3","3"],["4","4"],["5","5"], ["6","6"],["7","7"],["8","8"],["9","9"],["10","10"]],
-									include_blank: "個数選択" %>
-							<%= f.hidden_field :product_id, :value => @product.id %>
-							<%= f.submit "カートに入れる", class:"btn btn-warning" %>
+						<%= f.select :count, [["1","1"],["2","2"],["3","3"],["4","4"],["5","5"], ["6","6"],["7","7"],["8","8"],["9","9"],["10","10"]],
+								include_blank: "個数選択" %>
+						<%= f.hidden_field :product_id, :value => @product.id %>
+						<%= f.submit "カートに入れる", class:"btn btn-warning" %>
 					</div>
 					<span style="font-size: 10px;float: right">(1度に10個までご購入いただけます)</span>
 				<% end %>
 			<% else %>
 				<p>
 					購入には
+					<%= link_to "新規登録", new_customer_registration_path %>、または
+					<%= link_to "ログイン", new_customer_session_path %>
+					が必要です
+				</p>
+			<% end %>
+		</div>
+	</div>
+<!-- 評価部分 -->
+	<!-- 評価一覧 -->
+ 	<div class="row" style="margin-top: 30px;">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-10" style="margin-top: 30px">
+			<span class="form-title">Reviews</span>
+			<% @product.reviews.each do |review| %>
+				<div class="row" style="margin-top: 10px">
+					<div class="col-lg-4" style="text-align: center">
+						<%= link_to customer_path(review.customer) do %>
+							<%= attachment_image_tag review.customer, :profile_image, format:"jpg",
+								fallback:"logo.jpg", class:"comment-image" %>
+						<% end %>
+					</div>
+					<div class="col-lg-6">
+						<p>
+							<!-- 星を表示 -->
+							<div id="star-rate-<%= review.id %>"></div>
+						    <script>
+					          $('#star-rate-<%= review.id %>').raty({
+					            size: 36,
+					            starOff:  '<%= asset_path('star-off.png') %>',
+					            starOn : '<%= asset_path('star-on.png') %>',
+					            starHalf: '<%= asset_path('star-half.png') %>',
+					            half: true,
+					            score: <%= review.rate %>,
+					            readOnly: true,
+					        	});
+						    </script>
+						</p>
+						<span><%= review.content %></span>
+					</div>
+					<div class="col-lg-2"></div>
+				</div>
+				<div class="row" style="border-bottom: 1px silver solid; margin: 0 10px">
+					<div class="col-lg-12">
+						<span style="float: right">
+							<%= link_to customer_path(review.customer) do %>
+								<i class="fas fa-user" style="color: #F96167"></i>
+								<%= review.customer.account_name %>
+							<% end %>
+							<span style="margin:0 10px">
+								<i class="fas fa-calendar-alt", style="color: #F96167"></i>
+								<%= review.created_at.strftime('%Y/%m/%d')%>
+							</span>
+							<% if review.customer == current_customer %>
+								<%= link_to product_review_path(@product, review),method: :delete,
+									data: {confirm: "本当に削除してもよろしいですか？"}, remote: true do %>
+									<i class="fas fa-trash"></i>削除
+								<% end %>
+							<% end %>
+						</span>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-lg-1"></div>
+	</div>
+	<!-- 評価投稿部分 -->
+	<div class="row" style="margin-top:30px;">
+		<div class="col-lg-10 offset-lg-1">
+			<% if customer_signed_in? %>
+			<span class="form-title" style="font-size: 20px">New Review</span>
+				<!-- レビューの複数回投稿を防止 -->
+				<% if @product.reviews.find_by(customer_id: current_customer.id) %>
+					<p style="margin-top: 10px">
+						レビューの投稿ありがとうございました。<br>
+						レビューは商品につき1人1回のみとなっています。
+					</p>
+				<!-- 購入したことがある人のみレビュー可能 -->
+				<% elsif current_customer.orders.order_details.find_by(product_id: @product.id) %>
+					<p style="margin-top: 10px">
+						レビューは当商品を購入後に投稿いただけます。<br>
+						ぜひご購入し、感想をお寄せください。
+					</p>
+				<% else %>
+					<%= form_with model:[@product, @review] do |f| %>
+					    <div id="star">
+					        <%= f.label :rate,  "評価 (※必須)" %>
+					        <%= f.hidden_field :rate, id: :review_star %>
+					    </div>
+						<%= f.text_area :content, rows:"2", autocomplete: "off", style:"width:80%;" %>
+							<br>
+						<%= f.hidden_field :product_id, value: @product.id %>
+						<%= f.submit "レビューする", class:"btn btn-warning" %>
+					<% end %>
+				<% end %>
+			<% else %>
+				<p>
+					レビューの投稿には
 					<%= link_to "新規登録", new_customer_registration_path %>、または
 					<%= link_to "ログイン", new_customer_session_path %>
 					が必要です
