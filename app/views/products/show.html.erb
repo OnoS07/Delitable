@@ -28,6 +28,8 @@
 					平均評価：<%= @product.reviews.average(:rate).round(1) %>点/
 					全<%= @product.reviews.count %>件のレビュー
 				</span>
+			<% else %>
+				<p style="font-size: 12px">(まだ評価はありません)</p>
 			<% end %>
 			<p style="font-size: 18px;padding: 15px 0 30px 0"><%= @product.introduction %></p>
 			<span style="float: right">
@@ -55,7 +57,7 @@
 				<% end %>
 			<% else %>
 				<p>
-					購入には
+					購入やレビューの投稿には
 					<%= link_to "新規登録", new_customer_registration_path %>、または
 					<%= link_to "ログイン", new_customer_session_path %>
 					が必要です
@@ -133,11 +135,12 @@
 						レビューは商品につき1人1回のみとなっています。
 					</p>
 				<!-- 購入したことがある人のみレビュー可能 -->
-				<% elsif @orderd.present? %>
+				<% elsif @ordered.blank? %>
 					<p style="margin-top: 10px">
 						レビューは当商品を購入後に投稿いただけます。<br>
 						ぜひご購入し、感想をお寄せください。
 					</p>
+				<!-- まだレビューをしていないかつ購入済 -->
 				<% else %>
 					<%= form_with model:[@product, @review] do |f| %>
 					    <div id="star">
@@ -150,13 +153,6 @@
 						<%= f.submit "レビューする", class:"btn btn-warning" %>
 					<% end %>
 				<% end %>
-			<% else %>
-				<p>
-					レビューの投稿には
-					<%= link_to "新規登録", new_customer_registration_path %>、または
-					<%= link_to "ログイン", new_customer_session_path %>
-					が必要です
-				</p>
 			<% end %>
 		</div>
 	</div>
