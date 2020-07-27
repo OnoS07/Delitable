@@ -13,8 +13,8 @@
 					<%= link_to recipe_path(favorite.recipe) do %>
 						<%= attachment_image_tag favorite.recipe, :recipe_image, format:"jpg",
 							fallback:"top_recipe.jpg", class:"recipe-image" %>
-						<span style="font-size: 20px;">
-							<i class="fas fa-utensils"> <%= favorite.recipe.title %></i>
+						<span style="font-size: 18px;">
+							<i class="fas fa-utensils" style="margin-top: 5px;"> <%= favorite.recipe.title %></i>
 						</span>
 					<% end %>
 						<span>

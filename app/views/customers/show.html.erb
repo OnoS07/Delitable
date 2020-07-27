@@ -98,8 +98,8 @@
 							<%= link_to recipe_path(recipe) do %>
 								<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 									fallback:"top_recipe.jpg", class:"recipe-image" %>
-								<span style="font-size: 20px">
-									<i class="fas fa-utensils"> <%= recipe.title %> </i>
+								<span style="font-size: 18px">
+									<i class="fas fa-utensils" style="margin-top: 5px;"> <%= recipe.title %> </i>
 								</span>
 								<span>作成段階:<%= recipe.recipe_status %></span>
 							<% end %>
@@ -114,8 +114,8 @@
 						<%= link_to recipe_path(recipe) do %>
 							<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 								fallback:"top_recipe.jpg", class:"recipe-image" %>
-							<span style="font-size: 20px">
-								<i class="fas fa-utensils"> <%= recipe.title %></i>
+							<span style="font-size: 18px">
+								<i class="fas fa-utensils" style="margin-top: 5px;"> <%= recipe.title %></i>
 							</span>
 						<% end %>
 						<span>
