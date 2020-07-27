@@ -9,7 +9,7 @@ class Customer < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   # ECサイト側ネスト
-  has_many :shipping, dependent: :destroy
+  has_many :shippings, dependent: :destroy
   has_many :orders
   has_many :cart_items, dependent: :destroy
   has_many :reviews

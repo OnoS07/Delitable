@@ -8,7 +8,7 @@
 				data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger" %>
 			</span>
 			<% if flash[:create] %>
-				<div class="good-flash"><i class="fas fa-check-circle"></i> <%= flash[:notice]%></div>
+				<div class="good-flash"><i class="fas fa-check-circle"></i> <%= flash[:create]%></div>
 			<% end %>
 			<% if flash[:update] %>
 				<div class="good-flash"><i class="fas fa-check-circle"></i> <%= flash[:update]%></div>

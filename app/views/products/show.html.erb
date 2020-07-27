@@ -13,7 +13,11 @@
 			<!-- 星を表示 -->
 			<% if @product.reviews.present? %>
 				<div id="rate-average-<%= @product.id %>"></div>
+				<!-- 一度emptyで消してから再読み込みで二重表示を防止 -->
 				    <script>
+	                  document.addEventListener("turbolinks:before-cache", function() {
+	                    $('#rate-average-<%= @product.id %>').empty()
+	                    });
 			          $('#rate-average-<%= @product.id %>').raty({
 			            size: 36,
 			            starOff:  '<%= asset_path('star-off.png') %>',
@@ -84,6 +88,9 @@
 							<!-- 星を表示 -->
 							<div id="star-rate-<%= review.id %>"></div>
 						    <script>
+			                  document.addEventListener("turbolinks:before-cache", function() {
+			                    $('#star-rate-<%= review.id %>').empty()
+			                    });
 					          $('#star-rate-<%= review.id %>').raty({
 					            size: 36,
 					            starOff:  '<%= asset_path('star-off.png') %>',
@@ -120,6 +127,11 @@
 					</div>
 				</div>
 			<% end %>
+			<% if flash[:review_create] %>
+			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+			 		<%= flash[:review_create]%>
+			 	</div>
+			<% end %>
 		</div>
 		<div class="col-lg-1"></div>
 	</div>
@@ -143,11 +155,17 @@
 				<!-- まだレビューをしていないかつ購入済 -->
 				<% else %>
 					<%= form_with model:[@product, @review] do |f| %>
+					<% if flash[:review_error] %>
+					 	<div class="bad-flash">
+					 		<i class="fas fa-exclamation-circle"> <%= flash[:review_error]%></i>
+					 	</div>
+					<% end %>
 					    <div id="star">
 					        <%= f.label :rate,  "評価 (※必須)" %>
 					        <%= f.hidden_field :rate, id: :review_star %>
 					    </div>
-						<%= f.text_area :content, rows:"2", autocomplete: "off", style:"width:80%;" %>
+						<%= f.text_area :content, rows:"2", autocomplete: "off", style:"width:80%;",
+							placeholder:"食べた感想など(こちらは空白でも投稿いただけます)" %>
 							<br>
 						<%= f.hidden_field :product_id, value: @product.id %>
 						<%= f.submit "レビューする", class:"btn btn-warning" %>

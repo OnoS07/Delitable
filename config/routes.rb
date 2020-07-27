@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
     resources :genres, only: %i[index edit create update destroy]
     # SNS側根理者ルーティング
-    resources :recipes, only: %i[index show edit update] do
+    resources :recipes, only: %i[index show edit update destroy] do
       resources :ingredients, only: %i[edit update destroy]
       resources :cookings, only: %i[edit update destroy]
       resources :comments, only: [:destroy]

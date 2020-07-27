@@ -5,10 +5,15 @@ class Admins::OrdersController < ApplicationController
   end
 
   def index
+    @search = Order.ransack(params[:q])
     if params[:customer_id]
       @customer = Customer.find(params[:customer_id])
       @orders = Order.where(customer_id: @customer.id).order(id: 'DESC')
       @order_title = '注文一覧/' + @customer.name + ' 様'
+    elsif params[:q]
+      # キーワード検索時
+      @orders = @search.result(distinct: true)
+      @order_title = '注文一覧/検索：' + @search.name_or_address_or_customer_name_cont
     else
       @orders = Order.all.order(id: 'DESC')
       @order_title = '注文一覧'

@@ -1,7 +1,15 @@
 class Admins::CustomersController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @customers = Customer.with_deleted.all
+    @search = Customer.with_deleted.ransack(params[:q])
+    if params[:q]
+      # キーワード検索時
+      @customers = @search.result(distinct: true)
+      @customer_title = '顧客一覧/検索：' + @search.name_or_account_name_or_introduction_cont
+    else
+      @customers = Customer.with_deleted.all
+      @customer_title = '顧客一覧'
+    end
   end
 
   def show

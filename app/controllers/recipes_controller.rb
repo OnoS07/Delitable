@@ -47,7 +47,7 @@ class RecipesController < ApplicationController
       @recipe_title = params[:tag_name]
     elsif params[:q]
       # キーワード検索結果
-      @recipes = @search.result.where(recipe_status: '完成')
+      @recipes = @search.result(distinct: true).where(recipe_status: '完成')
     elsif params[:impression]
       # 閲覧数順結果
       all_recipes = Recipe.where(recipe_status: '完成')
@@ -85,7 +85,7 @@ class RecipesController < ApplicationController
         redirect_to recipe_path(@recipe)
         flash[:cooking] = '作り方が入力されていないため投稿できません。確認して下さい'
       else
-        @recipe.update(recipe_params)
+        @recipe.update(recipe_status: '完成')
         redirect_to recipe_path(@recipe)
         flash[:create] = 'YOUR RECIPE RELEASE !'
       end

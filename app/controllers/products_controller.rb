@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
       @index_title = @genre.name
     elsif params[:q]
       # キーワード検索時
-      @products = @search.result.where(is_active: '販売中')
+      @products = @search.result(distinct: true).where(is_active: '販売中')
       @index_title = 'Vegetables'
     else
       # 通常の一覧

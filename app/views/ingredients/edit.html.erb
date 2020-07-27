@@ -49,7 +49,8 @@
 					<%= link_to "保存する",edit_recipe_cookings_path(@recipe, flash: "create"),
 					class:"btn btn-warning" %>
 				<!-- 完成後、もしくは公開停止後の修正する時 -->
-				<% elsif @recipe.recipe_status == "完成" or "未入力あり" or "準備中" %>
+				<% elsif @recipe.recipe_status == "完成" or @recipe.recipe_status == "未入力あり" or
+						 @recipe.recipe_status == "準備中" %>
 					<%= link_to "戻る",recipe_path(@recipe), class:"btn btn-warning" %>
 				<!-- 作り方が入力済で、かつ一度も完成させてない時。材料がないとエラーメッセージ -->
 				<% else %>
