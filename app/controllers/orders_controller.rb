@@ -1,25 +1,27 @@
 class OrdersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer, only:[:show]
-  before_action :confirm_customer_shipping, only:[:new]
+  before_action :ensure_correct_customer, only: [:show]
+  before_action :confirm_customer_shipping, only: [:new]
   def ensure_correct_customer
     @order = Order.find(params[:id])
-    if current_customer.id != @order.customer_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_customer.id != @order.customer_id
   end
 
   def confirm_customer_shipping
-    if current_customer.address.empty? or current_customer.postcode.empty? or
-       current_customer.name.empty? or current_customer.tel.empty?
+    if current_customer.address.empty? || current_customer.postcode.empty? ||
+       current_customer.name.empty? || current_customer.tel.empty?
       redirect_to customer_path(current_customer)
-      flash[:notice] = "注文には、名前・郵便番号・住所・電話番号の登録が必要です"
+      flash[:notice] = '注文には、名前・郵便番号・住所・電話番号の登録が必要です'
     end
   end
 
   def new
     @order = Order.new
     @shipping = Shipping.where(customer_id: current_customer.id)
+    if current_customer.cart_items.blank?
+      redirect_to cart_item_confirm_path
+      flash[:notice] = "購入する商品がカートに入っていません"
+    end
   end
 
   def confirm
@@ -32,10 +34,15 @@ class OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.name
     elsif params[:order_address] == '2' # 配送先から選択
-      @shipping = Shipping.find(params[:select_address])
-      @order.postcode = @shipping.postcode
-      @order.address = @shipping.address
-      @order.name = @shipping.name
+      if params[:select_address]
+        @shipping = Shipping.find(params[:select_address])
+        @order.postcode = @shipping.postcode
+        @order.address = @shipping.address
+        @order.name = @shipping.name
+      else
+        redirect_to new_customers_order_path
+        flash[:notice] = "登録済み住所はありません"
+      end
     else
       # params[:order_address] = '3' # 新しい配送先
       @order.postcode = params[:postcode]
@@ -48,7 +55,7 @@ class OrdersController < ApplicationController
       @shipping.name = @order.name
       unless @shipping.save
         redirect_back(fallback_location: root_path)
-        flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+        flash[:notice] = '正しく入力ができていません。もう一度入力して下さい'
       end
     end
   end

@@ -16,13 +16,14 @@
 		<div class="col-lg-12">
 			<span style="float: right">
 				<%= link_to customer_path(comment.customer) do %>
-					<i class="fas fa-user" style="color: #F96167"></i><%= comment.customer.name %>
+					<i class="fas fa-user" style="color: #F96167"></i><%= comment.customer.account_name %>
 				<% end %>
 				<span style="margin:0 10px"><i class="fas fa-calendar-alt", style="color: #F96167"></i>
 					<%= comment.created_at.strftime('%Y/%m/%d')%>
 				</span>
 				<% if comment.customer == current_customer %>
-					<%= link_to recipe_comment_path(@recipe, comment),method: :delete, remote: true do %>
+					<%= link_to recipe_comment_path(@recipe, comment),method: :delete,
+						data: {confirm: "本当に削除してもよろしいですか？"}, remote: true do %>
 						<i class="fas fa-trash"></i>削除
 					<% end %>
 				<% end %>

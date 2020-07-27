@@ -1,22 +1,20 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_customer!, only:[:new, :create, :edit, :update, :destroy]
-  before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
-  before_action :close_recipe_show, only:[:show]
-  impressionist :actions=> [:show], :unique => [:impressionable_id, :ip_address]
+  before_action :authenticate_customer!, only: %i[new create edit update destroy]
+  before_action :ensure_correct_customer, only: %i[edit update destroy]
+  before_action :close_recipe_show, only: [:show]
+  impressionist actions: [:show], unique: %i[impressionable_id ip_address]
 
   def ensure_correct_customer
     @recipe = Recipe.find(params[:id])
-    if current_customer.id != @recipe.customer_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_customer.id != @recipe.customer_id
   end
+
   def close_recipe_show
+    # 完成以外のレシピ詳細を他のユーザーから見れないようにする
     @recipe = Recipe.find(params[:id])
-    if @recipe.recipe_status != "完成"
+    if @recipe.recipe_status != '完成'
       if customer_signed_in?
-        if current_customer.id != @recipe.customer_id
-          redirect_to recipes_path
-        end
+        redirect_to recipes_path if current_customer.id != @recipe.customer_id
       else
         redirect_to recipes_path
       end
@@ -24,42 +22,40 @@ class RecipesController < ApplicationController
   end
 
   def new
-  	@recipe = Recipe.new
+    @recipe = Recipe.new
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.customer_id = current_customer.id
     if @recipe.save
-      if @recipe.recipe_status == nil
-        @recipe.update(recipe_status: "レシピ")
-        flash[:create] = "NEW RECIPE CREATE !"
-        redirect_to edit_recipe_ingredients_path(@recipe)
-      else
-        redirect_to edit_recipe_ingredients_path(@recipe)
-      end
+      @recipe.update(recipe_status: 'レシピ')
+      flash[:create] = 'NEW RECIPE CREATE !'
+      redirect_to edit_recipe_ingredients_path(@recipe)
     else
-      redirect_to new_recipe_path(@recipe)
-      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
+      render 'recipes/new'
     end
   end
 
   def index
-
     @search = Recipe.ransack(params[:q])
     if params[:tag_name]
-      all_recipe = Recipe.where(recipe_status: "完成")
-      @recipes = all_recipe.tagged_with("#{params[:tag_name]}")
+      # タグ検索結果
+      all_recipe = Recipe.where(recipe_status: '完成')
+      @recipes = all_recipe.tagged_with(params[:tag_name].to_s)
       @recipe_title = params[:tag_name]
     elsif params[:q]
-      @recipes = @search.result.where(recipe_status: "完成")
+      # キーワード検索結果
+      @recipes = @search.result(distinct: true).where(recipe_status: '完成')
     elsif params[:impression]
-      all_recipes = Recipe.where(recipe_status: "完成")
+      # 閲覧数順結果
+      all_recipes = Recipe.where(recipe_status: '完成')
       @recipes = all_recipes.order(impressions_count: 'DESC')
     else
-      @recipes = Recipe.where(recipe_status: "完成")
+      # シンプルに一覧
+      @recipes = Recipe.where(recipe_status: '完成')
     end
-
   end
 
   def show
@@ -69,23 +65,9 @@ class RecipesController < ApplicationController
     @cookings = Cooking.where(recipe_id: @recipe.id)
     @comments = Comment.where(recipe_id: @recipe.id)
     @comment = Comment.new
-    if @recipe.recipe_status == "完成"
-      if @recipe.ingredients.empty?
-        @recipe.update(recipe_status: "未入力あり")
-        redirect_to edit_recipe_ingredients_path(@recipe)
-        flash.now[:notice] = "材料が入力されていません。確認して下さい"
-      elsif @recipe.cookings.empty?
-        @recipe.update(recipe_status: "未入力あり")
-        redirect_to edit_recipe_cookings_path(@recipe)
-        flash.now[:notice] = "作り方が入力されていません。確認して下さい"
-      end
-    elsif @recipe.recipe_status == "未入力あり"
-      if @recipe.ingredients.empty?
-        flash[:ingredient] = "材料が入力されていないため公開できません。確認して下さい"
-      elsif @recipe.cookings.empty?
-        flash[:cooking] = "作り方が入力されていないため公開できません。確認して下さい"
-      end
-    end
+    # どこが未入力がメッセージを表示
+    flash.now[:ingredient] = '材料がまだ入力されていません。確認して下さい' if @recipe.ingredients.empty?
+    flash.now[:cooking] = '作り方がまだ入力されていません。確認して下さい' if @recipe.cookings.empty?
   end
 
   def edit
@@ -94,31 +76,40 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+    # 材料編集、作り方編集画面からのrecipe_statusを完成にするためのform_with
     if params[:recipe_status]
       if @recipe.ingredients.empty?
         redirect_to recipe_path(@recipe)
-        flash[:ingredient] = "材料が入力されていないため投稿できません。確認して下さい"
+        flash[:ingredient] = '材料が入力されていないため投稿できません。確認して下さい'
       elsif @recipe.cookings.empty?
         redirect_to recipe_path(@recipe)
-        flash[:cooking] = "作り方が入力されていないため投稿できません。確認して下さい"
+        flash[:cooking] = '作り方が入力されていないため投稿できません。確認して下さい'
       else
-        @recipe.update(recipe_status: "完成")
+        @recipe.update(recipe_status: '完成')
         redirect_to recipe_path(@recipe)
-        flash[:create] = "YOUR RECIPE RELEASE !"
+        flash[:create] = 'YOUR RECIPE RELEASE !'
       end
     else
-      @recipe.update(recipe_params)
-      redirect_to recipe_path(@recipe)
+      # レシピ名などの更新
+      if @recipe.update(recipe_params)
+        flash[:create] = 'UPDATE !'
+        redirect_to recipe_path(@recipe)
+      else
+        @recipe = Recipe.find(params[:id])
+        flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
+        render 'recipes/edit'
+      end
     end
   end
 
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_to recipes_path
   end
 
   private
+
   def recipe_params
     params.require(:recipe).permit(:title, :introduction, :amount, :recipe_image, :recipe_status, :tag_list)
   end

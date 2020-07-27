@@ -1,0 +1,20 @@
+<div style="margin:10px 0">
+	<%= link_to customer_follows_path(customer), style:"margin-right: 20px" do %>
+		<%= customer.following_customer.count %>フォロー
+	<% end %>
+	<%= link_to customer_followers_path(customer) do %>
+		<%= customer.follower_customer.count %>フォロワー
+	<% end %><br>
+</div>
+
+<% if customer_signed_in? %>
+	<% if current_customer != customer %>
+		<% if current_customer.following?(customer) %>
+			<%= link_to "フォローをやめる", customer_relationships_path(customer),
+				class:"btn btn-secondary btn-sm", method: :delete, remote: true %>
+		<% else %>
+			<%= link_to "フォローする", customer_relationships_path(customer),
+				class:"btn btn-warning btn-sm", method: :post, remote: true %>
+		<% end %>
+	<% end %>
+<% end %>

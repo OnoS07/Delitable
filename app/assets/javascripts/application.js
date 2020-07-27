@@ -41,5 +41,28 @@ $(document).on("turbolinks:load", function(){
       // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
       hidePrevious : false
   });
+ //= footer Go Topボタン
+  $(".top-btn").click(function(){
+      $("html, body").animate({"scrollTop":0},300)
+  });
+
+// 評価作成
+  $('#star').raty({
+    half: true,
+    size: 36,
+    starOff: "/assets/star-off.png",
+    starOn: "/assets/star-on.png",
+    starHalf: "/assets/star-half.png",
+    scoreName: "review[rate]",
+  });
+// 評価表示(html側に移動)
+  // $("#star-rate-#{product.id}").raty({
+  //   half: true,
+  //   size: 36,
+  //   starOff: "/assets/star-off.png",
+  //   starOn: "/assets/star-on.png",
+  //   starHalf: "/assets/star-half.png",
+  //   score: "#{review.rate}"
+  // });
 
 })

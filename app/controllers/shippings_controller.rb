@@ -1,11 +1,9 @@
 class ShippingsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer, only:[:edit, :destroy]
+  before_action :ensure_correct_customer, only: %i[edit destroy]
   def ensure_correct_customer
     @shipping = Shipping.find(params[:id])
-    if current_customer.id != @shipping.customer_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_customer.id != @shipping.customer_id
   end
 
   def index
@@ -23,10 +21,11 @@ class ShippingsController < ApplicationController
     @shipping.customer_id = current_customer.id
     if @shipping.save
       redirect_to customers_shippings_path
-      flash[:create] = "NEW SHIPPING ! "
+      flash[:create] = 'NEW SHIPPING ! '
     else
-      redirect_to customers_shippings_path
-      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      @shippings = Shipping.where(customer_id: current_customer.id)
+      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
+      render 'shippings/index'
     end
   end
 
@@ -35,10 +34,11 @@ class ShippingsController < ApplicationController
     @shipping.customer_id = current_customer.id
     if @shipping.update(shipping_params)
       redirect_to customers_shippings_path
-      flash[:create] = "SHIPPING UPDATE ! "
+      flash[:create] = 'UPDATE ! '
     else
-      redirect_to edit_customers_shipping_path(@shipping)
-      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      @shipping = Shipping.find(params[:id])
+      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
+      render 'shippings/edit'
     end
   end
 

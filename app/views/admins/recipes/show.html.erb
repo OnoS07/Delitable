@@ -3,25 +3,51 @@
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 <!-- レシピ画像 -->
-			<%= link_to "レシピを削除する", admins_recipe_path(@recipe),method: :delete,
-				class:"btn btn-danger btn-sm" %>
+			<% if @recipe.recipe_status == "準備中" %>
+				<%= form_for(@recipe, url: admins_recipe_path) do |f| %>
+					<%= f.hidden_field :recipe_status, value: "完成" %>
+					<%= f.submit "公開する", class:"btn btn-warning" %>
+				<% end %>
+			<% elsif  @recipe.recipe_status == "完成" %>
+				<%= form_for(@recipe, url: admins_recipe_path) do |f| %>
+					<%= f.hidden_field :recipe_status, value: "準備中" %>
+					<%= f.submit "非公開にする", class:"btn btn-warning" %>
+				<% end %>
+			<% end %>
+			<span style="float: right">
+				<%= link_to "レシピを削除する", admins_recipe_path(@recipe),method: :delete,
+					class:"btn btn-danger btn-sm" %>
+			</span>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
 				fallback:"logo.jpg", class:"recipe-image", style:"margin:10px 0" %>
+			<% @recipe.tag_list.each do |tag| %>
+			 	<span class="recipe-tag">
+			 		<%= link_to admins_recipes_path(tag_name: tag) do %>
+			 			<%= tag %>
+			 		<% end %>
+			 	</span>
+			<% end %>
 <!-- レシピに紐づく部分 -->
 			<div style="margin-top: 20px;">
 				<span style="font-size: 18px">
 					<%= link_to admins_customer_path(@recipe.customer) do %>
-					<i class="fas fa-user" style="color: #F96167"></i>
-						<span style="color: black"><%= @recipe.customer.name %></span>
+						<i class="fas fa-user" style="color: #F96167"></i>
+							<span style="color: black"><%= @recipe.customer.name %></span>
 					<% end %>
-					<span style="margin: 0 50px">
-					<%= link_to anchor: "comments" do %>
-						<i class="fas fa-comment" style="color: #F96167;"></i>
-							<span style="color: black"><%= @recipe.comments.count %>件</span>
-					<% end %>
+					<span style="margin-left:30px;">
+						<%= link_to anchor: "comments" do %>
+							<i class="fas fa-comment" style="color: #F96167;"></i>
+								<span style="color: black"><%= @recipe.comments.count %>件</span>
+						<% end %>
 					</span>
-					<i class="fas fa-heart" style="color: #F96167"></i>
-					<span style="color:black"><%= @recipe.favorites.count %></span>
+					<i class="fas fa-heart" style="color: #F96167;margin-left:30px;"></i>
+						<span style="color:black"><%= @recipe.favorites.count %></span>
+					<i class="fas fa-paw", style="color: #F96167; margin-left:30px;"></i>
+						<%=  @recipe.impressionist_count %>
+					<span style="margin: 0 50px"><i class="fas fa-calendar-alt"
+						style="color: #F96167"></i>
+						<%= @recipe.created_at.strftime('%Y/%m/%d')%>
+					</span>
 				</span>
 			</div>
 		</div>

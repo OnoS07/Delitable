@@ -1,11 +1,11 @@
 class CustomersController < ApplicationController
-  before_action :authenticate_customer!, only:[:delete, :update, :edit, :destroy, :delete]
+  before_action :authenticate_customer!, only: %i[delete update edit destroy delete]
 
   def show
     @customer = Customer.find(params[:id])
     @recipes = Recipe.where(customer_id: @customer.id)
-    @open_recipes = @recipes.where(recipe_status: "完成")
-    @close_recipes = @recipes.where.not(recipe_status: "完成")
+    @open_recipes = @recipes.where(recipe_status: '完成')
+    @close_recipes = @recipes.where.not(recipe_status: '完成')
   end
 
   def edit
@@ -16,19 +16,18 @@ class CustomersController < ApplicationController
     @customer = current_customer
     if @customer.update(customer_params)
       redirect_to customer_path(current_customer)
-      flash[:update] = "PROFILE UPDATE ! "
+      flash[:update] = 'PROFILE UPDATE ! '
     else
       redirect_to edit_customer_path(current_customer)
-      flash[:notice] = "正しく入力ができていません。もう一度入力して下さい"
+      flash[:notice] = '正しく入力ができていません。もう一度入力して下さい'
     end
   end
 
-  def delete
-  end
+  def delete; end
 
   def destroy
     @customer = current_customer
-    @customer.update(is_active: "退会済")
+    @customer.update(is_active: '退会済')
     @customer.destroy
     redirect_to root_path
   end

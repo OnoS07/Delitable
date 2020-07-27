@@ -13,7 +13,8 @@
 			<div class="col-lg-3">
 				<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
 				<%= link_to "削除", recipe_ingredient_path(recipe, ingredient),
-					method: :delete, class:"btn btn-danger btn-sm", remote: true %>
+					method: :delete, data: {confirm: "本当に削除してもよろしいですか？"},
+					class:"btn btn-danger btn-sm", remote: true %>
 			</div>
 		</div>
 	<% end %>

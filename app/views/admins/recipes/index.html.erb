@@ -1,7 +1,14 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1">
-			<span class="form-title">レシピ一覧</span>
+			<span class="form-title" style="font-family: none"><%= @recipe_title %></span>
+			<span style="float: right">
+				<%= search_form_for @search, url: admins_recipes_path do |f| %>
+					<%= f.search_field :title_or_introduction_or_ingredients_content_cont, class:"fa",
+						 placeholder: "\uf002 キーワード" %>
+					<%= f.submit "検索" %>
+				<% end %>
+			</span>
 			<table class="table table-bordered" style="margin-top: 30px;">
 				<tr class="table-active">
 					<th>レシピ名</th>

@@ -1,5 +1,5 @@
 <div class="container">
-	<span class="form-title">Ingredient</span>
+	<span class="form-title">Edit Ingredient</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
@@ -44,11 +44,21 @@
 				</div>
 			<% end %>
 			<div style="text-align: center; margin-top: 30px;">
-				<% if @recipe.recipe_status == "レシピ" or @recipe.recipe_status == "材料"  %>
+				<!-- 作り方がまだ未入力の時 -->
+				<% if @recipe.cookings.empty?  %>
 					<%= link_to "保存する",edit_recipe_cookings_path(@recipe, flash: "create"),
 					class:"btn btn-warning" %>
+				<!-- 完成後、もしくは公開停止後の修正する時 -->
+				<% elsif @recipe.recipe_status == "完成" or @recipe.recipe_status == "未入力あり" or
+						 @recipe.recipe_status == "準備中" %>
+					<%= link_to "戻る",recipe_path(@recipe), class:"btn btn-warning" %>
+				<!-- 作り方が入力済で、かつ一度も完成させてない時。材料がないとエラーメッセージ -->
 				<% else %>
-					<%= link_to "保存する", recipe_path(@recipe),class:"btn btn-warning" %>
+					<%= form_with(url: recipe_path(@recipe),remote: true,  method: :patch) do |f| %>
+						<%= f.hidden_field :recipe_status, value:"完成" %>
+						<%= f.submit "レシピを投稿する",class:"btn btn-warning",
+							style:"padding: 5px 30px"  %>
+					<% end %>
 				<% end %>
 			</div>
 

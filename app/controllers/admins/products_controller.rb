@@ -1,7 +1,15 @@
 class Admins::ProductsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @products = Product.all
+    @search = Product.ransack(params[:q])
+    if params[:q]
+      # キーワード検索時
+      @products = @search.result(distinct: true)
+      @product_title = '商品一覧/検索：' + @search.name_or_introduction_or_genre_name_cont
+    else
+      @products = Product.all
+      @product_title = '商品一覧'
+    end
   end
 
   def show

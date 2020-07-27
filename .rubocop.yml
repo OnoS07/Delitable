@@ -16,7 +16,7 @@ Metrics/PerceivedComplexity:
   Max: 11
 
 LineLength:
-  Max: 160
+  Max: 165
 
 Metrics/BlockLength:
   Exclude:
@@ -37,3 +37,12 @@ Style/FrozenStringLiteralComment:
 
 Style/MixinUsage:
   Enabled: false
+
+Style/FileName:
+  Enabled: false
+
+Style/IfInsideElse:
+  Enabled: false
+
+Style/GuardClause:
+  MinBodyLength: 5

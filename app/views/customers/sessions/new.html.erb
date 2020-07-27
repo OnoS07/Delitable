@@ -5,21 +5,25 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
           <div class="row">
+            <div class="col-lg-2"></div>
             <div class="col-lg-4">
               <p>メールアドレス</p>
             </div>
             <div class="col-lg-4">
                <%= f.email_field :email, autocomplete: "off",style:"width:100%" %>
             </div>
+            <div class="col-lg-2"></div>
           </div>
 
           <div class="row">
+              <div class="col-lg-2"></div>
             <div class="col-lg-4">
               <p>パスワード</p>
             </div>
             <div class="col-lg-4">
               <%= f.password_field :password, autocomplete: "off",style:"width:100%" %>
             </div>
+              <div class="col-lg-2"></div>
           </div>
 
         　 <div class="row">
@@ -30,9 +34,9 @@
             </div>
           </div>
         <% end %>
-        <span>まだ新規登録していない方は、
+        <p style="text-align:center;">まだ新規登録していない方は、
           <%= link_to "こちら", new_customer_registration_path, style:"color:#F96167;" %>より新規登録を行ってください
-        </span>
+        </p>
     </div>
   </div>
 </div>

@@ -11,6 +11,16 @@
 		<div class="col-lg-4" style="text-align: center;">
 			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
 				fallback:"logo.jpg", class:"customer-image" %>
+			<div class="relationship_<%= @customer.id %>">
+				<%= render "relationships/relationship", customer: @customer %>
+			</div>
+			<% unless customer_signed_in? %>
+				<p style="font-size: 15px; margin-top: 10px">
+					フォローをするには<br>
+					<%= link_to "新規登録", new_customer_registration_path %>か
+					<%= link_to "ログイン", new_customer_session_path %>が必要です
+				</p>
+			<% end %>
 		</div>
 		<div class="col-lg-8">
 			<% if flash[:update] %>
@@ -55,18 +65,18 @@
 				</tr>
 				<% end %>
 			</table>
-			<% if @customer == current_customer %>
 			<div>
 				<%= link_to "いいねレシピ", favorites_path(@customer),
 					class:"btn btn-warning"%>
+			<% if @customer == current_customer %>
 				<%= link_to "プロフィール編集", edit_customer_path(current_customer),
 					class:"btn btn-warning", style:"margin:0 20px", data: {"turbolinks" => false}  %>
 				<%= link_to "配送先一覧", customers_shippings_path,
 					class:"btn btn-warning" %>
 				<%= link_to "注文一覧", customers_orders_path,
 					class:"btn btn-warning", style:"margin:0 20px" %>
-			</div>
 			<% end %>
+			</div>
 		</div>
 	</div>
 
@@ -81,15 +91,15 @@
 				<% end %>
 			</span>
 			<% if @customer == current_customer %>
-			<p>●作成中</p>
+			<p>●非公開</p>
 				<div class="recipe-contents"  style="padding: 20px 0;border-bottom: 1px silver solid">
 					<% @close_recipes.each do |recipe| %>
 						<div class="recipe-content">
 							<%= link_to recipe_path(recipe) do %>
 								<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 									fallback:"top_recipe.jpg", class:"recipe-image" %>
-								<span style="font-size: 20px">
-									<i class="fas fa-utensils"> <%= recipe.title %> </i>
+								<span style="font-size: 18px">
+									<i class="fas fa-utensils" style="margin-top: 5px;"> <%= recipe.title %> </i>
 								</span>
 								<span>作成段階:<%= recipe.recipe_status %></span>
 							<% end %>
@@ -104,8 +114,8 @@
 						<%= link_to recipe_path(recipe) do %>
 							<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 								fallback:"top_recipe.jpg", class:"recipe-image" %>
-							<span style="font-size: 20px">
-								<i class="fas fa-utensils"> <%= recipe.title %></i>
+							<span style="font-size: 18px">
+								<i class="fas fa-utensils" style="margin-top: 5px;"> <%= recipe.title %></i>
 							</span>
 						<% end %>
 						<span>

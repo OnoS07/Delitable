@@ -1,12 +1,25 @@
-<div class="container">
+<div class="container" style="padding-bottom: 100px;">
 	<span class="form-title"><i class="fas fa-utensils"></i> Recipe</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 <!-- レシピ画像 -->
 			<% if customer_signed_in? %>
 				<% if @recipe.customer_id == current_customer.id %>
+					<% if @recipe.recipe_status == "準備中" %>
+						<%= form_for(@recipe) do |f| %>
+							<%= f.hidden_field :recipe_status, value: "完成" %>
+							<%= f.submit "公開する", class:"btn btn-warning" %>
+						<% end %>
+					<% elsif  @recipe.recipe_status == "完成" %>
+						<%= form_for(@recipe) do |f| %>
+							<%= f.hidden_field :recipe_status, value: "準備中" %>
+							<%= f.submit "非公開にする", class:"btn btn-warning" %>
+						<% end %>
+					<% end %>
+					<span style="float: right">
 					<%= link_to "レシピを削除する", recipe_path(@recipe),method: :delete,
-						class:"btn btn-danger btn-sm" %>
+						data: {confirm: "本当に削除してもよろしいですか？"},class:"btn btn-danger btn-sm" %>
+					</span>
 				<% end %>
 			<% end %>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
@@ -22,14 +35,14 @@
 			<div style="margin-top: 20px;">
 				<span style="font-size: 18px">
 					<%= link_to customer_path(@recipe.customer) do %>
-					<i class="fas fa-user" style="color: #F96167"></i>
-						<span style="color: black"><%= @recipe.customer.name %></span>
-					<% end %>
+						<i class="fas fa-user" style="color: #F96167"></i>
+							<span style="color: black"><%= @recipe.customer.account_name %></span>
+						<% end %>
 					<span style="margin: 0 30px">
-					<%= link_to anchor: "comments" do %>
-						<i class="fas fa-comment" style="color: #F96167;"></i>
-							<span style="color: black"><%= @recipe.comments.count %>件</span>
-					<% end %>
+						<%= link_to anchor: "comments" do %>
+							<i class="fas fa-comment" style="color: #F96167;"></i>
+								<span style="color: black"><%= @recipe.comments.count %>件</span>
+						<% end %>
 					</span>
 					<% if customer_signed_in? %>
 						<span class="favorite_<%= @recipe.id %>" >
@@ -139,7 +152,7 @@
 		</div>
 	</div>
 <!-- コメント部分 -->
-	<div style="margin-top:30px; padding-bottom: 100px;", id="comments">
+	<div style="margin-top:30px;" id="comments">
 		<% if @recipe.recipe_status == "完成"  %>
 			<span class="form-title" >Comments</span>
 				<div class="comment_<%= @recipe.id %>">

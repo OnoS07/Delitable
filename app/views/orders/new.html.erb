@@ -13,7 +13,7 @@
 					<div style="margin-left: 80px;">
 						<p style="margin-top: 10px">
 							<label>
-								<%= f.radio_button :payment_method, "クレジットカード" %>クレジットカード
+								<%= f.radio_button :payment_method, "クレジットカード", checked: true %>		クレジットカード
 							</label>
 							<label style="margin-left: 30px">
 								<%= f.radio_button :payment_method, "銀行振込" %>銀行振込
@@ -24,9 +24,16 @@
 					<span class="form-title" style="font-size: 20px;">
 						<i class="fas fa-shipping-fast"></i>お届け先
 					</span>
+					<% if flash[:notice] %>
+					 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+					 		<%= flash[:notice]%></i>
+					 	</div>
+					<% end %>
 					<div style="margin-left: 80px">
 						<p>
-							<label><%= f.radio_button :order_address, "1" %>ご自身の住所</label>
+							<label><%= f.radio_button :order_address, "1", checked: true %>
+								ご自身の住所
+							</label>
 							<div style="margin-left: 40px">
 								<%= "郵便番号：" + current_customer.postcode %><br>
 								<%= "住所：" + current_customer.address %><br>
@@ -38,18 +45,13 @@
 								<%= f.radio_button :order_address, "2" %>登録済み住所から選択
 							</label>
 							<div style="margin-left: 40px">
-								<%= f.collection_select(:select_address, @shipping, :id,:finally_address) %>
+							 <%= f.collection_select(:select_address, @shipping, :id,:finally_address)%>
 							</div>
 						</p>
 						<p>
 							<label>
 							<%= f.radio_button :order_address, "3" %>新しいお届け先
 							</label>
-							<% if flash[:notice] %>
-							 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
-							 		<%= flash[:notice]%></i>
-							 	</div>
-							<% end %>
 								<div style="margin-left: 40px">
 									<div class="row">
 										<div class="col-lg-8">

@@ -13,14 +13,16 @@
 					<%= link_to recipe_path(favorite.recipe) do %>
 						<%= attachment_image_tag favorite.recipe, :recipe_image, format:"jpg",
 							fallback:"top_recipe.jpg", class:"recipe-image" %>
-						<span style="font-size: 20px;">
-							<i class="fas fa-utensils"> <%= favorite.recipe.title %></i>
+						<span style="font-size: 18px;">
+							<i class="fas fa-utensils" style="margin-top: 5px;"> <%= favorite.recipe.title %></i>
 						</span>
 					<% end %>
 						<span>
 							<%= link_to customer_path(favorite.recipe.customer) do %>
 								<i class="fas fa-user" style="color: #F96167"></i>
-									<span style="color: black"><%= favorite.recipe.customer.name %></span>
+									<span style="color: black">
+										<%= favorite.recipe.customer.account_name %>
+									</span>
 							<% end %>
 							<span style="margin: 0 30px;">
 								<i class="fas fa-comment" style="color: #F96167"></i>

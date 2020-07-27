@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+
   </head>
 
   <body style="padding-top:6rem;">
@@ -78,6 +79,9 @@
               <li class="nav-item">
                 <%= link_to "ログイン", new_customer_session_path, class:"nav-link", data: {"turbolinks" => false} %>
               </li>
+              <li class="nav-item">
+                <%= link_to 'ゲストログイン', homes_guest_sign_in_path, method: :post, class:"nav-link" %>
+              </li>
             </ul>
           <% end %>
 
@@ -89,6 +93,7 @@
       <footer>
         <div class="container">
             <%= link_to "", new_admin_session_path ,class:"footer-logo" %>
+            <p class="top-btn">Go Top</p>
         </div>
       </footer>
     </div>

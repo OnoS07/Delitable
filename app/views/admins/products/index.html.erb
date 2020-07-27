@@ -1,10 +1,14 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1">
-			<span class="form-title">商品一覧</span>
+			<span class="form-title"><%= @product_title %></span>
 			<span style="float: right">
+				<%= search_form_for @search, url: admins_products_path do |f| %>
+					<%= f.search_field :name_or_introduction_or_genre_name_cont, class:"fa", placeholder: "\uf002 キーワード" %>
+					<%= f.submit "検索" %>
+				<% end %>
 				<%= link_to "新規作成", new_admins_product_path,
-					class:"btn btn-warning" %>
+					class:"btn btn-warning", style:"margin:10px 0" %>
 			</span>
 			<table class="table table-bordered" style="margin-top: 30px;">
 				<tr class="table-active">
