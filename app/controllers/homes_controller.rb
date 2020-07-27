@@ -1,4 +1,5 @@
 class HomesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def top; end
 
   def about; end
