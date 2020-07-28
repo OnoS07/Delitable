@@ -92,7 +92,9 @@
 
       <footer>
         <div class="container">
+          <% unless customer_signed_in? or admin_signed_in? %>
             <%= link_to "", new_admin_session_path ,class:"footer-logo" %>
+          <% end %>
             <p class="top-btn">Go Top</p>
         </div>
       </footer>

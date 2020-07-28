@@ -31,8 +31,10 @@
 							</td>
 							<td class="align-middle">
 								<% order.order_details.each do |order_detail| %>
-									<%= order_detail.product.name %>:
-										<%= order_detail.count %>個
+									<%= link_to product_path(order_detail.product) do %>
+										<%= order_detail.product.name %>:
+											<%= order_detail.count %>個
+									<% end %>
 									<br>
 								<% end %>
 							</td>
