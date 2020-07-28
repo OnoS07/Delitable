@@ -48,10 +48,10 @@ class RecipesController < ApplicationController
     elsif params[:q]
       # キーワード検索結果
       @recipes = @search.result(distinct: true).where(recipe_status: '完成')
-    elsif params[:impression]
-      # 閲覧数順結果
+    elsif params[:favorite]
+      # いいね数順結果
       all_recipes = Recipe.where(recipe_status: '完成')
-      @recipes = all_recipes.order(impressions_count: 'DESC')
+      @recipes = Recipe.find(Favorite.group(:recipe_id).order('count(recipe_id) desc').pluck(:recipe_id))
     else
       # シンプルに一覧
       @recipes = Recipe.where(recipe_status: '完成')

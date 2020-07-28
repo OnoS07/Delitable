@@ -8,17 +8,17 @@
 					<span style="font-size: 15px;font-weight: bold"> 検索:
 					 [<%= @search.title_or_introduction_or_ingredients_content_cont %>]
 					</span>
-				<% elsif params[:impression] %>
-					<span style="font-size: 15px;font-weight: bold"> : [<%= params[:impression] %>]
+				<% elsif params[:favorite] %>
+					<span style="font-size: 15px;font-weight: bold"> : [<%= params[:favorite] %>]
 					</span>
 				<% end %>
 			</span>
-			<% if params[:q] or params[:tag_name] or params[:impression] %>
+			<% if params[:q] or params[:tag_name] or params[:favorite] %>
 				<span style="margin-left: 10px;font-size: 15px;">
 					<%= link_to ">back", recipes_path %>
 				</span>
 			<% else %>
-				<%= link_to ">人気レシピ", recipes_path(impression: "閲覧数順") %>
+				<%= link_to ">人気レシピ", recipes_path(favorite: "いいね数順") %>
 			<% end %>
 			<span style="float: right">
 				<%= search_form_for @search, url: recipes_path do |f| %>
