@@ -20,7 +20,7 @@ class Customer < ApplicationRecord
   enum is_active: { 退会済: false, 有効: true }
   acts_as_paranoid
 
-  validates :account_name, presence: true, length: { maximum: 10 }
+  validates :account_name, presence: true, length: { maximum: 15 }
   validates :email, presence: true, uniqueness: true
 
   # フォロー機能
