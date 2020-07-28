@@ -47,16 +47,13 @@ $(document).on("turbolinks:load", function(){
   });
 
 // 評価作成
-  $('#star').raty({
-    half: true,
-    size: 36,
-    // starOff: "/assets/star-off.png",
-    starOff: asset_path("star-off.png"),
-    // starOn: "/assets/star-on.png",
-    starOn: asset_path("star-on.png"),
-    // starHalf: "/assets/star-half.png",
-    starHalf: asset_path("star-half.png"),
-    scoreName: "review[rate]",
-  });
+  // $('#star').raty({
+  //   half: true,
+  //   size: 36,
+  //   starOff: "/assets/star-off.png",
+  //   starOn: "/assets/star-on.png",
+  //   starHalf: "/assets/star-half.png",
+  //   scoreName: "review[rate]",
+  // });
 
 })
