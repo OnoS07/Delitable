@@ -21,8 +21,6 @@ class Customer < ApplicationRecord
   acts_as_paranoid
 
   validates :account_name, presence: true, length: { maximum: 10 }
-  validates :tel, format: { with: /\A\d{10,11}\z/ }
-  validates :postcode, format: { with: /\A\d{7}\z/ }
   validates :email, presence: true, uniqueness: true
 
   # フォロー機能

@@ -5,8 +5,8 @@ class HomesController < ApplicationController
   def about; end
 
   def new_guest
-    customer = Customer.find_or_create_by!(email: 'guest@gest') do |gest|
-      gest.password = SecureRandom.urlsafe_base64
+    customer = Customer.find_by!(email: 'gest@gest') do |gest|
+      gest.password = gestgest
       gest.account_name = 'ゲストユーザー'
     end
     sign_in customer
