@@ -23,7 +23,8 @@
 - ただ、毎回調べて作ったり自分でアレンジしてレシピを考えるのではなく、宅配物と合ったもののレシピが  
 発見できたり、時には共有できればもっと料理するのが楽しくなるのではと思いテーマに選びました。  
 
--この学習期間で身に付けたECサイトとSNSサイトを作るスキルを合わせたものを作りたかったからです。
+- この学習期間で身に付けたECサイトとSNSサイトを作るスキルを合わせたものを作りたかったので、  
+レシピ投稿＋野菜の配送の2つの機能を持ったアプリを作成しました。
 
 
 ### ターゲットユーザ
@@ -34,11 +35,6 @@
 
 ### 主な利用シーン
 * 食べたいレシピを探したり、レシピにある野菜や興味のあるものを注文して、料理を楽しむ。
-
-## 設計書
-* アプリケーション詳細設定：https://www.icloud.com/numbers/0MUDr2Jb7IqNjydIzylYOACsg
-* テーブル定義書：https://www.icloud.com/numbers/0nfYRItc2tWXCYZR2jlyc7jDw
-* ER図：https://drive.google.com/file/d/1B9XV4KX6Egq1fLwecv-cwHwKDT_zgf9y/view?usp=sharing
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1IJ4RoAs_-xBsC-Z0b_gmG4WTZG94Oju5-hKZHIRKyz4/edit#gid=0
