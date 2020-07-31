@@ -76,14 +76,17 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    # 材料編集、作り方編集画面からのrecipe_statusを完成にするためのform_with
+    # 材料編集、作り方編集画面からのrecipe_statusを完成にするためのform_withが押された時
     if params[:recipe_status]
+      # 材料が入力されているか
       if @recipe.ingredients.empty?
         redirect_to recipe_path(@recipe)
         flash[:ingredient] = '材料が入力されていないため投稿できません。確認して下さい'
+      # 作り方が入力されているか
       elsif @recipe.cookings.empty?
         redirect_to recipe_path(@recipe)
         flash[:cooking] = '作り方が入力されていないため投稿できません。確認して下さい'
+      # どっちも入力されているので、公開する
       else
         @recipe.update(recipe_status: '完成')
         redirect_to recipe_path(@recipe)

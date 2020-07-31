@@ -44,6 +44,7 @@ class Customer < ApplicationRecord
     following_customer.include?(customer)
   end
 
+  # レビューを既にしているかチェック
   def reviewing?(product)
     reviews.exists?(product_id: product.id)
   end

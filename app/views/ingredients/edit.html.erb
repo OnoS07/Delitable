@@ -26,9 +26,11 @@
 			</div>
 
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料</p>
+			<!-- 材料一覧＋編集箇所 -->
 			<span class="newform_<%= @recipe.id %>">
 				<%= render "newform", {ingredients: @ingredients, recipe: @recipe} %>
 			</span>
+			<!-- 材料新規作成 -->
 			<%= form_for(@ingredient, url:recipe_ingredients_path, remote: true) do |f| %>
 				<div class="row" style="padding-top: 30px;">
 					<div class="col-lg-6">
@@ -44,15 +46,15 @@
 				</div>
 			<% end %>
 			<div style="text-align: center; margin-top: 30px;">
-				<!-- 作り方がまだ未入力の時 -->
+				<!-- 作り方がまだ未入力の時：作り方編集画面へ -->
 				<% if @recipe.cookings.empty?  %>
 					<%= link_to "保存する",edit_recipe_cookings_path(@recipe, flash: "create"),
 					class:"btn btn-warning" %>
-				<!-- 完成後、もしくは公開停止後の修正する時 -->
+				<!-- 完成後、もしくは公開停止後の修正する時：レシピ詳細画面へ -->
 				<% elsif @recipe.recipe_status == "完成" or @recipe.recipe_status == "未入力あり" or
 						 @recipe.recipe_status == "準備中" %>
 					<%= link_to "戻る",recipe_path(@recipe), class:"btn btn-warning" %>
-				<!-- 作り方が入力済で、かつ一度も完成させてない時。材料がないとエラーメッセージ -->
+				<!-- 作り方が入力済で、かつ一度も完成させてない時：完成させてレシピ詳細画面へ -->
 				<% else %>
 					<%= form_with(url: recipe_path(@recipe),remote: true,  method: :patch) do |f| %>
 						<%= f.hidden_field :recipe_status, value:"完成" %>
