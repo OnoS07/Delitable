@@ -36,7 +36,7 @@
 ### 主な利用シーン
 * 食べたいレシピを探したり、レシピにある野菜や興味のあるものを注文して、料理を楽しむ。
 
-## 設計書
+### 設計書
 * アプリケーション詳細設定：https://www.icloud.com/numbers/0MUDr2Jb7IqNjydIzylYOACsg
 * テーブル定義書：https://www.icloud.com/numbers/0nfYRItc2tWXCYZR2jlyc7jDw
 * ER図：https://drive.google.com/file/d/1sncP0fHAl0r4UybR3iU1nNUXEbx8t7nz/view?usp=sharing
