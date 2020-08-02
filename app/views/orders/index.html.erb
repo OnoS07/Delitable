@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom: 100px;">
 	<div class="row">
 		<div class="col-lg-12">
 			<span class="form-title" style="font-size: 30px">
@@ -31,8 +31,10 @@
 							</td>
 							<td class="align-middle">
 								<% order.order_details.each do |order_detail| %>
-									<%= order_detail.product.name %>:
-										<%= order_detail.count %>個
+									<%= link_to product_path(order_detail.product) do %>
+										<%= order_detail.product.name %>:
+											<%= order_detail.count %>個
+									<% end %>
 									<br>
 								<% end %>
 							</td>

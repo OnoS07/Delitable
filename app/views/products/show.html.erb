@@ -146,7 +146,7 @@
 						レビューの投稿ありがとうございました。<br>
 						レビューは商品につき1人1回のみとなっています。
 					</p>
-				<!-- 購入したことがある人のみレビュー可能 -->
+				<!-- 注文履歴にこの商品がある人のみレビュー可能 -->
 				<% elsif @ordered.blank? %>
 					<p style="margin-top: 10px">
 						レビューは当商品を購入後に投稿いただけます。<br>
@@ -164,6 +164,19 @@
 					        <%= f.label :rate,  "評価 (※必須)" %>
 					        <%= f.hidden_field :rate, id: :review_star %>
 					    </div>
+					    	<script>
+			                  document.addEventListener("turbolinks:before-cache", function() {
+			                    $('#star').empty()
+			                    });
+					          $('#star').raty({
+					            size: 36,
+					            starOff:  '<%= asset_path('star-off.png') %>',
+					            starOn : '<%= asset_path('star-on.png') %>',
+					            starHalf: '<%= asset_path('star-half.png') %>',
+					            half: true,
+   			 					scoreName: "review[rate]",
+					        	});
+						    </script>
 						<%= f.text_area :content, rows:"2", autocomplete: "off", style:"width:80%;",
 							placeholder:"食べた感想など" %>
 							<br>

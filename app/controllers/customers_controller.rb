@@ -33,6 +33,7 @@ class CustomersController < ApplicationController
   end
 
   def favorite_index
+    @customer = Customer.find(params[:id])
     @favorites = Favorite.where(customer_id: params[:id])
   end
 

@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
       # 注文の中からorder.idだけ配列で取得
       order_ids = current_customer.orders.pluck(:id)
       # 1、配列で取ってきたorder.idと同じorder_idを取得
-      # 2、その中からproduct_idが@productと同じものを探す。なければnilを返す
+      # 2、その中からproduct_idが@productと同じものを探す。あれば配列を、なければ空配列を返す
       @ordered = OrderDetail.where(order_id: order_ids).where(product_id: @product.id)
     end
   end

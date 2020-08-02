@@ -20,9 +20,7 @@ class Customer < ApplicationRecord
   enum is_active: { 退会済: false, 有効: true }
   acts_as_paranoid
 
-  validates :account_name, presence: true, length: { maximum: 10 }
-  validates :tel, format: { with: /\A\d{10,11}\z/ }
-  validates :postcode, format: { with: /\A\d{7}\z/ }
+  validates :account_name, presence: true, length: { maximum: 15 }
   validates :email, presence: true, uniqueness: true
 
   # フォロー機能
@@ -46,6 +44,7 @@ class Customer < ApplicationRecord
     following_customer.include?(customer)
   end
 
+  # レビューを既にしているかチェック
   def reviewing?(product)
     reviews.exists?(product_id: product.id)
   end

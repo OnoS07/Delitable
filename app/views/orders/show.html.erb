@@ -42,17 +42,17 @@
           <tbody>
             <tr>
               <th class="table-active">商品合計</th>
-              <td><%= @order.total_products_cost %></td>
+              <td><%= @order.total_products_cost %>円</td>
             </tr>
 
             <tr>
               <th class="table-active">配送料</th>
-              <td><%= @order.postage %></td>
+              <td><%= @order.postage %>円</td>
             </tr>
 
             <tr>
               <th class="table-active">ご請求額</th>
-              <td><%= @order.total_products_cost.to_i + @order.postage.to_i %></td>
+              <td><%= @order.total_products_cost.to_i + @order.postage.to_i %>円</td>
             </tr>
           </tbody>
         </table>
@@ -71,10 +71,14 @@
 	    <tbody>
         <% @order_details.each do |order_detail| %>
 		    <tr>
-			   <td><%= order_detail.product.name %> </td>
-			   <td><%= (order_detail.product.price * 1.1).to_i %></td>
-			   <td><%= order_detail.count %></td>
-			   <td><%= (order_detail.product.price * order_detail.count * 1.1).to_i %></td>
+			   <td>
+            <%= link_to product_path(order_detail.product) do %>
+              <%= order_detail.product.name %>
+            <% end %>
+         </td>
+			   <td><%= (order_detail.product.price * 1.1).to_i %>円</td>
+			   <td><%= order_detail.count %>個</td>
+			   <td><%= (order_detail.product.price * order_detail.count * 1.1).to_i %>円</td>
 		    </tr>
         <% end %>
 	     </tbody>

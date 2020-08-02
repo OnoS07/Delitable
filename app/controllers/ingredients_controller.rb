@@ -17,7 +17,7 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredients = @recipe.ingredients.all
     if @ingredient.save
-      # 1つ作成でステータス変更
+      # 新規作成でステータス変更
       if @recipe.recipe_status == 'レシピ'
         @recipe.update(recipe_status: '材料')
         # 未入力箇所の入力ができれば、ステータスを準備中に変更

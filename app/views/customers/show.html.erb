@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom: 100px;">
 	<span class="form-title" style="font-size: 30px;">
 		<i class="fas fa-user"></i>
 		<% if @customer == current_customer %>
@@ -99,7 +99,7 @@
 								<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 									fallback:"top_recipe.jpg", class:"recipe-image" %>
 								<span style="font-size: 18px">
-									<i class="fas fa-utensils" style="margin-top: 5px;"> <%= recipe.title %> </i>
+									<i class="fas fa-utensils" style="margin-top: 5px;"> <%= recipe.title %> </i><br>
 								</span>
 								<span>作成段階:<%= recipe.recipe_status %></span>
 							<% end %>
