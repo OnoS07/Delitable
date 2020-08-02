@@ -3,7 +3,7 @@ class Admins::OrdersController < ApplicationController
   def top
     @orders = Order.where(created_at: Time.zone.now.all_day)
     @reviews = Review.where(created_at: Time.zone.now.all_day)
-    @all_review = Review.all
+    @all_reviews = Review.all
     @good_reviews = Review.where('score >= ?', 0)
     @bad_reviews = Review.where('score < ?', 0)
   end
