@@ -8,8 +8,8 @@ class OrdersController < ApplicationController
   end
 
   def confirm_customer_shipping
-    if current_customer.address.empty? || current_customer.postcode.empty? ||
-       current_customer.name.empty? || current_customer.tel.empty?
+    if current_customer.address.blank? || current_customer.postcode.blank? ||
+       current_customer.name.blank? || current_customer.tel.blank?
       redirect_to customer_path(current_customer)
       flash[:notice] = '注文には、名前・郵便番号・住所・電話番号の登録が必要です'
     end
