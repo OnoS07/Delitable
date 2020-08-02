@@ -84,3 +84,5 @@ end
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'impressionist', '~>1.6.1'
 gem 'ransack'
+
+gem 'dotenv-rails'
