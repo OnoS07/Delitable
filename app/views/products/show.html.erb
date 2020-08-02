@@ -178,7 +178,7 @@
 					        	});
 						    </script>
 						<%= f.text_area :content, rows:"2", autocomplete: "off", style:"width:80%;",
-							placeholder:"食べた感想など(こちらは空白でも投稿いただけます)" %>
+							placeholder:"食べた感想など" %>
 							<br>
 						<%= f.hidden_field :product_id, value: @product.id %>
 						<%= f.submit "レビューする", class:"btn btn-warning" %>

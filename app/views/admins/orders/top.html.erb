@@ -1,11 +1,98 @@
 <div class="container">
 	<div class="row">
-		<div class="col-lg-8 offset-lg-2">
+		<div class="col-lg-10 offset-lg-1">
 			<span style="font-size: 30px">管理者トップページ</span>
 			<div>
 				<%= link_to admins_orders_path do %>
-					本日の注文件数：<%= @orders.count %>件
+					●本日の注文件数：<%= @orders.count %>件
 				<% end %>
+			<table class="table table-bordered" style="margin-top: 10px;">
+				<tr class="table-active">
+					<th>購入日時/注文詳細</th>
+					<th>購入者</th>
+					<th>配送先</th>
+					<th>注文内容</th>
+					<th>合計金額</th>
+					<th>ステータス</th>
+				</tr>
+				<% @orders.each do |order| %>
+				<tr>
+					<td class="align-middle" >
+						<%= link_to admins_order_path(order) do %>
+							<%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+						<% end %>
+					</td>
+					<td class="align-middle" >
+						<%= link_to admins_customer_path(order.customer) do %>
+							<%= order.customer.name %>
+						<% end %>
+					</td>
+					<td class="align-middle" >
+						宛名:<%= order.name %>
+						〒:<%= order.postcode %><br>
+						住所:<%= order.address %>
+					</td>
+					<td class="align-middle" >
+						<% order.order_details.each do |order_detail| %>
+							<%= order_detail.product.name %>：<%= order_detail.count %>個
+							<br>
+						<% end %>
+					</td>
+					<td class="align-middle" >
+						<%= order.total_products_cost.to_i + order.postage.to_i %>円
+					</td>
+					<td class="align-middle" ><%= order.order_status %></td>
+				</tr>
+				<% end %>
+			</table>
+			</div>
+
+			<div style="margin-top: 30px">
+				<%= link_to "#" do %>
+					●本日の商品レビュー：<%= @reviews.count %>件
+				<% end %>
+			<table class="table table-bordered" style="margin-top: 10px;">
+				<tr class="table-active">
+					<th>レビュー日時</th>
+					<th>ユーザー</th>
+					<th>対象商品</th>
+					<th>内容</th>
+					<th>ステータス</th>
+				</tr>
+				<% @reviews.each do |review| %>
+				<tr>
+					<td class="align-middle" >
+						<%= link_to admins_product_path(review.product) do %>
+							<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+						<% end %>
+					</td>
+					<td class="align-middle" >
+						<%= link_to admins_customer_path(review.customer) do %>
+							<%= review.customer.name %>
+						<% end %>
+					</td>
+					<td class="align-middle" >
+						<%= link_to admins_product_path(review.product) do %>
+							<%= review.product.name %>
+						<% end %>
+					</td>
+					<td class="align-middle" >
+						<%= review.content.truncate(10) %>
+					</td>
+					<td class="align-middle" >
+						<% if review.score < 0 %>
+							bad
+						<% else %>
+							good
+						<% end %>
+						(<%= review.score %>)
+					</td>
+				</tr>
+				<% end %>
+			</table>
+			<span>全レビュー件数：<%= @all_review.count %>件</span><br>
+			<span>good：<%= @good_reviews.count %>件/</span>
+			<span>bad：<%= @bad_reviews.count %>件</span>
 			</div>
 		</div>
 	</div>

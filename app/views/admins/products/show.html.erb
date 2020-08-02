@@ -102,7 +102,16 @@
                     });
                 </script>
             </p>
-            <span><%= review.content %></span>
+            <span><%= review.content %></span><br>
+            <% if review.score < 0  %>
+              <span style="color: red">
+                <%= review.score %>：bad
+              </span>
+            <% else %>
+              <span style="color: green">
+                <%= review.score %>：good
+              </span>
+            <% end %>
           </div>
           <div class="col-lg-2"></div>
         </div>

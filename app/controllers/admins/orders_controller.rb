@@ -2,6 +2,10 @@ class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
   def top
     @orders = Order.where(created_at: Time.zone.now.all_day)
+    @reviews = Review.where(created_at: Time.zone.now.all_day)
+    @all_review = Review.all
+    @good_reviews = Review.where('score >= ?', 0)
+    @bad_reviews = Review.where('score < ?', 0)
   end
 
   def index
