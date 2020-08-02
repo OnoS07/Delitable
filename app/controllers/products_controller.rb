@@ -31,6 +31,11 @@ class ProductsController < ApplicationController
       # 2、その中からproduct_idが@productと同じものを探す。あれば配列を、なければ空配列を返す
       @ordered = OrderDetail.where(order_id: order_ids).where(product_id: @product.id)
     end
+
+    #この商品を使ったレシピがあるか
+    ingredients = Ingredient.where(content: @product.name)
+    recipe_ids = ingredients.pluck(:recipe_id)
+    @recipes = Recipe.where(recipe_status: "完成").where(id: recipe_ids)
   end
 
 end
