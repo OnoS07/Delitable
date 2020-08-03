@@ -46,8 +46,6 @@ header{
 
 .navbar-toggler-icon{
   background-image: image-url("menu.jpeg");
-  height: 70px;
-  width: 70px;
   border-radius: 5px;
 }
 
@@ -135,4 +133,37 @@ textarea {
   color: green;
   font-family: impact;
   font-size: 20px;
+}
+
+@media screen and (max-width: 959px) {
+  /* 959px以下に適用されるCSS（タブレット用） */
+  .navbar-toggler-icon {
+    height: 70px;
+    width: 70px;
+}
+}
+@media screen and (max-width: 480px) {
+  /* 480px以下に適用されるCSS（スマホ用） */
+  body{
+    padding-top: 3rem;
+  }
+
+  .navbar-brand {
+    width: 80px;
+    height: 30px;
+  }
+
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .nav-link {
+    padding: 0.2rem 1rem;
+    font-size: 10px;
+  }
+
+  .navbar-toggler-icon {
+    height: 30px;
+    width: 30px;
+  }
 }

@@ -33,7 +33,7 @@ $(document).on("turbolinks:load", function(){
       // ナビゲーション矢印の表示(trueで表示)
       arrows : true,
       // スライドショーの自動再生(falseで自動再生なし)
-      autoPlay : true,
+      autoPlay : false,
       // 自動再生時のスライド切替間隔(ミリ秒)
       autoPlayDuration : 4000,
       // キーボードの矢印キーによるスライド送りの設定(trueで有効)
@@ -45,15 +45,5 @@ $(document).on("turbolinks:load", function(){
   $(".top-btn").click(function(){
       $("html, body").animate({"scrollTop":0},300)
   });
-
-// 評価作成
-  // $('#star').raty({
-  //   half: true,
-  //   size: 36,
-  //   starOff: "/assets/star-off.png",
-  //   starOn: "/assets/star-on.png",
-  //   starHalf: "/assets/star-half.png",
-  //   scoreName: "review[rate]",
-  // });
 
 })

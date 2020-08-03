@@ -93,4 +93,59 @@
 	background-size: cover;
 }
 
+@media screen and (max-width: 959px) {
+  /* 959px以下に適用されるCSS（タブレット用） */
+    .skippr{
+	  	div{
+		  	max-width: 959px;
+		  	max-height: 300px;
+	  	}
+	}
+  .top-image-text {
+	font-size: 60px;
+	}
+	.top-images {
+	    height: 300px;
+	}
 
+	.top-content-text {
+	    font-size: 15px;
+	}
+
+	.top-content {
+    width: 200px;
+    height: 150px;
+}
+}
+@media screen and (max-width: 480px) {
+  /* 480px以下に適用されるCSS（スマホ用） */
+
+  .skippr{
+	  	div{
+		  	max-width: 480px;
+		  	max-height: 150px;
+	  	}
+	}
+
+  .top-image-text {
+	font-size: 30px;
+    margin-bottom: 10px;
+	}
+	.top-images {
+	    height: 150px;
+	}
+
+	.top-contents {
+    flex-direction: column;
+	}
+
+	.top-content {
+	width: 100%;
+    height: 150px;
+    margin-bottom: 20px;
+	}
+
+	.introduction-text{
+		font-size: 10px;
+	}
+}
