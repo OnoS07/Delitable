@@ -62,7 +62,7 @@
 								<%= recipe.impressionist_count %>
 							</span>
 							<span style="font-size:12px;margin-top: 5px">
-								<%= recipe.introduction %>
+								<%= recipe.introduction.truncate(45) %>
 							</span>
 					</div>
 				<% end %>

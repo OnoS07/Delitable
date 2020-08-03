@@ -68,6 +68,10 @@ class RecipesController < ApplicationController
     # どこが未入力がメッセージを表示
     flash.now[:ingredient] = '材料がまだ入力されていません。確認して下さい' if @recipe.ingredients.empty?
     flash.now[:cooking] = '作り方がまだ入力されていません。確認して下さい' if @recipe.cookings.empty?
+
+    #材料と同じ販売中の野菜があるか
+    vegetables = @ingredients.pluck(:content)
+    @products = Product.where(name: vegetables)
   end
 
   def edit

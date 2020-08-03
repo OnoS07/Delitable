@@ -32,12 +32,26 @@ html,　body {
   background-color: white;
 }
 
-// ヘッダー・フッター
+// ヘッダー
 header{
  	background-color: #FCE77D;
  	margin-top: auto;
 }
 
+.navbar-nav{
+  li{
+    margin-right: 15px;
+  }
+}
+
+.navbar-toggler-icon{
+  background-image: image-url("menu.jpeg");
+  height: 70px;
+  width: 70px;
+  border-radius: 5px;
+}
+
+//フッター
 footer{
 	background-color: #FCE77D;
 	width: 100%;
