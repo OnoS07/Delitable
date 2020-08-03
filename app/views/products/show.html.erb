@@ -187,7 +187,7 @@
 		<div style="margin-top: 80px;padding-top: 20px; border-top: 1px solid #F96167">
 			<span class="form-title" style="font-size: 25px;">Recommend</span>
 			<div class="product-contents" style="margin-top: 20px;">
-				<% @recipes.each do |recipe| %>
+				<% @recipes.shuffle.first(6).each do |recipe| %>
 					<div class="recipe-content">
 						<%= link_to recipe_path(recipe) do %>
 							<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
