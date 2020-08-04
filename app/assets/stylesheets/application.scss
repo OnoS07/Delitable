@@ -239,6 +239,9 @@ textarea {
   .btn-sm{
     padding: 0.2rem 0.3rem;
   }
+  .btn{
+    padding: 0.375rem 0.4rem;
+  }
 
   .br-pc {
     display:none;
@@ -267,5 +270,6 @@ textarea {
 
   .table td {
     padding: 0.25rem;
+    font-size: 10px;
   }
 }
