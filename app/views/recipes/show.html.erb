@@ -1,7 +1,7 @@
 <div class="container" style="padding-bottom: 100px;">
 	<span class="form-title"><i class="fas fa-utensils"></i> Recipe</span>
 	<div class="row" style="margin-top: 30px">
-		<div class="col-lg-6">
+		<div class="col-lg-6 col-12">
 <!-- レシピ画像 -->
 			<% if customer_signed_in? %>
 				<% if @recipe.customer_id == current_customer.id %>
@@ -33,12 +33,12 @@
 			<% end %>
 <!-- レシピに紐づく部分 -->
 			<div style="margin-top: 20px;">
-				<span style="font-size: 18px">
+				<span class="font-md">
 					<%= link_to customer_path(@recipe.customer) do %>
 						<i class="fas fa-user" style="color: #F96167"></i>
 							<span style="color: black"><%= @recipe.customer.account_name %></span>
 						<% end %>
-					<span style="margin: 0 30px">
+					<span class="mr-w">
 						<%= link_to anchor: "comments" do %>
 							<i class="fas fa-comment" style="color: #F96167;"></i>
 								<span style="color: black"><%= @recipe.comments.count %>件</span>
@@ -50,7 +50,7 @@
 						</span>
 						<i class="fas fa-paw", style="color: #F96167; margin-left: 30px;"></i>
 						<%=  @recipe.impressionist_count %>
-						<span style="margin: 0 30px"><i class="fas fa-calendar-alt"
+						<span class="mr-w"><i class="fas fa-calendar-alt"
 							style="color: #F96167"></i>
 							<%= @recipe.created_at.strftime('%Y/%m/%d')%>
 						</span>
@@ -63,7 +63,7 @@
 							style="color: #F96167"></i>
 							<%= @recipe.created_at.strftime('%Y/%m/%d')%>
 						</span>
-						<p style="font-size: 15px; margin-top: 10px">
+						<p style="margin-top: 10px" class="font-sm">
 							<%= link_to "新規登録", new_customer_registration_path %>、または
 							<%= link_to "ログイン", new_customer_session_path %>いただくと<br>
 							自分のレシピの作成やコメント、いいねができます。
@@ -73,7 +73,7 @@
 			</div>
 		</div>
 <!-- レシピ部分 -->
-		<div class="col-lg-6">
+		<div class="col-lg-6 col-12">
 			<% if flash[:create] %>
 			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
 			 		<%= flash[:create]%>
@@ -90,11 +90,11 @@
 				<% end %>
 			</p>
 			<div class="row">
-				<div class="col-lg-12"><p><%= @recipe.introduction %></p></div>
+				<div class="col-lg-12 col-12"><p><%= @recipe.introduction %></p></div>
 			</div>
 			<div class="row">
-				<div class="col-lg-3"><p>分量(何人前)</p></div>
-				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
+				<div class="col-lg-3 col-3"><p>分量(何人前)</p></div>
+				<div class="col-lg-9 col-9"><p><%= @recipe.amount %></p></div>
 			</div>
 <!-- 材料部分 -->
 			<p style="border-bottom: 1px solid #F96167; font-size: 20px;margin-top:20px" >材料
@@ -112,10 +112,10 @@
 			<% end %>
 			<% @ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-5">
+					<div class="col-lg-5 col-5 font-md-sp">
 						<%= ingredient.content %>
 					</div>
-					<div class="col-lg-7">
+					<div class="col-lg-7 col-7 font-md-sp">
 						<%= ingredient.amount %>
 					</div>
 				</div>
@@ -124,7 +124,7 @@
 	</div>
 <!-- 作り方部分 -->
 	<div class="row" style="margin-top:30px;">
-		<div class="col-lg-12">
+		<div class="col-lg-12 col-12">
 			<p style="border-bottom: 1px solid #F96167; font-size: 20px" >作り方
 				<% if customer_signed_in? %>
 					<% if @recipe.customer_id == current_customer.id %>
@@ -141,10 +141,10 @@
 			<% @sum = 0 %>
 			<% @cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-1" style="text-align: right"  >
+					<div class="col-lg-1 col-1 font-md-sp" style="text-align: right"  >
 						<%= @sum += 1 %>.
 					</div>
-					<div class="col-lg-11">
+					<div class="col-lg-11 col-11 font-md-sp">
 						<%= cooking.content %>
 					</div>
 				</div>
@@ -160,11 +160,11 @@
 				</div>
 			<% if customer_signed_in? %>
 				<div class="row" style="margin-top: 30px">
-					<div class="col-lg-12">
+					<div class="col-lg-12 col-12">
 						<span class="form-title" style="font-size: 20px">New Comment</span>
 						<%= form_with model:[@recipe, @comment] do |f| %>
 							<%= f.text_area :content, rows:"2", autocomplete: "off",
-								style:"width:80%;" %><br>
+								style:"width:80%;", class:"font-md-sp" %><br>
 							<%= f.hidden_field :recipe_id, value: @recipe.id %>
 							<%= f.submit "コメントする", class:"btn btn-warning" %>
 						<% end %>
@@ -184,7 +184,8 @@
 								<%= attachment_image_tag product, :product_image, format:"jpg",
 									fallback:"top_vegetable.jpg", class:"product-image" %>
 							<p>
-								<i class="fas fa-seedling"></i><%= product.name %>：¥<%= product.price %>円
+								<i class="fas fa-seedling"></i><%= product.name %>
+								<span class="hidden-sp">：¥<%= product.price %>円</span>
 							</p>
 							<% end %>
 						</div>

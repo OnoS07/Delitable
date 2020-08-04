@@ -135,16 +135,57 @@ textarea {
   font-size: 20px;
 }
 
+// font-size
+.font-lg{
+  font-size: 25px;
+}
+
+.font-md{
+  font-size: 20px;
+}
+
+.font-sm{
+  font-size: 15px;
+}
+// 改行
+.br-pc {
+  display:block;
+}
+.br-tb{
+  display:none;
+}
+.br-sp {
+  display:none;
+}
+// 左右に30px空ける
+.mr-w{
+  margin: 0 30px;
+}
+
 @media screen and (max-width: 959px) {
   /* 959px以下に適用されるCSS（タブレット用） */
   .navbar-toggler-icon {
     height: 70px;
     width: 70px;
-}
+  }
+
+  .br-pc {
+    display:none;
+  }
+  .br-tb{
+    display:block;
+  }
+  .br-sp {
+    display:none;
+  }
+
+  .hidden-tb{
+    display: none;
+  }
 }
 @media screen and (max-width: 480px) {
   /* 480px以下に適用されるCSS（スマホ用） */
-  body{
+  body {
     padding-top: 3rem;
   }
 
@@ -165,5 +206,49 @@ textarea {
   .navbar-toggler-icon {
     height: 30px;
     width: 30px;
+  }
+
+  .footer-logo {
+    height: 25px;
+    width: 70px;
+  }
+  .top-btn {
+    margin: 5px;
+    font-size: 10px;
+  }
+
+  .form-title{
+  border-bottom: 1px solid #F96167;
+  font-size: 20px;
+  }
+// 文字サイズ
+  .font-lg{
+  font-size: 13px;
+  }
+
+  .font-md, .font-sm, .font-md-sp, .btn{
+    font-size: 10px;
+  }
+  p{
+    font-size: 10px;
+  }
+
+
+  .br-pc {
+    display:none;
+  }
+  .br-tb{
+    display:none;
+  }
+  .br-sp {
+    display:block;
+  }
+
+  .hidden-sp{
+    display: none;
+  }
+
+  .mr-w{
+  margin: 0 10px;
   }
 }
