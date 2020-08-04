@@ -1,5 +1,5 @@
 <div class="container">
-  <span class="form-title" style="font-size: 30px">
+  <span class="form-title">
     <i class="fas fa-truck"></i> My Order
   </span>
   <span style="margin-left: 10px;font-size: 15px;">
@@ -10,7 +10,7 @@
     	<span class="form-title" style="font-size:15px">注文情報</span>
         <table class="table table-bordered">
             <tr>
-              <th class="table-active">注文日</th>
+              <th class="table-active" style="width: 20%">注文日</th>
               <td><%= @order.created_at.strftime('%Y/%m/%d')%>
               </td>
             </tr>
@@ -41,7 +41,7 @@
         <table class="table table-bordered">
           <tbody>
             <tr>
-              <th class="table-active">商品合計</th>
+              <th class="table-active" style="width: 20%">商品合計</th>
               <td><%= @order.total_products_cost %>円</td>
             </tr>
 

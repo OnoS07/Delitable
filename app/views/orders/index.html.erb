@@ -1,7 +1,7 @@
 <div class="container" style="padding-bottom: 100px;">
 	<div class="row">
 		<div class="col-lg-12">
-			<span class="form-title" style="font-size: 30px">
+			<span class="form-title">
 				<i class="fas fa-truck"></i> My Orders
 			</span>
 			<span style="margin-left: 10px;font-size: 15px;">
@@ -11,7 +11,7 @@
 					<thead style="background-color:#FCE77D">
 						<tr>
 							<th>注文日</th>
-							<th>配送先</th>
+							<th class="hidden-sp hidden-tb">配送先</th>
 							<th>注文商品</th>
 							<th>支払金額</th>
 							<th>ステータス</th>
@@ -22,9 +22,9 @@
 						<% @orders.each do |order| %>
 						<tr>
 							<td class="align-middle">
-								<%= order.created_at.strftime('%Y/%m/%d')%>
+								<%= order.created_at.strftime('%m/%d')%>
 							</td>
-							<td class="align-middle">
+							<td class="align-middle hidden-sp hidden-tb">
 								〒<%= order.postcode %><br>
 								住所：<%= order.address %><br>
 								宛名：<%= order.name %>
