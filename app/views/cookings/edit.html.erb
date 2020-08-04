@@ -1,23 +1,23 @@
 <div class="container" style="padding-bottom: 100px;">
 	<span class="form-title">Edit Cooking</span>
 	<div class="row" style="margin-top: 30px">
-		<div class="col-lg-6">
+		<div class="col-lg-6 col-12">
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
 				fallback:"logo.jpg", class:"recipe-image" %>
 		</div>
 		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ</p>
 			<div class="row">
-				<div class="col-lg-3"><p>レシピ名</p></div>
-				<div class="col-lg-9"><p><%= @recipe.title %></p></div>
+				<div class="col-lg-3 col-3"><p>レシピ名</p></div>
+				<div class="col-lg-9 col-9"><p><%= @recipe.title %></p></div>
 			</div>
 			<div class="row">
-				<div class="col-lg-3"><p>紹介文</p></div>
-				<div class="col-lg-9"><p><%= @recipe.introduction %></p></div>
+				<div class="col-lg-3 col-3"><p>紹介文</p></div>
+				<div class="col-lg-9 col-9"><p><%= @recipe.introduction %></p></div>
 			</div>
 			<div class="row">
-				<div class="col-lg-3"><p>分量(何人前)</p></div>
-				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
+				<div class="col-lg-3 col-3"><p>分量(何人前)</p></div>
+				<div class="col-lg-9 col-9"><p><%= @recipe.amount %></p></div>
 			</div>
 			<p style="border-bottom: 1px solid silver; font-size: 20px;margin-top:20px" >材料</p>
 			<% if flash[:create] %>
@@ -27,10 +27,10 @@
 			<% end %>
 			<% @recipe.ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-5">
+					<div class="col-lg-5 col-5 font-md-sp">
 						<%= ingredient.content %>
 					</div>
-					<div class="col-lg-7">
+					<div class="col-lg-7 col-7 font-md-sp">
 						<%= ingredient.amount %>
 					</div>
 				</div>
@@ -47,16 +47,16 @@
  			<%= form_for(@cooking, url:recipe_cookings_path, remote: true) do |f| %>
 				<div class="row" style="padding-top: 30px;border-top: 1px solid #F5F5F5">
 					<div class="col-lg-1"></div>
-					<div class="col-lg-9">
+					<div class="col-lg-9 col-12">
 						<%= f.text_area :content, rows:"2",style:"width:100%",placeholder:"作り方を入力する", class:"input-form" %>
 					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-2 col-2">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>
 						<%= f.submit "追加", class:"btn btn-warning btn-sm" %>
 					</div>
 				</div>
 			<% end %>
-			<div style="text-align: center; margin: 50px 0 100px 0">
+			<div style="text-align: center; margin-top: 50px">
 				<!-- 材料がまだ未入力の時 -->
 				<% if @recipe.ingredients.empty? %>
 					<%= link_to "保存する", edit_recipe_ingredients_path(@recipe),class:"btn btn-warning",

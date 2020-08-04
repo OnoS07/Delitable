@@ -132,7 +132,7 @@ textarea {
 .good-flash{
   color: green;
   font-family: impact;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 // font-size
@@ -226,13 +226,13 @@ textarea {
   font-size: 13px;
   }
 
-  .font-md, .font-sm, .font-md-sp, .btn{
+  .font-md, .font-sm, .font-md-sp, .btn,.bad-flash, .good-flash, p, a, label, input,
+  .form-control, textarea{
     font-size: 10px;
   }
-  p{
-    font-size: 10px;
+  .btn-sm{
+    padding: 0.2rem 0.3rem;
   }
-
 
   .br-pc {
     display:none;
@@ -247,8 +247,12 @@ textarea {
   .hidden-sp{
     display: none;
   }
-
+// 横との間隔
   .mr-w{
   margin: 0 10px;
+  }
+
+  .form-control{
+    height: calc(1.25rem + 2px);
   }
 }

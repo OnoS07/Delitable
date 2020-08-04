@@ -175,8 +175,8 @@
 	</div>
 
 	<% if @recipe.recipe_status == "完成"  %>
-		<div style="margin-top: 80px;padding-top: 20px; border-top: 1px solid #F96167">
-			<span class="form-title" style="font-size: 25px;">Recommend</span>
+		<div style="margin-top: 50px;padding-top: 20px; border-top: 1px solid #F96167">
+			<span class="form-title">Recommend</span>
 			<div class="product-contents" style="margin-top: 20px;">
 					<% @products.shuffle.first(8).each do |product| %>
 						<div class="product-content">
