@@ -5,7 +5,7 @@
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
 				fallback:"top_recipe.jpg", class:"recipe-image" %>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-6 col-12">
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ</p>
 			<% if flash[:create] %>
 			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
@@ -13,16 +13,16 @@
 			 	</div>
 			<% end %>
 			<div class="row">
-				<div class="col-lg-3"><p>レシピ名</p></div>
-				<div class="col-lg-9"><p><%= @recipe.title %></p></div>
+				<div class="col-lg-3 col-3"><p>レシピ名</p></div>
+				<div class="col-lg-9 col-9"><p><%= @recipe.title %></p></div>
 			</div>
 			<div class="row">
-				<div class="col-lg-3"><p>紹介文</p></div>
-				<div class="col-lg-9"><p><%= @recipe.introduction %></p></div>
+				<div class="col-lg-3 col-3"><p>紹介文</p></div>
+				<div class="col-lg-9 col-9"><p><%= @recipe.introduction %></p></div>
 			</div>
 			<div class="row">
-				<div class="col-lg-3"><p>分量(何人前)</p></div>
-				<div class="col-lg-9"><p><%= @recipe.amount %></p></div>
+				<div class="col-lg-3 col-3"><p>分量(何人前)</p></div>
+				<div class="col-lg-9 col-9"><p><%= @recipe.amount %></p></div>
 			</div>
 
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料</p>
@@ -33,13 +33,13 @@
 			<!-- 材料新規作成 -->
 			<%= form_for(@ingredient, url:recipe_ingredients_path, remote: true) do |f| %>
 				<div class="row" style="padding-top: 30px;">
-					<div class="col-lg-6">
+					<div class="col-lg-6 col-5">
 						<%= f.text_field :content, placeholder:"追加する具材", class:"new_form" %>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-3 col-3">
 						<%= f.text_field :amount, :size=>"8", placeholder:"分量", class:"new_form" %>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-3 col-4">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>
 						<%= f.submit "追加", class:"btn btn-warning btn-sm" %>
 					</div>
@@ -66,15 +66,16 @@
 
 		</div>
 	</div>
-	<div class="row" style="margin-top:30px; padding-bottom: 100px;">
-		<div class="col-lg-12">
+	<div class="row" style="margin-top:30px;">
+		<div class="col-lg-12 col-12">
+		<p style="border-bottom: 1px solid silver; font-size: 20px" >作り方</p>
 			<% @sum = 0 %>
 			<% @recipe.cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-1" style="text-align: right"  >
+					<div class="col-lg-1 col-1 font-md-sp" style="text-align: right"  >
 						<%= @sum += 1 %>.
 					</div>
-					<div class="col-lg-11">
+					<div class="col-lg-11 col-11 font-md-sp">
 						<%= cooking.content %>
 					</div>
 				</div>

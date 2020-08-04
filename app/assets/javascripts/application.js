@@ -46,14 +46,4 @@ $(document).on("turbolinks:load", function(){
       $("html, body").animate({"scrollTop":0},300)
   });
 
-// 評価作成
-  // $('#star').raty({
-  //   half: true,
-  //   size: 36,
-  //   starOff: "/assets/star-off.png",
-  //   starOn: "/assets/star-on.png",
-  //   starHalf: "/assets/star-half.png",
-  //   scoreName: "review[rate]",
-  // });
-
 })

@@ -46,8 +46,6 @@ header{
 
 .navbar-toggler-icon{
   background-image: image-url("menu.jpeg");
-  height: 70px;
-  width: 70px;
   border-radius: 5px;
 }
 
@@ -134,5 +132,140 @@ textarea {
 .good-flash{
   color: green;
   font-family: impact;
+  font-size: 15px;
+}
+
+// font-size
+.font-lg{
+  font-size: 25px;
+}
+
+.font-md{
   font-size: 20px;
+}
+
+.font-sm{
+  font-size: 15px;
+}
+// 改行
+.br-pc {
+  display:block;
+}
+.br-tb{
+  display:none;
+}
+.br-sp {
+  display:none;
+}
+// 左右に30px空ける
+.mr-w{
+  margin: 0 30px;
+}
+.hidden-pc{
+  display: none;
+}
+
+@media screen and (max-width: 959px) {
+  /* 959px以下に適用されるCSS（タブレット用） */
+  .navbar-toggler-icon {
+    height: 70px;
+    width: 70px;
+  }
+
+  .br-pc {
+    display:none;
+  }
+  .br-tb{
+    display:block;
+  }
+  .br-sp {
+    display:none;
+  }
+
+  .hidden-tb{
+    display: none;
+  }
+  .hidden-pc{
+    display: block;
+  }
+}
+@media screen and (max-width: 480px) {
+  /* 480px以下に適用されるCSS（スマホ用） */
+  body {
+    padding-top: 3rem;
+  }
+
+  .navbar-brand {
+    width: 80px;
+    height: 30px;
+  }
+
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .nav-link {
+    padding: 0.2rem 1rem;
+    font-size: 10px;
+  }
+
+  .navbar-toggler-icon {
+    height: 30px;
+    width: 30px;
+  }
+
+  .footer-logo {
+    height: 25px;
+    width: 70px;
+  }
+  .top-btn {
+    margin: 5px;
+    font-size: 10px;
+  }
+
+  .form-title{
+  border-bottom: 1px solid #F96167;
+  font-size: 20px;
+  }
+// 文字サイズ
+  .font-lg{
+  font-size: 13px;
+  }
+
+  .font-md, .font-sm, .font-md-sp, .btn,.bad-flash, .good-flash, p, a, label, input,
+  .form-control, textarea{
+    font-size: 10px;
+  }
+  .btn-sm{
+    padding: 0.2rem 0.3rem;
+  }
+
+  .br-pc {
+    display:none;
+  }
+  .br-tb{
+    display:none;
+  }
+  .br-sp {
+    display:block;
+  }
+
+  .hidden-sp{
+    display: none;
+  }
+  .hidden-pc{
+    display: block;
+  }
+// 横との間隔
+  .mr-w{
+  margin: 0 10px;
+  }
+
+  .form-control{
+    height: calc(1.25rem + 2px);
+  }
+
+  .table td {
+    padding: 0.25rem;
+  }
 }

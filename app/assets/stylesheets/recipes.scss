@@ -38,3 +38,23 @@
 	border: 0.5px solid #F96167;
 	background-color: #F5F5F5
 }
+
+@media screen and (max-width: 959px) {
+  /* 959px以下に適用されるCSS（タブレット用） */
+
+}
+@media screen and (max-width: 480px) {
+  /* 480px以下に適用されるCSS（スマホ用） */
+  .recipe-content{
+    width: 45%;
+    margin: 15px 2.5%;
+	}
+  .comment-image {
+    height: 25px;
+    width: 25px;
+   }
+   .recipe-tag{
+	  margin: 5px;
+	  padding: 3px;
+	}
+}

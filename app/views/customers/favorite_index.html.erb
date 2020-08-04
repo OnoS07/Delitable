@@ -1,12 +1,12 @@
 <div class="container" style="padding-bottom: 100px;">
 	<div class="row">
-		<span class="form-title">
-			<i class="fas fa-utensils"></i> Favorite Recipes
-		</span>
-		<span style="margin-left: 10px;font-size: 15px; padding-top: 20px;">
-			<%= link_to ">back", customer_path(@customer) %>
-		</span>
 		<div class="col-lg-12">
+			<span class="form-title" style="margin-right: 20px;">
+				<i class="fas fa-utensils"></i> Favorite Recipes
+			</span>
+			<span style="margin-left: 10px;font-size: 15px;">
+				<%= link_to ">back", customer_path(@customer) %>
+			</span>
 			<div class="recipe-contents" style="margin-top: 20px;">
 			<% @favorites.each do |favorite| %>
 				<div class="recipe-content">
@@ -14,10 +14,10 @@
 						<%= attachment_image_tag favorite.recipe, :recipe_image, format:"jpg",
 							fallback:"top_recipe.jpg", class:"recipe-image" %>
 						<span style="font-size: 18px;">
-							<i class="fas fa-utensils" style="margin-top: 5px;"> <%= favorite.recipe.title %></i>
+							<i class="fas fa-utensils font-md-sp" style="margin-top: 5px;"> <%= favorite.recipe.title %></i>
 						</span>
 					<% end %>
-						<span>
+						<span class="hidden-sp hidden-tb">
 							<%= link_to customer_path(favorite.recipe.customer) do %>
 								<i class="fas fa-user" style="color: #F96167"></i>
 									<span style="color: black">
@@ -35,7 +35,7 @@
 							<i class="fas fa-paw", style="color: #F96167; margin-left:30px;"></i>
 							<%= favorite.recipe.impressionist_count %>
 						</span>
-						<span style="font-size:12px;margin-top: 5px">
+						<span class="hidden-sp" style="font-size:12px;margin-top: 5px">
 							<%= favorite.recipe.introduction.truncate(45) %>
 						</span>
 				</div>

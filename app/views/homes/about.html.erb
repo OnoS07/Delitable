@@ -1,42 +1,31 @@
 <div class="container" style="padding-bottom: 100px">
 	<span class="form-title"><i class="fas fa-question-circle"></i> About</span>
-	<div class="row" style="margin-bottom: 100px">
-		<div class="col-lg-8 offset-lg-2">
-			<ul>
-				<li style="margin-top: 30px">
-					当サイト
-						<span style="font-size: 25px;">『Delitable』</span>は、<br>
-						<span style="font-size: 20px;">
-							<span style="margin-right: 25px; border-bottom: 1px solid #F96167">
-								[ Delivery ]
-							</span>
-							<span style="margin-right: 25px; border-bottom: 1px solid #F96167">
-								[ Delicious ]
-							</span>
-							<span style="margin-right: 25px; border-bottom: 1px solid #F96167">
-								[ Vegetable ]
-							</span>
-							<span style="margin-right: 25px; border-bottom: 1px solid #F96167">
-								[ Table ]
-							</span>
-						</span>の4つを合わせて<br>
-					<span style="font-size: 20px;">「美味しい野菜を食卓へ届ける」 </span>がテーマです。
+	<div class="row">
+		<div class="col-lg-12 col-xs-12">
+			<ul style="margin-left: 20px">
+				<li class="font-md" style="margin-top: 30px">
+						当サイト『Delitable』は、
+							<br class="br-pc"><br class="br-sp">
+							[ Delivery ][ Delicious ][ Vegetable ][ Table ]の4つを合わせて
+							<br class="br-pc"><br class="br-sp">
+							「美味しい野菜を食卓へ届ける」がテーマです。
 				</li>
-				<li style="margin-top: 30px">
-					主に野菜の宅配サービスと、ユーザーによるレシピの投稿、共有を活用いただけますのでわざわざ買い物に
-					行きながら献立を考えるのではなく、自宅のキッチンから<br>食べたいレシピとその食材を購入したり、逆に食べたい食材からレシピを探すことで<br>より色々な料理や野菜を楽しんでいただけます。
+				<li class="font-md" style="margin-top: 30px">
+					主に野菜の宅配サービスと、ユーザーによるレシピの投稿、共有を<br class="br-sp"><br class="br-tb">活用いただけますので<br-pc>わざわざ買い物に行きながら献立を<br class="br-tb">考えるのではなく、自宅のキッチンから
+					<br class="br-pc">食べたいレシピとその食材を<br class="br-tb">購入したり、<br class="br-sp">逆に食べたい食材からレシピを探すことで
+					<br class="br-pc">より色々な料理や野菜を<br class="br-sp">楽しんでいただけます。
 				</li>
 			</ul>
 		</div>
 	</div>
 	<!-- レシピ機能紹介 -->
-	<div class="row" style="margin-top: 70px;border-bottom: 1px solid #F96167; padding-bottom: 10px;">
+	<div class="row about-content">
 		<div class="col-lg-1"></div>
 		<div class="col-lg-6">
-			<span class="form-title" style="font-size: 20px">
+			<span class="form-title font-md">
 				<i class="fas fa-utensils"></i> Recipe
 			</span>
-			<ul style="margin-left: 20px">
+			<ul style="margin-left: 20px" class="font-md-sp">
 				<li>
 					ユーザー登録なしでも、他ユーザーのレシピやコメントをみたり、<br>
 					キーワード検索やレシピのタグ機能から自分の見たいレシピを<br>
@@ -51,7 +40,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="col-lg-4">
+		<div class="col-lg-4 about-image">
 			<%= link_to recipes_path do %>
 				<div class="top-recipe" style="width: 100%; height:250px;"></div>
 			<% end %>
@@ -59,18 +48,18 @@
 		<div class="col-lg-1"></div>
 	</div>
 	<!-- 購入機能紹介 -->
-	<div class="row" style="margin-top: 70px;border-bottom: 1px solid #F96167; padding-bottom: 10px;">
+	<div class="row about-content">
 		<div class="col-lg-1"></div>
-		<div class="col-lg-4">
+		<div class="col-lg-4 about-image">
 			<%= link_to products_path do %>
 				<div class="top-vegetable" style="width: 100%; height:250px;"></div>
 			<% end %>
 		</div>
 		<div class="col-lg-6">
-			<span class="form-title" style="font-size: 20px">
+			<span class="form-title font-md">
 				<i class="fas fa-seedling"></i> Vegetable
 			</span>
-			<ul style="margin-left: 20px">
+			<ul style="margin-left: 20px" class="font-md-sp">
 				<li>
 					定番から季節の野菜まで、産地直送でお届けします。<br>
 					(ご利用にはお名前・住所などの情報の入力が必要となります)
@@ -89,13 +78,13 @@
 		<div class="col-lg-1"></div>
 	</div>
 <!-- マイページ紹介 -->
-	<div class="row" style="margin-top: 70px;border-bottom: 1px solid #F96167; padding-bottom: 10px;">
+	<div class="row about-content">
 		<div class="col-lg-1"></div>
 		<div class="col-lg-6">
-			<span class="form-title" style="font-size: 20px">
+			<span class="form-title font-md">
 				<i class="fas fa-user"></i> My Page
 			</span>
-			<ul style="margin-left: 20px">
+			<ul style="margin-left: 20px" class="font-md-sp">
 				<li>
 					自分が投稿したレシピや下書き段階のレシピなどの確認ができます。<br>
 					また、いいねをしたレシピの一覧も確認できます。
@@ -110,7 +99,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="col-lg-4">
+		<div class="col-lg-4 about-image">
 			<% if customer_signed_in? %>
 				<%= link_to customer_path(current_customer) do %>
 					<div class="top-about" style="width: 100%; height:250px;"></div>

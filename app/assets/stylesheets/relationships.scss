@@ -10,3 +10,12 @@
 	border: 0.5px solid #F96167;
 	background-color: #F5F5F5
 }
+
+@media screen and (max-width: 480px) {
+  /* 480px以下に適用されるCSS（スマホ用） */
+  .follow-image{
+	height: 40px;
+	width: 40px;
+	}
+
+}

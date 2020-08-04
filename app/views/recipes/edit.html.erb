@@ -1,15 +1,16 @@
 <div class="container">
 	<span class="form-title">Edit Recipe</span>
 	<div class="row" style="margin-top: 30px">
-		<div class="col-lg-6">
+		<div class="col-lg-6 col-12">
 			<%= form_for(@recipe) do |f| %>
 			<p>料理画像</p>
 			<%= f.attachment_field :recipe_image %><br>
-			<%= f.label :tag_list, 'タグ(間にはカンマ , をつけて下さい)', style:"margin-top:20px" %>
+			<%= f.label :tag_list, 'タグ(間にはカンマ , をつけて下さい)',
+				style:"margin-top:20px" %>
 			<%= f.text_field :tag_list, value: @recipe.tag_list.join(','), class:"form-control",
 				placeholder: "豚肉,玉ねぎ,パスタ、、、" %>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-6 col-12">
 			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >レシピ</p>
 			<% if flash[:notice] %>
 			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
@@ -37,10 +38,10 @@
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料</p>
 			<% @recipe.ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-8">
+					<div class="col-lg-8 col-8 font-md-sp">
 						<%= ingredient.content %>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-4 col-4 font-md-sp">
 						<%= ingredient.amount %>
 					</div>
 				</div>
@@ -53,10 +54,10 @@
 			<% @sum = 0 %>
 			<% @recipe.cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">
-					<div class="col-lg-1" style="text-align: right" >
+					<div class="col-lg-1 col-1 font-md-sp" style="text-align: right" >
 						<%= @sum += 1 %>.
 					</div>
-					<div class="col-lg-11">
+					<div class="col-lg-11 col-11 font-md-sp">
 						<%= cooking.content %>
 					</div>
 				</div>
