@@ -161,6 +161,9 @@ textarea {
 .mr-w{
   margin: 0 30px;
 }
+.hidden-pc{
+  display: none;
+}
 
 @media screen and (max-width: 959px) {
   /* 959px以下に適用されるCSS（タブレット用） */
@@ -181,6 +184,9 @@ textarea {
 
   .hidden-tb{
     display: none;
+  }
+  .hidden-pc{
+    display: block;
   }
 }
 @media screen and (max-width: 480px) {
@@ -247,6 +253,9 @@ textarea {
   .hidden-sp{
     display: none;
   }
+  .hidden-pc{
+    display: block;
+  }
 // 横との間隔
   .mr-w{
   margin: 0 10px;
@@ -254,5 +263,9 @@ textarea {
 
   .form-control{
     height: calc(1.25rem + 2px);
+  }
+
+  .table td {
+    padding: 0.25rem;
   }
 }

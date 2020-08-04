@@ -11,6 +11,14 @@
 		<div class="col-lg-4" style="text-align: center;">
 			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
 				fallback:"logo.jpg", class:"customer-image" %>
+			<div style="margin:10px 0" class="hidden-pc">
+				<%= link_to customer_follows_path(@customer), style:"margin-right: 20px" do %>
+					<%= @customer.following_customer.count %>フォロー
+				<% end %>
+				<%= link_to customer_followers_path(@customer) do %>
+					<%= @customer.follower_customer.count %>フォロワー
+				<% end %>
+			</div>
 			<div class="relationship_<%= @customer.id %>">
 				<%= render "relationships/relationship", customer: @customer %>
 			</div>

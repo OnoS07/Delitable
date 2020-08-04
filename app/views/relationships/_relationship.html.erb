@@ -1,10 +1,10 @@
-<div style="margin:10px 0">
+<div style="margin:10px 0" class="hidden-sp hidden-tb">
 	<%= link_to customer_follows_path(customer), style:"margin-right: 20px" do %>
 		<%= customer.following_customer.count %>フォロー
 	<% end %>
 	<%= link_to customer_followers_path(customer) do %>
 		<%= customer.follower_customer.count %>フォロワー
-	<% end %><br>
+	<% end %>
 </div>
 
 <% if customer_signed_in? %>
