@@ -1,7 +1,7 @@
 <div class="container" style="padding-bottom: 100px;">
 	<div class="row">
 		<%= render "products/genre_sidebar", genres: @genres %>
-		<div class="col-lg-10">
+		<div class="col-lg-10 col-12 col-sm-10">
 			<span class="form-title">
 				<i class="fas fa-seedling"></i> <%= @index_title %>
 				<% if params[:q] %>
@@ -27,7 +27,8 @@
 							<%= attachment_image_tag product, :product_image, format:"jpg",
 								fallback:"top_vegetable.jpg", class:"product-image" %>
 						<p>
-							<i class="fas fa-seedling"></i><%= product.name %>：¥<%= product.price %>円
+							<i class="fas fa-seedling"></i><%= product.name %>：<br class="br-sp"><br class="br-tb">
+							¥<%= product.price %>円
 						</p>
 						<% end %>
 					</div>
