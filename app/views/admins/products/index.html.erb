@@ -17,6 +17,8 @@
 					<th>税抜き価格</th>
 					<th>ジャンル</th>
 					<th>ステータス</th>
+					<th>レビュー件数</th>
+					<th>評価</th>
 				</tr>
 				<% @products.each do |product| %>
 				<tr>
@@ -29,6 +31,14 @@
 					<td><%= product.price %>円</td>
 					<td><%= product.genre.name %></td>
 					<td><%= product.is_active %></td>
+					<td><%= product.reviews.count %>件</td>
+					<td>
+						<% if product.reviews.present? %>
+							<%= product.reviews.average(:rate).round(1) %>点
+						<% else %>
+							未評価
+						<% end %>
+					</td>
 				</tr>
 				<% end %>
 			</table>

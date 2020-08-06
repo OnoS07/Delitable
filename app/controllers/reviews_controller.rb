@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
 		@review = Review.find(params[:id])
 		@product = Product.find(params[:product_id])
 		@review.destroy
-		redirect_to product_path(@product)
+		redirect_back(fallback_location: root_path)
 	end
 
 	private

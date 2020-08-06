@@ -1,0 +1,46 @@
+<div class="container" style="padding-bottom: 100px;">
+	<div class="row">
+		<div class="col-lg-10 offset-lg-1">
+			<span class="form-title">レビュー一覧</span>
+			<table class="table table-bordered" style="margin-top: 10px;">
+				<tr class="table-active">
+					<th>レビュー日時</th>
+					<th>ユーザー</th>
+					<th>対象商品</th>
+					<th>内容</th>
+					<th>ステータス</th>
+				</tr>
+				<% @reviews.each do |review| %>
+				<tr>
+					<td class="align-middle" >
+						<%= link_to admins_product_path(review.product) do %>
+							<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+						<% end %>
+					</td>
+					<td class="align-middle" >
+						<%= link_to admins_customer_path(review.customer) do %>
+							<%= review.customer.name %>
+						<% end %>
+					</td>
+					<td class="align-middle" >
+						<%= link_to admins_product_path(review.product) do %>
+							<%= review.product.name %>
+						<% end %>
+					</td>
+					<td class="align-middle" >
+						<%= review.content.truncate(10) %>
+					</td>
+					<td class="align-middle" >
+						<% if review.score < 0 %>
+							bad
+						<% else %>
+							good
+						<% end %>
+						(<%= review.score %>)
+					</td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>

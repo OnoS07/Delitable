@@ -48,7 +48,7 @@
 			</div>
 
 			<div style="margin-top: 30px">
-				<%= link_to "#" do %>
+				<%= link_to admins_reviews_path do %>
 					●本日の商品レビュー：<%= @reviews.count %>件
 				<% end %>
 			<table class="table table-bordered" style="margin-top: 10px;">
@@ -90,7 +90,9 @@
 				</tr>
 				<% end %>
 			</table>
-			<span>全レビュー件数：<%= @all_reviews.count %>件</span><br>
+			<%= link_to admins_reviews_path do %>
+				全レビュー件数：<%= @all_reviews.count %>件<br>
+			<% end %>
 			<span>good：<%= @good_reviews.count %>件/</span>
 			<span>bad：<%= @bad_reviews.count %>件</span>
 			</div>

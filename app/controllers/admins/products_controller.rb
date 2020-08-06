@@ -36,6 +36,10 @@ class Admins::ProductsController < ApplicationController
     redirect_to admins_product_path(@product)
   end
 
+  def reviews
+    @reviews = Review.all
+  end
+
   def params_product
     params.require(:product).permit(:genre_id, :name, :price, :introduction,
                                     :product_image, :is_active)

@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   # EC管理者側ルーティイング
   namespace :admins do
     resources :products, only: %i[index show new create edit update]
+    get 'reviews' => 'products#reviews', as: 'reviews'
     resources :customers, only: %i[index show edit update]
     resources :orders, only: %i[index show update]
     get '/' => 'orders#top', as: 'top'
