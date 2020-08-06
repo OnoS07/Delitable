@@ -1,3 +1,37 @@
 // Place all the styles related to the orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mr-left{
+	margin-left: 80px;
+}
+
+.order-table{
+	tr{
+		height: 70px;
+	}
+}
+@media screen and (max-width: 959px) {
+  /* 959px以下に適用されるCSS（タブレット用） */
+  .mr-left{
+  	margin-left: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* 480px以下に適用されるCSS（スマホ用） */
+  .mr-left{
+  	margin-left: 20px;
+  }
+
+   .cart-item-image{
+  	height: 30px;
+  	width: 50px;
+  }
+
+  .order-table{
+	tr{
+		height: 30px;
+	}
+  }
+}

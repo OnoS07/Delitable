@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
-			<span class="form-title" style="font-size: 30px">
+			<span class="form-title">
 				<i class="fas fa-shopping-cart"></i>New Order
 			</span>
 			<div style="margin-top: 10px">
@@ -10,7 +10,7 @@
 					<span class="form-title" style="font-size: 20px;">
 						<i class="fas fa-comment-dollar"></i>支払い方法
 					</span>
-					<div style="margin-left: 80px;">
+					<div class="mr-left">
 						<p style="margin-top: 10px">
 							<label>
 								<%= f.radio_button :payment_method, "クレジットカード", checked: true %>		クレジットカード
@@ -29,12 +29,12 @@
 					 		<%= flash[:notice]%></i>
 					 	</div>
 					<% end %>
-					<div style="margin-left: 80px">
+					<div class="mr-left">
 						<p>
 							<label><%= f.radio_button :order_address, "1", checked: true %>
 								ご自身の住所
 							</label>
-							<div style="margin-left: 40px">
+							<div style="margin-left: 40px" class="font-md-sp">
 								<%= "郵便番号：" + current_customer.postcode %><br>
 								<%= "住所：" + current_customer.address %><br>
 								<%= "宛名：" + current_customer.name %>
@@ -54,10 +54,10 @@
 							</label>
 								<div style="margin-left: 40px">
 									<div class="row">
-										<div class="col-lg-8">
+										<div class="col-lg-8 col-12">
 											<table class="table table-borderless">
 												<tr>
-													<td>郵便番号(ハイフンなし)</td>
+													<td>郵便番号<br class="br-sp">(ハイフンなし)</td>
 													<td><%= f.text_field :postcode %></td>
 												</tr>
 												<tr>
@@ -77,7 +77,7 @@
 						</p>
 					</div>
 					</div>
-					<div style="text-align: center; margin-left: 80px;">
+					<div style="text-align: center;">
 						<%= f.submit "確認画面へ進む", class:"btn btn-warning btn-center" %>
 					</div>
 				<% end %>
