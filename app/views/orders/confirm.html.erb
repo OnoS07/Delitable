@@ -1,13 +1,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
-			<span class="form-title" style="font-size: 30px">
+			<span class="form-title">
 				<i class="fas fa-shopping-cart"></i>Order
 			</span>
 
 			<div style="margin-top: 20px;">
 				<div class="row">
-					<div class="col-lg-8">
+					<div class="col-lg-8 col-12">
 						<table class="table table-bordered">
 							<thead style="background-color:#FCE77D">
 								<tr>
@@ -21,14 +21,15 @@
 							<% @cart_items.each do |cart_item| %>
 							<tr>
 								<td>
-									<%= attachment_image_tag cart_item.product, :product_image,format: "jpg", size:"80x50", fallback:"top_vegetable.jpg" %>
+									<%= attachment_image_tag cart_item.product, :product_image,format: "jpg", size:"80x50", fallback:"top_vegetable.jpg",
+										class:"cart-item-image" %>
 									<%= cart_item.product.name %>
 								</td>
 								<td class="align-middle">
 									<%= (cart_item.product.price * 1.1).to_i %>円
 								</td>
 								<td class="align-middle">
-									<%= cart_item.count %>
+									<%= cart_item.count %>個
 								</td>
 								<td class="align-middle">
 									<%= (cart_item.product.price * cart_item.count * 1.1).to_i %>円
@@ -38,17 +39,17 @@
 							<% end %>
 						</table>
 					</div>
-					<div class="col-lg-4">
-					<table class="table table-bordered">
+					<div class="col-lg-4 col-12">
+					<table class="table table-bordered order-table">
 					<tr>
-						<td class="table-active">送料</td>
-						<td>800円</td>
+						<td class="table-active align-middle">送料</td>
+						<td class="align-middle">800円</td>
 					</tr>
-					<tr style="height: 75px;">
-						<td class="table-active align-middle">商品合計</td>
+					<tr>
+						<td class="table-active align-middle" style="width: 30%">商品合計</td>
 						<td class="align-middle"><%= @sum.to_i %>円</td>
 					</tr>
-					<tr style="height: 75px;">
+					<tr>
 						<td class="table-active align-middle">請求金額</td>
 						<td class="align-middle"><%= @sum.to_i + 800 %>円</td>
 					</tr>
@@ -58,19 +59,19 @@
 			</div>
 
 			<div style="margin: 20px 0">
-				<span style="font-size: 20px;">
+				<span style="font-size: 18px;">
 					<i class="fas fa-comment-dollar"></i> 支払い方法：
 				</span>
 				<span><%= @order.payment_method %></span>
 			</div>
 			<div>
-				<span style="font-size: 20px;">
+				<span style="font-size: 18px;">
 					<i class="fas fa-shipping-fast"></i> お届け先：
 				</span>
 				<span><%= @order.postcode%> <%= @order.address %> <%= @order.name %>様</span>
 			</div>
 
-			<div style="text-align: center; margin-left: 80px;">
+			<div style="text-align: center;">
 				<%= form_with(url: customers_orders_path, local: true) do |f| %>
 				 	<%= f.hidden_field :name, value: @order.name %>
 					<%= f.hidden_field :address, value: @order.address %>

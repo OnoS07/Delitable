@@ -1,18 +1,18 @@
-<div class="container">
-	<span class="form-title" style="font-size: 30px;">
+<div class="container" style="padding-bottom: 120px">
+	<span class="form-title">
 		<i class="fas fa-user"></i> Edit Profile
 	</span>
 	<span style="margin-left: 10px;font-size: 15px; padding-top: 20px;">
 		<%= link_to ">back", customer_path(current_customer) %>
 	</span>
 	<div class="row" style="margin-top: 30px;">
-		<div class="col-lg-4" style="text-align: center;">
+		<div class="col-lg-4 col-12" style="text-align: center;">
 		<%= form_with(model: @customer, local:true, data: {"turbolinks" => false}) do |f| %>
 			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
 				fallback:"logo.jpg", class:"customer-image" %>
 			<%= f.attachment_field :profile_image %>
 		</div>
-		<div class="col-lg-8">
+		<div class="col-lg-8 col-12">
 			<% if flash[:notice] %>
 			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
 			 		<%= flash[:notice]%></i>
@@ -54,8 +54,10 @@
 			</table>
 		</div>
 	</div>
-	<div style="text-align: center; margin-left: 80px;">
-		<%= f.submit "変更する", class:"btn btn-warning btn-center" %>
+	<div class="row" style="text-align: center;">
+		<div class="col-lg-12">
+			<%= f.submit "変更する", class:"btn btn-warning btn-center" %>
+		</div>
 	</div>
 	<% end %>
 	<span style="float:right">

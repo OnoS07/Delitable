@@ -229,15 +229,18 @@ textarea {
   }
 // 文字サイズ
   .font-lg{
-  font-size: 13px;
+  font-size: 15px;
   }
 
   .font-md, .font-sm, .font-md-sp, .btn,.bad-flash, .good-flash, p, a, label, input,
-  .form-control, textarea{
+  .form-control, textarea, select{
     font-size: 10px;
   }
   .btn-sm{
     padding: 0.2rem 0.3rem;
+  }
+  .btn{
+    padding: 0.3rem 0.4rem;
   }
 
   .br-pc {
@@ -267,5 +270,10 @@ textarea {
 
   .table td {
     padding: 0.25rem;
+    font-size: 10px;
+  }
+  .table th {
+    padding: 0.25rem;
+    font-size: 10px;
   }
 }
