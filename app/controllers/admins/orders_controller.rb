@@ -11,7 +11,7 @@ class Admins::OrdersController < ApplicationController
   def index
     @search = Order.ransack(params[:q])
     if params[:customer_id]
-      @customer = Customer.find(params[:customer_id])
+      @customer = Customer.with_deleted.find(params[:customer_id])
       @orders = Order.where(customer_id: @customer.id).order(id: 'DESC')
       @order_title = '注文一覧/' + @customer.name + ' 様'
     elsif params[:q]
