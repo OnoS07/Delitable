@@ -3,7 +3,7 @@ class Admins::RecipesController < ApplicationController
   def index
     @search = Recipe.ransack(params[:q])
     if params[:customer_id]
-      @customer = Customer.find(params[:customer_id])
+      @customer = Customer.with_deleted.find(params[:customer_id])
       @recipes = Recipe.where(customer_id: @customer.id).order(id: 'DESC')
       @recipe_title = 'レシピ一覧/' + @customer.name + ' 様'
     elsif params[:tag_name]

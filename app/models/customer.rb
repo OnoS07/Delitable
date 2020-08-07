@@ -12,7 +12,7 @@ class Customer < ApplicationRecord
   has_many :shippings, dependent: :destroy
   has_many :orders
   has_many :cart_items, dependent: :destroy
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   attachment :profile_image
 
