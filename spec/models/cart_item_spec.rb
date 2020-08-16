@@ -4,6 +4,9 @@ RSpec.describe CartItem, type: :model do
 	before(:each) do
 	  	@cart_item = build(:cart_item)
  	end
+ 	it "カート内商品を作成できる" do
+ 		 expect(@cart_item).to be_valid
+ 	end
 
  	it "個数が選択されていない場合、無効にする" do
  		@cart_item.count = nil
