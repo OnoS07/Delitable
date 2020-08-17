@@ -31,5 +31,4 @@ RSpec.describe Order, type: :model do
  		@order.valid?
  		expect(@order.postcode.size).to eq 7
  	end
-
 end
