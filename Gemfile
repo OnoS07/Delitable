@@ -90,3 +90,6 @@ gem 'ransack'
 gem 'dotenv-rails'
 
 gem "kaminari"
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'
