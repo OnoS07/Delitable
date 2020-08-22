@@ -84,7 +84,7 @@ class OrdersController < ApplicationController
   def complete; end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id).order(id: 'DESC')
+    @orders = Order.where(customer_id: current_customer.id).order(id: 'DESC').page(params[:page]).per(10)
   end
 
   def show

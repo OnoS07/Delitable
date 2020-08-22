@@ -43,18 +43,19 @@ class RecipesController < ApplicationController
     if params[:tag_name]
       # タグ検索結果
       all_recipe = Recipe.where(recipe_status: '完成')
-      @recipes = all_recipe.tagged_with(params[:tag_name].to_s)
+      @recipes = all_recipe.tagged_with(params[:tag_name].to_s).page(params[:page]).per(9)
       @recipe_title = params[:tag_name]
     elsif params[:q]
       # キーワード検索結果
-      @recipes = @search.result(distinct: true).where(recipe_status: '完成')
+      @recipes = @search.result(distinct: true).where(recipe_status: '完成').page(params[:page]).per(9)
     elsif params[:favorite]
       # いいね数順結果
       all_recipes = Recipe.where(recipe_status: '完成')
-      @recipes = Recipe.find(Favorite.group(:recipe_id).order('count(recipe_id) desc').pluck(:recipe_id))
+      recipe_array = Recipe.find(Favorite.group(:recipe_id).order('count(recipe_id) desc').pluck(:recipe_id))
+      @recipes = Kaminari.paginate_array(recipe_array).page(params[:page]).per(9)
     else
       # シンプルに一覧
-      @recipes = Recipe.where(recipe_status: '完成')
+      @recipes = Recipe.where(recipe_status: '完成').page(params[:page]).per(9)
     end
   end
 

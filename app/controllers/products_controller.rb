@@ -6,15 +6,15 @@ class ProductsController < ApplicationController
       # ジャンル検索時
       @genre = Genre.find(params[:genre_id])
       @genre_products = Product.where(genre_id: @genre.id)
-      @products = @genre_products.where(is_active: '販売中')
+      @products = @genre_products.where(is_active: '販売中').page(params[:page]).per(16)
       @index_title = @genre.name
     elsif params[:q]
       # キーワード検索時
-      @products = @search.result(distinct: true).where(is_active: '販売中')
+      @products = @search.result(distinct: true).where(is_active: '販売中').page(params[:page]).per(16)
       @index_title = 'Vegetables'
     else
       # 通常の一覧
-      @products = Product.where(is_active: '販売中')
+      @products = Product.where(is_active: '販売中').page(params[:page]).per(16)
       @index_title = 'Vegetables'
     end
   end

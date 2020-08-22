@@ -88,3 +88,5 @@ gem 'impressionist', '~>1.6.1'
 gem 'ransack'
 
 gem 'dotenv-rails'
+
+gem "kaminari"
