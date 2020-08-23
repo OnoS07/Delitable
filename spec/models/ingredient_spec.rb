@@ -11,22 +11,22 @@ RSpec.describe Ingredient, type: :model do
  	it "材料本文がない場合、無効にする" do
  		@ingredient.content = nil
  		@ingredient.valid?
- 		expect(@ingredient.errors[:content]).to include("can't be blank")
+ 		expect(@ingredient.errors[:content]).to include("を入力してください")
  	end
  	it "作り方本文が20文字以上の場合、無効にする" do
  		@ingredient.content = "a" * 21
  		@ingredient.valid?
- 		expect(@ingredient.errors[:content]).to include("is too long (maximum is 20 characters)")
+ 		expect(@ingredient.errors[:content]).to include("は20文字以内で入力してください")
  	end
 
  	it "分量がない場合、無効にする" do
  		@ingredient.amount = nil
  		@ingredient.valid?
- 		expect(@ingredient.errors[:amount]).to include("can't be blank")
+ 		expect(@ingredient.errors[:amount]).to include("を入力してください")
  	end
  	it "分量が10文字以上の場合、無効にする" do
  		@ingredient.amount = "a" * 11
  		@ingredient.valid?
- 		expect(@ingredient.errors[:amount]).to include("is too long (maximum is 10 characters)")
+ 		expect(@ingredient.errors[:amount]).to include("は10文字以内で入力してください")
  	end
 end

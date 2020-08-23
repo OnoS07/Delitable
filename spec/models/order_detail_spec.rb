@@ -11,22 +11,22 @@ RSpec.describe OrderDetail, type: :model do
  	it "価格がない場合、無効にする" do
  		@order_detail.price = nil
  		@order_detail.valid?
- 		expect(@order_detail.errors[:price]).to include("can't be blank")
+ 		expect(@order_detail.errors[:price]).to include("を入力してください")
  	end
  	it "価格が0円の場合、無効にする" do
  		@order_detail.price = 0
  		@order_detail.valid?
- 		expect(@order_detail.errors[:price]).to include("must be greater than 0")
+ 		expect(@order_detail.errors[:price]).to include("は0より大きい値にしてください")
  	end
 
  	it "個数がない場合、無効にする" do
  		@order_detail.count = nil
  		@order_detail.valid?
- 		expect(@order_detail.errors[:count]).to include("can't be blank")
+ 		expect(@order_detail.errors[:count]).to include("を入力してください")
  	end
  	it "個数が0個の場合、無効にする" do
  		@order_detail.count = 0
  		@order_detail.valid?
- 		expect(@order_detail.errors[:count]).to include("must be greater than 0")
+ 		expect(@order_detail.errors[:count]).to include("は0より大きい値にしてください")
  	end
 end

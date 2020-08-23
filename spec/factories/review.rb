@@ -4,8 +4,5 @@ FactoryBot.define do
     customer_id {1}
     rate {1}
     content{"test-content"}
-
-    association :customer
-    association :product
   end
 end
