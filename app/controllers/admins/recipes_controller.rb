@@ -4,18 +4,18 @@ class Admins::RecipesController < ApplicationController
     @search = Recipe.ransack(params[:q])
     if params[:customer_id]
       @customer = Customer.with_deleted.find(params[:customer_id])
-      @recipes = Recipe.where(customer_id: @customer.id).order(id: 'DESC')
+      @recipes = Recipe.where(customer_id: @customer.id).order(id: 'DESC').page(params[:page]).per(15)
       @recipe_title = 'レシピ一覧/' + @customer.name + ' 様'
     elsif params[:tag_name]
       # タグ検索結果
-      @recipes = Recipe.tagged_with(params[:tag_name].to_s)
+      @recipes = Recipe.tagged_with(params[:tag_name].to_s).page(params[:page]).per(15)
       @recipe_title = 'レシピ一覧/' + params[:tag_name]
     elsif params[:q]
       # キーワード検索時
-      @recipes = @search.result(distinct: true)
+      @recipes = @search.result(distinct: true).page(params[:page]).per(15)
       @recipe_title = 'レシピ一覧/検索：' + @search.title_or_introduction_or_ingredients_content_cont
     else
-      @recipes = Recipe.all.order(id: 'DESC')
+      @recipes = Recipe.all.order(id: 'DESC').page(params[:page]).per(15)
       @recipe_title = 'レシピ一覧'
     end
   end

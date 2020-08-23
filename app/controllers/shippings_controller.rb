@@ -8,7 +8,7 @@ class ShippingsController < ApplicationController
 
   def index
     @customer = current_customer
-    @shippings = Shipping.where(customer_id: @customer.id)
+    @shippings = Shipping.where(customer_id: @customer.id).page(params[:page]).per(10)
     @shipping = Shipping.new
   end
 

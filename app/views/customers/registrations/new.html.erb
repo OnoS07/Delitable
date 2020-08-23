@@ -4,15 +4,22 @@
       <h2 style="padding-bottom: 20px"><span class="form-title">Sign up</span></h2>
         <%= form_for(resource, as: resource_name,
             url: registration_path(resource_name)) do |f| %>
-        <%= render "customers/shared/error_messages", resource: resource %>
-
-
+        <% if @customer.errors.any? %>
+          <div>
+            <ul>
+              <% @customer.errors.full_messages.each do |message| %>
+                <div class="bad-flash"><i class="fas fa-exclamation-circle"></i>
+                  <%= message %>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
           <div class="row">
             <div class="col-lg-4">
               <p>ニックネーム<span style="font-size: 10px"></span></p>
             </div>
             <div class="col-lg-4">
-               <%= f.text_field :account_name, autocomplete: "off" %>
+               <%= f.text_field :account_name, autofocus: true, autocomplete: "off" %>
             </div>
           </div>
 
@@ -62,7 +69,7 @@
                 <p>名前</p>
               </div>
               <div class="col-lg-4">
-                 <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+                 <%= f.text_field :name, autocomplete: "off" %>
               </div>
             </div>
             <div class="row">

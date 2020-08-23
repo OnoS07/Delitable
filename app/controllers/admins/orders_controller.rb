@@ -12,14 +12,14 @@ class Admins::OrdersController < ApplicationController
     @search = Order.ransack(params[:q])
     if params[:customer_id]
       @customer = Customer.with_deleted.find(params[:customer_id])
-      @orders = Order.where(customer_id: @customer.id).order(id: 'DESC')
+      @orders = Order.where(customer_id: @customer.id).order(id: 'DESC').page(params[:page]).per(15)
       @order_title = '注文一覧/' + @customer.name + ' 様'
     elsif params[:q]
       # キーワード検索時
-      @orders = @search.result(distinct: true)
+      @orders = @search.result(distinct: true).page(params[:page]).per(15)
       @order_title = '注文一覧/検索：' + @search.name_or_address_or_customer_name_cont
     else
-      @orders = Order.all.order(id: 'DESC')
+      @orders = Order.all.order(id: 'DESC').page(params[:page]).per(15)
       @order_title = '注文一覧'
     end
   end

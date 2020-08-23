@@ -20,7 +20,7 @@
   margin:0;
   padding: 0;
 }
-html,　body {
+html, body {
   height: 100%;
 }
 
@@ -165,6 +165,19 @@ textarea {
   display: none;
 }
 
+//kaminari
+.page-item.active .page-link {
+    color: black;
+    background-color: #FCE77D;
+    border-color: #FCE77D;
+}
+.page-link {
+    color: black;
+}
+.pagination {
+  justify-content: flex-end;
+}
+
 @media screen and (max-width: 959px) {
   /* 959px以下に適用されるCSS（タブレット用） */
   .navbar-toggler-icon {
@@ -275,5 +288,8 @@ textarea {
   .table th {
     padding: 0.25rem;
     font-size: 10px;
+  }
+  .page-link {
+    padding: 0.25rem 0.5rem;
   }
 }

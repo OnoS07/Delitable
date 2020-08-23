@@ -88,3 +88,8 @@ gem 'impressionist', '~>1.6.1'
 gem 'ransack'
 
 gem 'dotenv-rails'
+
+gem "kaminari"
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'
