@@ -34,9 +34,7 @@ RSpec.describe Customer, type: :model do
   context "フォローメソッド" do
     before do
       @customer = create(:customer)
-      @followed = Customer.create(account_name: "followed",
-                        email: "follow@test",
-                        password: "followtest")
+      @followed = Customer.create(account_name: "followed", email: "follow@test", password: "followtest")
     end
       it "フォローすることができる" do
         expect(@customer.follow(@followed.id)).to be_truthy
@@ -63,7 +61,7 @@ RSpec.describe Customer, type: :model do
       @product = create(:product)
     end
     it "既にレビューをしているか" do
-      @review = create(:review)
+      @review = create(:review, customer_id: @customer.id, product_id: @product.id)
       expect(@customer.reviewing?(@product)).to be_truthy
     end
     it "まだレビューをしていない" do

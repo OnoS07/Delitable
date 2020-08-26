@@ -4,7 +4,7 @@ RSpec.describe Review, type: :model do
 	before(:each) do
       @customer = create(:customer)
       @product = create(:product)
-      @review = create(:review)
+      @review = create(:review, customer_id: @customer.id, product_id: @product.id)
  	end
 
  	it "レビューの作成ができる" do

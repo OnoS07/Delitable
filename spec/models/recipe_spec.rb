@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
 	before(:each) do
-	  	@recipe = build(:recipe)
+      @customer = create(:customer)
+	  	@recipe = build(:recipe, customer_id: @customer.id)
  	end
   it "レシピの作成ができる" do
 	expect(@recipe).to be_valid
@@ -43,10 +44,8 @@ RSpec.describe Recipe, type: :model do
 
   context "いいねメソッド" do
     before do
-      @recipe = create(:recipe)
-      @favo_customer = Customer.create(account_name: "favo",
-                                        email: "favo@test",
-                                        password: "favotest")
+      @recipe = create(:recipe, customer_id: @customer.id)
+      @favo_customer = Customer.create(account_name: "favo", email: "favo@test", password: "favotest")
     end
     it "既にいいねをしているか" do
       @favorite = @favo_customer.favorites.create(recipe_id: @recipe.id)

@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
 	before(:each) do
-	  	@comment = build(:comment)
+		@customer = create(:customer)
+		@recipe = create(:recipe, customer_id: @customer.id)
+	  	@comment = build(:comment, recipe_id: @recipe.id, customer_id: @customer.id)
  	end
  	it "コメントの作成ができる" do
  		expect(@comment).to be_valid
