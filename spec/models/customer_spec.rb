@@ -34,9 +34,7 @@ RSpec.describe Customer, type: :model do
   context "フォローメソッド" do
     before do
       @customer = create(:customer)
-      @followed = Customer.create(account_name: "followed",
-                        email: "follow@test",
-                        password: "followtest")
+      @followed = Customer.create(account_name: "followed", email: "follow@test", password: "followtest")
     end
       it "フォローすることができる" do
         expect(@customer.follow(@followed.id)).to be_truthy
