@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Shipping, type: :model do
 	before(:each) do
-	  	@shipping = build(:shipping)
+		@customer = create(:customer)
+	  	@shipping = build(:shipping, customer_id: @customer.id)
  	end
 
  	it "配送先の作成ができる" do

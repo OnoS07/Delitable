@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
 	before(:each) do
-	  	@order = build(:order)
+		@customer = create(:customer)
+	  	@order = build(:order, customer_id: @customer.id)
  	end
 
  	it "注文の作成ができる" do
