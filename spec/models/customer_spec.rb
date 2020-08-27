@@ -58,7 +58,8 @@ RSpec.describe Customer, type: :model do
   context "レビューメソッド" do
     before do
       @customer = create(:customer)
-      @product = create(:product)
+      @genre = create(:genre)
+      @product = create(:product, genre_id: @genre.id)
     end
     it "既にレビューをしているか" do
       @review = create(:review, customer_id: @customer.id, product_id: @product.id)

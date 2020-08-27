@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Cooking, type: :model do
 	before(:each) do
-	  	@cooking = build(:cooking)
+		@customer = create(:customer)
+		@recipe = create(:recipe, customer_id: @customer.id)
+	  	@cooking = build(:cooking, recipe_id: @recipe.id)
  	end
 
  	it "作り方の作成ができる" do

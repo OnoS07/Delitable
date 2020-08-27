@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
 	before(:each) do
-	  	@product = build(:product)
+		@genre = create(:genre)
+	  	@product = build(:product, genre_id: @genre.id)
  	end
 
  	it "商品の作成ができる" do
