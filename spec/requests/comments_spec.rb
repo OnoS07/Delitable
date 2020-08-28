@@ -16,6 +16,12 @@ RSpec.describe "Comments", type: :request do
 		end.to change(Comment, :count).by(1)
 	end
 
+	it "値が正しくない場合、コメントの作成に失敗する" do
+		expect do
+			post recipe_comments_path(@recipe), params: { comment: FactoryBot.attributes_for(:comment, content: nil ) }, xhr: true
+		end.to_not change(Comment, :count)
+	end
+
 	context "コメントが必要なリクエスト" do
 		before do
 			@comment = create(:comment, recipe_id: @recipe.id, customer_id: @customer.id)

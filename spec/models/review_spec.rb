@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Review, type: :model do
 	before(:each) do
       @customer = create(:customer)
-      @product = create(:product)
+	  @genre = create(:genre)
+	  @product = create(:product, genre_id: @genre.id)
       @review = create(:review, customer_id: @customer.id, product_id: @product.id)
  	end
 

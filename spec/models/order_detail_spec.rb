@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe OrderDetail, type: :model do
 	before(:each) do
 		@customer = create(:customer)
-		@product = create(:product)
+		@genre = create(:genre)
+		@product = create(:product, genre_id: @genre.id)
 		@order = create(:order, customer_id: @customer.id)
 	  	@order_detail = build(:order_detail, order_id: @order.id, product_id: @product.id)
  	end
