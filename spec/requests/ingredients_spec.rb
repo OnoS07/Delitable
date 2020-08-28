@@ -30,11 +30,6 @@ RSpec.describe "Ingredients", type: :request do
 		before do
 			@ingredient = create(:ingredient, recipe_id: @recipe.id)
 		end
-		it "材料の削除ができる" do
-			delete recipe_ingredient_path(@ingredient, @recipe), xhr: true
-			expect(response).to have_http_status(200)
-		end
-
 		it "材料の更新リクエストが成功する" do
 			put recipe_ingredient_path(@ingredient, @recipe), params: { ingredient: FactoryBot.attributes_for(:ingredient, recipe_id: @recipe.id) }, xhr: true
 			expect(response).to have_http_status(200)
