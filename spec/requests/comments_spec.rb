@@ -6,7 +6,7 @@ RSpec.describe "Comments", type: :request do
 		@recipe = create(:recipe, customer_id: @customer.id)
 		sign_in @customer
 	end
-	it "コメントが作成できる" do
+	it "コメントの新規作成リクエストが成功する" do
 		post recipe_comments_path(@recipe), params: { comment: FactoryBot.attributes_for(:comment) }, xhr: true
 		expect(response).to have_http_status(200)
 	end
@@ -26,7 +26,7 @@ RSpec.describe "Comments", type: :request do
 		before do
 			@comment = create(:comment, recipe_id: @recipe.id, customer_id: @customer.id)
 		end
-		it "コメントの削除ができる" do
+		it "コメントの削除リクエストが成功する" do
 			delete recipe_comment_path(@comment, @recipe), xhr: true
 			expect(response).to have_http_status(200)
 		end

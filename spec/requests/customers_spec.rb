@@ -4,7 +4,7 @@ RSpec.describe "Customers", type: :request do
 	before(:each) do
 	  	@customer = create(:customer)
  	end
-	it "顧客詳細画面が表示される" do
+	it "顧客詳細画面が表示できる" do
 		get customer_path(@customer)
 		expect(response).to have_http_status(200)
 	end
@@ -18,7 +18,7 @@ RSpec.describe "Customers", type: :request do
 		before do
 			sign_in @customer
 		end
-		it "顧客編集画面が表示される" do
+		it "顧客編集画面が表示できる" do
 			get edit_customer_path(@customer)
 			expect(response).to have_http_status(200)
 		end
