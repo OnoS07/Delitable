@@ -34,7 +34,37 @@
 
 
 ### 主な利用シーン
-* 食べたいレシピを探したり、レシピにある野菜や興味のあるものを注文して、料理を楽しむ。
+* 食べたいレシピを探したり、レシピにある野菜や興味のあるものを注文して、料理を楽しめます。
+
+## 機能・技術
+- HTML/CSS
+	- Bootstrap
+	- Flexbox
+	- SCSS
+	- レスポンシブ対応
+	- BEM記法(一部)
+
+- Ruby on Rails
+	- デプロイ自動化：capistrano
+	- コードフォーマット：rubocop
+	- テスト：RSpec
+	- デバッグ：pry-byebug
+	- 検索機能：ransack
+	- タグ付け：acts-as-taggable-on
+	- トラッキング：impressionist
+	- ユーザー認証：devise
+	- 画像アップロード機能
+	- おすすめ、ランキング機能
+	- いいね機能
+	- コメント機能
+	- CRUD処理
+
+- JavaScript
+	- 非同期通信 ：ajax
+	- 星評価：raty.js
+
+- AI
+	- 自然言語処理：Natural Language API
 
 ### 設計書
 * アプリケーション詳細設定：https://www.icloud.com/numbers/0MUDr2Jb7IqNjydIzylYOACsg
