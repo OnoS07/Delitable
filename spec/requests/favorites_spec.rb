@@ -7,7 +7,7 @@ RSpec.describe "Favorites", type: :request do
 		sign_in @customer
 	end
 
-	it "いいねができる" do
+	it "いいねをするリクエストが成功する" do
 		post recipe_favorites_path(@recipe), xhr: true
 		expect(response).to have_http_status(200)
 	end
@@ -21,7 +21,7 @@ RSpec.describe "Favorites", type: :request do
 		before do
 			post recipe_favorites_path(@recipe), xhr: true
 		end
-		it "いいねを削除できる" do
+		it "いいねを削除するリクエストが成功する" do
 			delete recipe_favorites_path(@recipe), xhr: true
 			expect(response).to have_http_status(200)
 		end

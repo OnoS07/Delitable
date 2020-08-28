@@ -15,9 +15,14 @@ RSpec.describe "Relationships", type: :request do
 		expect(response).to have_http_status(200)
 	end
 
-	it "フォローができる" do
+	it "フォローのリクエストが成功する" do
 		post customer_relationships_path(@followed), xhr: true
 		expect(response).to have_http_status(200)
+	end
+	it "フォローが1件増える" do
+		expect do
+			post customer_relationships_path(@followed), xhr: true
+		end.to change(Relationship, :count).by(1)
 	end
 	it "フォロー後、ボタンにフォローをやめるが表示されている" do
 		post customer_relationships_path(@followed), xhr: true
@@ -28,9 +33,14 @@ RSpec.describe "Relationships", type: :request do
 		before do
 			post customer_relationships_path(@followed), xhr: true
 		end
-		it "フォローの解除ができる" do
+		it "フォロー解除のリクエストが成功する" do
 			delete customer_relationships_path(@followed), xhr: true
 			expect(response).to have_http_status(200)
+		end
+		it "フォローが1件減る" do
+			expect do
+				delete customer_relationships_path(@followed), xhr: true
+			end.to change(Relationship, :count).by(-1)
 		end
 		it "フォローの解除後、ボタンにフォローするが表示されている" do
 			delete customer_relationships_path(@followed), xhr: true

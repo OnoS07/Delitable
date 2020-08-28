@@ -23,7 +23,7 @@ class ShippingsController < ApplicationController
       redirect_to customers_shippings_path
       flash[:create] = 'NEW SHIPPING ! '
     else
-      @shippings = Shipping.where(customer_id: current_customer.id)
+      @shippings = Shipping.where(customer_id: current_customer.id).page(params[:page]).per(10)
       flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
       render 'shippings/index'
     end
