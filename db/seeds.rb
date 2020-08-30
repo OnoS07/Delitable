@@ -40,7 +40,6 @@ Product.create!(genre_id: 4, name: 'トマト', price: 200, introduction: 'ト�
 
 Product.create!(genre_id: 5, name: '緑の野菜詰め合わせ', price: 800, introduction: 'ブロッコリー・ほうれん草・オクラ・ゴーヤなど。緑の野菜はカロテン、ビタミン、ミネラルがたっぷり入っています', product_image_id: '', is_active: '販売中')
 
-
 puts '+++++++++++'
 puts 'admin-email: admin@admin'
 puts 'admin-pass: adminadmin'

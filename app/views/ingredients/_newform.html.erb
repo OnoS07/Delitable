@@ -1,4 +1,3 @@
-<!-- 更新時のflash -->
 <% if flash[:update] %>
  	<div class="good-flash"><i class="fas fa-check-circle"></i><%= flash[:update]%></div>
 <% end %>
@@ -20,7 +19,7 @@
 		</div>
 	<% end %>
 <% end %>
-<!-- 更新失敗時のflash -->
+
 <% if flash[:notice] %>
  	<div class="bad-flash"><i class="fas fa-exclamation-circle"><%= flash[:notice]%></i></div>
 <% end %>

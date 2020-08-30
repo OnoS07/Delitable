@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     @shipping = Shipping.where(customer_id: current_customer.id)
     if current_customer.cart_items.blank?
       redirect_to cart_item_confirm_path
-      flash[:notice] = "購入する商品がカートに入っていません"
+      flash[:notice] = '購入する商品がカートに入っていません'
     end
   end
 
@@ -29,11 +29,11 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.payment_method = params[:payment_method]
 
-    if params[:order_address] == '1' # 自分の住所選択
+    if params[:order_address] == '1'
       @order.postcode = current_customer.postcode
       @order.address = current_customer.address
       @order.name = current_customer.name
-    elsif params[:order_address] == '2' # 配送先から選択
+    elsif params[:order_address] == '2'
       if params[:select_address]
         @shipping = Shipping.find(params[:select_address])
         @order.postcode = @shipping.postcode
@@ -41,10 +41,9 @@ class OrdersController < ApplicationController
         @order.name = @shipping.name
       else
         redirect_to new_customers_order_path
-        flash[:notice] = "登録済み住所はありません"
+        flash[:notice] = '登録済み住所はありません'
       end
     else
-      # params[:order_address] = '3' # 新しい配送先
       @order.postcode = params[:postcode]
       @order.address = params[:address]
       @order.name = params[:name]
@@ -66,7 +65,6 @@ class OrdersController < ApplicationController
     if @order.save
       cart_items = current_customer.cart_items
       cart_items.each do |cart_item|
-        # cart_itemの中身を、order_detailに移す
         order_detail = @order.order_details.new
         order_detail.product_id = cart_item.product_id
         order_detail.count = cart_item.count

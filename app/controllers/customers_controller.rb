@@ -34,7 +34,10 @@ class CustomersController < ApplicationController
 
   def favorite_index
     @customer = Customer.find(params[:id])
-    @favorites = Favorite.where(customer_id: params[:id])
+    all_recipe = Recipe.where(recipe_status: '完成')
+    recipe_ids = all_recipe.pluck(:id)
+    recipe_favorites = Favorite.where(recipe_id: recipe_ids)
+    @favorites = recipe_favorites.where(customer_id: params[:id])
   end
 
   def customer_params

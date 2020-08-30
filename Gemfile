@@ -61,8 +61,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -87,9 +87,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'impressionist', '~>1.6.1'
 gem 'ransack'
 
-gem 'dotenv-rails'
-
-gem "kaminari"
+gem 'kaminari'
 
 gem 'devise-i18n'
 gem 'devise-i18n-views'

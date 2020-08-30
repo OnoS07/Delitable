@@ -17,10 +17,8 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredients = @recipe.ingredients.all
     if @ingredient.save
-      # 新規作成でステータス変更
       if @recipe.recipe_status == 'レシピ'
         @recipe.update(recipe_status: '材料')
-        # 未入力箇所の入力ができれば、ステータスを準備中に変更
       elsif (@recipe.recipe_status == '未入力あり') && @recipe.cookings.present?
         @recipe.update(recipe_status: '準備中')
       end
@@ -46,7 +44,6 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find(params[:id])
     @ingredients = @recipe.ingredients.all
     if @ingredient.destroy
-    # レシピ完成後、材料が全て削除されたらステータスを未入力ありにして公開停止
       if @recipe.ingredients.empty?
         if (@recipe.recipe_status == '完成') || (@recipe.recipe_status == '準備中')
           @recipe.update(recipe_status: '未入力あり')

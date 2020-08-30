@@ -1,8 +1,9 @@
 <div class="container" style="padding-bottom: 100px;">
 	<span class="form-title"><i class="fas fa-utensils"></i> Recipe</span>
+	<span style="margin-left: 10px;font-size: 15px;"><%= link_to ">back", recipes_path %></span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6 col-12">
-<!-- レシピ画像 -->
+
 			<% if customer_signed_in? %>
 				<% if @recipe.customer_id == current_customer.id %>
 					<% if @recipe.recipe_status == "準備中" %>
@@ -31,7 +32,7 @@
 			 		<% end %>
 			 	</span>
 			<% end %>
-<!-- レシピに紐づく部分 -->
+
 			<div style="margin-top: 20px;">
 				<span class="font-md">
 					<%= link_to customer_path(@recipe.customer) do %>
@@ -72,7 +73,7 @@
 				</span>
 			</div>
 		</div>
-<!-- レシピ部分 -->
+
 		<div class="col-lg-6 col-12">
 			<% if flash[:create] %>
 			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
@@ -96,7 +97,7 @@
 				<div class="col-lg-3 col-3"><p>分量(何人前)</p></div>
 				<div class="col-lg-9 col-9"><p><%= @recipe.amount %></p></div>
 			</div>
-<!-- 材料部分 -->
+
 			<p style="border-bottom: 1px solid #F96167; font-size: 20px;margin-top:20px" >材料
 				<% if customer_signed_in? %>
 					<% if @recipe.customer_id == current_customer.id %>
@@ -122,7 +123,7 @@
 			<% end %>
 		</div>
 	</div>
-<!-- 作り方部分 -->
+
 	<div class="row" style="margin-top:30px;">
 		<div class="col-lg-12 col-12">
 			<p style="border-bottom: 1px solid #F96167; font-size: 20px" >作り方
@@ -151,7 +152,7 @@
 			<% end %>
 		</div>
 	</div>
-<!-- コメント部分 -->
+
 	<div style="margin-top:30px;" id="comments">
 		<% if @recipe.recipe_status == "完成"  %>
 			<span class="form-title" >Comments</span>

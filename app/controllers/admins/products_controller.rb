@@ -3,7 +3,6 @@ class Admins::ProductsController < ApplicationController
   def index
     @search = Product.ransack(params[:q])
     if params[:q]
-      # キーワード検索時
       @products = @search.result(distinct: true).page(params[:page]).per(15)
       @product_title = '商品一覧/検索：' + @search.name_or_introduction_or_genre_name_cont
     else

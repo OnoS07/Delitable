@@ -107,7 +107,7 @@
 								<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 									fallback:"top_recipe.jpg", class:"recipe-image" %>
 								<span style="font-size: 18px">
-									<i class="fas fa-utensils font-md-sp" style="margin-top: 5px;"> <%= recipe.title %> </i><br>
+									<i class="fas fa-utensils font-md-sp" style="margin-top: 5px;"> <%= recipe.title.truncate(15) %> </i><br>
 								</span>
 								<span>作成段階:<%= recipe.recipe_status %></span>
 							<% end %>
@@ -123,7 +123,9 @@
 							<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 								fallback:"top_recipe.jpg", class:"recipe-image" %>
 							<span style="font-size: 18px">
-								<i class="fas fa-utensils font-md-sp" style="margin-top: 5px;"> <%= recipe.title %></i>
+								<i class="fas fa-utensils font-md-sp" style="margin-top: 5px;">
+									<%= recipe.title.truncate(15) %>
+								</i>
 							</span>
 						<% end %>
 						<span class="hidden-sp hidden-tb">

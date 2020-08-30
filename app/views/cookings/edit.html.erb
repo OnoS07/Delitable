@@ -57,15 +57,15 @@
 				</div>
 			<% end %>
 			<div style="text-align: center; margin-top: 50px">
-				<!-- 材料がまだ未入力の時 -->
+
 				<% if @recipe.ingredients.empty? %>
 					<%= link_to "保存する", edit_recipe_ingredients_path(@recipe),class:"btn btn-warning",
 						style:"padding: 5px 30px" %>
-				<!-- 完成後、もしくは公開停止後の修正する時 -->
+
 				<% elsif @recipe.recipe_status == "完成" or @recipe.recipe_status == "未入力あり" or
 						 @recipe.recipe_status == "準備中" %>
 					<%= link_to "戻る",recipe_path(@recipe), class:"btn btn-warning" %>
-				<!-- 材料が入力済で、かつ一度も完成させてない時。作り方がないとエラーメッセージ -->
+
 				<% else %>
 					<%= form_with(url: recipe_path(@recipe),remote: true,  method: :patch) do |f| %>
 						<%= f.hidden_field :recipe_status, value:"完成" %>
