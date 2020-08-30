@@ -16,9 +16,10 @@ Metrics/PerceivedComplexity:
   Max: 11
 
 LineLength:
-  Max: 165
+  Max: 180
 
 Metrics/BlockLength:
+  Max: 65
   Exclude:
     - 'config/**/*'
     - 'db/**/*'
@@ -45,4 +46,16 @@ Style/IfInsideElse:
   Enabled: false
 
 Style/GuardClause:
-  MinBodyLength: 5
+  MinBodyLength: 10
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Lint/NonDeterministicRequireOrder:
+  Enabled: false
+
+Lint/Void:
+  Enabled: false
+
+Naming/VariableName:
+  Enabled: false

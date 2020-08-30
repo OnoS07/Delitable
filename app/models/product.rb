@@ -11,5 +11,4 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
-
 end

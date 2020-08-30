@@ -48,5 +48,4 @@ class Customer < ApplicationRecord
   def reviewing?(product)
     reviews.exists?(product_id: product.id)
   end
-
 end

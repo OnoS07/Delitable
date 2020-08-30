@@ -49,14 +49,16 @@
 	- コードフォーマット：rubocop
 	- テスト：RSpec
 	- デバッグ：pry-byebug
-	- 検索機能：ransack
+	- 検索：ransack
 	- タグ付け：acts-as-taggable-on
 	- トラッキング：impressionist
 	- ユーザー認証：devise
-	- 画像アップロード機能
-	- おすすめ、ランキング機能
-	- いいね機能
-	- コメント機能
+	- 買い物かご
+	- レビュー
+	- 画像アップロード
+	- おすすめ、ランキング表示
+	- いいね
+	- コメント
 	- CRUD処理
 
 - JavaScript

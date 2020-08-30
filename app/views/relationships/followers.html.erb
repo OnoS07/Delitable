@@ -2,6 +2,9 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<span class="form-title">Follower</span>
+			<span style="margin-left: 10px;font-size: 15px;">
+				<%= link_to ">back", customer_path(@customer) %>
+			</span>
 			<% @customers.each do |customer| %>
 				<div class="row" style="margin-top: 20px;padding-bottom: 20px; border-bottom: 1px solid #F96167">
 					<div class="col-lg-2 col-2" style="text-align: center;">

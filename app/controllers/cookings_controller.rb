@@ -11,10 +11,8 @@ class CookingsController < ApplicationController
     @cooking = Cooking.new(cooking_params)
     @cookings = @recipe.cookings.all
     if @cooking.save
-      # 1つ作成でステータス変更
       if @recipe.recipe_status == '材料'
         @recipe.update(recipe_status: '作り方')
-      # 未入力箇所の入力ができれば、ステータスを準備中に変更
       elsif (@recipe.recipe_status == '未入力あり') && @recipe.ingredients.present?
         @recipe.update(recipe_status: '準備中')
       end
@@ -54,7 +52,6 @@ class CookingsController < ApplicationController
     @cooking = Cooking.find(params[:id])
     @cookings = @recipe.cookings.all
     if @cooking.destroy
-    # レシピ完成後、作り方が全て削除されたらステータスを未入力ありにして公開停止
       if @recipe.cookings.empty?
         if (@recipe.recipe_status == '完成') || (@recipe.recipe_status == '準備中')
           @recipe.update(recipe_status: '未入力あり')

@@ -1,6 +1,5 @@
 # This migration comes from acts_as_taggable_on_engine (originally 1)
 class ActsAsTaggableOnMigration < ActiveRecord::Migration[4.2]
-
   ActsAsTaggableOnMigration.class_eval do
     def self.up
       create_table ActsAsTaggableOn.tags_table do |t|
