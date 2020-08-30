@@ -7,11 +7,9 @@ class Admins::RecipesController < ApplicationController
       @recipes = Recipe.where(customer_id: @customer.id).order(id: 'DESC').page(params[:page]).per(15)
       @recipe_title = 'レシピ一覧/' + @customer.name + ' 様'
     elsif params[:tag_name]
-      # タグ検索結果
       @recipes = Recipe.tagged_with(params[:tag_name].to_s).page(params[:page]).per(15)
       @recipe_title = 'レシピ一覧/' + params[:tag_name]
     elsif params[:q]
-      # キーワード検索時
       @recipes = @search.result(distinct: true).page(params[:page]).per(15)
       @recipe_title = 'レシピ一覧/検索：' + @search.title_or_introduction_or_ingredients_content_cont
     else

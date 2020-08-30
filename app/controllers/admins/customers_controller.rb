@@ -3,7 +3,6 @@ class Admins::CustomersController < ApplicationController
   def index
     @search = Customer.with_deleted.ransack(params[:q])
     if params[:q]
-      # キーワード検索時
       @customers = @search.result(distinct: true).page(params[:page]).per(15)
       @customer_title = '顧客一覧/検索：' + @search.name_or_account_name_or_introduction_cont
     else

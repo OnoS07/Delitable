@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # 顧客側devise
   devise_for :admins, skip: :all
   devise_scope :admin do
     get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
@@ -7,7 +6,6 @@ Rails.application.routes.draw do
     delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
   end
 
-  # 管理者側devise
   devise_for :customers, skip: :all
   devise_scope :customer do
     get 'customers/sign_in' => 'customers/sessions#new', as: 'new_customer_session'
@@ -18,7 +16,6 @@ Rails.application.routes.draw do
   end
   post '/homes/guest_sign_in', to: 'homes#new_guest'
 
-  # EC顧客側ルーティング
   root 'homes#top'
   get '/' => 'homes#top', as: 'top'
   get 'home/about' => 'homes#about', as: 'about'
@@ -48,7 +45,6 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[create destroy]
   end
 
-  # EC管理者側ルーティイング
   namespace :admins do
     resources :products, only: %i[index show new create edit update]
     get 'reviews' => 'products#reviews', as: 'reviews'
@@ -57,7 +53,7 @@ Rails.application.routes.draw do
     get '/' => 'orders#top', as: 'top'
     resources :order_details, only: [:update]
     resources :genres, only: %i[index edit create update destroy]
-    # SNS側根理者ルーティング
+
     resources :recipes, only: %i[index show edit update destroy] do
       resources :ingredients, only: %i[edit update destroy]
       resources :cookings, only: %i[edit update destroy]
@@ -65,7 +61,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # SNSルーティング
   resources :recipes do
     resources :ingredients, only: %i[update create destroy]
     resources :cookings, only: %i[update create destroy]

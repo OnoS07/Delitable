@@ -15,7 +15,6 @@ class Admins::OrdersController < ApplicationController
       @orders = Order.where(customer_id: @customer.id).order(id: 'DESC').page(params[:page]).per(15)
       @order_title = '注文一覧/' + @customer.name + ' 様'
     elsif params[:q]
-      # キーワード検索時
       @orders = @search.result(distinct: true).page(params[:page]).per(15)
       @order_title = '注文一覧/検索：' + @search.name_or_address_or_customer_name_cont
     else
