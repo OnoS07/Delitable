@@ -45,7 +45,6 @@
 	- BEM記法(一部)
 
 - Ruby on Rails
-	- デプロイ自動化：capistrano
 	- コードフォーマット：rubocop
 	- テスト：RSpec
 	- デバッグ：pry-byebug
@@ -68,11 +67,32 @@
 - AI
 	- 自然言語処理：Natural Language API
 
-### 設計書
-* アプリケーション詳細設定：https://www.icloud.com/numbers/0MUDr2Jb7IqNjydIzylYOACsg
-* テーブル定義書：https://www.icloud.com/numbers/0nfYRItc2tWXCYZR2jlyc7jDw
-* ER図：https://drive.google.com/file/d/1sncP0fHAl0r4UybR3iU1nNUXEbx8t7nz/view?usp=sharing
+## 環境
+- フロントエンド
+	- Bootstrap 4.4.1
+	- SCSS
+	- JavaScript、jQuery、Ajax
 
-### 機能一覧
-https://docs.google.com/spreadsheets/d/1IJ4RoAs_-xBsC-Z0b_gmG4WTZG94Oju5-hKZHIRKyz4/edit#gid=0
+- バックエンド
+	- Ruby 2.5.7
+	- Rails 5.2.4.3
+
+- 開発環境
+	- Vagrant 2.2.4
+
+- 本番環境
+	- MySQL2
+	- AWS (EC2、RDS for MySQL、Route53)
+	- Nginx、 Puma
+	- Capistrano
+
+## 設計
+
+- 設計書
+	- アプリケーション詳細設定：https://www.icloud.com/numbers/0MUDr2Jb7IqNjydIzylYOACsg
+	- テーブル定義書：https://www.icloud.com/numbers/0nfYRItc2tWXCYZR2jlyc7jDw
+	- ER図：https://drive.google.com/file/d/1sncP0fHAl0r4UybR3iU1nNUXEbx8t7nz/view?usp=sharing
+
+- 機能一覧
+	- https://docs.google.com/spreadsheets/d/1IJ4RoAs_-xBsC-Z0b_gmG4WTZG94Oju5-hKZHIRKyz4/edit#gid=0
 
