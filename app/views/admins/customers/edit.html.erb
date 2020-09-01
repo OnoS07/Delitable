@@ -1,6 +1,7 @@
 <div class="container">
-	<span class="form-title" style="font-size: 30px;">
-		顧客編集
+	<span class="form-title">顧客編集</span>
+	<span style="margin-left: 10px;font-size: 15px;">
+		<%= link_to ">back", admins_customer_path(@customer) %>
 	</span>
 	<div class="row" style="margin-top: 30px;">
 		<div class="col-lg-4" style="text-align: center;">
@@ -50,7 +51,7 @@
 					</td>
 				</tr>
 			</table>
-			<%= f.submit "変更を保存する", class:"btn btn-primary" %>
+			<%= f.submit "変更を保存する", class:"btn btn-warning" %>
 		</div>
 		<% end %>
 	</div>

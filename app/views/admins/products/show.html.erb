@@ -1,5 +1,6 @@
 <div class="container" style="padding-bottom: 100px;">
 	<span class="form-title">商品詳細</span>
+  <span style="margin-left: 10px;font-size: 15px;"><%= link_to ">back", admins_products_path %></span>
     <div class="row" style="margin-top: 30px;">
       <div class="col-lg-4" style="text-align: center">
           <%= attachment_image_tag @product, :product_image, fallback: "top_vegetable.jpg",

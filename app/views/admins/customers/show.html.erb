@@ -1,7 +1,6 @@
 <div class="container" style="padding-bottom: 100px;">
-	<span class="form-title" style="font-size: 30px;">
-		顧客詳細
-	</span>
+	<span class="form-title">顧客詳細</span>
+	<span style="margin-left: 10px;font-size: 15px;"><%= link_to ">back", admins_customers_path %></span>
 	<div class="row" style="margin-top: 30px;">
 		<div class="col-lg-4" style="text-align: center;">
 			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
@@ -51,18 +50,18 @@
 			<div class="row">
 				<div class="col-lg-4">
 					<%= link_to "プロフィール編集", edit_admins_customer_path(@customer),
-						data: {"turbolinks" => false}, class:"btn btn-primary" %>
+						data: {"turbolinks" => false}, class:"btn btn-warning" %>
 				</div>
 				<div class="col-lg-4">
 					<%= form_with url: admins_orders_path, method: :get, local: true do |f| %>
 						<%= f.hidden_field :customer_id, :value => @customer.id %>
-						<%= f.submit "注文履歴一覧" ,class:"btn btn-primary" %>
+						<%= f.submit "注文履歴一覧" ,class:"btn btn-warning" %>
 					<% end %>
 				</div>
 				<div class="col-lg-4">
 					<%= form_with url: admins_recipes_path, method: :get, local: true do |f| %>
 						<%= f.hidden_field :customer_id, :value => @customer.id %>
-						<%= f.submit "作成レシピ一覧" ,class:"btn btn-primary" %>
+						<%= f.submit "作成レシピ一覧" ,class:"btn btn-warning" %>
 					<% end %>
 				</div>
 			</div>

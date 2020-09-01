@@ -1,5 +1,8 @@
 <div class="container" style="padding-bottom: 100px;">
 	<span class="form-title">作り方編集</span>
+	<span style="margin-left: 10px;font-size: 15px;">
+		<%= link_to ">back", admins_recipe_path(@recipe) %>
+	</span>
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
