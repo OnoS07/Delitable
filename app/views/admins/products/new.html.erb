@@ -1,5 +1,6 @@
 <div class="container">
   <span class="form-title" style="font-size: 30px;">商品新規登録</span>
+  <span style="margin-left: 10px;font-size: 15px;"><%= link_to ">back", admins_products_path %></span>
   <%= form_for(@product, url:admins_products_path) do |f| %>
   	<div class="row" style="padding-top: 30px">
   		<div class="col-lg-3">

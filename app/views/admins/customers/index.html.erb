@@ -1,9 +1,10 @@
 <div class="container" style="padding-bottom: 100px;">
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1">
-			<span class="form-title">
-				<span style="font-family: none"><%= @customer_title %></span>
-			</span>
+			<span class="form-title"><span style="font-family: none"><%= @customer_title %></span></span>
+			<% if params[:q] %>
+				<span style="margin-left: 10px;font-size: 15px;"><%= link_to ">back", :back %></span>
+			<% end %>
 			<span style="float: right">
 				<%= search_form_for @search, url: admins_customers_path do |f| %>
 					<%= f.search_field :name_or_account_name_or_introduction_cont,

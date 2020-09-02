@@ -1,5 +1,8 @@
 <div class="container">
   <span class="form-title">商品情報編集</span>
+  <span style="margin-left: 10px;font-size: 15px;">
+    <%= link_to ">back", admins_product_path(@product) %>
+  </span>
   <%= form_with(url: admins_product_path, model: @product, method: :patch,local:true)do |f| %>
   	<div class="row" style="padding-top: 30px">
   		<div class="col-lg-3">

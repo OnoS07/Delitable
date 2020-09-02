@@ -3,7 +3,11 @@
 		<div class="col-lg-12">
 			<span class="form-title">Follow</span>
 			<span style="margin-left: 10px;font-size: 15px;">
-				<%= link_to ">back", customer_path(@customer) %>
+				<% if admin_signed_in? %>
+					<%= link_to ">back", admins_customer_path(@customer) %>
+				<% else %>
+					<%= link_to ">back", customer_path(@customer) %>
+				<% end %>
 			</span>
 			<% @customers.each do |customer| %>
 				<div class="row" style="margin-top: 20px;padding-bottom: 20px; border-bottom: 1px solid #F96167">
