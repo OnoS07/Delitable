@@ -2,6 +2,9 @@
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1">
 			<span class="form-title" style="font-family: none"><%= @order_title %></span>
+			<% if params[:q] or params[:customer_id] %>
+				<span style="margin-left: 10px; font-size: 15px"><%= link_to ">back", :back %></span>
+			<% end %>
 			<span style="float: right">
 				<%= search_form_for @search, url: admins_orders_path do |f| %>
 					<%= f.search_field :name_or_address_or_customer_name_cont,
