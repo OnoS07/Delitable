@@ -2,7 +2,7 @@
 
 ## URL
 http://delitable.work/
-![image](https://user-images.githubusercontent.com/62997834/92128993-efb12080-ee3d-11ea-8e33-bba828f2b3f4.png)(http://delitable.work/)
+[![image](https://user-images.githubusercontent.com/62997834/92128993-efb12080-ee3d-11ea-8e33-bba828f2b3f4.png)](http://delitable.work/)
 
 
 ## サイト概要
