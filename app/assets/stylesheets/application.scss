@@ -15,7 +15,7 @@
  */
 
 @import "bootstrap";
-// 共通のレイアウト
+
 *{
   margin:0;
   padding: 0;
@@ -32,7 +32,6 @@ html, body {
   background-color: white;
 }
 
-// ヘッダー
 header{
  	background-color: #FCE77D;
  	margin-top: auto;
@@ -49,7 +48,6 @@ header{
   border-radius: 5px;
 }
 
-//フッター
 footer{
 	background-color: #FCE77D;
 	width: 100%;
@@ -60,10 +58,10 @@ footer{
 
 .footer-logo{
 	float: right;
-    background-image: image-url("logo.jpg");
-    background-size: cover;
-    height: 50px;
-    width: 130px;
+  background-image: image-url("logo.jpg");
+  background-size: cover;
+  height: 50px;
+  width: 130px;
 }
 
 .top-btn{
@@ -75,39 +73,34 @@ footer{
 
 .navbar-brand{
 	background-image: image-url("logo.jpg");
-    background-size: cover;
-    width: 220px;
-    height: 80px;
+  background-size: cover;
+  width: 220px;
+  height: 80px;
 }
 
 a{
 	color: black;
+  &:hover{
+    color: #F96167;
+    text-decoration: underline;
+  }
 }
 
-a:hover {
-	color: #F96167;
-	text-decoration: underline;
-}
-
-// 見出し用
 .form-title{
 	border-bottom: 2px solid #F96167;
 	font-family: impact;
   font-size: 30px;
 }
 
-// 真ん中にくる大きめのボタン用
 .btn-center{
   margin-top: 20px;
   padding: 10px 60px;
 }
 
-// text_areaの入力部分に余白
 textarea {
     padding: 3px;
 }
 
-// タグ表示のボタン
 .recipe-tag{
   background-color: #ffc107;
   border-radius: 5px;
@@ -115,14 +108,12 @@ textarea {
   padding: 5px;
 }
 
-// 検索ボックス
 [type="search"] {
     outline-offset: -2px;
     -webkit-appearance: auto;
     padding: 4px;
   }
 
-// フラッシュメッセージ
 .bad-flash{
   color: red;
   font-size: 15px;
@@ -135,7 +126,6 @@ textarea {
   font-size: 15px;
 }
 
-// font-size
 .font-lg{
   font-size: 25px;
 }
@@ -147,7 +137,7 @@ textarea {
 .font-sm{
   font-size: 15px;
 }
-// 改行
+
 .br-pc {
   display:block;
 }
@@ -157,7 +147,7 @@ textarea {
 .br-sp {
   display:none;
 }
-// 左右に30px空ける
+
 .mr-w{
   margin: 0 30px;
 }
@@ -165,7 +155,6 @@ textarea {
   display: none;
 }
 
-//kaminari
 .page-item.active .page-link {
     color: black;
     background-color: #FCE77D;
@@ -240,7 +229,7 @@ textarea {
   border-bottom: 1px solid #F96167;
   font-size: 20px;
   }
-// 文字サイズ
+
   .font-lg{
   font-size: 15px;
   }
@@ -272,7 +261,7 @@ textarea {
   .hidden-pc{
     display: block;
   }
-// 横との間隔
+
   .mr-w{
   margin: 0 10px;
   }
