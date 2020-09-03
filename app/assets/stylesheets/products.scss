@@ -28,7 +28,19 @@
 }
 
 .genres{
-	padding-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.genre_name{
+	background-color: white;
+	border:0px solid black;
+	cursor: pointer;
+	padding-bottom: 3px;
+	&:hover{
+		color: #F96167;
+		text-decoration: underline;
+	}
 }
 
 @media screen and (max-width: 959px) {
@@ -37,7 +49,7 @@
 }
 @media screen and (max-width: 480px) {
   /* 480px以下に適用されるCSS（スマホ用） */
-}
-.genres{
-	padding-bottom: 0;
+	.genres{
+		padding: 0;
+	}
 }
