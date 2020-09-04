@@ -13,11 +13,11 @@
 				<table class="table table-borderless" style="margin-top: 30px">
 					<tr>
 						<td style="width:25%">郵便番号<br>(ハイフンなし)</td>
-						<td><%= f.text_field :postcode %></td>
+						<td><%= f.text_field :postcode, id:"postcode" %></td>
 					</tr>
 					<tr>
 						<td>住所</td>
-						<td><%= f.text_field :address, style:"width:100%" %></td>
+						<td><%= f.text_field :address, style:"width:100%", id:"address" %></td>
 					</tr>
 					<tr>
 						<td>宛名</td>

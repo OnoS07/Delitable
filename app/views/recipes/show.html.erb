@@ -25,10 +25,11 @@
 			<% end %>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
 				fallback:"top_recipe.jpg", class:"recipe-image", style:"margin:10px 0" %>
-			<% @recipe.tag_list.each do |tag| %>
+			<% @recipe.tags.each do |tag| %>
 			 	<span class="recipe-tag">
-			 		<%= link_to recipes_path(tag_name: tag) do %>
-			 			<%= tag %>
+			 		<%= link_to recipes_path(tag_name: tag.name) do %>
+			 			<%= tag.name %>
+			 			(<%= tag.taggings_count %>)
 			 		<% end %>
 			 	</span>
 			<% end %>

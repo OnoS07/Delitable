@@ -58,12 +58,12 @@
 											<table class="table table-borderless">
 												<tr>
 													<td>郵便番号<br class="br-sp">(ハイフンなし)</td>
-													<td><%= f.text_field :postcode %></td>
+													<td><%= f.text_field :postcode, id:"postcode" %></td>
 												</tr>
 												<tr>
 													<td>住所</td>
 													<td><%= f.text_field :address,
-														style:"width:100%;" %></td>
+														style:"width:100%;", id:"address" %></td>
 												</tr>
 												<tr>
 													<td>宛名</td>

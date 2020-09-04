@@ -46,4 +46,14 @@ $(document).on("turbolinks:load", function(){
       $("html, body").animate({"scrollTop":0},300)
   });
 
+
+  $('#postcode').jpostal({
+    postcode : [
+      '#postcode'
+    ],
+    address : {
+      '#address' : '%3%4%5'
+    }
+  });
+
 })

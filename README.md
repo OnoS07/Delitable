@@ -68,6 +68,7 @@ http://delitable.work/
 - JavaScript
 	- 非同期通信 ：ajax
 	- 星評価：raty.js
+	- 郵便番号から住所自動入力：jpostal.js
 
 - AI
 	- 自然言語処理：Natural Language API
