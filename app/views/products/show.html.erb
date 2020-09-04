@@ -10,10 +10,8 @@
 			<span style="font-size: 20px;">
 				<i class="fas fa-seedling fa-lg"></i><%= @product.name %>
 			</span>
-			<!-- 星を表示 -->
 			<% if @product.reviews.present? %>
 				<div id="rate-average-<%= @product.id %>"></div>
-				<!-- 一度emptyで消してから再読み込みで二重表示を防止 -->
 				    <script>
 	                  document.addEventListener("turbolinks:before-cache", function() {
 	                    $('#rate-average-<%= @product.id %>').empty()
@@ -68,8 +66,6 @@
 			<% end %>
 		</div>
 	</div>
-<!-- 評価部分 -->
-	<!-- 評価一覧 -->
  	<div class="row" style="margin-top: 30px;">
 		<div class="col-lg-12" style="margin-top: 30px">
 			<span class="form-title">Reviews</span>
@@ -83,7 +79,6 @@
 					</div>
 					<div class="col-lg-6 col-8">
 						<p>
-							<!-- 星を表示 -->
 							<div id="star-rate-<%= review.id %>"></div>
 						    <script>
 			                  document.addEventListener("turbolinks:before-cache", function() {
@@ -132,24 +127,21 @@
 			<% end %>
 		</div>
 	</div>
-	<!-- 評価投稿部分 -->
+
 	<div class="row" style="margin-top:30px;">
 		<div class="col-lg-12">
 			<% if customer_signed_in? %>
 			<span class="form-title" style="font-size: 20px">New Review</span>
-				<!-- レビューの複数回投稿を防止 -->
 				<% if current_customer.reviewing?(@product) %>
 					<p style="margin-top: 10px">
 						レビューの投稿ありがとうございました。<br>
 						レビューは商品につき1人1回のみとなっています。
 					</p>
-				<!-- 注文履歴にこの商品がある人のみレビュー可能 -->
 				<% elsif @ordered.blank? %>
 					<p style="margin-top: 10px">
 						レビューは当商品を購入後に投稿いただけます。<br>
 						ぜひご購入し、感想をお寄せください。
 					</p>
-				<!-- まだレビューをしていないかつ購入済 -->
 				<% else %>
 					<%= form_with model:[@product, @review] do |f| %>
 					<% if flash[:review_error] %>

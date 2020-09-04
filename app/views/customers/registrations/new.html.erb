@@ -77,7 +77,7 @@
                 <p>郵便番号(ハイフンなし)</p>
               </div>
               <div class="col-lg-4">
-                 <%= f.text_field :postcode, autocomplete: "off"%>
+                 <%= f.text_field :postcode, autocomplete: "off", id:"postcode" %>
               </div>
             </div>
 
@@ -86,7 +86,7 @@
                 <p>住所</p>
               </div>
               <div class="col-lg-8">
-                 <%= f.text_field :address, autocomplete: "off" ,style:"width:100%" %>
+                 <%= f.text_field :address, autocomplete: "off" ,style:"width:100%", id:"address" %>
               </div>
             </div>
             <div class="row">
