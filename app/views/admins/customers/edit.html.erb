@@ -7,8 +7,8 @@
 		<div class="col-lg-4" style="text-align: center;">
 			<%= form_for(@customer, url: admins_customer_path, method: :patch) do |f| %>
 			<%= attachment_image_tag @customer, :profile_image, format:"jpg",
-				fallback:"logo.jpg", class:"customer-image" %>
-			<%= f.attachment_field :profile_image %>
+				fallback:"logo.jpg", class:"customer-image", id:"preview-image" %>
+			<%= f.attachment_field :profile_image, id:"select-image" %>
 		</div>
 		<div class="col-lg-8">
 			<table class="table table-borderless">

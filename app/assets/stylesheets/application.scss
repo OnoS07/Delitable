@@ -20,6 +20,7 @@
   margin:0;
   padding: 0;
 }
+
 html, body {
   height: 100%;
 }
@@ -166,6 +167,22 @@ textarea {
 .pagination {
   justify-content: flex-end;
 }
+
+input:focus{
+  border: 1.5px solid #F96167;
+  outline: none;
+  border-radius: 0.2em;
+  padding: 0.5px;
+}
+
+textarea:focus{
+  border: 1.5px solid #F96167;
+  outline: none;
+  border-radius: 0.2em;
+  padding: 2.5px;
+}
+
+
 
 @media screen and (max-width: 959px) {
   /* 959px以下に適用されるCSS（タブレット用） */

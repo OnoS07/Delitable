@@ -5,11 +5,18 @@
   	<div class="row" style="padding-top: 30px">
   		<div class="col-lg-3">
             <div style="margin-bottom:20px;">
-              <%= f.attachment_field :product_image, class: "product_image" %>
+              <%= attachment_image_tag @product, :product_image, format:"jpg",fallback:"logo.jpg",
+                  class: "product-image", id:"preview-image" %>
+              <%= f.attachment_field :product_image, id:"select-image" %>
             </div>
       </div>
       <div class="col-lg-7 offset-lg-1">
           <div class="row" style="margin-bottom: 10px;">
+            <% if flash[:notice] %>
+              <div class="bad-flash col-lg-12"><i class="fas fa-exclamation-circle">
+                <%= flash[:notice]%></i>
+              </div>
+            <% end %>
             <div class="col-lg-3">
               <p>商品名　　</p>
             </div>
@@ -42,7 +49,7 @@
                 <p>税抜価格　</p>
               </div>
               <div class="col-lg-9">
-                <%= f.text_field :price, autocomplete: "off" ,style:"width:300px" %>円
+                <%= f.text_field :price, autocomplete: "off" ,style:"width:200px" %>
               </div>
             </div>
 

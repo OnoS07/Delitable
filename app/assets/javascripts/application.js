@@ -18,7 +18,6 @@
 
 $(document).on("turbolinks:load", function(){
 
- //=skippr
   $(".top-images").skippr({
       // スライドショーの変化 ("fade" or "slide")
       transition : 'fade',
@@ -41,7 +40,7 @@ $(document).on("turbolinks:load", function(){
       // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
       hidePrevious : false
   });
- //= footer Go Topボタン
+
   $(".top-btn").click(function(){
       $("html, body").animate({"scrollTop":0},300)
   });
@@ -54,6 +53,14 @@ $(document).on("turbolinks:load", function(){
     address : {
       '#address' : '%3%4%5'
     }
+  });
+
+  $('#select-image').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $("#preview-image").attr('src', e.target.result);
+  }
+    reader.readAsDataURL(e.target.files[0]);
   });
 
 })
