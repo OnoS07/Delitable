@@ -18,7 +18,6 @@
 
 $(document).on("turbolinks:load", function(){
 
- //=skippr
   $(".top-images").skippr({
       // スライドショーの変化 ("fade" or "slide")
       transition : 'fade',
@@ -41,7 +40,7 @@ $(document).on("turbolinks:load", function(){
       // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
       hidePrevious : false
   });
- //= footer Go Topボタン
+
   $(".top-btn").click(function(){
       $("html, body").animate({"scrollTop":0},300)
   });
@@ -56,15 +55,12 @@ $(document).on("turbolinks:load", function(){
     }
   });
 
-  // inputのidから情報の取得
   $('#select-image').on('change', function (e) {
-  // ここから既存の画像のurlの取得
     var reader = new FileReader();
     reader.onload = function (e) {
       $("#preview-image").attr('src', e.target.result);
   }
-  // ここまで
-    reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+    reader.readAsDataURL(e.target.files[0]);
   });
 
 })
