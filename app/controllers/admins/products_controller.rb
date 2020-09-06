@@ -21,8 +21,12 @@ class Admins::ProductsController < ApplicationController
 
   def create
     @product = Product.new(params_product)
-    @product.save
-    redirect_to admins_products_path
+    if @product.save
+      redirect_to admins_products_path
+    else
+      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
+      render action: :new
+    end
   end
 
   def edit
@@ -31,8 +35,12 @@ class Admins::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    @product.update(params_product)
-    redirect_to admins_product_path(@product)
+    if @product.update(params_product)
+      redirect_to admins_product_path(@product)
+    else
+      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
+      render action: :edit
+    end
   end
 
   def reviews

@@ -37,7 +37,9 @@
               <p>プロフィール画像<span style="font-size: 10px"><br>(必須ではありません)</span></p>
             </div>
             <div class="col-lg-8">
-               <%= f.attachment_field :profile_image %>
+               <%= attachment_image_tag @customer, :profile_image, format:"jpg",
+                 fallback:"logo.jpg", class:"customer-image", id:"preview-image" %>
+               <%= f.attachment_field :profile_image, id:"select-image", style:"margin: 10px 0;" %>
             </div>
           </div>
 

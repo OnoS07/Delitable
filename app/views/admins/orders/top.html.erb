@@ -2,6 +2,9 @@
 	<div class="row">
 		<div class="col-lg-10 offset-lg-1">
 			<span class="form-title">管理者トップページ</span>
+			<% if flash[:notice] %>
+			 	<div class="good-flash"><i class="fas fa-check-circle"></i><%= flash[:notice]%></div>
+			<% end %>
 			<div style="margin-top: 20px">
 				<%= link_to admins_orders_path do %>
 					●本日の注文件数：<%= @orders.count %>件
