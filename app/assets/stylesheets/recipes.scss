@@ -29,7 +29,7 @@
 }
 .recipe-image-show{
   width: 100%;
-  height: 60%;
+  height: 405px;
   margin: 0 0;
   background-color: #F5F5F5;
   object-fit: contain;
@@ -56,11 +56,17 @@
   .recipe-image{
     height: 130px;
   }
+  .recipe-image-show{
+    height: 520px;
+  }
 }
 @media screen and (max-width: 480px) {
   /* 480px以下に適用されるCSS（スマホ用） */
   .recipe-image{
     height: 100px;
+  }
+  .recipe-image-show{
+    height: 260px;
   }
   .recipe-content{
     width: 45%;
