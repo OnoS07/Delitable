@@ -4,8 +4,9 @@
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 			<%= form_for(@recipe, url: admins_recipe_path) do |f| %>
-			<p>料理画像</p>
-			<%= f.attachment_field :recipe_image %>
+			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
+				fallback:"top_recipe.jpg", class:"recipe-image-show", id:"preview-image" %>
+			<%= f.attachment_field :recipe_image, id:"select-image", style:"margin: 10px 0" %>
 		</div>
 		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >レシピ</p>
