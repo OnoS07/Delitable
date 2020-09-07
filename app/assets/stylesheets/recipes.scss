@@ -20,10 +20,22 @@
 }
 
 .recipe-image{
-	width: 100%;
-	margin: 0 0;
-	border-radius: 10px;
+  width: 100%;
+  margin: 0 0;
+  height: 220px;
+  background-color: #F5F5F5;
+  object-fit: contain;
+  border-radius: 10px;
 }
+.recipe-image-show{
+  width: 100%;
+  height: 60%;
+  margin: 0 0;
+  background-color: #F5F5F5;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
 
 .recipe-show{
   width: 90%;
@@ -41,10 +53,15 @@
 
 @media screen and (max-width: 959px) {
   /* 959px以下に適用されるCSS（タブレット用） */
-
+  .recipe-image{
+    height: 130px;
+  }
 }
 @media screen and (max-width: 480px) {
   /* 480px以下に適用されるCSS（スマホ用） */
+  .recipe-image{
+    height: 100px;
+  }
   .recipe-content{
     width: 45%;
     margin: 15px 2.5%;
