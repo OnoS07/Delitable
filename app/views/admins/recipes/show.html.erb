@@ -20,7 +20,7 @@
 					class:"btn btn-danger btn-sm" %>
 			</span>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
-				fallback:"logo.jpg", class:"recipe-image", style:"margin:10px 0" %>
+				fallback:"top_recipe.jpg", class:"recipe-image-show", style:"margin:10px 0" %>
 			<% @recipe.tag_list.each do |tag| %>
 			 	<span class="recipe-tag">
 			 		<%= link_to admins_recipes_path(tag_name: tag) do %>
