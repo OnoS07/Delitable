@@ -5,7 +5,7 @@
 			<%= form_for(@recipe) do |f| %>
 			<p>料理画像</p>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
-				fallback:"top_recipe.jpg", class:"recipe-image", id:"preview-image" %>
+				fallback:"top_recipe.jpg", class:"recipe-image-show", id:"preview-image" %>
 			<%= f.attachment_field :recipe_image, id:"select-image", style:"margin: 10px 0" %><br>
 			<%= f.label :tag_list, 'タグ(間にはカンマ , をつけて下さい)'%>
 			<%= f.text_field :tag_list, value: @recipe.tag_list.join(','), class:"form-control",
