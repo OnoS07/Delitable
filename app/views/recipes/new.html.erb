@@ -3,7 +3,6 @@
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-6">
 			<%= form_for(@recipe) do |f| %>
-			<p>料理画像</p>
 			<%= attachment_image_tag @recipe, :recipe_image, format:"jpg",
 				fallback:"top_recipe.jpg", class:"recipe-image-show", id:"preview-image" %>
 			<%= f.attachment_field :recipe_image, id:"select-image", style:"margin: 10px 0" %><br>
@@ -19,18 +18,18 @@
 			 	</div>
 			<% end %>
 				<div class="row">
-					<div class="col-lg-3"></div>
+					<div class="col-lg-3">レシピ名</div>
 					<div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off",
 							style:"width:80%",placeholder:"レシピ名" %></p>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-3"></div>
-					<div class="col-lg-9"><p><%= f.text_area :introduction, autocomplete: "off",rows:"3",style:"width:100%",placeholder:"紹介文" %></p></div>
+					<div class="col-lg-3">紹介文</div>
+					<div class="col-lg-9"><p><%= f.text_area :introduction, autocomplete: "off",rows:"3",style:"width:100%",placeholder:"ポイント、特徴など" %></p></div>
 				</div>
 				<div class="row">
-					<div class="col-lg-3"></div>
-					<div class="col-lg-9"><p><%= f.text_field :amount, autocomplete: "off",style:"width:80%",placeholder:"分量(何人前)" %></p>
+					<div class="col-lg-3">分量</div>
+					<div class="col-lg-9"><p><%= f.text_field :amount, autocomplete: "off",style:"width:80%",placeholder:"何人前 何食分" %></p>
 					</div>
 				</div>
 				<div style="text-align: center;margin: 20px 0">

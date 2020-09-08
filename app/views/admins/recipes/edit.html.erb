@@ -11,17 +11,17 @@
 		<div class="col-lg-6">
 			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >レシピ</p>
 				<div class="row">
-					<div class="col-lg-3"></div>
+					<div class="col-lg-3">レシピ名</div>
 					<div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off",
 							style:"width:80%",placeholder:"レシピ名" %></p>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-3"></div>
+					<div class="col-lg-3">紹介文</div>
 					<div class="col-lg-9"><p><%= f.text_area :introduction, autocomplete: "off",rows:"3",style:"width:100%",placeholder:"紹介文" %></p></div>
 				</div>
 				<div class="row">
-					<div class="col-lg-3"></div>
+					<div class="col-lg-3">分量(何人前)</div>
 					<div class="col-lg-9"><%= f.text_field :amount, autocomplete: "off",style:"width:80%",placeholder:"分量(何人前)" %></div>
 				</div>
 				<div style="text-align: center;margin: 20px 0">
