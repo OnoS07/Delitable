@@ -53,6 +53,8 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (6.5.0)
       activerecord (>= 5.0, < 6.1)
+    acts_as_list (1.0.1)
+      activerecord (>= 4.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
@@ -362,6 +364,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 6.0)
+  acts_as_list
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1.1)
   byebug

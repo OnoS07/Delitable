@@ -25,7 +25,9 @@
 				<div class="col-lg-9 col-9"><p><%= @recipe.amount %></p></div>
 			</div>
 
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料</p>
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料
+				<span class="font-sm">:長押しで順番の入れ替え</span>
+			</p>
 
 			<span class="newform_<%= @recipe.id %>">
 				<%= render "newform", {ingredients: @ingredients, recipe: @recipe} %>

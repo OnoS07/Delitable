@@ -4,6 +4,8 @@ class RecipesController < ApplicationController
   before_action :close_recipe_show, only: [:show]
   impressionist actions: [:show], unique: %i[impressionable_id ip_address]
 
+  skip_before_action :verify_authenticity_token
+
   def ensure_correct_customer
     @recipe = Recipe.find(params[:id])
     redirect_to root_path if current_customer.id != @recipe.customer_id
@@ -106,8 +108,21 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
-  private
+  def sort_cooking
+    @recipe = Recipe.find(params[:id])
+    cooking = @recipe.cookings[params[:from].to_i]
+    cooking.insert_at(params[:to].to_i + 1)
+    head :ok
+  end
 
+  def sort_ingredient
+    @recipe = Recipe.find(params[:id])
+    ingredient = @recipe.ingredients[params[:from].to_i]
+    ingredient.insert_at(params[:to].to_i + 1)
+    head :ok
+  end
+
+  private
   def recipe_params
     params.require(:recipe).permit(:title, :introduction, :amount, :recipe_image, :recipe_status, :tag_list)
   end

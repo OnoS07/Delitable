@@ -33,9 +33,9 @@ class IngredientsController < ApplicationController
     @ingredients = @recipe.ingredients
     @recipe = Recipe.find(params[:recipe_id])
     if @ingredient.update(ingredient_params)
-      flash.now[:update] = 'UPDATE !'
+      flash[:update] = 'UPDATE !'
     else
-      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
+      flash[:notice] = '正しく入力ができていません。もう一度入力して下さい'
     end
   end
 
@@ -47,7 +47,7 @@ class IngredientsController < ApplicationController
       if @recipe.ingredients.empty?
         if (@recipe.recipe_status == '完成') || (@recipe.recipe_status == '準備中')
           @recipe.update(recipe_status: '未入力あり')
-          flash.now[:notice] = '材料が入力されていません。確認して下さい'
+          flash[:notice] = '材料が入力されていません。確認して下さい'
         end
       end
     end

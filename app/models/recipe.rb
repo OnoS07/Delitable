@@ -6,8 +6,8 @@ class Recipe < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  has_many :cookings, dependent: :destroy
-  has_many :ingredients, dependent: :destroy
+  has_many :cookings, -> { order(position: :asc) }, dependent: :destroy
+  has_many :ingredients, -> { order(position: :asc) }, dependent: :destroy
 
   attachment :recipe_image
 
