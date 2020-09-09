@@ -123,6 +123,7 @@ class RecipesController < ApplicationController
   end
 
   private
+
   def recipe_params
     params.require(:recipe).permit(:title, :introduction, :amount, :recipe_image, :recipe_status, :tag_list)
   end
