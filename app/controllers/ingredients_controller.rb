@@ -8,7 +8,7 @@ class IngredientsController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:recipe_id])
-    @ingredients = Ingredient.where(recipe_id: @recipe.id)
+    @ingredients = Ingredient.where(recipe_id: @recipe.id).order(:position)
     @ingredient = Ingredient.new
   end
 

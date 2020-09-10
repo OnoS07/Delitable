@@ -25,7 +25,7 @@ class CookingsController < ApplicationController
   def edit
     @recipe = Recipe.find(params[:recipe_id])
     @cooking = Cooking.new
-    @cookings = Cooking.where(recipe_id: @recipe.id)
+    @cookings = Cooking.where(recipe_id: @recipe.id).order(:position)
     if params[:flash]
       if @recipe.ingredients.present?
         flash[:create] = 'NEW INGREDIENT CREATE !'
