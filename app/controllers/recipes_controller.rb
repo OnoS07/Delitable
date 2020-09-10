@@ -61,8 +61,8 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     impressionist(@recipe, nil, unique: [:ip_address])
-    @ingredients = Ingredient.where(recipe_id: @recipe.id)
-    @cookings = Cooking.where(recipe_id: @recipe.id)
+    @ingredients = Ingredient.where(recipe_id: @recipe.id).order(:position)
+    @cookings = Cooking.where(recipe_id: @recipe.id).order(:position)
     @comments = Comment.where(recipe_id: @recipe.id)
     @comment = Comment.new
     flash.now[:ingredient] = '材料がまだ入力されていません。確認して下さい' if @recipe.ingredients.empty?
