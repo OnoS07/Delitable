@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     post 'customers' => 'customers/registrations#create', as: 'customer_registration'
   end
   post '/homes/guest_sign_in', to: 'homes#new_guest'
+  post '/homes/admin_sign_in', to: 'homes#new_admin'
 
   root 'homes#top'
   get '/' => 'homes#top', as: 'top'

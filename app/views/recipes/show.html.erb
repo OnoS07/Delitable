@@ -111,7 +111,7 @@
 			 		<%= flash[:ingredient]%></i>
 			 	</div>
 			<% end %>
-			<% @ingredients.each do |ingredient| %>
+			<% @recipe.ingredients.each do |ingredient| %>
 				<div class="row" style="margin-bottom: 10px">
 					<div class="col-lg-5 col-5 font-md-sp">
 						<%= ingredient.content %>
@@ -140,7 +140,7 @@
 			 	</div>
 			<% end %>
 			<% @sum = 0 %>
-			<% @cookings.each do |cooking| %>
+			<% @recipe.cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">
 					<div class="col-lg-1 col-1 font-md-sp" style="text-align: right"  >
 						<%= @sum += 1 %>.
