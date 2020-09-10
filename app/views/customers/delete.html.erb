@@ -7,11 +7,15 @@
 				退会する場合は、「退会する」をクリックしてください。
 			</p>
 			<p>
-			<%= link_to "退会しない", root_path, class:"btn btn-primary" %>
-			<%= link_to customer_path(current_customer), method: :delete,
-				data: {confirm: "本当に削除してもよろしいですか？"},
-				class:"btn btn-danger", style:"margin-left:20px;padding:auto 10px;" do %>
-				<span style="margin:auto 10px ">退会する</span>
+			<% if current_customer.email == "gest@gest" %>
+				<span>※ゲストアカウントのため、退会機能は使用できません</span>
+			<% else %>
+				<%= link_to "退会しない", root_path, class:"btn btn-primary" %>
+					<%= link_to customer_path(current_customer), method: :delete,
+						data: {confirm: "本当に削除してもよろしいですか？"},
+						class:"btn btn-danger", style:"margin-left:20px;padding:auto 10px;" do %>
+						<span style="margin:auto 10px ">退会する</span>
+					<% end %>
 			<% end %>
 			</p>
 		</div>
