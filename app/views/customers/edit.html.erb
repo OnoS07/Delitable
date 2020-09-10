@@ -49,7 +49,11 @@
 				</tr>
 				<tr>
 					<td class="align-middle">メールアドレス</td>
-					<td class="align-middle"><%= f.text_field :email %></td>
+					<% if current_customer.email = "gest@gest" %>
+						<td>ゲストアカウントのため、メールアドレスの変更はできません</td>
+					<% else %>
+						<td class="align-middle"><%= f.text_field :email %></td>
+					<% end %>
 				</tr>
 			</table>
 		</div>
