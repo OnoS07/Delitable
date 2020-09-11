@@ -17,6 +17,9 @@ ja:
         content: '作り方'
       comment:
         content: 'コメント本文'
+      review:
+        content: '感想'
+        rate: '評価'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
