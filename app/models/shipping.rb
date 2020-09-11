@@ -4,7 +4,8 @@ class Shipping < ApplicationRecord
     "〒#{postcode} #{address} #{name}"
   end
 
-  validates :postcode, presence: true, format: { with: /\A\d{7}\z/ }
+  validates :postcode, presence: true
+  validates :postcode, format: { with: /\A\d{7}\z/ }, if: proc{ |s| s.postcode.present?}
   validates :address, presence: true
   validates :name, presence: true
 end

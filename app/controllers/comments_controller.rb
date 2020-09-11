@@ -8,9 +8,6 @@ class CommentsController < ApplicationController
     @comments = @recipe.comments.all
     if @comment.save
       flash.now[:comment] = 'NEW COMMENT CREATE !'
-    else
-      redirect_to recipe_path(@recipe, anchor: 'comments')
-      flash[:not_comment] = '正しく入力ができていません。もう一度入力して下さい'
     end
   end
 

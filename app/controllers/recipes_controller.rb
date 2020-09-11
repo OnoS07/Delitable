@@ -34,7 +34,6 @@ class RecipesController < ApplicationController
       flash[:create] = 'NEW RECIPE CREATE !'
       redirect_to edit_recipe_ingredients_path(@recipe)
     else
-      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
       render 'recipes/new'
     end
   end
@@ -96,7 +95,6 @@ class RecipesController < ApplicationController
         redirect_to recipe_path(@recipe)
       else
         @recipe = Recipe.find(params[:id])
-        flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
         render 'recipes/edit'
       end
     end

@@ -24,7 +24,6 @@ class ShippingsController < ApplicationController
       flash[:create] = 'NEW SHIPPING ! '
     else
       @shippings = Shipping.where(customer_id: current_customer.id).page(params[:page]).per(10)
-      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
       render 'shippings/index'
     end
   end
@@ -36,8 +35,6 @@ class ShippingsController < ApplicationController
       redirect_to customers_shippings_path
       flash[:create] = 'UPDATE ! '
     else
-      @shipping = Shipping.find(params[:id])
-      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
       render 'shippings/edit'
     end
   end

@@ -1,2 +1,3 @@
 $("textarea").val("");
 $(".comment_<%= @recipe.id %>").html("<%= j(render 'recipes/comment', comments: @comments ) %>");
+$("#error_explanation").html("<%= j(render 'layouts/error', { object: @comment }) %>");

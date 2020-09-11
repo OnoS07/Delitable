@@ -11,6 +11,12 @@
 				placeholder: "豚肉,玉ねぎ,パスタ、、、" %>
 		</div>
 		<div class="col-lg-6">
+			<ul>
+              <% @recipe.errors.full_messages.each do |message| %>
+                <div class="bad-flash"><i class="fas fa-exclamation-circle"></i>
+                  <%= message %>
+              <% end %>
+            </ul>
 			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >レシピ</p>
 			<% if flash[:notice] %>
 			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
@@ -33,7 +39,7 @@
 					</div>
 				</div>
 				<div style="text-align: center;margin: 20px 0">
-					<%= f.submit "保存して材料を追加する", class:"btn btn-warning" %>
+					<%= f.submit class:"btn btn-warning submit-btn" %>
 				</div>
 			<% end %>
 		</div>

@@ -1,6 +1,22 @@
 ---
 ja:
   activerecord:
+    attributes:
+      shipping:
+        postcode: '郵便番号'
+        address: '住所'
+        name: '宛名'
+      recipe:
+        title: 'レシピ名'
+        introduction: '紹介文'
+        amount: '分量'
+      ingredient:
+        content: '材料'
+        amount: '分量'
+      cooking:
+        content: '作り方'
+      comment:
+        content: 'コメント本文'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

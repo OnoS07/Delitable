@@ -9,12 +9,12 @@
 					<% if @recipe.recipe_status == "準備中" %>
 						<%= form_for(@recipe) do |f| %>
 							<%= f.hidden_field :recipe_status, value: "完成" %>
-							<%= f.submit "公開する", class:"btn btn-warning" %>
+							<%= f.submit "公開する", class:"btn btn-warning submit-btn" %>
 						<% end %>
 					<% elsif  @recipe.recipe_status == "完成" %>
 						<%= form_for(@recipe) do |f| %>
 							<%= f.hidden_field :recipe_status, value: "準備中" %>
-							<%= f.submit "非公開にする", class:"btn btn-warning" %>
+							<%= f.submit "非公開", class:"btn btn-warning submit-btn" %>
 						<% end %>
 					<% end %>
 					<span style="float: right">
@@ -163,11 +163,12 @@
 				<div class="row" style="margin-top: 30px">
 					<div class="col-lg-12 col-12">
 						<span class="form-title" style="font-size: 20px">New Comment</span>
+						<div id="error_explanation"><%= render "layouts/error", {object: @comment} %></div>
 						<%= form_with model:[@recipe, @comment] do |f| %>
 							<%= f.text_area :content, rows:"2", autocomplete: "off",
 								style:"width:80%;", class:"font-md-sp" %><br>
 							<%= f.hidden_field :recipe_id, value: @recipe.id %>
-							<%= f.submit "コメントする", class:"btn btn-warning" %>
+							<%= f.submit "コメント", class:"btn btn-warning submit-btn" %>
 						<% end %>
 					</div>
 				</div>

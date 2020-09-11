@@ -28,11 +28,10 @@
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料
 				<span class="font-sm">:長押しで順番の入れ替え</span>
 			</p>
-
+			<div id="error_explanation"><%= render "layouts/error", {object: @ingredient} %></div>
 			<span class="newform_<%= @recipe.id %>">
-				<%= render "newform", {ingredients: @ingredients, recipe: @recipe} %>
+				<%= render "newform", {ingredients: @ingredients, ingredient: @ingredient, recipe: @recipe} %>
 			</span>
-
 			<%= form_for(@ingredient, url:recipe_ingredients_path, remote: true) do |f| %>
 				<div class="row" style="padding-top: 30px;">
 					<div class="col-lg-6 col-5">
@@ -43,20 +42,17 @@
 					</div>
 					<div class="col-lg-3 col-4">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>
-						<%= f.submit "追加", class:"btn btn-warning btn-sm" %>
+						<%= f.submit "追加", class:"btn btn-warning submit-btn-sm" %>
 					</div>
 				</div>
 			<% end %>
 			<div style="text-align: center; margin-top: 30px;">
 
 				<% if @recipe.cookings.empty?  %>
-					<%= link_to "保存する",edit_recipe_cookings_path(@recipe, flash: "create"),
-					class:"btn btn-warning" %>
-
+					<%= link_to "保存する",edit_recipe_cookings_path(@recipe), class:"btn btn-warning" %>
 				<% elsif @recipe.recipe_status == "完成" or @recipe.recipe_status == "未入力あり" or
 						 @recipe.recipe_status == "準備中" %>
 					<%= link_to "戻る",recipe_path(@recipe), class:"btn btn-warning" %>
-
 				<% else %>
 					<%= form_with(url: recipe_path(@recipe),remote: true,  method: :patch) do |f| %>
 						<%= f.hidden_field :recipe_status, value:"完成" %>
