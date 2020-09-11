@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container", style="padding-bottom: 100px;">
 	<div class="row">
 		<div class="col-lg-12">
 			<span class="form-title">
@@ -45,13 +45,14 @@
 								<%= f.radio_button :order_address, "2" %>登録済み住所から選択
 							</label>
 							<div style="margin-left: 40px">
-							 <%= f.collection_select(:select_address, @shipping, :id,:finally_address)%>
+							 <%= f.collection_select(:select_address, @shippings, :id,:finally_address)%>
 							</div>
 						</p>
 						<p>
 							<label>
 							<%= f.radio_button :order_address, "3" %>新しいお届け先
 							</label>
+							<div id="error_explanation"><%= render "layouts/error", {object: @shipping} %></div>
 								<div style="margin-left: 40px">
 									<div class="row">
 										<div class="col-lg-8 col-12">
@@ -78,7 +79,7 @@
 					</div>
 					</div>
 					<div style="text-align: center;">
-						<%= f.submit "確認画面へ進む", class:"btn btn-warning btn-center" %>
+						<%= f.submit "確認画面", class:"btn btn-warning submit-btn" %>
 					</div>
 				<% end %>
 			</div>

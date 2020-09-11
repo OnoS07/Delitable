@@ -17,7 +17,8 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @shipping = Shipping.where(customer_id: current_customer.id)
+    @shipping = Shipping.new
+    @shippings = Shipping.where(customer_id: current_customer.id)
     if current_customer.cart_items.blank?
       redirect_to cart_item_confirm_path
       flash[:notice] = '購入する商品がカートに入っていません'
@@ -53,8 +54,8 @@ class OrdersController < ApplicationController
       @shipping.address = @order.address
       @shipping.name = @order.name
       unless @shipping.save
-        redirect_back(fallback_location: root_path)
-        flash[:notice] = '正しく入力ができていません。もう一度入力して下さい'
+        @shippings = Shipping.where(customer_id: current_customer.id)
+        render action: :new
       end
     end
   end
