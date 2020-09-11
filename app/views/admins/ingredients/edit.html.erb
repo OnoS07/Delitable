@@ -25,6 +25,15 @@
 			</div>
 
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料</p>
+			<% if flash[:error_messages].present? %>
+				<ul>
+                    <% flash[:error_messages].each do |message| %>
+				        <div class="bad-flash"><i class="fas fa-exclamation-circle"></i>
+              				<%= message %>
+              			</div>
+				     <% end %>
+	            </ul>
+           	<% end %>
 			<% @recipe.ingredients.each do |ingredient| %>
 				<%= form_with(model:ingredient, url:admins_recipe_ingredient_path(@recipe, ingredient), method: :patch) do |f| %>
 					<div class="row" style="padding-top: 10px">
@@ -35,9 +44,10 @@
 							<%= f.text_field :amount, :size=>"8", placeholder:"分量" %>
 						</div>
 						<div class="col-lg-3">
-							<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
+							<%= f.submit "変更", class:"btn btn-warning submit-btn-sm" %>
 							<%= link_to "削除", admins_recipe_ingredient_path(@recipe, ingredient),
-								method: :delete, class:"btn btn-danger btn-sm" %>
+								method: :delete, class:"btn btn-danger btn-sm",
+								data: {confirm: "本当に削除してもよろしいですか？"} %>
 						</div>
 					</div>
 				<% end %>

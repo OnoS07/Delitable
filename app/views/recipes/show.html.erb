@@ -14,7 +14,7 @@
 					<% elsif  @recipe.recipe_status == "完成" %>
 						<%= form_for(@recipe) do |f| %>
 							<%= f.hidden_field :recipe_status, value: "準備中" %>
-							<%= f.submit "非公開", class:"btn btn-warning submit-btn" %>
+							<%= f.submit "公開しない", class:"btn btn-warning submit-btn" %>
 						<% end %>
 					<% end %>
 					<span style="float: right">
