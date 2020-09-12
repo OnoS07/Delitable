@@ -73,6 +73,4 @@ Rails.application.routes.draw do
     resource :cookings, only: %i[edit]
   end
 
-  patch 'recipe/:id/sort_cooking', to: 'recipes#sort_cooking'
-  patch 'recipe/:id/sort_ingredient', to: 'recipes#sort_ingredient'
 end

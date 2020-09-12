@@ -2,27 +2,24 @@
  	<div class="good-flash"><i class="fas fa-check-circle"></i><%= flash[:update]%></div>
 <% end %>
 <% @sum = 0 %>
-<ul id="sortable_cooking" style="list-style: none;">
-	<% recipe.cookings.each do |cooking| %>
-		<%= form_for [recipe, cooking], remote: true do |f| %>
-			<div class="row" style="margin-bottom: 10px">
-			<div id="move_<%= recipe.id %>" class="col-lg-1 col-2">
-				<%= render 'move', { cooking: cooking, recipe: recipe } %>
+<% recipe.cookings.each do |cooking| %>
+	<%= form_for [recipe, cooking], remote: true do |f| %>
+		<div class="row" style="margin-bottom: 10px">
+		<div id="move_<%= recipe.id %>" class="col-lg-1 col-2">
+			<%= render 'move', { cooking: cooking, recipe: recipe } %>
+		</div>
+			<div class="col-lg-9 col-10">
+				<%= f.text_area :content, style:"width:100%" %>
 			</div>
-				<div class="col-lg-9 col-10">
-					<%= f.text_area :content, style:"width:100%" %>
-				</div>
-				<div class="col-lg-2 col-12" style="text-align: right">
-					<%= f.submit "変更", class:"btn btn-warning submit-btn-sm" %>
-					<%= link_to "削除", recipe_cooking_path(@recipe, cooking),method: :delete,
-						data: {confirm: "本当に削除してもよろしいですか？"},
-						class:"btn btn-danger btn-sm", remote: true %>
-				</div>
+			<div class="col-lg-2 col-12" style="text-align: right">
+				<%= f.submit "変更", class:"btn btn-warning submit-btn-sm" %>
+				<%= link_to "削除", recipe_cooking_path(@recipe, cooking),method: :delete,
+					data: {confirm: "本当に削除してもよろしいですか？"},
+					class:"btn btn-danger btn-sm", remote: true %>
 			</div>
-		<% end %>
+		</div>
 	<% end %>
-	<%= hidden_field_tag :recipe_id, recipe.id %>
-</ul>
+<% end %>
 <% if flash[:notice] %>
  	<div class="bad-flash"><i class="fas fa-exclamation-circle"><%= flash[:notice]%></i></div>
 <% end %>
