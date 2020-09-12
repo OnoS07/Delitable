@@ -13,7 +13,7 @@
 					<%= f.text_field :amount, :size=>"8", placeholder:"分量" %>
 				</div>
 				<div class="col-lg-3 col-4">
-					<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
+					<%= f.submit "変更", class:"btn btn-warning btn-sm submit-btn-sm" %>
 					<%= link_to "削除", recipe_ingredient_path(recipe, ingredient),
 						method: :delete, data: {confirm: "本当に削除してもよろしいですか？"},
 						class:"btn btn-danger btn-sm", remote: true %>
@@ -24,7 +24,3 @@
 	<% end %>
 	<%= hidden_field_tag :recipe_id, recipe.id %>
 </ul>
-
-<% if flash[:notice] %>
- 	<div class="bad-flash"><i class="fas fa-exclamation-circle"><%= flash[:notice]%></i></div>
-<% end %>

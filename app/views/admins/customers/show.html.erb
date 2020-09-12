@@ -17,7 +17,7 @@
 		<div class="col-lg-8">
 			<table class="table table-bordered">
 				<tr>
-					<td class="align-middle" style="width: 200px;">ユーザー名</td>
+					<td class="align-middle" style="width: 200px;">ニックネーム</td>
 					<td class="align-middle"><%= @customer.account_name %></td>
 				</tr>
 					<td class="align-middle">自己紹介</td>
@@ -55,13 +55,13 @@
 				<div class="col-lg-4">
 					<%= form_with url: admins_orders_path, method: :get, local: true do |f| %>
 						<%= f.hidden_field :customer_id, :value => @customer.id %>
-						<%= f.submit "注文履歴一覧" ,class:"btn btn-warning" %>
+						<%= f.submit "注文一覧" ,class:"btn btn-warning submit-btn" %>
 					<% end %>
 				</div>
 				<div class="col-lg-4">
 					<%= form_with url: admins_recipes_path, method: :get, local: true do |f| %>
 						<%= f.hidden_field :customer_id, :value => @customer.id %>
-						<%= f.submit "作成レシピ一覧" ,class:"btn btn-warning" %>
+						<%= f.submit "レシピ一覧" ,class:"btn btn-warning submit-btn" %>
 					<% end %>
 				</div>
 			</div>

@@ -79,7 +79,7 @@
       <% @product.reviews.each do |review| %>
         <div class="row" style="margin-top: 10px">
           <div class="col-lg-4" style="text-align: center">
-            <%= link_to customer_path(review.customer) do %>
+            <%= link_to admins_customer_path(review.customer) do %>
               <%= attachment_image_tag review.customer, :profile_image, format:"jpg",
                 fallback:"logo.jpg", class:"comment-image" %>
             <% end %>

@@ -28,8 +28,11 @@ class Admins::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    @recipe.update(recipe_params)
-    redirect_to admins_recipe_path(@recipe)
+    if @recipe.update(recipe_params)
+      redirect_to admins_recipe_path(@recipe)
+    else
+      render :edit
+    end
   end
 
   def destroy

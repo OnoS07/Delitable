@@ -8,10 +8,10 @@ class ReviewsController < ApplicationController
     review.score = documentSentiment['score']
     if review.save
       flash[:review_create] = 'NEW REVIEW CREATE !'
+      redirect_to product_path(product)
     else
-      flash[:review_error] = '評価が入力されていません'
+      redirect_to product_path(product), flash: { error_messages: review.errors.full_messages }
     end
-    redirect_to product_path(product)
   end
 
   def destroy

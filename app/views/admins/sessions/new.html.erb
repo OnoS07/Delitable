@@ -3,7 +3,11 @@
     <div class="col-lg-8 offset-lg-2">
       <h2 style="padding-bottom: 20px"><span>管理者ログイン</span></h2>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
+        <% if flash[:alert] %>
+          <div class="bad-flash"><i class="fas fa-exclamation-circle"></i>
+            <%= flash[:alert]%>
+          </div>
+        <% end %>
           <div class="row">
             <div class="col-lg-4">
               <p>メールアドレス</p>
@@ -26,11 +30,6 @@
             <div class="col-lg-12", style="text-align:center;">
               <%= f.submit "ログイン" ,class:"btn btn-warning btn-lg",
                 style:"padding:5px 30px;margin-bottom:30px;" %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12", style="text-align:center;">
-              <%= link_to '簡単ログイン', homes_admin_sign_in_path, method: :post,class:"btn btn-warning btn-lg" %>
             </div>
           </div>
         <% end %>

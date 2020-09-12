@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_customer!, only: %i[new create edit update destroy]
   before_action :ensure_correct_customer, only: %i[edit update destroy]
   before_action :close_recipe_show, only: [:show]
-  impressionist actions: [:show], unique: %i[impressionable_id ip_address]
+  impressionist actions: [:show]
 
   skip_before_action :verify_authenticity_token
 
@@ -34,8 +34,7 @@ class RecipesController < ApplicationController
       flash[:create] = 'NEW RECIPE CREATE !'
       redirect_to edit_recipe_ingredients_path(@recipe)
     else
-      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
-      render 'recipes/new'
+      render :new
     end
   end
 
@@ -95,9 +94,7 @@ class RecipesController < ApplicationController
         flash[:create] = 'UPDATE !'
         redirect_to recipe_path(@recipe)
       else
-        @recipe = Recipe.find(params[:id])
-        flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
-        render 'recipes/edit'
+        render :edit
       end
     end
   end

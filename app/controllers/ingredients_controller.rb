@@ -22,9 +22,6 @@ class IngredientsController < ApplicationController
       elsif (@recipe.recipe_status == '未入力あり') && @recipe.cookings.present?
         @recipe.update(recipe_status: '準備中')
       end
-    else
-      redirect_to edit_recipe_ingredients_path(@recipe)
-      flash[:notice] = '正しく入力ができていません。もう一度入力して下さい'
     end
   end
 
@@ -32,11 +29,7 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find(params[:id])
     @ingredients = @recipe.ingredients
     @recipe = Recipe.find(params[:recipe_id])
-    if @ingredient.update(ingredient_params)
-      flash[:update] = 'UPDATE !'
-    else
-      flash[:notice] = '正しく入力ができていません。もう一度入力して下さい'
-    end
+    flash.now[:update] = 'UPDATE !' if @ingredient.update(ingredient_params)
   end
 
   def destroy

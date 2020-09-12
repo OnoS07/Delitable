@@ -52,7 +52,7 @@
 						<%= f.select :count, [["1","1"],["2","2"],["3","3"],["4","4"],["5","5"], ["6","6"],["7","7"],["8","8"],["9","9"],["10","10"]],
 								include_blank: "個数選択" %>
 						<%= f.hidden_field :product_id, :value => @product.id %>
-						<%= f.submit "カートに入れる", class:"btn btn-warning" %>
+						<%= f.submit "購入する", class:"btn btn-warning submit-btn" %>
 					</div>
 					<span style="font-size: 10px;float: right">(1度に10個までご購入いただけます)</span>
 				<% end %>
@@ -143,14 +143,18 @@
 						ぜひご購入し、感想をお寄せください。
 					</p>
 				<% else %>
+					<% if flash[:error_messages].present? %>
+						<ul>
+	                        <% flash[:error_messages].each do |message| %>
+						        <div class="bad-flash"><i class="fas fa-exclamation-circle"></i>
+	                  				<%= message %>
+	                  			</div>
+						     <% end %>
+			            </ul>
+		           	<% end %>
 					<%= form_with model:[@product, @review] do |f| %>
-					<% if flash[:review_error] %>
-					 	<div class="bad-flash">
-					 		<i class="fas fa-exclamation-circle"> <%= flash[:review_error]%></i>
-					 	</div>
-					<% end %>
 					    <div id="star">
-					        <%= f.label :rate,  "評価 (※必須)" %>
+					        <%= f.label :rate,  "評価" %>
 					        <%= f.hidden_field :rate, id: :review_star %>
 					    </div>
 					    	<script>
@@ -170,7 +174,7 @@
 							placeholder:"食べた感想など" %>
 							<br>
 						<%= f.hidden_field :product_id, value: @product.id %>
-						<%= f.submit "レビューする", class:"btn btn-warning" %>
+						<%= f.submit "レビュー", class:"btn btn-warning submit-btn" %>
 					<% end %>
 				<% end %>
 			<% end %>

@@ -44,6 +44,7 @@
 			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >作り方
 				<span class="font-sm">:長押しで順番の入れ替え</span>
 			</p>
+			<div id="error_explanation"><%= render "layouts/error", {object: @cooking} %></div>
 			<span class="newform_<%= @recipe.id %>">
 				<%= render "newform", {cookings: @cookings, recipe: @recipe} %>
 			</span>
@@ -55,7 +56,7 @@
 					</div>
 					<div class="col-lg-2 col-2">
 						<%= f.hidden_field :recipe_id, value:@recipe.id %>
-						<%= f.submit "追加", class:"btn btn-warning btn-sm" %>
+						<%= f.submit "追加", class:"btn btn-warning submit-btn-sm" %>
 					</div>
 				</div>
 			<% end %>
@@ -72,8 +73,7 @@
 				<% else %>
 					<%= form_with(url: recipe_path(@recipe),remote: true,  method: :patch) do |f| %>
 						<%= f.hidden_field :recipe_status, value:"完成" %>
-						<%= f.submit "レシピを投稿する",class:"btn btn-warning",
-							style:"padding: 5px 30px"  %>
+						<%= f.submit "投稿する", class:"btn btn-warning submit-btn" %>
 					<% end %>
 				<% end %>
 			</div>

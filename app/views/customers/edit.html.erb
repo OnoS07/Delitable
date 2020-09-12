@@ -13,14 +13,10 @@
 			<%= f.attachment_field :profile_image, id:"select-image" %>
 		</div>
 		<div class="col-lg-8 col-12">
-			<% if flash[:notice] %>
-			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
-			 		<%= flash[:notice]%></i>
-			 	</div>
-			<% end %>
+			<div id="error_explanation"><%= render "layouts/error", {object: @customer} %></div>
 			<table class="table table-borderless">
 				<tr>
-					<td class="align-middle" style="width: 200px;">ユーザー名</td>
+					<td class="align-middle" style="width: 200px;">ニックネーム</td>
 					<td class="align-middle"><%= f.text_field :account_name %></td>
 				</tr>
 				<tr>
@@ -60,7 +56,7 @@
 	</div>
 	<div class="row" style="text-align: center;">
 		<div class="col-lg-12">
-			<%= f.submit "変更する", class:"btn btn-warning btn-center" %>
+			<%= f.submit class:"btn-warning btn submit-btn" %>
 		</div>
 	</div>
 	<% end %>

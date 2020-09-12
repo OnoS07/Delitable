@@ -38,8 +38,7 @@ class Admins::ProductsController < ApplicationController
     if @product.update(params_product)
       redirect_to admins_product_path(@product)
     else
-      flash.now[:notice] = '正しく入力ができていません。もう一度入力して下さい'
-      render action: :edit
+      render :edit
     end
   end
 

@@ -43,11 +43,7 @@
 	<div class="row" style="margin-top: 30px">
 		<div class="col-lg-12">
 			<span class="form-title" style="font-size: 20px">New Shipping</span>
-			<% if flash[:notice] %>
-			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
-			 		<%= flash[:notice]%></i>
-			 	</div>
-			<% end %>
+			<div id="error_explanation"><%= render "layouts/error", {object: @shipping} %></div>
 			<%= form_for(@shipping, url: customers_shippings_path) do |f| %>
 				<table class="table table-borderless">
 					<tr>
@@ -64,7 +60,7 @@
 					</tr>
 				</table>
 			<div style="text-align:center">
-				<%= f.submit "保存する", class:"btn btn-warning"%>
+				<%= f.submit "保存する", class:"btn btn-warning submit-btn"%>
 			</div>
 			<% end %>
 		</div>

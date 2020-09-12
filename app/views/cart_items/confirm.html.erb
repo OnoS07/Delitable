@@ -42,7 +42,7 @@
 						<td class="align-middle">
 							<%= form_with model:cart_item, url:customers_cart_item_path(cart_item),method: :patch, local: true do |f| %>
 							<%= f.text_field :count, :size=>"3" %>
-							<%= f.submit "更新", class:"btn btn-warning btn-sm" %>
+							<%= f.submit "更新", class:"btn btn-warning submit-btn-sm" %>
 							<% end %>
 						</td>
 						<td class="align-middle">

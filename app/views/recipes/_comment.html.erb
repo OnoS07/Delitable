@@ -32,11 +32,6 @@
 	</div>
 </div>
 <% end %>
-<% if flash[:not_comment] %>
- 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
- 		<%= flash[:not_comment]%></i>
- 	</div>
-<% end %>
 <% if flash[:comment] %>
  	<div class="good-flash"><i class="fas fa-check-circle"></i>
  		<%= flash[:comment]%>

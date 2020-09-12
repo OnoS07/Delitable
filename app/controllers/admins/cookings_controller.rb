@@ -7,8 +7,11 @@ class Admins::CookingsController < ApplicationController
   def update
     @cooking = Cooking.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
-    @cooking.update(cooking_params)
-    redirect_back(fallback_location: root_path)
+    if @cooking.update(cooking_params)
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_to edit_admins_recipe_cooking_path(@recipe, @cooking), flash: { error_messages: @cooking.errors.full_messages }
+    end
   end
 
   def destroy

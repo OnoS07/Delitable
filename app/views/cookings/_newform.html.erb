@@ -12,7 +12,7 @@
 					<%= f.text_area :content, style:"width:100%" %>
 				</div>
 				<div class="col-lg-2 col-12">
-					<%= f.submit "変更", class:"btn btn-warning btn-sm" %>
+					<%= f.submit "変更", class:"btn btn-warning submit-btn-sm" %>
 					<%= link_to "削除", recipe_cooking_path(@recipe, cooking),method: :delete,
 						data: {confirm: "本当に削除してもよろしいですか？"},
 						class:"btn btn-danger btn-sm", remote: true %>

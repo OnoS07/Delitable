@@ -11,9 +11,10 @@
 			<%= f.attachment_field :profile_image, id:"select-image" %>
 		</div>
 		<div class="col-lg-8">
+			<div id="error_explanation"><%= render "layouts/error", {object: @customer} %></div>
 			<table class="table table-borderless">
 				<tr>
-					<td class="align-middle" style="width: 200px;">ユーザー名</td>
+					<td class="align-middle" style="width: 200px;">ニックネーム</td>
 					<td class="align-middle"><%= f.text_field :account_name %></td>
 				</tr>
 				<tr>
@@ -40,18 +41,27 @@
 				</tr>
 				<tr>
 					<td class="align-middle">メールアドレス</td>
-					<td class="align-middle"><%= f.text_field :email %></td>
+					<% if @customer.email == "gest@gest" %>
+						<td>ゲストアカウントのため、メールアドレスの変更はできません</td>
+					<% else %>
+						<td class="align-middle"><%= f.text_field :email %></td>
+					<% end %>
 				</tr>
-				<tr>会員ステータス
+				<tr>
+					<td class="align-middle">会員ステータス</td>
 					<td>
+					<% if @customer.email == "gest@gest" %>
+						ゲストアカウントのため、退会はできません
+					<% else %>
 							<%= f.radio_button :is_active, "有効" %>
 							<%= f.label :is_active,"有効", style: "dispaly: inline-block;" %>
-						<%= f.radio_button :is_active, "退会済" %>
-						<%= f.label :is_active, "退会", style: "display: inline-block;" %>
+							<%= f.radio_button :is_active, "退会済" %>
+							<%= f.label :is_active, "退会", style: "display: inline-block;" %>
+					<% end %>
 					</td>
 				</tr>
 			</table>
-			<%= f.submit "変更を保存する", class:"btn btn-warning" %>
+			<%= f.submit class:"btn btn-warning submit-btn" %>
 		</div>
 		<% end %>
 	</div>
