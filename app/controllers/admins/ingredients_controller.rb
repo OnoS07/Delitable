@@ -2,7 +2,6 @@ class Admins::IngredientsController < ApplicationController
   before_action :authenticate_admin!
   def edit
     @recipe = Recipe.find(params[:recipe_id])
-
   end
 
   def update
@@ -10,10 +9,9 @@ class Admins::IngredientsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     if @ingredient.update(ingredient_params)
       redirect_back(fallback_location: root_path)
-     else
-      redirect_to edit_admins_recipe_ingredient_path(@recipe, @ingredient),:flash=>{error_messages: @ingredient.errors.full_messages}
+    else
+      redirect_to edit_admins_recipe_ingredient_path(@recipe, @ingredient), flash: { error_messages: @ingredient.errors.full_messages }
     end
-
   end
 
   def destroy

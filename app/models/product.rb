@@ -11,5 +11,5 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
-  validates :price, numericality: { greater_than: 0 }, if: proc{ |s| s.price.present?}
+  validates :price, numericality: { greater_than: 0 }, if: proc { |s| s.price.present? }
 end

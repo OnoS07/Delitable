@@ -29,9 +29,7 @@ class CookingsController < ApplicationController
     @cooking = Cooking.find(params[:id])
     @cookings = @recipe.cookings.all
     @recipe = Recipe.find(params[:recipe_id])
-    if @cooking.update(cooking_params)
-      flash.now[:update] = 'UPDATE !'
-    end
+    flash.now[:update] = 'UPDATE !' if @cooking.update(cooking_params)
   end
 
   def destroy

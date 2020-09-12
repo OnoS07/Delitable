@@ -29,9 +29,7 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find(params[:id])
     @ingredients = @recipe.ingredients
     @recipe = Recipe.find(params[:recipe_id])
-    if @ingredient.update(ingredient_params)
-      flash.now[:update] = 'UPDATE !'
-    end
+    flash.now[:update] = 'UPDATE !' if @ingredient.update(ingredient_params)
   end
 
   def destroy

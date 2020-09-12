@@ -10,7 +10,7 @@ class Admins::CookingsController < ApplicationController
     if @cooking.update(cooking_params)
       redirect_back(fallback_location: root_path)
     else
-      redirect_to edit_admins_recipe_cooking_path(@recipe, @cooking),:flash=>{error_messages: @cooking.errors.full_messages}
+      redirect_to edit_admins_recipe_cooking_path(@recipe, @cooking), flash: { error_messages: @cooking.errors.full_messages }
     end
   end
 

@@ -6,9 +6,7 @@ class CommentsController < ApplicationController
     @comment.recipe_id = params[:recipe_id]
     @recipe = Recipe.find(params[:recipe_id])
     @comments = @recipe.comments.all
-    if @comment.save
-      flash.now[:comment] = 'NEW COMMENT CREATE !'
-    end
+    flash.now[:comment] = 'NEW COMMENT CREATE !' if @comment.save
   end
 
   def destroy

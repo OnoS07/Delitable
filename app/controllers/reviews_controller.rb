@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
       flash[:review_create] = 'NEW REVIEW CREATE !'
       redirect_to product_path(product)
     else
-      redirect_to product_path(product),:flash=>{error_messages: review.errors.full_messages}
+      redirect_to product_path(product), flash: { error_messages: review.errors.full_messages }
     end
   end
 

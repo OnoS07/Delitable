@@ -14,7 +14,7 @@ class Admins::GenresController < ApplicationController
       redirect_to admins_genres_path
     else
       @genres = Genre.all
-      redirect_to admins_genres_path,:flash=>{error_messages: genre.errors.full_messages}
+      redirect_to admins_genres_path, flash: { error_messages: genre.errors.full_messages }
     end
   end
 
