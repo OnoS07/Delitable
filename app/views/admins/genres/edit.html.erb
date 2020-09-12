@@ -3,6 +3,7 @@
 		<div class="col-lg-12">
 			<span class="form-title">ジャンル編集</span>
 			<span style="margin-left: 10px;font-size: 15px;"><%= link_to ">back", admins_genres_path %></span>
+		<div id="error_explanation"><%= render "layouts/error", {object: @genre} %></div>
 		  <%= form_with(model: @genre, url: admins_genre_path, method: :patch,
 		  		local: true) do |f| %>
 		  <div style="margin: 20px 0">

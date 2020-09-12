@@ -27,8 +27,10 @@ class Admins::CustomersController < ApplicationController
       elsif @customer.is_active == '有効'
         @customer.restore
       end
+      redirect_to admins_customer_path(@customer)
+    else
+      render :edit
     end
-    redirect_to admins_customer_path(@customer)
   end
 
   def customer_params

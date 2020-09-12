@@ -20,6 +20,13 @@ ja:
       review:
         content: '感想'
         rate: '評価'
+      product:
+        name: '商品名'
+        introduction: '紹介文'
+        price: '税抜価格'
+      genre:
+        name: 'ジャンル名'
+        introduction: '紹介文'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

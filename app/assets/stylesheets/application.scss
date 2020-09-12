@@ -107,6 +107,7 @@ a{
   width: 60px;
   height: 32px;
   font-size: 15px;
+  line-height: 16px;
 }
 
 textarea {
@@ -275,6 +276,12 @@ textarea:focus{
   .submit-btn{
     width: 55px;
     height: 27px;
+  }
+
+  .submit-btn-sm{
+    width: 40px;
+    height: 20px;
+    line-height: 10px;
   }
 
   .br-pc {

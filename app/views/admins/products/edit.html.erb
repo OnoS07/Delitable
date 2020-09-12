@@ -13,12 +13,8 @@
             </div>
       </div>
       <div class="col-lg-7 offset-lg-1">
+          <div id="error_explanation"><%= render "layouts/error", {object: @product} %></div><br>
           <div class="row" style="margin-bottom: 10px;">
-            <% if flash[:notice] %>
-              <div class="bad-flash col-lg-12"><i class="fas fa-exclamation-circle">
-                <%= flash[:notice]%></i>
-              </div>
-            <% end %>
             <div class="col-lg-3">
               <p>商品名　　</p>
             </div>

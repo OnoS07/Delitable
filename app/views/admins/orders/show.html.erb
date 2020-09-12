@@ -30,7 +30,7 @@
               <td>
               	<%= form_for(@order, url: admins_order_path(@order), method: :patch) do |f| %>
               		<%= f.select :order_status, Order.order_statuses.keys %>
-              		<%= f.submit "更新", class:"btn btn-primary btn-sm" %>
+              		<%= f.submit "更新", class:"btn btn-warning submit-btn-sm" %>
               	<% end %>
               </td>
             </tr>
@@ -79,7 +79,7 @@
 				   <%= form_for(order_detail ,url: admins_order_detail_path(order_detail),
 							method: :patch) do |f| %>
 						<%= f.select :work_status, OrderDetail.work_statuses.keys %>
-				   		<%= f.submit "更新", class:"btn btn-primary btn-sm" %>
+				   		<%= f.submit "更新", class:"btn btn-warning submit-btn-sm" %>
 				   <% end %>
 			   </td>
 		    </tr>
