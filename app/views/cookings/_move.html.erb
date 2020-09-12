@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="col-lg-5 col-5">
+		<% unless cooking.first? %>
+			<%= link_to recipe_cooking_move_path(recipe, cooking, move: 'up'),
+				class:"move-item", style:"margin-right: 10px;" , remote: true do %>
+				<i class="far fa-arrow-alt-circle-up fa-lg" style="text-decoration: none;"></i>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="col-lg-5 col-5">
+		<% unless cooking.last? %>
+			<%= link_to recipe_cooking_move_path(recipe, cooking, move: 'down'),
+				class:"move-item", remote: true do %>
+				<i class="far fa-arrow-alt-circle-down fa-lg" style="text-decoration: none;"></i>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+

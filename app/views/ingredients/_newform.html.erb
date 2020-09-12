@@ -1,15 +1,18 @@
 <% if flash[:update] %>
  	<div class="good-flash"><i class="fas fa-check-circle"></i><%= flash[:update]%></div>
 <% end %>
-<ul id="sortable_ingredient">
+<ul id="sortable_ingredient" style="list-style: none;">
 	<% recipe.ingredients.each do |ingredient| %>
 	<li id="handle">
 		<%= form_for [recipe, ingredient],remote: true do |f| %>
 			<div class="row" style="padding-top: 10px">
-				<div class="col-lg-6 col-5">
+			<div id="move_<%= recipe.id %>" class="col-lg-2 col-2">
+				<%= render 'move', { ingredient: ingredient, recipe: recipe } %>
+			</div>
+				<div class="col-lg-5 col-4">
 					<%= f.text_field :content, placeholder:"具材" %>
 				</div>
-				<div class="col-lg-3 col-3">
+				<div class="col-lg-2 col-2">
 					<%= f.text_field :amount, :size=>"8", placeholder:"分量" %>
 				</div>
 				<div class="col-lg-3 col-4">

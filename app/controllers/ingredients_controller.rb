@@ -46,6 +46,19 @@ class IngredientsController < ApplicationController
     end
   end
 
+  def move
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredient = Ingredient.find(params[:id])
+    @ingredients = @recipe.ingredients
+    if params[:move]
+      if params[:move] == 'up'
+        @ingredient.move_higher
+      else
+        @ingredient.move_lower
+      end
+    end
+  end
+
   private
 
   def ingredient_params

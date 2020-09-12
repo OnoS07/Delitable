@@ -2,16 +2,17 @@
  	<div class="good-flash"><i class="fas fa-check-circle"></i><%= flash[:update]%></div>
 <% end %>
 <% @sum = 0 %>
-<ul id="sortable_cooking">
+<ul id="sortable_cooking" style="list-style: none;">
 	<% recipe.cookings.each do |cooking| %>
-		<li id="handle">
 		<%= form_for [recipe, cooking], remote: true do |f| %>
 			<div class="row" style="margin-bottom: 10px">
-				<div class="col-lg-1"><%= @sum += 1 %>.</div>
-				<div class="col-lg-9 col-12">
+			<div id="move_<%= recipe.id %>" class="col-lg-1 col-2">
+				<%= render 'move', { cooking: cooking, recipe: recipe } %>
+			</div>
+				<div class="col-lg-9 col-10">
 					<%= f.text_area :content, style:"width:100%" %>
 				</div>
-				<div class="col-lg-2 col-12">
+				<div class="col-lg-2 col-12" style="text-align: right">
 					<%= f.submit "変更", class:"btn btn-warning submit-btn-sm" %>
 					<%= link_to "削除", recipe_cooking_path(@recipe, cooking),method: :delete,
 						data: {confirm: "本当に削除してもよろしいですか？"},
@@ -19,7 +20,6 @@
 				</div>
 			</div>
 		<% end %>
-		</li>
 	<% end %>
 	<%= hidden_field_tag :recipe_id, recipe.id %>
 </ul>
