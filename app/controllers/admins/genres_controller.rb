@@ -9,13 +9,12 @@ class Admins::GenresController < ApplicationController
   end
 
   def create
-    @genre = Genre.new(genre_params)
-    if @genre.save
+    genre = Genre.new(genre_params)
+    if genre.save
       redirect_to admins_genres_path
     else
       @genres = Genre.all
-      flash.now[:notice] = 'ジャンル名を入力して下さい'
-      render :index
+      redirect_to admins_genres_path,:flash=>{error_messages: genre.errors.full_messages}
     end
   end
 
