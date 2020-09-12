@@ -72,5 +72,4 @@ Rails.application.routes.draw do
     resource :ingredients, only: %i[edit]
     resource :cookings, only: %i[edit]
   end
-
 end
