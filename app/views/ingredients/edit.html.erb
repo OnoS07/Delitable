@@ -26,18 +26,18 @@
 			</div>
 
 			<p style="border-bottom: 1px solid silver; font-size: 20px" >材料
-				<span class="font-sm">:長押しで順番の入れ替え</span>
+				<span class="font-sm">:矢印で順番の入れ替え</span>
 			</p>
 			<div id="error_explanation"><%= render "layouts/error", {object: @ingredient} %></div>
 			<span class="newform_<%= @recipe.id %>">
 				<%= render "newform", {ingredients: @ingredients, ingredient: @ingredient, recipe: @recipe} %>
 			</span>
 			<%= form_for(@ingredient, url:recipe_ingredients_path, remote: true) do |f| %>
-				<div class="row" style="padding-top: 30px;">
-					<div class="col-lg-6 col-5">
+				<div class="row justify-content-end" style="padding-top: 30px;">
+					<div class="col-lg-5 col-4">
 						<%= f.text_field :content, placeholder:"追加する具材", class:"new_form" %>
 					</div>
-					<div class="col-lg-3 col-3">
+					<div class="col-lg-2 col-2">
 						<%= f.text_field :amount, :size=>"8", placeholder:"分量", class:"new_form" %>
 					</div>
 					<div class="col-lg-3 col-4">

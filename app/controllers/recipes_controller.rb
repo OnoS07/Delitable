@@ -105,20 +105,6 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
-  def sort_cooking
-    @recipe = Recipe.find(params[:id])
-    cooking = @recipe.cookings[params[:from].to_i]
-    cooking.insert_at(params[:to].to_i + 1)
-    head :ok
-  end
-
-  def sort_ingredient
-    @recipe = Recipe.find(params[:id])
-    ingredient = @recipe.ingredients[params[:from].to_i]
-    ingredient.insert_at(params[:to].to_i + 1)
-    head :ok
-  end
-
   private
 
   def recipe_params

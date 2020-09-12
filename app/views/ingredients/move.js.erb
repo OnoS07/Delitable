@@ -1,0 +1,2 @@
+$("#move_<%= @recipe.id %>").html('<%=j render "ingredients/move",{ ingredient: @ingredient, recipe: @recipe} %>')
+$(".newform_<%= @recipe.id %>").html("<%= j(render 'ingredients/newform',{ ingredients: @ingredients, recipe: @recipe} ) %>");

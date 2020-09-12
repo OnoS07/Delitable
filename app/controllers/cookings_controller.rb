@@ -46,9 +46,22 @@ class CookingsController < ApplicationController
     end
   end
 
+  def move
+    @recipe = Recipe.find(params[:recipe_id])
+    @cooking = Cooking.find(params[:id])
+    @cookings = @recipe.cookings
+    if params[:move]
+      if params[:move] == 'up'
+        @cooking.move_higher
+      else
+        @cooking.move_lower
+      end
+    end
+  end
+
   private
 
   def cooking_params
-    params.require(:cooking).permit(:recipe_id, :cooking_image, :content)
+    params.require(:cooking).permit(:recipe_id, :content)
   end
 end

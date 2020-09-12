@@ -64,13 +64,12 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resources :ingredients, only: %i[update create destroy]
+    get 'ingredient/:id/move', to: 'ingredients#move', as: 'ingredient_move'
     resources :cookings, only: %i[update create destroy]
+    get 'cooking/:id/move', to: 'cookings#move', as: 'cooking_move'
     resources :comments, only: %i[create destroy]
     resource :favorites, only: %i[create destroy]
     resource :ingredients, only: %i[edit]
     resource :cookings, only: %i[edit]
   end
-
-  patch 'recipe/:id/sort_cooking', to: 'recipes#sort_cooking'
-  patch 'recipe/:id/sort_ingredient', to: 'recipes#sort_ingredient'
 end
