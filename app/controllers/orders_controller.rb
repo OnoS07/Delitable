@@ -76,12 +76,12 @@ class OrdersController < ApplicationController
         cart_item.destroy
       end
 
-      if @order.payment_method == "クレジットカード"
-        Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      if @order.payment_method == 'クレジットカード'
+        Payjp.api_key = ENV['PAYJP_SECRET_KEY']
         Payjp::Charge.create(
-          :amount => @order.total_products_cost + @order.postage ,
-          :card => params['payjp-token'],
-          :currency => 'jpy'
+          amount: @order.total_products_cost + @order.postage,
+          card: params['payjp-token'],
+          currency: 'jpy'
         )
       end
 
