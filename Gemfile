@@ -93,3 +93,5 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 
 gem 'acts_as_list'
+
+gem 'payjp'
