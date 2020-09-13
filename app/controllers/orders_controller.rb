@@ -66,18 +66,18 @@ class OrdersController < ApplicationController
 
     if @order.save
       cart_items = current_customer.cart_items
-      cart_items.each do |cart_item|
-        order_detail = @order.order_details.new
-        order_detail.product_id = cart_item.product_id
-        order_detail.count = cart_item.count
-        order_detail.price = cart_item.product.price
-        order_detail.work_status = '着手不可'
-        order_detail.save
-        cart_item.destroy
-      end
+        cart_items.each do |cart_item|
+          order_detail = @order.order_details.new
+          order_detail.product_id = cart_item.product_id
+          order_detail.count = cart_item.count
+          order_detail.price = cart_item.product.price
+          order_detail.work_status = '着手不可'
+          order_detail.save
+          cart_item.destroy
+        end
 
       if @order.payment_method == 'クレジットカード'
-        Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+        Payjp.api_key = "sk_test_65d7c6579ac1a275777db6ec"
         Payjp::Charge.create(
           amount: @order.total_products_cost + @order.postage,
           card: params['payjp-token'],
