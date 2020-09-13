@@ -72,14 +72,44 @@
 			</div>
 
 			<div style="text-align: center;">
-				<%= form_with(url: customers_orders_path, local: true) do |f| %>
-				 	<%= f.hidden_field :name, value: @order.name %>
-					<%= f.hidden_field :address, value: @order.address %>
-					<%= f.hidden_field :postcode, value: @order.postcode %>
-					<%= f.hidden_field :postage, value: "800" %>
-					<%= f.hidden_field :total_products_cost, value: @sum %>
-					<%= f.hidden_field :order_status, value: "入金待ち" %>
-				<%= f.submit "注文する", class:"btn btn-warning submit-btn" %>
+				<% if @order.payment_method == "クレジットカード" %>
+					<div style="padding: 20px 0;">
+					<%= form_with local: true, url: customers_orders_path do |f| %>
+					  <script
+					    type="text/javascript"
+					    src="https://checkout.pay.jp"
+					    class="payjp-button"
+					    data-text= "カード情報を入力する"
+					    data-submit-text= "この内容で注文する"
+					    data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
+					  </script>
+					</div>
+					  <div class="font-sm">
+					  	テストモードのため、下記確認し入力して下さい
+					  	<ul style="list-style: none;">
+					  		<li style="color: red">・カード番号：4242424242424242</li>
+					  		<li>・有効期限：未来の年月(12/30)など</li>
+					  		<li>・CVS番号：３桁の任意の数字</li>
+					  		<li>・名前：任意</li>
+					  	</ul>
+					  </div>
+					 	<%= f.hidden_field :name, value: @order.name %>
+						<%= f.hidden_field :address, value: @order.address %>
+						<%= f.hidden_field :postcode, value: @order.postcode %>
+						<%= f.hidden_field :postage, value: "800" %>
+						<%= f.hidden_field :total_products_cost, value: @sum %>
+						<%= f.hidden_field :order_status, value: "入金待ち" %>
+					<% end %>
+				<% else %>
+					<%= form_with(url: customers_orders_path, local: true) do |f| %>
+					 	<%= f.hidden_field :name, value: @order.name %>
+						<%= f.hidden_field :address, value: @order.address %>
+						<%= f.hidden_field :postcode, value: @order.postcode %>
+						<%= f.hidden_field :postage, value: "800" %>
+						<%= f.hidden_field :total_products_cost, value: @sum %>
+						<%= f.hidden_field :order_status, value: "入金待ち" %>
+						<%= f.submit "注文する", class:"btn btn-warning submit-btn" %>
+					<% end %>
 				<% end %>
 			</div>
 		</div>

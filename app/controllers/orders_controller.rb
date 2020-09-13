@@ -63,6 +63,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+
     if @order.save
       cart_items = current_customer.cart_items
       cart_items.each do |cart_item|
@@ -74,6 +75,16 @@ class OrdersController < ApplicationController
         order_detail.save
         cart_item.destroy
       end
+
+      if @order.payment_method == 'クレジットカード'
+        Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+        Payjp::Charge.create(
+          amount: @order.total_products_cost + @order.postage,
+          card: params['payjp-token'],
+          currency: 'jpy'
+        )
+      end
+
       redirect_to order_complete_path
     else
       redirect_to order_confirm_path
