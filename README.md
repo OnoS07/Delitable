@@ -93,6 +93,9 @@ http://delitable.work/
 	- Nginx、 Puma
 	- Capistrano
 
+- 構成図
+![image](https://user-images.githubusercontent.com/62997834/93009715-37167a00-f5bf-11ea-9a0b-3b69a42fbc0d.png)
+
 ## 設計
 
 - 設計書

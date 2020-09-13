@@ -6,7 +6,10 @@
 				fallback:"top_recipe.jpg", class:"recipe-image-show" %>
 		</div>
 		<div class="col-lg-6 col-12">
-			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ</p>
+			<p style="border-bottom: 1px solid silver; font-size: 20px" >レシピ
+				<%= link_to "編集", edit_recipe_path(@recipe), class:"btn btn-warning btn-sm",
+					style:"margin-bottom:5px", data: {"turbolinks" => false} %>
+			</p>
 			<% if flash[:create] %>
 			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
 			 		<%= flash[:create]%>
@@ -66,7 +69,10 @@
 	</div>
 	<div class="row" style="margin-top:30px;">
 		<div class="col-lg-12 col-12">
-		<p style="border-bottom: 1px solid silver; font-size: 20px" >作り方</p>
+		<p style="border-bottom: 1px solid silver; font-size: 20px" >作り方
+			<%= link_to "編集", edit_recipe_cookings_path(@recipe), class:"btn btn-warning btn-sm",
+				style:"margin-bottom:5px", data: {"turbolinks" => false} %>
+		</p>
 			<% @sum = 0 %>
 			<% @recipe.cookings.each do |cooking| %>
 				<div class="row" style="margin-bottom: 10px">
