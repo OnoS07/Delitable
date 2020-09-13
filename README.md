@@ -54,6 +54,7 @@ http://delitable.work/
 	- タグ付け：acts-as-taggable-on
 	- トラッキング：impressionist
 	- データ順の入れ替え：acts_as_list
+	- クレジット決済機能：payjp(テストモード)
 	- ユーザー認証：devise
 	- 買い物かご
 	- レビュー
@@ -69,7 +70,6 @@ http://delitable.work/
 	- 非同期通信 ：ajax
 	- 星評価：raty.js
 	- 郵便番号から住所自動入力：jpostal.js
-	- ドラックアンドドロップ：Sortable.js
 
 - AI
 	- 自然言語処理：Natural Language API
