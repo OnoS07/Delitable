@@ -62,4 +62,19 @@ $(document).on("turbolinks:load", function(){
   }
     reader.readAsDataURL(e.target.files[0]);
   });
+
+  $('.top-contents').hide().fadeIn(2000);
+
+  $(window).ready(function(){
+    $('.recipe-contents .recipe-content').each(function(i){
+      $(this).delay(i * 100).css({'visibility':'visible','opacity':'0'}).animate({'opacity': 1 },1000);
+    });
+  });
+
+  $(window).ready(function(){
+    $('.product-contents .product-content').each(function(i){
+      $(this).delay(i * 50).css({'visibility':'visible','opacity':'0'}).animate({'opacity': 1 },1000);
+    });
+  });
+
 })
