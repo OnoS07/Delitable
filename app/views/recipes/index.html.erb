@@ -30,7 +30,7 @@
 			<div class="recipe-contents"  style="padding-top: 20px">
 				<% @recipes.each do |recipe| %>
 					<div class="recipe-content">
-						<%= link_to recipe_path(recipe) do %>
+						<%= link_to recipe_path(recipe), class:"recipe-select" do %>
 							<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 								fallback:"top_recipe.jpg", class:"recipe-image" %>
 							<span style="font-size: 18px;">

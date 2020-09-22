@@ -77,4 +77,12 @@ $(document).on("turbolinks:load", function(){
     });
   });
 
+  $(".recipe-select").hover(
+    function(){
+      $(".recipe-image", this).css({"transform": "scale(1.03, 1.03)", "transition-duration": "0.5s"});
+    },
+    function(){
+      $(".recipe-image", this).css("transform", "scale(1.0, 1.0)");
+    });
+
 })
