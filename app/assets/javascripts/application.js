@@ -85,4 +85,12 @@ $(document).on("turbolinks:load", function(){
       $(".recipe-image", this).css("transform", "scale(1.0, 1.0)");
     });
 
+  $("#close-recipe").click(function(){
+    $(".close-recipe-contents").slideToggle("slow");
+  });
+
+  $("#open-recipe").click(function(){
+    $(".open-recipe-contents").slideToggle("slow");
+  });
+
 })
