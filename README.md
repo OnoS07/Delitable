@@ -41,10 +41,8 @@ http://delitable.work/
 ## 機能・技術
 - HTML/CSS
 	- Bootstrap
-	- Flexbox
 	- SCSS
 	- レスポンシブ対応
-	- BEM記法(一部)
 
 - Ruby on Rails
 	- コードフォーマット：rubocop
@@ -78,7 +76,7 @@ http://delitable.work/
 - フロントエンド
 	- Bootstrap 4.4.1
 	- SCSS
-	- JavaScript、jQuery、Ajax
+	- JavaScript、jQuery
 
 - バックエンド
 	- Ruby 2.5.7
