@@ -95,12 +95,15 @@
 				<% if @customer == current_customer %>
 					My Recipes
 					<% else %>
-					User Recipes
+					<span id="open-recipe" style="cursor: pointer;">User Recipes
+					<i class="fas fa-angle-double-down" style="margin-left: 10px;"></i></span>
 				<% end %>
 			</span>
 			<% if @customer == current_customer %>
-			<p>●非公開</p>
-				<div class="recipe-contents"  style="padding: 20px 0;border-bottom: 1px silver solid">
+			<p id="close-recipe" style="cursor: pointer;">
+				●非公開<i class="fas fa-angle-double-down" style="margin-left: 10px;"></i></p>
+				<div class="recipe-contents close-recipe-contents"
+					style="padding: 20px 0; border-bottom: 1px silver solid; display: none;">
 					<% @close_recipes.each do |recipe| %>
 						<div class="recipe-content">
 							<%= link_to recipe_path(recipe) do %>
@@ -115,8 +118,9 @@
 					<% end %>
 				</div>
 			<% end %>
-			<% if @customer == current_customer %><p>●公開中</p><% end %>
-			<div class="recipe-contents"  style="padding-top: 20px">
+			<% if @customer == current_customer %><p id="open-recipe" style="cursor: pointer;">
+				●公開中<i class="fas fa-angle-double-down" style="margin-left: 10px;"></i></p><% end %>
+			<div class="recipe-contents open-recipe-contents"  style="padding-top: 20px;display: none; ">
 				<% @open_recipes.each do |recipe| %>
 					<div class="recipe-content">
 						<%= link_to recipe_path(recipe) do %>
