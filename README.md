@@ -74,7 +74,7 @@ http://delitable.work/
 	- 郵便番号から住所自動入力：jpostal.js
 
 - AI
-	- 自然言語処理：Natural Language API
+	- 自然言語処理：Natural Language API(管理者ログイン時、商品レビューの感情分析を表示)
 
 ## 環境
 - フロントエンド
@@ -95,16 +95,15 @@ http://delitable.work/
 	- Nginx、 Puma
 	- Capistrano
 
-- 構成図
+- インフラ構成図
 ![image](https://user-images.githubusercontent.com/62997834/93009715-37167a00-f5bf-11ea-9a0b-3b69a42fbc0d.png)
 
 ## 設計
 
 - 設計書
-	- アプリケーション詳細設定：https://www.icloud.com/numbers/0MUDr2Jb7IqNjydIzylYOACsg
-	- テーブル定義書：https://www.icloud.com/numbers/0nfYRItc2tWXCYZR2jlyc7jDw
-	- ER図：https://drive.google.com/file/d/1sncP0fHAl0r4UybR3iU1nNUXEbx8t7nz/view?usp=sharing
+	- ER図
+	![image](https://user-images.githubusercontent.com/62997834/94892625-1c4d6c00-04c0-11eb-83df-5e9ad957e62a.png)
 
-- 機能一覧
+- 機能詳細一覧
 	- https://docs.google.com/spreadsheets/d/1IJ4RoAs_-xBsC-Z0b_gmG4WTZG94Oju5-hKZHIRKyz4/edit#gid=0
 
