@@ -80,9 +80,11 @@ $(document).on("turbolinks:load", function(){
   $(".recipe-select").hover(
     function(){
       $(".recipe-image", this).css({"transform": "scale(1.03, 1.03)", "transition-duration": "0.5s"});
+      $(".recipe-intro", this).animate({bottom:"10px"}, 500).css("display", "block");
     },
     function(){
       $(".recipe-image", this).css("transform", "scale(1.0, 1.0)");
+      $(".recipe-intro", this).css({"display": "none", "bottom": "0px"});
     });
 
   $("#close-recipe").click(function(){
