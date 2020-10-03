@@ -31,8 +31,13 @@
 				<% @recipes.each do |recipe| %>
 					<div class="recipe-content">
 						<%= link_to recipe_path(recipe), class:"recipe-select" do %>
+						<div style="position: relative;">
 							<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 								fallback:"top_recipe.jpg", class:"recipe-image" %>
+							<span style="font-size:12px;margin-top: 5px" class="hidden-sp recipe-intro">
+								<%= recipe.introduction.truncate(40) %>
+							</span>
+						</div>
 							<span style="font-size: 18px;">
 								<i class="fas fa-utensils font-md-sp" style="margin-top: 5px;">
 									<%= recipe.title.truncate(15) %>
@@ -61,9 +66,6 @@
 								<% end %>
 								<i class="fas fa-paw", style="color: #F96167; margin-left:30px;"></i>
 								<%= recipe.impressionist_count %>
-							</span>
-							<span style="font-size:12px;margin-top: 5px" class="hidden-sp">
-								<%= recipe.introduction.truncate(40) %>
 							</span>
 					</div>
 				<% end %>
