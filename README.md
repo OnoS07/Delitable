@@ -3,6 +3,9 @@
 ## URL
 http://delitable.work/
 [![image](https://user-images.githubusercontent.com/62997834/92128993-efb12080-ee3d-11ea-8e33-bba828f2b3f4.png)](http://delitable.work/)
+### ログイン方法
+* ユーザーログイン：ヘッダー右上のゲストユーザーログイン
+* 管理者ログイン：フッター右下の、ロゴマークよりゲスト管理者ログイン
 
 
 ## 概要
