@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom: 100px;">
 	<div class="row">
 		<div class="col-lg-12 col-xs-12 col-sm-12">
 			<div class="top-images">
@@ -62,6 +62,53 @@
 						</div>
 					</div>
 				<% end %>
+			</div>
+			<div class="hidden-tb hidden-sp">
+				<div style="margin-bottom: 50px;">
+					<span class="form-title" style="margin-right: 20px; font-size: 25px;">
+						<i class="fas fa-utensils"></i> Recipes
+					</span>
+					<div class="recipe-contents" style="justify-content: center;">
+						<% @recipes.shuffle.first(3).each do |recipe| %>
+							<div class="recipe-content">
+								<%= link_to recipe_path(recipe), class:"recipe-select" do %>
+								<div style="position: relative;">
+									<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
+										fallback:"top_recipe.jpg", class:"recipe-image" %>
+									<span style="font-size:12px;margin-top: 5px" class="hidden-sp recipe-intro">
+										<%= recipe.introduction.truncate(40) %>
+									</span>
+								</div>
+									<span style="font-size: 18px;">
+										<i class="fas fa-utensils font-md-sp" style="margin-top: 5px;">
+											<%= recipe.title.truncate(15) %>
+										</i>
+									</span>
+								<% end %>
+							</div>
+						<% end %>
+					</div>
+					<span style="float: right;"><%= link_to "more_Recipes > ", recipes_path %></span>
+				</div>
+
+				<span class="form-title" style="margin-right: 20px; font-size: 25px;">
+					<i class="fas fa-seedling"></i>Vegetables
+				</span>
+				<div class="product-contents" style="padding-top: 20px; justify-content: center;">
+					<% @products.shuffle.first(4).each do |product| %>
+						<div class="product-content" style="margin-bottom: -10px;">
+							<%= link_to product_path(product) do %>
+								<%= attachment_image_tag product, :product_image, format:"jpg",
+									fallback:"top_vegetable.jpg", class:"product-image" %>
+							<p>
+								<i class="fas fa-seedling"></i><%= product.name %>：<br class="br-sp"><br class="br-tb">
+								¥<%= product.price %>円
+							</p>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+				<span style="float: right;"><%= link_to "more_Vegetables > ", products_path %></span>
 			</div>
 		</div>
 	</div>

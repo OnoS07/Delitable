@@ -1,6 +1,9 @@
 class HomesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  def top; end
+  def top
+    @recipes = Recipe.where(recipe_status: '完成')
+    @products = Product.where(is_active: '販売中')
+  end
 
   def about; end
 
