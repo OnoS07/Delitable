@@ -183,18 +183,24 @@
 	<% if @recipes.present? %>
 		<div style="margin-top: 80px;padding-top: 20px; border-top: 1px solid #F96167">
 			<span class="form-title" style="font-size: 25px;">Recommend</span>
-			<div class="product-contents" style="margin-top: 20px;">
+			<div class="recipe-contents" style="margin-top: 20px;">
 				<% @recipes.shuffle.first(6).each do |recipe| %>
 					<div class="recipe-content">
-						<%= link_to recipe_path(recipe) do %>
+						<%= link_to recipe_path(recipe), class:"recipe-select" do %>
+						<div style="position: relative;">
 							<%= attachment_image_tag recipe, :recipe_image, format:"jpg",
 								fallback:"top_recipe.jpg", class:"recipe-image" %>
+							<span style="font-size:12px;margin-top: 5px" class="hidden-sp recipe-intro">
+								<%= recipe.introduction.truncate(40) %>
+							</span>
+						</div>
 							<span style="font-size: 18px;">
-								<i class="fas fa-utensils" style="margin-top: 5px;"> <%= recipe.title %>
-									</i>
+								<i class="fas fa-utensils font-md-sp" style="margin-top: 5px;">
+									<%= recipe.title.truncate(15) %>
+								</i>
 							</span>
 						<% end %>
-							<span>
+							<span class="hidden-sp hidden-tb">
 								<%= link_to customer_path(recipe.customer) do %>
 									<i class="fas fa-user" style="color: #F96167"></i>
 										<span style="color: black"><%= recipe.customer.account_name %>
@@ -204,15 +210,18 @@
 									<i class="fas fa-comment" style="color: #F96167"></i>
 										<span style="color: black"><%= recipe.comments.count %>件</span>
 								</span>
-									<i class="fas fa-heart" style="color: #F96167"></i>
-									<span style="color:black">
-										<%= recipe.favorites.count %>
+								<% if customer_signed_in? %>
+									<span class="favorite_<%= recipe.id %>" >
+										<%= render "recipes/favorite", recipe: recipe %>
 									</span>
+								<% else %>
+										<i class="fas fa-heart" style="color: #F96167"></i>
+										<span style="color:black">
+											<%= recipe.favorites.count %>
+										</span>
+								<% end %>
 								<i class="fas fa-paw", style="color: #F96167; margin-left:30px;"></i>
 								<%= recipe.impressionist_count %>
-							</span>
-							<span style="font-size:12px;margin-top: 5px">
-								<%= recipe.introduction.truncate(45) %>
 							</span>
 					</div>
 				<% end %>
