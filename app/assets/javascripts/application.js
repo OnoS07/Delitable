@@ -72,6 +72,11 @@ $(document).on("turbolinks:load", function(){
   });
 
   $(window).ready(function(){
+    $(".recipe-image", this).css("transform", "scale(1.0, 1.0)");
+    $(".recipe-intro", this).css({"display": "none", "bottom": "0px"});
+    });
+
+  $(window).ready(function(){
     $('.product-contents .product-content').each(function(i){
       $(this).delay(i * 50).css({'visibility':'visible','opacity':'0'}).animate({'opacity': 1 },1000);
     });
