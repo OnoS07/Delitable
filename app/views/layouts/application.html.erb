@@ -107,7 +107,7 @@
           <% unless customer_signed_in? or admin_signed_in? %>
           <div>
             <%= link_to "", new_admin_session_path ,class:"footer-logo" %>
-            <span style="float: right;margin-top: 20px;">管理者ログインはこちら→</span>
+            <span style="float: right;margin-top: 20px" class="font-sm">管理者ログインはこちら→</span>
           </div>
           <% else %>
             <span class="footer-logo" style="margin-top: 20px;"></span>
