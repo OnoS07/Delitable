@@ -102,11 +102,7 @@ http://delitable.work/
 ![image](https://user-images.githubusercontent.com/62997834/93009715-37167a00-f5bf-11ea-9a0b-3b69a42fbc0d.png)
 
 ## 設計
-
-- 設計書
-	- ER図
+- ER図
 	![image](https://user-images.githubusercontent.com/62997834/95577178-9c4d7600-0a6c-11eb-8f79-d0f1bfb7843c.png)
 
-- 機能詳細一覧
-	- https://docs.google.com/spreadsheets/d/1IJ4RoAs_-xBsC-Z0b_gmG4WTZG94Oju5-hKZHIRKyz4/edit#gid=0
 
