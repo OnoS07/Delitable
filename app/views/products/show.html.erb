@@ -10,32 +10,39 @@
 			<span style="font-size: 20px;">
 				<i class="fas fa-seedling fa-lg"></i><%= @product.name %>
 			</span>
-			<% if @product.reviews.present? %>
-				<div id="rate-average-<%= @product.id %>"></div>
-				    <script>
-	                  document.addEventListener("turbolinks:before-cache", function() {
-	                    $('#rate-average-<%= @product.id %>').empty()
-	                    });
-			          $('#rate-average-<%= @product.id %>').raty({
-			            size: 36,
-			            starOff:  '<%= asset_path('star-off.png') %>',
-			            starOn : '<%= asset_path('star-on.png') %>',
-			            starHalf: '<%= asset_path('star-half.png') %>',
-			            half: true,
-			            score: <%= @product.reviews.average(:rate) %>,
-			            readOnly: true,
-			        	});
-				    </script>
-				<span class="font-md-sp">
-					平均評価：<%= @product.reviews.average(:rate).round(1) %>点/
-					全<%= @product.reviews.count %>件のレビュー
-				</span>
-			<% else %>
-				<p style="font-size: 12px">(まだ評価はありません)</p>
-			<% end %>
+			<div style="margin: 10px 0;border-bottom: 1px solid #F96167;">
+				<% if @product.reviews.present? %>
+					<div id="rate-average-<%= @product.id %>"></div>
+					    <script>
+		                  document.addEventListener("turbolinks:before-cache", function() {
+		                    $('#rate-average-<%= @product.id %>').empty()
+		                    });
+				          $('#rate-average-<%= @product.id %>').raty({
+				            size: 36,
+				            starOff:  '<%= asset_path('star-off.png') %>',
+				            starOn : '<%= asset_path('star-on.png') %>',
+				            starHalf: '<%= asset_path('star-half.png') %>',
+				            half: true,
+				            score: <%= @product.reviews.average(:rate) %>,
+				            readOnly: true,
+				        	});
+					    </script>
+					<span class="font-md-sp">
+						平均評価：<%= @product.reviews.average(:rate).round(1) %>点/
+						全<%= @product.reviews.count %>件のレビュー
+					</span>
+				<% else %>
+					<p style="font-size: 12px">(まだ評価はありません)</p>
+				<% end %>
+			</div>
 			<p style="font-size: 18px;padding: 15px 0 30px 0"><%= @product.introduction %></p>
-			<span style="float: right">
-				<p class="font-lg"><%= (@product.price * 1.1).to_i %>円(税込)</p>
+			<p class="btn btn-warning btn-sm">
+				<%= link_to products_path(genre_id: @product.genre.id) do %>
+					<%= @product.genre.name %>
+				<% end %>
+			</p>
+			<span>
+				<p><%= (@product.price * 1.1).to_i %>円(税込)</p>
 			</span>
 		</div>
 	</div>
