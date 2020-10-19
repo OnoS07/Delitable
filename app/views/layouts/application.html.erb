@@ -27,6 +27,9 @@
           <% if customer_signed_in? %>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
               <li class="nav-item">
+                <%= link_to "アバウト", about_path, class:"nav-link", data: {"turbolinks" => false} %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "マイページ", customer_path(current_customer), class:"nav-link", data: {"turbolinks" => false} %>
               </li>
               <li class="nav-item">

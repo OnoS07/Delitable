@@ -36,6 +36,14 @@
 			   当サイトは食材の配送サービスやレシピ投稿・閲覧をお楽しみいただけます<br>
 				初めての方はまずは下記『About』にて、詳しい説明をご確認ください
 			</p>
+			<div style="padding-bottom: 30px;">
+				<% unless customer_signed_in? || admin_signed_in? %>
+					<span class="hidden-tb hidden-sp">
+						・ゲストログイン：ヘッダーの右上「ゲストログイン」よりできます<br>
+						・管理者ログイン：フッター右下のロゴマークよりできます
+					</span>
+				<% end %>
+			</div>
 
 			<div class="top-contents">
 				<%= link_to products_path, data: {"turbolinks" => false} do %>
