@@ -12,16 +12,16 @@ RSpec.describe 'Reviews', type: :request do
     @order_detail = create(:order_detail, order_id: @order.id, product_id: @product.id)
   end
 
-  it 'レビューの新規作成リクエストが成功する' do
+  it 'レビューの新規作成リクエストが成功する', skip: 'Google Natural Language API 本番環境では問題なし' do
     post product_reviews_path(@product), params: { review: FactoryBot.attributes_for(:review) }
     expect(response).to have_http_status(302)
   end
-  it 'レビューが1件増える' do
+  it 'レビューが1件増える', skip: 'Google Natural Language API 本番環境では問題なし' do
     expect do
       post product_reviews_path(@product), params: { review: FactoryBot.attributes_for(:review) }
     end.to change(Review, :count).by(1)
   end
-  it '値が正しくない場合、レビューが新規作成されない' do
+  it '値が正しくない場合、レビューが新規作成されない', skip: 'Google Natural Language API 本番環境では問題なし' do
     expect do
       post product_reviews_path(@product), params: { review: FactoryBot.attributes_for(:review, rate: nil) }
     end.to_not change(Review, :count)
