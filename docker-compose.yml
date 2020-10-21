@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    # 変更を保存するファイルを指定
+    volumes:
+      - .:/myapp
+    # ポートを指定
+    ports:
+      - "3000:3000"
+    #binding.pryを使うのに必要
+    tty: true
+    stdin_open: true
