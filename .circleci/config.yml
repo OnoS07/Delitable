@@ -18,7 +18,6 @@ jobs:
 
     #CI環境上で動作させるコマンドや実行結果の保存、キャッシュ操作などを設定する
     steps:
-      #CI環境上の working_directory の値の場所にGitリポジトリをコピーする
     - checkout
 
     - restore_cache:
@@ -26,12 +25,11 @@ jobs:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}
         - v1-dependencies-
 
-      - run:
-          name: install dependencies
-          command: |
-# ①bundler2.0.1以降のものを使っているのであれば、環境変数と合わせて指定する必要があります。
-            gem install bundler -v 2.1.4
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+    - run:
+        name: install dependencies
+        command: |
+          gem install bundler -v 2.1.4
+          bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:
