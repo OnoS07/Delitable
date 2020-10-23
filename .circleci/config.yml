@@ -7,11 +7,11 @@ jobs:
   build:
     #dockerコンテナを指定
     docker:
-      #どのdockerイメージを使うか rubyのバージョン
-      - image: circleci/ruby:2.5.7-node-browsers
-        environment:
-          - BUNDLER_VERSION: 2.1.4
-          - RAILS_ENV: 'test'
+    #どのdockerイメージを使うか rubyのバージョン
+    - image: circleci/ruby:2.5.7-node-browsers
+      environment:
+        - BUNDLER_VERSION: 2.1.4
+        - RAILS_ENV: 'test'
 
     #自身のアプリディレクトリ名を設定
     working_directory: ~/Delitable
@@ -19,7 +19,7 @@ jobs:
     #CI環境上で動作させるコマンドや実行結果の保存、キャッシュ操作などを設定する
     steps:
       #CI環境上の working_directory の値の場所にGitリポジトリをコピーする
-      - checkout
+    - checkout
 
     - restore_cache:
         keys:
