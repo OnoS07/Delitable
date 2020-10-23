@@ -1,0 +1,66 @@
+# CircleCIのバージョン。最新が2.1
+version: 2.1
+
+# 走らせるコンテナの指定。無料枠だと1つのみ
+jobs:
+  # jobsが一つの場合は、名前がbuildの必要あり
+  build:
+    #dockerコンテナを指定
+    docker:
+    #どのdockerイメージを使うか rubyのバージョン
+    - image: circleci/ruby:2.5.7-node-browsers
+      environment:
+        - BUNDLER_VERSION: 2.1.4
+        - RAILS_ENV: 'test'
+
+    #自身のアプリディレクトリ名を設定
+    working_directory: ~/Delitable
+
+    #CI環境上で動作させるコマンドや実行結果の保存、キャッシュ操作などを設定する
+    steps:
+    - checkout
+
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}
+        - v1-dependencies-
+
+    - run:
+        name: install dependencies
+        command: |
+          gem install bundler -v 2.1.4
+          bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+    - save_cache:
+        paths:
+          - ./vendor/bundle
+        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+    - run: bundle exec rake db:create
+    - run: bundle exec rake db:schema:load
+
+    - run:
+        name: Rubocop
+        command: bundle exec rubocop
+
+    # run tests!
+    - run:
+        name: run tests
+        command: |
+          mkdir /tmp/test-results
+          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+            circleci tests split --split-by=timings)"
+
+          bundle exec rspec \
+            --format progress \
+            --format RspecJunitFormatter \
+            --out /tmp/test-results/rspec.xml \
+            --format progress \
+            $TEST_FILES
+
+    # collect reports
+    - store_test_results:
+        path: /tmp/test-results
+    - store_artifacts:
+        path: /tmp/test-results
+        destination: test-results
