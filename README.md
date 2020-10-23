@@ -12,7 +12,7 @@ http://delitable.work/
 * 野菜の購入・配送と、それらの野菜を使った料理レシピの投稿・共有ができるポートフォリオです。
 * 作りたい料理に必要な野菜を購入したり、逆に興味のある野菜を使った料理調べて作ったりと、  
 日々の料理をサポートできるようなサービスです。
-![image](https://user-images.githubusercontent.com/62997834/96879766-6621e480-14b7-11eb-95b4-d941e86c6381.png)
+![image](https://user-images.githubusercontent.com/62997834/96968269-b8ace080-154b-11eb-9c39-eb3401c36b0b.png)
 
 
 ### テーマ
@@ -86,17 +86,16 @@ http://delitable.work/
 	- Ruby 2.5.7
 	- Rails 5.2.4.3
 
-- 開発環境
-	- Vagrant 2.2.4
-
-- 本番環境
+- インフラ
+	- Docker/Docker-compose
+	- CircleCI
+	- Capistrano
 	- MySQL2
 	- AWS (EC2、RDS for MySQL、Route53)
 	- Nginx、 Puma
-	- Capistrano
 
-- インフラ構成図
-![image](https://user-images.githubusercontent.com/62997834/93009715-37167a00-f5bf-11ea-9a0b-3b69a42fbc0d.png)
+- 構成図
+![image](https://user-images.githubusercontent.com/62997834/96968357-daa66300-154b-11eb-83f3-105c92e4388b.png)
 
 ## 設計
 - ER図
