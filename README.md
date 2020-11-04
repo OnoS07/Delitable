@@ -46,6 +46,9 @@ http://delitable.work/
 * 野菜の購入では、pay.jpを使用しクレジットカードでの決済がテストモードとして擬似的にできます
 * 食欲の出そうな黄色とピンクの2色をメインとし、要所ではJavascriptを使用し見やすいサイトを意識しました
 
+### 画面紹介
+* レシピの詳細画面
+![image](https://user-images.githubusercontent.com/62997834/98104758-3e307900-1eda-11eb-8127-9e4d7b7e8923.png)
 
 ## 機能・技術
 - HTML/CSS
