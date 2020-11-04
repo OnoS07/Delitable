@@ -39,6 +39,10 @@ http://delitable.work/
 * いつも同じ野菜やレシピが多くバリエーションを増やしたい人
 * 作る量が多く、食材の買い出しが大変な家庭
 
+### 画面紹介
+* レシピの詳細画面
+![image](https://user-images.githubusercontent.com/62997834/98104758-3e307900-1eda-11eb-8127-9e4d7b7e8923.png)
+
 
 ## 機能・技術
 - HTML/CSS
