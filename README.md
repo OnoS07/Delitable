@@ -105,7 +105,7 @@ http://delitable.work/
 	- Nginx、 Puma
 
 - 構成図
-![image](https://user-images.githubusercontent.com/62997834/96968357-daa66300-154b-11eb-83f3-105c92e4388b.png)
+![image](https://user-images.githubusercontent.com/62997834/99140730-bb50b080-2687-11eb-8af7-2267e9bd94c4.png)
 
 ## 設計
 - ER図
