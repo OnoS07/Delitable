@@ -109,6 +109,6 @@ http://delitable.work/
 
 ## 設計
 - ER図
-	![image](https://user-images.githubusercontent.com/62997834/95577178-9c4d7600-0a6c-11eb-8f79-d0f1bfb7843c.png)
+![image](https://user-images.githubusercontent.com/62997834/103148602-ed842080-47a4-11eb-9fbb-1f2b8ed4656b.png)
 
 
