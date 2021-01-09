@@ -32,7 +32,11 @@
 						<% end %>
 					</td>
 					<td><%= product.price %>円</td>
-					<td><%= product.genre.name %></td>
+					<%if product.genre %>
+						<td><%= product.genre.name %></td>
+					<% else %>
+						<td>未指定</td>
+					<% end %>
 					<td><%= product.is_active %></td>
 					<td><%= product.reviews.count %>件</td>
 					<td>
