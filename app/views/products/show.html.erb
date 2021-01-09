@@ -37,9 +37,13 @@
 			</div>
 			<p style="font-size: 18px;padding: 15px 0 30px 0"><%= @product.introduction %></p>
 			<p class="btn btn-warning btn-sm">
-				<%= link_to products_path(genre_id: @product.genre.id) do %>
-					<%= @product.genre.name %>
-				<% end %>
+			    <%if @product.genre %>
+					<%= link_to products_path(genre_id: @product.genre.id) do %>
+						<%= @product.genre.name %>
+					<% end %>
+					<% else %>
+						未指定
+					<% end %>
 			</p>
 			<span>
 				<p><%= (@product.price * 1.1).to_i %>円(税込)</p>

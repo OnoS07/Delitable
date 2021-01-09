@@ -44,7 +44,11 @@
                 <p>ジャンル　</p>
               </div>
               <div class="col-lg-9">
+              <%if @product.genre %>
                   <%= @product.genre.name %>
+              <% else %>
+                  <span>未指定</span>
+              <% end %>
               </div>
             </div>
 
